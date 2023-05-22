@@ -13,7 +13,6 @@ population
 	CanBotsAttackWhileInSpawnRoom	no
 	PrecacheModel "models/bots/boss_bot/tank_red_drill.mdl"	
 	PrecacheModel "models/bots/boss_bot/tank_drill.mdl"
-        LuaScriptFile "scripts/kickmorder.lua" //kick dat nega
 	PrecacheSound "sweetdeath.mp3"
 	PrecacheSound "phase2finalboss.mp3"
 	PrecacheModel "models/bots/pyro/bot_pyro_gibby.mdl"   
