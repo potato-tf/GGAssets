@@ -1786,7 +1786,7 @@ population
 				}
 				TFBot
 				{
-					ClassIcon	medic_kritz2_eyes
+					ClassIcon	medic_kritz
 					Health	150
 					Name	"Kritz Medic"
 					Class	Medic
@@ -2257,7 +2257,7 @@ population
 				}
 				TFBot
 				{
-					ClassIcon	medic_kritz2_eyes
+					ClassIcon	medic_kritz
 					Health	4500
 					Name	"Giant Kritz Medic"
 					Class	Medic

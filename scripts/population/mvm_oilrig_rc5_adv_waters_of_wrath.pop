@@ -433,7 +433,7 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 		{
 			Class	Medic
 			Name	"Kritzkrieg Medic"
-			ClassIcon	medic_kritz2_eyes
+			ClassIcon	medic_kritz
 			Attributes	SpawnWithFullCharge
 			Attributes	IgnoreEnemies
 			Item	"The Kritzkrieg"
