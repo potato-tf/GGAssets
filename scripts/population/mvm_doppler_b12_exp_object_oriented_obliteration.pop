@@ -4330,7 +4330,7 @@ itemname "the eyelander"
 		{   
 		    WaitForAllSpawned 64
 			name w6scouts
-			TotalCurrency	1075
+			TotalCurrency	775
 			TotalCount	4
 			MaxActive	4
 			SpawnCount	4
