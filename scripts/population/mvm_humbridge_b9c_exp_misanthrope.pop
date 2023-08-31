@@ -2908,6 +2908,7 @@ whatever_this_popfile_is
 			{
 				Target "popscript"
 				Action "$ColDronemanPhase2"
+                Param "regular"
 				Delay 0
 				Repeats 1
 				IfHealthBelow 17000
@@ -2916,6 +2917,7 @@ whatever_this_popfile_is
 			{
 				Target "popscript"
 				Action "$ColDronemanEngaged"
+                Param "regular"
 				Delay 0
 				Repeats 1
 				IfHealthBelow 12000
@@ -2930,6 +2932,13 @@ whatever_this_popfile_is
 				Engaged
 				{
 					WeaponRestrictions PrimaryOnly
+                    WeaponSwitch
+                    {
+                        Delay 0
+                        Cooldown 0
+                        Repeats 1
+                        Type "Primary"
+                    }
 				}
 			}
 			ItemAttributes
