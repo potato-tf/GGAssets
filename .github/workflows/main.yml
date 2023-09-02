@@ -52,7 +52,7 @@ jobs:
         with:
           args: --exclude '*' --include '*.zip' --follow-symlinks --delete
         env:
-          AWS_S3_BUCKET: fastdl-gg
+          AWS_S3_BUCKET: fastdl-archive
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           AWS_REGION: 'auto'   # optional: defaults to us-east-1
