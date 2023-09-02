@@ -1,0 +1,88 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        with:
+          path: tf
+
+      # Install wakeonlan
+      - name: Make scripts executable
+        run: sudo apt-get install -y wakeonlan
+        
+      - name: Setup SSH Keys and known_hosts
+        env:
+            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+            ssh-add - <<< "${{ secrets.DEPLOY_KEY }}"
+        
+      - name: Create asset pack
+        run: |
+          mv 'tf/.github/HOW TO INSTALL!.gif' .
+          zip -r gg-assets.zip tf -x '*/.*' -x '*.bz2' -x 'tf_mvm_missioncycle.res'
+          zip gg-assets.zip 'HOW TO INSTALL!.gif'
+          zip -r gg-assets-no-maps.zip tf -x '*/.*' -x '*.bz2' -x 'tf/maps/*' -x 'tf_mvm_missioncycle.res'
+          zip gg-assets-no-maps.zip 'HOW TO INSTALL!.gif'
+          rm 'HOW TO INSTALL!.gif'
+
+      - name: Upload to R2
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --exclude '*' --include '*.zip' --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: fastdl-archive
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'auto'   # optional: defaults to us-east-1
+          AWS_S3_ENDPOINT: https://d7d00000029f3cf361b520329f5e69df.r2.cloudflarestorage.com
+
+      - name: Create bz2 archives
+        run: |
+          cd tf
+          find . -type f -not \( -name "*.pop" -or -name "*.nav" -or -name "*.res" -or -name "*.bz2" -or -name "*.lua" -or -name "*.nut" \) \( ! -regex '.*/\..*' \) -exec bzip2 -f -k {} +
+          
+      - name: Sync with game servers
+        env:
+            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          for i in "22 pterodactyl@eu9.potato.tf 40:8d:5c:77:7e:d8"; do a=( $i ); 
+          {
+            ssh -o StrictHostKeyChecking=no -p ${a[0]} ${a[1]} wakeonlan ${a[2]}
+          } &
+          done
+          wait
+
+          cd tf
+          for i in  "22 pterodactyl@us.potato.tf" "3438 pterodactyl@us.potato.tf" "8246 pterodactyl@us.potato.tf" "22 pterodactyl@sgp.potato.tf" "27035 pterodactyl@eu.potato.tf" "22 pterodactyl@eu9.potato.tf" "2244 pterodactyl@eu9.potato.tf"; do a=( $i );
+          {
+            ssh -o StrictHostKeyChecking=no -p ${a[0]} ${a[1]} touch /var/tf2server/tf/occupiedservers/wake
+
+            rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude="*.bz2" --exclude="tf_mvm_missioncycle.res" --exclude="mapcycle.txt" . ${a[1]}:/var/tf2server/tf/gg/
+            ssh -p ${a[0]} -o StrictHostKeyChecking=no ${a[1]} mkdir -p /var/www/html/gameassets/gg
+            rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --include="*/" --include="*.bz2" --exclude="*" . ${a[1]}:/var/www/html/gameassets/gg/
+          
+          } &
+          done
+          wait
