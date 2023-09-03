@@ -27,6 +27,7 @@ StupidNig
 	//PrecacheModel "models/props/shop_props/cheese_wheel.mdl"
 	fixsetcustommodelinput 1
     NoRomevisionCosmetics 1
+	UpgradeStationKeepWeapons	1	
 	ExtraSpawnPoint
 	{
 		Name "spawnbot_boss2"
