@@ -433,7 +433,7 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 		{
 			Class	Medic
 			Name	"Kritzkrieg Medic"
-			ClassIcon	medic_kritz
+			ClassIcon	medic_kritz2_eyes
 			Attributes	SpawnWithFullCharge
 			Attributes	IgnoreEnemies
 			Item	"The Kritzkrieg"
@@ -686,9 +686,9 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 					ItemAttributes
 					{
 					itemname "tf_weapon_fists"
-                    "damage bonus" 2
+                    "damage bonus" 2.5
 					"melee airblast" 1
-					"fire rate bonus" 0.9
+					"fire rate bonus" 1
 					"is_passive_weapon" 1
 					}
 					CharacterAttributes
@@ -696,7 +696,7 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 						"move speed bonus"	0.35
 						"Blast radius increased" 1.5
 						//"use large smoke explosion" 1
-						"melee range multiplier" 1.33
+						"melee range multiplier" 1.35
 						"dmg bonus vs buildings" 1.5
 						"mult debuff duration" 0.67 //hard damage reset faster on high style ranks!
 						"rage giving scale"					0.2
@@ -710,8 +710,7 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 					}
 					Item "The Brass Beast"
 			}
-
-		T_FERRYMAN
+T_FERRYMAN
 		{
 			Class Demoman
 			Skill Expert
@@ -857,6 +856,7 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 				}
 			}
 		}
+		 
 			T_blue_railcannon
 			{
 			CLass Engineer
@@ -876,11 +876,11 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 			{
 			    itemname "The Machina"
 				"custom kill icon" "pomson"
-				"damage bonus" 2
+				"damage bonus" 1.69
 				"sniper only fire zoomed" 0
-				"fire rate penalty" 2
+				"fire rate penalty" 1.7
 				"projectile penetration" 1
-				"dmg bonus vs buildings" 1.5
+				"dmg bonus vs buildings" 2
 				"custom item model"  "models/workshop/weapons/c_models/c_drg_pomson/c_drg_pomson.mdl"
 			}
 			CharacterAttributes
@@ -912,7 +912,7 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 			    itemname "The Machina"
 				"crits_become_minicrits" 1
 				//"attach particle effect" 3042
-			    "damage bonus" 2.11
+			    "damage bonus" 1.85
 				"explosive bullets" 200
 				"sniper only fire zoomed" 0
 		"faster reload rate" 1.67
@@ -1257,13 +1257,12 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 			   Action	sniper
 			}
 		}
-		WaveSpawn //el finale support
+		WaveSpawn //el support
 		{
-		    WaitForAllSpawned 12
 			TotalCount 1
 			MaxActive 1
 			SpawnCount 1
-			WaitBeforeStarting 0
+			WaitBeforeStarting 3
 			WaitBetweenSpawns 1
 			TotalCurrency 0
 			Where Spawnbot
@@ -1272,6 +1271,22 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 			{
 			   Class Demoman
 			   Skill Expert
+			}
+		}
+		WaveSpawn //el support
+		{
+			TotalCount 5
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 1
+			TotalCurrency 0
+			Where Spawnbot
+			Support Limited
+			TFBot
+			{
+			   Class Demoman
+			   Skill hard
 			}
 		}
 	}
@@ -1678,8 +1693,8 @@ Class Soldier
 			MaxActive 6
 			SpawnCount 3
 			where spawnbot_right
-			Waitbeforestarting 15
-			WaitBetweenSpawns 15
+			Waitbeforestarting 12.5
+			WaitBetweenSpawns 12.5
 			TotalCurrency 350
 			Squad
 			{
