@@ -12,6 +12,7 @@ IShatMyself
 	CanBotsAttackWhileInSpawnRoom	no
 	TextPrintTime 0
 	BotTeleportUberDuration 2
+	UpgradeStationKeepWeapons	1	
 	
 	PrecacheSound "bossbar1.wav"
 	PrecacheSound "bossstatus1.wav"
