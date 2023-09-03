@@ -21,6 +21,7 @@ population
 	DisableSound "music.mvm_start_last_wave"
 	fixsetcustommodelinput 1
 	SpawnTemplate Silly_things
+	UpgradeStationKeepWeapons	1	
 		PointTemplates  
     	{
 			Silly_things // Made by Yuugi yet again
