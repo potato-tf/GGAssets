@@ -16,6 +16,7 @@ population
 	//FlagEscortCountOffset -4
 	MaxSpectators 3
 	CustomNavFile "mvm_doppler_b12_nostupiddropsv2.nav"
+	UpgradeStationKeepWeapons	1	
 	
 	FlagResetTime   //Overrides default bomb reset time
 	{
