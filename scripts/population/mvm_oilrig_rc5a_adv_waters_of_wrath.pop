@@ -8,7 +8,7 @@
 
 #base robot_standard.pop
 #base robot_giant.pop
-#base judge_restricts.pop
+// #base judge_restricts.pop
 //base mvm_slick_v3_ultrakill_ball.pop
 
 this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
@@ -17,6 +17,7 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 	RespawnWaveTime		2
 	CanBotsAttackWhileInSpawnRoom	no
 	Advanced	1
+	UpgradeStationKeepWeapons	1	
 	
     LuaScriptFile "scripts/ultrakill_ball.lua"
 	NoRomevisionCosmetics 1  
