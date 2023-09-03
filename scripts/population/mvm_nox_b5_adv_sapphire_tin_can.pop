@@ -15,6 +15,7 @@ WaveSchedule
 	NoRomevisionCosmetics 1
 	SentryHintMinDistanceFromBomb 900
 	TextPrintTime 0
+	UpgradeStationKeepWeapons	1	
 	
 	Mission // sentry buster w1 w2 w3 w4 w5
 	{
