@@ -62,6 +62,7 @@ whatever_this_popfile_is
     SentryBusterFriendlyFire 0 // No
     TextPrintTime 0
     FlagEscortCountOffset -4
+    UpgradeStationKeepWeapons	1	
 
     CustomNavFile "mvm_humbridge_fixed_nav" // No idea why certain bots are retarded, so this nav should fix it?
 
