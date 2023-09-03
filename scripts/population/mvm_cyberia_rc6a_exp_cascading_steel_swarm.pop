@@ -21,6 +21,7 @@ population
 	BotTeleportUberDuration 4
 	RobotLimit 23
 	//UseOriginalAnimsForUnintendedClassWeapons 1
+	UpgradeStationKeepWeapons	1	
 	
 	CustomWeapon   //Allows you to use an alias for items with custom attributes
 	{
