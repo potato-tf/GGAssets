@@ -10,6 +10,7 @@ WaveSchedule
 	StartingCurrency 800
 	CanBotsAttackWhileInSpawnRoom no
 	RespawnWaveTime 2
+	UpgradeStationKeepWeapons	1	
 
 	Mission // sentry buster 
 	{
