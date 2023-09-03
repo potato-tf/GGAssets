@@ -30,6 +30,7 @@ WaveSchedule
     //CustomNavFile "mvm_sequoia_rc4_gmedfix" //Thanks Whurr for this nav file, helped for sure (outdated but still thank you)
     //FixedRespawnWaveTime Yes
     RespawnWaveTime 2
+    UpgradeStationKeepWeapons	1	
 
     PrecacheModel "models/bots/boss_bot/boss_tank_color.mdl" // RGB Tank .mdl
 
