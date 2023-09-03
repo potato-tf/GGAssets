@@ -11,6 +11,7 @@ population
 	Advanced 1
 	AddSentryBusterWhenDamageDealtExceeds	3500
 	AddSentryBusterWhenKillCountExceeds	20
+	UpgradeStationKeepWeapons	1	
 	Templates
 	{
 	    T_TFBot_Bombman
