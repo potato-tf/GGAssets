@@ -1,6 +1,6 @@
 #base robot_giant.pop
 #base robot_standard.pop
-#base judge_restricts.pop
+// #base judge_restricts.pop
 WaveSchedule
 {
 	StartingCurrency	1000
@@ -9,6 +9,7 @@ WaveSchedule
 	FixedRespawnWaveTime	Yes
 	Advanced	1
 	NoRomevisionCosmetics 1  
+        UpgradeStationKeepWeapons	1	
 	TextPrintTime 0  
 	PrecacheModel "models/bots/boss_bot/boss_blimp.mdl"  
 	PrecacheModel "models/bots/boss_bot/boss_blimp_damage1.mdl"  
