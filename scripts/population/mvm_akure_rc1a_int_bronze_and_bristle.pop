@@ -2,7 +2,7 @@
 // Akure Intermediate
 
 #base overclocks_tindall.pop
-#base judge_restricts.pop
+// #base judge_restricts.pop
 population
 {
 	StartingCurrency				400
