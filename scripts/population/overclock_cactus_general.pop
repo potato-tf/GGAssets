@@ -185,7 +185,7 @@ WaveSchedule
             SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
             {
                 "Reload time decreased" 0.25
-				"effect cond override" 16
+				"effect cond override" 19
 				"spread penalty" 0.5
             }
             Description "(i)Hype is replaced with mini-crits -25% reload speed -50% accuracy" 
