@@ -2350,7 +2350,6 @@ WaveSchedule
             DisallowedWeapons
             {
                 ItemName "The Ubersaw"
-				ItemName "The Amputator"
             }
 		}
 		BonesawCleanB
@@ -2388,29 +2387,6 @@ WaveSchedule
 			{
 				"health regen" 3
 				"damage penalty" -0.3
-			}
-            AllowedWeapons
-			{
-				ItemName "The Amputator"
-			}
-		}
-		Amputator
-		{
-			Name "Unstable Mod: Vamprism Module"
-			Attribute "aoe heal chance"
-			Cap 100
-			Increment 100
-			Cost 0
-			Description "+On hit: buff all allies +Taunt applies buff banner and battalions -20% damage vulnerability -3 hp regen" 
-			Tier 1
-			SecondaryAttributes  
-			{
-				"effect cond override" 6672
-				"mult effect duration" 5
-				"provide on active" 1
-				"health regen" -3
-				"mult_dmgtaken_active" 0.2
-				"add cond on hit duration" 2
 			}
             AllowedWeapons
 			{
