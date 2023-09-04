@@ -407,6 +407,7 @@ WaveSchedule
 				"Blast radius increased" 0.35
 				"reload time increased hidden" 0.75
 				"fire rate penalty HIDDEN" 0.2
+				"projectile no deflect" 1
 			}
 			Description "(i)Rockets now arc +25% damage bonus +35% blast radius -75% clip size -75% reload speed -20% firing speed" 
 			Tier 1
@@ -440,6 +441,7 @@ WaveSchedule
 				"Blast radius decreased" -0.2
 				"dmg pierces resists absorbs" 1
 				"clip size penalty HIDDEN" -0.25
+				"projectile no deflect" 1
 			}
 			Description "+15% damage +25% damage to tanks +Attacks pierce damage resistances -20% smaller blast radius -25% clip size" 
 			Tier 1
@@ -620,8 +622,9 @@ WaveSchedule
 //				"max health additive penalty" -25
 //				"faster reload rate" -0.9
 				"maxammo primary reduced" -0.5
+				"maxammo secondary reduced" -0.5
 			}
-			Description "+15% faster primary reload -50% max primary ammo" 
+			Description "+15% faster primary reload -50% max primary/secondary ammo" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -1033,6 +1036,7 @@ WaveSchedule
 			{
 				"bullets per shot bonus" 0.5
 				"spread penalty" 0.35
+				"mult afterburn delay" 1.5
 			}
 			Description "+Weapon ignites targets +50% bullets per shot -35% less accurate" 
 			Tier 1
@@ -1151,6 +1155,7 @@ WaveSchedule
 				ItemName "The Back Scratcher"
 				ItemName "The Third Degree"		
 				ItemName "The Hot Hand"
+				ItemName "The Neon Annihilator"
 				
 			}
 		}
