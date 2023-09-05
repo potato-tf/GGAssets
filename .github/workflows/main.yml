@@ -56,7 +56,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           AWS_REGION: 'auto'   # optional: defaults to us-east-1
-          AWS_S3_ENDPOINT: https://d7d00000029f3cf361b520329f5e69df.r2.cloudflarestorage.com/fastdl-gg
+          AWS_S3_ENDPOINT: https://d7d00000029f3cf361b520329f5e69df.r2.cloudflarestorage.com
 
       - name: Create bz2 archives
         run: |
