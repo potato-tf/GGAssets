@@ -57,6 +57,7 @@ population
 	{
 		Name									"Psychopath's Seeker"
 		OriginalItemName						"The Liberty Launcher"
+		"no primary ammo from dispensers while active" 1
 		"clip size bonus"						2.5
 		"hidden primary max ammo bonus"			1.5
 		"fire rate bonus HIDDEN"				0.35
