@@ -1,6 +1,6 @@
 #base robot_giant.pop
 #base robot_standard.pop
-// #base judge_restricts.pop
+// // #base judge_restricts.pop
 WaveSchedule
 {
 	StartingCurrency	1000
