@@ -6,8 +6,6 @@
 
 #base robot_giant.pop
 #base robot_standard.pop
-#base overclock_cactus_general.pop
-
 StupidNig
 {
 	StartingCurrency	1200
@@ -27,7 +25,6 @@ StupidNig
 	//PrecacheModel "models/props/shop_props/cheese_wheel.mdl"
 	fixsetcustommodelinput 1
     NoRomevisionCosmetics 1
-	UpgradeStationKeepWeapons	1	
 	ExtraSpawnPoint
 	{
 		Name "spawnbot_boss2"
@@ -925,6 +922,20 @@ StupidNig
 		TFBot
 		{
 			Template	T_TFBot_Sniper
+		}
+	}
+	Mission
+	{
+		Objective	Spy
+		Where	spawnbot_mission_spy
+		BeginAtWave	7
+		RunForThisManyWaves	1
+		InitialCooldown	45
+		CooldownTime	45
+		DesiredCount	3
+		TFBot
+		{
+			Template	T_TFBot_Spy
 		}
 	}
 	SpawnTemplate SeCega2
@@ -1826,7 +1837,8 @@ StupidNig
                         {
 				TFBot
 				{
-					Template	T_TFBot_Giant_Demo_Burst
+                		ClassIcon demo_spammer
+					Template	T_TFBot_Giant_Demoman
 					Attributes	"AlwaysCrit"
 				}
 				TFBot
@@ -1896,8 +1908,34 @@ StupidNig
 			WaitBetweenSpawns	15
 			TFBot
 			{
-				Name	"Giant Huo-Long Heater Heavy"
-				Template	T_TFBot_Heavyweapons_Heater
+				ClassIcon	heavy_deflector_fire
+				Health	5000
+				Name	"Giant Deflector Heater Heavy"
+				Class	HeavyWeapons
+				Skill	Expert
+				WeaponRestrictions	PrimaryOnly
+				Attributes	"MiniBoss"
+				Item	"the huo long heatmaker"
+				ItemAttributes
+				{
+					ItemName "the huo long heatmaker"
+					"damage bonus"	1.5
+					"attack projectiles" 1
+				}
+				ItemAttributes
+				{
+					ItemName	"the u-clank-a"
+					"set item tint RGB"	13595446
+				}
+				CharacterAttributes
+				{
+					"move speed bonus"	0.45
+					"airblast vulnerability multiplier" 0.1
+					"airblast vertical vulnerability multiplier"	0.1
+					"override footstep sound set" 2
+					"rage giving scale"	0.9
+				}
+				Item	"the u-clank-a"
 			}
 		}
 		WaveSpawn
@@ -1984,16 +2022,16 @@ StupidNig
 			WaitForAllSpawned	w5c
 			TotalCurrency	0
 			TotalCount	30
-			MaxActive	4
-			SpawnCount	4
+			MaxActive	6
+			SpawnCount	3
 			Where	spawnbot_side
 			WaitBeforeStarting	15
-			WaitBetweenSpawns	5
+			WaitBetweenSpawns	3.5
 			Support 1
 			TFBot
 			{
 				Class HeavyWeapons
-				Skill Easy
+				Skill Normal
 				MaxVisionRange 900
 			}
 		}
@@ -2432,7 +2470,7 @@ StupidNig
 					SpawnTemplate TargetDest1
 					SpawnTemplate gtfonow
 					SpawnTemplate ca
-					Health	70000
+					Health	90000
 					Name	"Timed Disaster"
 					UseBusterModel 1
 					Attributes UseBossHealthBar
@@ -2475,7 +2513,7 @@ StupidNig
 						Cooldown 60
 						Repeats 420
 						Type "Melee"
-						IfHealthAbove 25000
+						IfHealthAbove 45000
 					}
 					WeaponSwitch  
 					{
@@ -2483,7 +2521,7 @@ StupidNig
 						Cooldown 61
 						Repeats 420
 						Type "Primary"
-						IfHealthAbove 25000
+						IfHealthAbove 45000
 					}
 					Taunt    //Taunt periodically
 					{
@@ -2492,7 +2530,7 @@ StupidNig
 						Repeats 99 //How many times the bot should taunt in total (Default: 0 - Infinite)
 						Duration 0.1 //Duration of a looping taunt (Default: 0.1)
 						IfSeeTarget 0 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
-						IfHealthAbove 25000
+						IfHealthAbove 45000
 					}
 					Taunt    //Taunt periodically
 					{
@@ -2501,7 +2539,7 @@ StupidNig
 						Repeats 99 //How many times the bot should taunt in total (Default: 0 - Infinite)
 						Duration 0.1 //Duration of a looping taunt (Default: 0.1)
 						IfSeeTarget 0 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
-						IfHealthBelow 25000
+						IfHealthBelow 45000
 					}
 					FireInput
 					{
@@ -2509,7 +2547,7 @@ StupidNig
 						Action PlaySound
 						Delay 0
 						Cooldown 99999
-						IfHealthAbove 25001
+						IfHealthAbove 45001
 					}
 					FireInput
 					{
@@ -2517,7 +2555,7 @@ StupidNig
 						Action trigger
 						Delay 60
 						Cooldown 60
-						IfHealthAbove 25001
+						IfHealthAbove 45001
 					}
 					FireInput
 					{
@@ -2525,7 +2563,7 @@ StupidNig
 						Action trigger
 						Delay 60
 						Cooldown 60
-						IfHealthAbove 25001
+						IfHealthAbove 45001
 					}
 					FireInput
 					{
@@ -2533,7 +2571,7 @@ StupidNig
 						Action trigger
 						Delay 0
 						Cooldown 30
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2541,7 +2579,7 @@ StupidNig
 						Action trigger
 						Delay 0
 						Cooldown 30
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2549,7 +2587,7 @@ StupidNig
 						Action StopSound
 						Delay 0
 						Cooldown 99999
-						IfHealthBelow 25000
+						IfHealthBelow 45000
 					}
 					FireInput
 					{
@@ -2557,7 +2595,7 @@ StupidNig
 						Action PlaySound
 						Delay 0
 						Cooldown 99999
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2566,7 +2604,7 @@ StupidNig
 						Cooldown 60
 						Delay 69
 						Repeats 99
-						IfHealthAbove 25001
+						IfHealthAbove 45001
 					}
 					FireInput
 					{
@@ -2575,7 +2613,7 @@ StupidNig
 						Cooldown 9999
 						Delay 0
 						Repeats 1
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2585,16 +2623,7 @@ StupidNig
 						Delay 0.1
 						Cooldown 1
 						Repeats 3
-						IfHealthBelow 25001
-					}
-					FireInput
-					{
-						Target player
-						Action $setprop$m_bUseBossHealthBar
-						Param 0
-						Delay 0
-						Ifhealthbelow 500
-						Repeats 1
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2604,7 +2633,7 @@ StupidNig
 						Delay 0
 						Cooldown 20
 						Repeats 99999
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2613,7 +2642,7 @@ StupidNig
 						Cooldown 60
 						Delay 69
 						Repeats 99
-						IfHealthAbove 25001
+						IfHealthAbove 45001
 					}
 					FireInput
 					{
@@ -2622,7 +2651,7 @@ StupidNig
 						Delay 60
 						Cooldown 60
 						Repeats 99
-						IfHealthAbove 25001
+						IfHealthAbove  45001
 					}
 					FireInput
 					{
@@ -2631,7 +2660,7 @@ StupidNig
 						Delay 74
 						Cooldown 74
 						Repeats 99
-						IfHealthAbove 25001
+						IfHealthAbove 45001
 					}
 					FireInput
 					{
@@ -2640,7 +2669,7 @@ StupidNig
 						Cooldown 30
 						Delay 6
 						Repeats 99
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					WeaponSwitch  
 					{
@@ -2648,7 +2677,7 @@ StupidNig
 						Cooldown 30
 						Repeats 420
 						Type "Melee"
-						IfHealthBelow 30000
+						IfHealthBelow 45000
 					}
 					WeaponSwitch  
 					{
@@ -2656,7 +2685,7 @@ StupidNig
 						Cooldown 31
 						Repeats 420
 						Type "Primary"
-						IfHealthBelow 25000
+						IfHealthBelow 45000
 					}
 					FireInput
 					{
@@ -2665,7 +2694,7 @@ StupidNig
 						Cooldown 30
 						Delay 6
 						Repeats 99
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2674,7 +2703,7 @@ StupidNig
 						Delay 0
 						Cooldown 30
 						Repeats 99
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2683,7 +2712,7 @@ StupidNig
 						Delay 14
 						Cooldown 30
 						Repeats 99
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2691,7 +2720,7 @@ StupidNig
 						Action Disable
 						Delay 0
 						Cooldown 99999
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2699,7 +2728,7 @@ StupidNig
 						Action Enable
 						Delay 20
 						Cooldown 99999
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2707,7 +2736,7 @@ StupidNig
 						Action Enable
 						Delay 15
 						Cooldown 99999
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					FireInput
 					{
@@ -2715,20 +2744,20 @@ StupidNig
 						Action Enable
 						Delay 4.2
 						Cooldown 99999
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 					}
 					Message
 					{
 						Name "{00d5ff}Timed Disaster {ffffe6}has been {ff0303}ENRAGED!"
 						Delay 0
 						Repeats 1
-						Ifhealthbelow 25000
+						Ifhealthbelow 45000
 					}
 					ChangeAttributes    
 					{
 						Delay 0
 						Repeats 1
-						IfHealthBelow 25000
+						IfHealthBelow 45000
 						Name "phase2"
 					}
 					ChangeAttributes    
@@ -2736,7 +2765,7 @@ StupidNig
 						Delay 13
 						Cooldown 60
 						Repeats 99
-						IfHealthAbove 25001
+						IfHealthAbove 45001
 						Name "A"
 					}
 					ChangeAttributes    
@@ -2744,7 +2773,7 @@ StupidNig
 						Delay 27
 						Cooldown 60
 						Repeats 99
-						IfHealthAbove 25001
+						IfHealthAbove 45001
 						Name "B"
 					}
 					ChangeAttributes    
@@ -2752,7 +2781,7 @@ StupidNig
 						Delay 43
 						Cooldown 60
 						Repeats 99
-						IfHealthAbove 25001
+						IfHealthAbove 45001
 						Name "c"
 					}
 					ChangeAttributes    
@@ -2760,7 +2789,7 @@ StupidNig
 						Delay 7
 						Cooldown 60
 						Repeats 99
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 						Name "A2"
 					}
 					ChangeAttributes    
@@ -2768,7 +2797,7 @@ StupidNig
 						Delay 15
 						Cooldown 60
 						Repeats 99
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 						Name "B2"
 					}
 					ChangeAttributes    
@@ -2776,7 +2805,7 @@ StupidNig
 						Delay 23
 						Cooldown 60
 						Repeats 99
-						IfHealthBelow 25001
+						IfHealthBelow 45001
 						Name "C2"
 					}
 					EventChangeAttributes
@@ -3024,7 +3053,7 @@ StupidNig
 			MaxActive	6
 			SpawnCount	2
 			Where	spawnbot
-			WaitBeforeStarting	31
+			WaitBeforeStarting	25
 			WaitBetweenSpawns	27
 			HideIcon 1
 			Support 1
@@ -3396,7 +3425,7 @@ StupidNig
 			MaxActive	2
 			SpawnCount	2
 			Where	spawnbot_boss3
-			WaitBeforeStarting	30
+			WaitBeforeStarting	10
 			WaitBetweenSpawns	19
 			Support 1
 			Squad
@@ -3433,11 +3462,11 @@ StupidNig
 			TotalCurrency 500
 			TotalCount	200
 			MaxActive	9
-			SpawnCount	2
+			SpawnCount	3
 			Where	spawnbot
 			Where	spawnbot_side
-			WaitBeforeStarting	14
-			WaitBetweenSpawns	10
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	3.5
 			Support	1
 			TFBot
 			{
@@ -3454,11 +3483,19 @@ StupidNig
 			Where	spawnbot
 			Where	spawnbot_side
 			WaitBeforeStarting	8
-			WaitBetweenSpawnsAfterDeath 20
+			WaitBetweenSpawnsAfterDeath 13
 			Support 1
 			TFBot
 			{
+                                ClassIcon pyro_dragon_fury_swordstone
+				Name	"Giant Dragon's Fury Pyro"
 				Template	T_TFBot_Giant_Pyro
+                                Item    "The Dragon's Fury"
+                                ItemAttributes
+				{
+					ItemName	"The Dragon's Fury"
+					"airblast disabled"	1
+				}
 			}	
 		}
 	}

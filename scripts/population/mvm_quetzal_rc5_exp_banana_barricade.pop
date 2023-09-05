@@ -7,7 +7,7 @@
 #base overclock_cactus_general.pop
 population
 {
-	StartingCurrency	1000
+	StartingCurrency	1200
 	RespawnWaveTime	4
 	WaveStartCountdown              5 
 	CanBotsAttackWhileInSpawnRoom	no
@@ -21,7 +21,6 @@ population
 	DisableSound "music.mvm_start_last_wave"
 	fixsetcustommodelinput 1
 	SpawnTemplate Silly_things
-	UpgradeStationKeepWeapons	1	
 		PointTemplates  
     	{
 			Silly_things // Made by Yuugi yet again
@@ -1335,6 +1334,7 @@ population
 				TFBot
 				{
 					Template	T_TFBot_Giant_Soldier_Crit
+					CustomEyeGlowColor "255 0 0"
 				}
 				TFBot
 				{
@@ -1366,6 +1366,7 @@ population
 					Template	T_TFBot_Giant_Soldier
 					Attributes	"AlwaysCrit"
 					Item "The Aztec Aggressor"
+					CustomEyeGlowColor "255 0 0"
 				}
 				TFBot
 				{
@@ -1384,10 +1385,18 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	3
 			WaitBetweenSpawns	5
-			TFBot
+			RandomChoice
 			{
-				Class	Scout
-				Skill	Normal
+				TFBot
+				{
+					Class	Scout
+					Skill	Easy
+				}
+				TFBot
+				{
+					Class	Scout
+					Skill	Normal
+				}
 			}
 		}
 		WaveSpawn
@@ -1437,6 +1446,7 @@ population
 			{
 				Template	T_TFBot_Giant_Pyro
 				Attributes	"AlwaysFireWeapon"
+				CustomEyeGlowColor "255 0 0"
 			}
 		}
 		WaveSpawn
@@ -1472,11 +1482,13 @@ population
 				{
 					Template	T_TFBot_Giant_Heavyweapons
 					Item "The Aztec Aggressor"
+					CustomEyeGlowColor "255 0 0"
 				}
 				TFBot
 				{
 					Template	T_TFBot_Giant_Soldier_Spammer
 					Item "The Aztec Aggressor"
+					CustomEyeGlowColor "255 0 0"
 				}
 			}
 		}
@@ -1496,7 +1508,7 @@ population
 				TFBot
 				{
 					Class Demoman
-                                        Skill Hard
+                                        Skill Normal
 				}
 				TFBot
 				{
@@ -1521,6 +1533,7 @@ population
 				TFBot
 				{
 					Template	T_TFBot_Giant_Soldier_RocketShotgun
+					CustomEyeGlowColor "255 0 0"
 				}
 				TFBot
 				{
@@ -1528,6 +1541,7 @@ population
 					Name	"Giant Dragon's Fury Pyro"
 					Template	T_TFBot_Giant_Pyro
                         	        Item    "The Dragon's Fury"
+					CustomEyeGlowColor "255 0 0"
                         	        ItemAttributes
 					{
 						ItemName	"The Dragon's Fury"
@@ -1558,9 +1572,9 @@ population
 			Name	w1e
 			WaitForAllSpawned	w1d1
 			TotalCurrency	200
-			TotalCount	12
-			MaxActive	9
-			SpawnCount	3
+			TotalCount	8
+			MaxActive	6
+			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	20
 			WaitBetweenSpawns	13
@@ -1569,11 +1583,7 @@ population
 				TFBot
 				{
 					Template	T_TFBot_Giant_Demo_Burst
-				}
-				TFBot
-				{
-                                        Name "Big-heal Medic"
-					Template	T_TFBot_Medic_BigHeal
+					CustomEyeGlowColor "255 0 0"
 				}
 				TFBot
 				{
@@ -1599,6 +1609,7 @@ population
 				Name	Heavy
 				Class	HeavyWeapons
 				Skill	Easy
+				CustomEyeGlowColor "24 255 24"
 			}
 		}
 	}
@@ -1632,6 +1643,7 @@ population
 				{
                                 ClassIcon demo_spammer
 					Template	T_TFBot_Giant_Demoman
+					CustomEyeGlowColor "255 0 0"
 				}
 				TFBot
 				{
@@ -1701,6 +1713,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Giant_Heavyweapons
+				CustomEyeGlowColor "255 0 0"
 			}
 		}
 		WaveSpawn
@@ -1717,6 +1730,7 @@ population
                         TFBot
 			{
 				Template	T_TFBot_Giant_Soldier_Spammer_Reload
+				CustomEyeGlowColor "255 0 0"
 			}
 		}
 		WaveSpawn
@@ -1763,6 +1777,7 @@ population
 					WeaponRestrictions	PrimaryOnly
 					Attributes	"AlwaysFireWeapon"
 					Attributes	"MiniBoss"
+					CustomEyeGlowColor "255 0 0"
 					Item "The Last Breath"
 					Item "The Smoking Skid Lid"
 					Item "The Lunatic's Leathers"
@@ -1787,13 +1802,14 @@ population
 				}
 				TFBot
 				{
-					ClassIcon	medic_kritz
+					ClassIcon	medic_kritz2_eyes
 					Health	150
 					Name	"Kritz Medic"
 					Class	Medic
 					Skill	Expert
 					WeaponRestrictions	SecondaryOnly
 					Attributes	"SpawnWithFullCharge"
+					CustomEyeGlowColor "255 0 0"
 					ItemAttributes
 					{
 						ItemName	"the kritzkrieg"
@@ -1869,6 +1885,7 @@ population
 				{
 					Template	T_TFBot_Giant_Soldier_Extended_Buff_Banner
 					Item "The Aztec Aggressor"
+					CustomEyeGlowColor "255 0 0"
 				}
 				TFBot
                 		{
@@ -1881,6 +1898,7 @@ population
                    		        MaxVisionRange 1200
                     		        Attributes MiniBoss
                     		        Attributes SpawnWithFullCharge
+					CustomEyeGlowColor "255 0 0"
 					Item "The Aztec Aggressor"
                     		        Item "The Concheror"
                     		        ItemAttributes
@@ -1910,6 +1928,7 @@ population
 					Skill Expert
 					Health 3000
 					WeaponRestrictions PrimaryOnly
+					CustomEyeGlowColor "255 0 0"
 					Attributes MiniBoss
 					Attributes HoldFireUntilFullReload
 					Attributes SpawnWithFullCharge
@@ -1977,12 +1996,14 @@ population
 				{
 					Template	T_TFBot_Giant_Soldier_Spammer
 					Attributes	"AlwaysCrit"
+					CustomEyeGlowColor "255 0 0"
 				}
 				TFBot
                 		{
                                         Name "Giant Regen Medic"
                 			Template T_TFBot_Giant_Medic_Regen
 					Attributes IgnoreEnemies
+					CustomEyeGlowColor "255 0 0"
                 		}
 			}
 		}
@@ -2058,6 +2079,7 @@ population
 				Name	"Giant Dragon's Fury Pyro"
 				Template	T_TFBot_Giant_Pyro
 				Attributes	"AlwaysCrit"
+				CustomEyeGlowColor "255 0 0"
                                 Item    "The Dragon's Fury"
                                 ItemAttributes
 				{
@@ -2165,7 +2187,7 @@ population
             				Item "Glengarry Bonnet"
             				WeaponRestrictions PrimaryOnly
             				Attributes HoldFireUntilFullReload
-
+					CustomEyeGlowColor "255 0 0"
             				ItemAttributes
             				{
                 				ItemName "tf_weapon_grenadelauncher"
@@ -2239,6 +2261,7 @@ population
 					Attributes MiniBoss
 					Attributes HoldFireUntilFullReload
 					Item "Tyrant's Helm"
+					CustomEyeGlowColor "255 0 0"
 					ItemAttributes
 					{
 						ItemName "TF_WEAPON_ROCKETLAUNCHER"
@@ -2258,7 +2281,7 @@ population
 				}
 				TFBot
 				{
-					ClassIcon	medic_kritz
+					ClassIcon	medic_kritz2_eyes
 					Health	4500
 					Name	"Giant Kritz Medic"
 					Class	Medic
@@ -2268,6 +2291,7 @@ population
                     			Attributes      "MiniBoss"
                                         Tag bot_giant
                                         Tag  bot_squad_member
+					CustomEyeGlowColor "255 0 0"
 					ItemAttributes
 					{
 						ItemName "The Kritzkrieg"
@@ -2386,6 +2410,7 @@ population
 					Skill	Expert
 					WeaponRestrictions	PrimaryOnly
 					Attributes	"MiniBoss"
+					CustomEyeGlowColor "255 0 0"
 					Item	"the huo long heatmaker"
 					ItemAttributes
 					{
@@ -2455,6 +2480,7 @@ population
 				Template	T_TFBot_Giant_Soldier_Spammer
 				Attributes	"HoldFireUntilFullReload"
 				Attributes	AlwaysCrit
+				CustomEyeGlowColor "255 0 0"
 				ItemAttributes
 				{
 					ItemName	"gentlemanne_rocketlauncher_coffinnail"
@@ -2498,6 +2524,7 @@ population
 				Item "The Last Breath"
 				Item "The Smoking Skid Lid"
 				Item "The Lunatic's Leathers"
+				CustomEyeGlowColor "255 0 0"
 				ItemAttributes
 				{
 					ItemName	"tf_weapon_flamethrower"
@@ -2653,7 +2680,7 @@ population
 				{
 					ItemName "powerhouse_flamethrower_flashfryer"
 					"dmg bonus vs buildings"      2.5
-                                        "damage bonus" 1.25
+                                        "damage bonus" 1.5
 					"set_item_texture_wear"    0.2 
 					"weapon burn dmg increased"	2
 					"flame_drag" 4
@@ -3271,7 +3298,7 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	20
+			WaitBeforeStarting	10
 			WaitBetweenSpawns	40
 			Support	Limited
             		RandomChoice
@@ -3281,6 +3308,7 @@ population
 					TFBot
 					{
 						Template	T_TFBot_Giant_Soldier_SlowBarrage
+						CustomEyeGlowColor "255 0 0"
 					}
 				}
 			}
@@ -3293,7 +3321,7 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	50
+			WaitBeforeStarting	45
 			WaitBetweenSpawns	50
 			Support	Limited
             		RandomChoice
@@ -3303,6 +3331,7 @@ population
 					TFBot
 					{
 						Template	T_TFBot_Giant_Heavyweapons_Shotgun
+						CustomEyeGlowColor "255 0 0"
 					}
 				}
 			}
@@ -3315,7 +3344,7 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot_flank
-			WaitBeforeStarting	75
+			WaitBeforeStarting	65
 			WaitBetweenSpawns	60
 			Support	Limited
             		RandomChoice
@@ -3332,6 +3361,7 @@ population
 						WeaponRestrictions PrimaryOnly
 						Attributes MiniBoss
 						Attributes HoldFireUntilFullReload
+						CustomEyeGlowColor "255 0 0"
 			                	ItemAttributes
 			                	{
 			                		ItemName "TF_WEAPON_GRENADELAUNCHER"
@@ -3361,7 +3391,7 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot_flank
-			WaitBeforeStarting	110
+			WaitBeforeStarting	95
 			WaitBetweenSpawns	75
 			Support	Limited
             		RandomChoice
@@ -3373,6 +3403,7 @@ population
 						ClassIcon heavy_deflector_healonkill
 						Name	"Giant Hok Deflector Heavy"
 						Template	T_TFBot_Giant_Heavyweapons_Deflector
+						CustomEyeGlowColor "255 0 0"
 						Item	"tough guy's toque"
 						CharacterAttributes
 						{
