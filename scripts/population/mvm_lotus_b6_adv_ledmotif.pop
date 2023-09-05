@@ -2929,7 +2929,7 @@ WaveSchedule
 		
 			Tank
 			{
-				Health 40000
+				Health 45000
 				Speed 60
 				Name "tankboss"
 				Skin 1

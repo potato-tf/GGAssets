@@ -8,7 +8,7 @@
 
 #base robot_standard.pop
 #base robot_giant.pop
-// // #base judge_restricts.pop
+//#base judge_restricts.pop
 //base mvm_slick_v3_ultrakill_ball.pop
 
 this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
@@ -17,7 +17,6 @@ this_is_most_certainly_a_popfile._quite_possibly_one_of_the_popfiles_ever_made
 	RespawnWaveTime		2
 	CanBotsAttackWhileInSpawnRoom	no
 	Advanced	1
-	UpgradeStationKeepWeapons	1	
 	
     LuaScriptFile "scripts/ultrakill_ball.lua"
 	NoRomevisionCosmetics 1  
@@ -718,9 +717,10 @@ T_FERRYMAN
 			//ExtAttr IgnoreBuildings
 			Name "The Ferryman"
 			health 18500
+			WeaponRestrictions PrimaryOnly
 			scale 1.35
 			ClassIcon	soldier_jug_market_electric
-			//DesiredAttackRange 100
+			//DesiredAttackRange 80
 			Action Mobber //Be not afraid, sinner. Your devotion to God shows goodness in you; plentiful indeed. The heart is willing but the body must rest, lest you squander one of the Lordâ€™s creations.
 			
 			    WeaponResist   //Multiplies damage received from weapons listed below
@@ -734,30 +734,12 @@ T_FERRYMAN
 			UseCustomModel "models/bots/demo/bot_demo.mdl"
 			Action	Mobber
 			UseHumanAnimations 1   
-			ChangeAttributes    
-			{
-				Delay		15
-				Cooldown	20
-				Repeats		9999
-				Name		"LightningPhase"
-			}
-			ChangeAttributes    // i think this is how you make it infinitely swap phases consistently
-			{
-				Delay		20
-				Cooldown	20
-				Repeats		9999
-				Name		"Default"
-			}
-			EventChangeAttributes
-			{
-				Default	
-				{
 
 					Skill				Expert
-					WeaponRestrictions	MeleeOnly
+					//WeaponRestrictions	MeleeOnly
 					Item				"The Market Gardener"
 					Item				"The Splendid Screen"
-					DesiredAttackRange 100
+					DesiredAttackRange 70
 					// EPIC FERRYMAN DRIP
 					Item	"The Nunhood"
 					Item	"Ramses' Regalia"
@@ -765,22 +747,44 @@ T_FERRYMAN
 					{
 						ItemName	"The Market Gardener"
 						"attack not cancel charge"	1
-						"mult dmg while midair"		1.5
+						"is_passive_weapon" 1
+						"mult dmg while midair"		1.1
 						"melee range multiplier"	1.1
 						"dmg current health" 0.15 //do 15% of your health on top, fuckj heavy
-					
+                        "dmg pierces resists absorbs" 1 // no wrangler noob
+					}
+					ItemAttributes
+					{
+						ItemName						"TF_WEAPON_GRENADELAUNCHER"
+						"custom kill icon"				"purgatory"
+						"custom item model"				"models/workshop/weapons/c_models/c_market_gardener/c_market_gardener.mdl"
+						"projectile trail particle"		"drg_wrenchmotron_teleport"
+						"explosion particle"			"drg_cow_explosion_sparkles_charged_blue"
+						"override projectile type"		17
+						"fuse bonus"					0.001
+						"blast radius increased"		1.5
+						"damage bonus"					0.69
+						"Projectile speed decreased"	0.01
+						"Projectile range decreased"	0.01
+						"grenade no spin"				1
+						"grenade no bounce"				1
+						"clip size bonus"				0.25
+						"fire rate bonus"				10
+						"disable buildings on hit"		3
+						"dmg bonus vs buildings" 2
 					}
 					ItemAttributes
 					{
 						ItemName	"The Splendid Screen"
 						"custom item model"	"models/empty.mdl"
 						"charge recharge rate increased"	3
+						"dmg taken from fire reduced" 1
+						"dmg taken from blast reduced" 1
 					}
 					FireWeapon  	// the one time I put AutoJump on croissant combat's boss caused a fuckton of errors for some reason so I have to do this for multi-phase bots
 					{
 						Delay			0
 						Cooldown		8
-						Repeats			9999
 						Duration		0.1
 						IfSeeTarget 1 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
 						Type			"Jump"
@@ -790,7 +794,7 @@ T_FERRYMAN
 						"increased jump height"				1.5
 						"rage giving scale"					0.1
 						"blast dmg to self increased"		0.01
-						"mult stun resistance" 0.1
+						"mult stun resistance" 0.35
                         "damage bonus" 1.1
                         "move speed bonus" 0.9
 						"cancel falling damage"				1
@@ -798,65 +802,9 @@ T_FERRYMAN
 						"override footstep sound set"		4
 						"airblast vulnerability multiplier"				0.01
 						"airblast vertical vulnerability multiplier"	0.1
-						"dmg pierces resists absorbs" 1
+					
 					}
 				}
-				LightningPhase
-				{
-					Skill				Expert
-					WeaponRestrictions	PrimaryOnly
-					DesiredAttackRange 100
-					Attributes AlwaysFireWeapon
-					Item	"The Nunhood"
-					Item	"Ramses' Regalia"
-					Taunt	 
-					{
-						Name		"Taunt: Second Rate Sorcery"
-						Delay		0
-						Cooldown	60
-						Duration	4
-						Repeats		9999
-					}
-					ItemAttributes
-					{
-						ItemName						"TF_WEAPON_GRENADELAUNCHER"
-						"custom kill icon"				"purgatory"
-						"custom item model"				"models/empty.mdl"
-						"projectile trail particle"		"drg_wrenchmotron_teleport"
-						"explosion particle"			"drg_cow_explosion_sparkles_charged_blue"
-						"override projectile type"		17
-						"fuse bonus"					0.001
-						"blast radius increased"		2.25
-						"damage bonus"					2.25
-						"Projectile speed decreased"	0.01
-						"Projectile range decreased"	0.01
-						"grenade no spin"				1
-						"grenade no bounce"				1
-						"clip size bonus"				0.25
-						"fire rate bonus"				5
-						"disable buildings on hit"		5
-						"dmg bonus vs buildings" 1.5
-					}
-					CharacterAttributes
-					{
-						"increased jump height"				1.5
-						"rage giving scale"					0.1
-						"blast dmg to self increased"		0.01
-						"cancel falling damage"				1
-						"damage force reduction"			0.01
-						"move speed bonus" 0.9
-						"mult stun resistance" 0.1
-                        "damage bonus" 1.1
-						"override footstep sound set"		4
-						"airblast vulnerability multiplier"				0.01
-						"airblast vertical vulnerability multiplier"	0.1
-						"gesture speed increase"	1.8
-						//"attach particle effect"	3045	// Static Mist
-						"dmg pierces resists absorbs" 1
-					}
-				}
-			}
-		}
 		 
 			T_blue_railcannon
 			{
@@ -2006,7 +1954,7 @@ Class Soldier
 			{
 				Template T_FERRYMAN
 				AlwaysGlow 1   //If set, the bot is always highlighted
-				name "The Ferrymann"
+				name "Ferrymann"
 			}
 		}
         WaveSpawn

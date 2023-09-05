@@ -21,7 +21,6 @@ population
 	BotTeleportUberDuration 4
 	RobotLimit 23
 	//UseOriginalAnimsForUnintendedClassWeapons 1
-	UpgradeStationKeepWeapons	1	
 	
 	CustomWeapon   //Allows you to use an alias for items with custom attributes
 	{
@@ -1054,7 +1053,7 @@ Squad
 		}
 		WaveSpawn 
 		{			
-		    Name 21
+		    //Name 21
 			TotalCount 1
 			WaitBeforeStarting 1						
 			TotalCurrency 100
@@ -1132,10 +1131,10 @@ Squad
 		WaveSpawn
 		{
 		    Name 23
-			WaitforallDead 21
+			WaitforallSpawned 21
 			Where	spawnbot_main
 			WaitBetweenSpawns	8
-			//WaitBeforeStarting	10
+			WaitBeforeStarting	10
 			TotalCount	80
 			MaxActive	12
 			SpawnCount	6			
@@ -2468,8 +2467,8 @@ OnKilledOutput
 		{
 		 
 			Where	spawnbot_main
-			WaitBetweenSpawnsAfterdeath	100
-			WaitBeforeStarting	60
+			WaitBetweenSpawnsAfterdeath	90
+			WaitBeforeStarting	60 //trollos
 			TotalCount	1
 			MaxActive	1
 			SpawnCount	1			
@@ -2553,7 +2552,7 @@ OnKilledOutput
 			Where	spawnbot_tertiary
 			//WaitforallSpawned 51-h
 			WaitBetweenSpawns	15
-			WaitBeforeStarting	20
+			WaitBeforeStarting	3
 			TotalCount	10
 			MaxActive	10
 			SpawnCount	5				

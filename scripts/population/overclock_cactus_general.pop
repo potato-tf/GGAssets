@@ -69,7 +69,7 @@ WaveSchedule
 			Cap 1.25
 			Increment 0.25
 			Cost 0
-			Description "+25% damage bonus +35% firing speed -100% accuracy -60% slower reload" 
+			Description "+25% damage bonus +35% firing speed -100% accuracy -100% slower reload" 
 			Tier 1
 			SecondaryAttributes
 			{

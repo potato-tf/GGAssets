@@ -2,7 +2,7 @@
 
 #base robot_giant.pop
 #base robot_standard.pop
-//// #base judge_restricts.pop
+//#base judge_restricts.pop
 
 population
 {
@@ -234,6 +234,82 @@ population
 				Action trigger
 			}
 		}
+		peter_says_the_n_word //tjanks sergeant tanbloino
+        {
+            
+            func_forcefield
+            {
+                    "TargetName" "dude_fuck_off"
+                    "origin" "3096.014160 -693.011475 1603.53137"
+                    "TeamNum" "1"
+                    "mins" "-800 -25 -10"
+                    "maxs" "800 25 1024"
+            }
+            func_forcefield
+            {
+                    "TargetName" "dude_fuck_off2"
+                    "origin" "3703.431152 408.031250 1603.531372"
+                    "TeamNum" "1"
+                    "mins" "-25 -300 -10"
+                    "maxs" "25 300 1024"
+            }
+            func_nobuild
+            {
+                "targetname" "fuck_you_ihaz_troll4k"
+                "origin" "2268.847656 -569.757446 -2.083527"
+                "mins" "-460 -120 -100"
+                "maxs" "460 120 100"
+                "AllowTeleporters" "1"
+                "AllowSentry" "0"
+                "AllowDispenser" "1"
+            }
+            trigger_push
+            {
+                "alternateticksfix" "0"
+                "origin" "1272.031250 -514.786499 168.019379"
+                "mins" "-60 -150 -144"
+                "maxs" "60 150 144"
+                "pushdir" "75 0 0"
+                "spawnflags" "1"
+                "speed" "600"
+                "targetname" "mudun_ur_romanian"
+            }
+            trigger_push
+            {
+                "alternateticksfix" "0"
+                "origin" "1357.487061 -865.117615 87.468956"
+                "mins" "-60 -20 -144"
+                "maxs" "120 100 144"
+                "pushdir" "0 75 0"
+                "spawnflags" "1"
+                "speed" "100"
+                "targetname" "mudun_ur_romanian2"
+            }
+            OnSpawnOutput
+            {
+                Target "dude_fuck_off*"
+                Action "trigger"
+                Delay 0
+            }
+            OnSpawnOutput
+            {
+                Target "dude_fuck_off*"
+                Action "trigger"
+                Delay 0
+            }
+            OnSpawnOutput
+            {
+                Target "mudun_ur_romanian*"
+                Action "enable"
+                Delay 0
+            }
+            OnSpawnOutput
+            {
+                Target "fuck_you_ihaz_troll4k"
+                Action "enable"
+                Delay 0
+            }
+        }
 	}
 	Mission
 	{
@@ -393,8 +469,8 @@ population
 	{
 		Objective		Spy
 		Where			spawnbot
-		InitialCooldown	20
-		CooldownTime	30
+		InitialCooldown	5
+		CooldownTime	28
 		DesiredCount	4
 		BeginAtWave		6
 		RunForThisManyWaves	1
@@ -423,6 +499,7 @@ population
 	}
 	
 	SpawnTemplate "the_part_where"
+	SpawnTemplate "peter_says_the_n_word" //and they respected me for it!
 	//SpawnTemplate StunProtectBomb
 	
 	Wave
@@ -1089,7 +1166,7 @@ population
 		{
 			TotalCurrency	50
 			WaitforallSpawned 33
-			TotalCount	5
+			TotalCount	10
 			MaxActive	3
 			SpawnCount	3
 			where spawnbot_low
@@ -1214,6 +1291,7 @@ population
 			{
 			Template T_TFBot_Heavy_IronFist_Airblast
 			classicon heavy_steelfist_pusher
+			ACtion Mobber
 			}
 		}
 		WaveSpawn
@@ -1231,8 +1309,8 @@ population
 			{
 			Template T_TFBot_Sniper_Huntsman
 			Skill normal
-			Scale 1.3
-			Health 350
+			Scale 1.35
+			Health 550
 			classicon sniper_bow_multi_penetrator_armored
 			Name "Anti-Material Bowman"
 			item "The Glorious Gambeson"
@@ -1356,7 +1434,7 @@ population
 			WaitBetweenSpawns	0
 			Tank
 				{
-					Health	13000
+					Health	14000
 					Name	Tank
 					Speed	80
 					Scale 0.5
