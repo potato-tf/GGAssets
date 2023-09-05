@@ -1,0 +1,6 @@
+banned_missions
+{
+	"mvm_rottenburg" "normal"
+	"mvm_rottenburg" "advanced1"
+	"mvm_rottenburg" "advanced2"
+}
