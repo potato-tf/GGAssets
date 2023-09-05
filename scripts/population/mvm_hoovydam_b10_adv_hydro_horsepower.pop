@@ -159,34 +159,34 @@ WaveSchedule
 		}
 
 		//	BREAD GAME //
-		// 9/4/2023:  Removed until creator re-uploads .nut file
-		// WaveSpawn
-		// {
-		// 	WaitBeforeStarting 	0
-		// 	TotalCount			0
-		// 	FirstSpawnOutput
-		// 	{
-		// 		Target gamerules
-		// 		Action RunScriptFile
-		// 		Param "hydro_horsepower_bread_game.nut"
-		// 	}
-		// }
+		
+		WaveSpawn
+		{
+			WaitBeforeStarting 	0
+			TotalCount			0
+			FirstSpawnOutput
+			{
+				Target gamerules
+				Action RunScriptFile
+				Param "hydro_horsepower_bread_game.nut"
+			}
+		}
 
-		// WaveSpawn
-		// {
-		// 	WaitBeforeStarting 	1
-		// 	TotalCount			0
-		// 	FirstSpawnOutput
-		// 	{
-		// 		Target gamerules
-		// 		Action RunScriptCode
-		// 		Param "
-		// 			::HHPWR_BreadGame.create_bread_item(Vector(-64, -672, 544))
-		// 			::HHPWR_BreadGame.create_bread_item(Vector(-32, -672, 544))
-		// 			::HHPWR_BreadGame.create_bread_item(Vector(0, -672, 544))
-		// 		"
-		// 	}
-		// }
+		WaveSpawn
+		{
+			WaitBeforeStarting 	1
+			TotalCount			0
+			FirstSpawnOutput
+			{
+				Target gamerules
+				Action RunScriptCode
+				Param "
+					::HHPWR_BreadGame.create_bread_item(Vector(-64, -672, 544))
+					::HHPWR_BreadGame.create_bread_item(Vector(-32, -672, 544))
+					::HHPWR_BreadGame.create_bread_item(Vector(0, -672, 544))
+				"
+			}
+		}
 
 		//	DISABLE BOMB RESET //
 
