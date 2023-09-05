@@ -213,7 +213,6 @@ OnParentKilledOutput
 }
 }
 
-
 vendors
 {
 
@@ -266,7 +265,7 @@ ambient_generic // right gnome
 "fadeinsecs" "0.3"
 "fadeoutsecs" "1"
 "health" "10"
-"radius" "1500"
+"radius" "2000"
 "origin" "-1384 2584 -76"
 }
 
@@ -276,7 +275,7 @@ ambient_generic // left gnome
 "targetname" "vendorsound"
 "fadeoutsecs" "0.4"
 "health" "10"
-"radius" "1500"
+"radius" "2000"
 "origin" "-1316.58 664 -112"
 }
 
@@ -286,7 +285,7 @@ ambient_generic // forward vendor
 "targetname" "forwardvendorsound"
 "fadeoutsecs" "0.4"
 "health" "10"
-"radius" "1500"
+"radius" "2000"
 "origin" "2148 -184 -364"
 }
 
@@ -1824,7 +1823,7 @@ ItemName "TF_WEAPON_ROCKETLAUNCHER"
 "mod projectile heat seek power" 90
 "mod projectile heat aim error" 90
 "mod projectile heat aim time" 2.5
-"projectile trail particle" "flaregun_trail_crit_blue"
+"projectile trail particle" "eyeboss_projectile"
 "damage bonus" 1.1
 "fire rate bonus" 0.8
 "dmg pierces resists absorbs" 1
@@ -2032,12 +2031,12 @@ skill expert
 AlwaysGlow 1
 UseMeleeThreatPrioritization 1
 Action MOBBER
-health 20000
+health 30000
 UseCustomModel "models/bots/saxtron/bot_saxtron_v2.mdl"
 Attributes AutoJump
 Attributes Miniboss
-AutoJumpMin 0.1
-AutoJumpMax 0.1
+AutoJumpMin 1
+AutoJumpMax 1
 item "The Loose Cannon"
 item "TF_WEAPON_FISTS"
 scale 1.35
@@ -2081,7 +2080,7 @@ ItemName "The Loose Cannon"
 "custom kill icon" "fists"
 "fuse bonus" 0.0001
 "apply look velocity on damage" 30
-"Blast radius increased" 0.75
+"Blast radius increased" 1.25
 }
 
 EventChangeAttributes  
