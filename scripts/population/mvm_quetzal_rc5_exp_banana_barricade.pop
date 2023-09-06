@@ -45,7 +45,7 @@ population
 					"disableshadows" "1"
 					"disablebonefollowers" "1"
 					"InitialOwner" "monkey_demo"
-					"model" "models\player\hwm\demo.mdl"
+					"model" "models\player\hwm\soldier.mdl"
 				}
 				prop_dynamic_ornament // Monkey
 				{
