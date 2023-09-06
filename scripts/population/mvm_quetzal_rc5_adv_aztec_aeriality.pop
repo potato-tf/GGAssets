@@ -3,81 +3,87 @@
 
 WaveSchedule
 {	
-	PrecacheModel "models/props_frontline/helicopter.mdl"  
-	PrecacheModel "models/props_frontline/warhawk.mdl"  
-	PrecacheModel "models/props_frontline/zeppelin_skybox.mdl"  
-	PrecacheModel "models/props_mvm/robot_spawnpoint.mdl"  
+	PrecacheModel "models/props_frontline/helicopter.mdl" [$SIGSEGV]
+	PrecacheModel "models/props_frontline/warhawk.mdl" [$SIGSEGV]
+	PrecacheModel "models/props_frontline/zeppelin_skybox.mdl" [$SIGSEGV]
+	PrecacheModel "models/props_mvm/robot_spawnpoint.mdl" [$SIGSEGV]
 
-	PrecacheSound "planesound.wav"  
-	PrecacheSound "supplydrop_morse.wav"  
-	PrecacheSound "helisound.wav"  
-	PrecacheSound "zeppelinsound.wav"  
-	PrecacheSound "teleporter_spin3_fade.wav"  
+	PrecacheSound "planesound.wav" [$SIGSEGV]
+	PrecacheSound "supplydrop_morse.wav" [$SIGSEGV]
+	PrecacheSound "helisound.wav" [$SIGSEGV]
+	PrecacheSound "zeppelinsound.wav" [$SIGSEGV]
+	PrecacheSound "zeppelinspawn.wav" [$SIGSEGV]
+	PrecacheSound "teleporter_spin3_fade.wav" [$SIGSEGV]
 	
-	PrecacheSound "ambient/explosions/explode_1.wav"  
-	PrecacheSound "ambient/explosions/explode_2.wav"  
-	PrecacheSound "ambient/explosions/explode_3.wav"  
-	PrecacheSound "ambient/explosions/explode_4.wav"  
-	PrecacheSound "ambient/explosions/explode_5.wav"  
-	PrecacheSound "ambient/explosions/explode_6.wav"  
-	PrecacheSound "ambient/explosions/explode_7.wav"  
-	PrecacheSound "ambient/explosions/explode_8.wav"  
-	PrecacheSound "ambient/explosions/explode_9.wav"  
+	PrecacheSound "ambient/explosions/explode_1.wav" [$SIGSEGV]
+	PrecacheSound "ambient/explosions/explode_2.wav" [$SIGSEGV]
+	PrecacheSound "ambient/explosions/explode_3.wav" [$SIGSEGV]
+	PrecacheSound "ambient/explosions/explode_4.wav" [$SIGSEGV]
+	PrecacheSound "ambient/explosions/explode_5.wav" [$SIGSEGV]
+	PrecacheSound "ambient/explosions/explode_6.wav" [$SIGSEGV]
+	PrecacheSound "ambient/explosions/explode_7.wav" [$SIGSEGV]
+	PrecacheSound "ambient/explosions/explode_8.wav" [$SIGSEGV]
+	PrecacheSound "ambient/explosions/explode_9.wav" [$SIGSEGV]
 	
-	PrecacheSound "mvm/mvm_tank_explode.wav"  
+	PrecacheSound "mvm/mvm_tank_explode.wav" [$SIGSEGV]
 	
-	PrecacheScriptSound "Zeppelin.CrashAlarm_P100"  
-	PrecacheScriptSound "Zeppelin.CrashAlarm_P105"  
-	PrecacheScriptSound "Zeppelin.CrashAlarm_P110"  
-	PrecacheScriptSound "Zeppelin.CrashAlarm_P115"  
-	PrecacheScriptSound "Zeppelin.CrashAlarm_P120"  
-	PrecacheScriptSound "Zeppelin.CrashAlarm_P125"  
-	PrecacheScriptSound "Zeppelin.CrashAlarm_P130"  
-	PrecacheScriptSound "Zeppelin.CrashAlarm_P135"  
-	PrecacheScriptSound "Zeppelin.CrashAlarm_P140"  
+	PrecacheScriptSound "Zeppelin.CrashAlarm_P100" [$SIGSEGV]
+	PrecacheScriptSound "Zeppelin.CrashAlarm_P105" [$SIGSEGV]
+	PrecacheScriptSound "Zeppelin.CrashAlarm_P110" [$SIGSEGV]
+	PrecacheScriptSound "Zeppelin.CrashAlarm_P115" [$SIGSEGV]
+	PrecacheScriptSound "Zeppelin.CrashAlarm_P120" [$SIGSEGV]
+	PrecacheScriptSound "Zeppelin.CrashAlarm_P125" [$SIGSEGV]
+	PrecacheScriptSound "Zeppelin.CrashAlarm_P130" [$SIGSEGV]
+	PrecacheScriptSound "Zeppelin.CrashAlarm_P135" [$SIGSEGV]
+	PrecacheScriptSound "Zeppelin.CrashAlarm_P140" [$SIGSEGV]
 	
-	PrecacheParticle "fluidSmokeExpl_ring_mvm"  
-	PrecacheParticle "teleported_mvm_bot"  
+	PrecacheParticle "fluidSmokeExpl_ring_mvm" [$SIGSEGV]
+	PrecacheParticle "teleported_mvm_bot" [$SIGSEGV]
+	PrecacheParticle "teleporter_mvm_bot_persist" [$SIGSEGV]
 	
-	PrecacheGeneric "darker_color_correction.raw"  
-	PrecacheGeneric "materials/airraid_warning_overlay.vmt"  
-	PrecacheGeneric "materials/airraid_warning_overlay.vtf"  
-	PrecacheGeneric "materials/supplydrop_crate_warning_overlay.vmt"  
-	PrecacheGeneric "materials/supplydrop_crate_warning_overlay.vtf"  
-	PrecacheGeneric "materials/supplydrop_tele_warning_overlay.vmt"  
-	PrecacheGeneric "materials/supplydrop_tele_warning_overlay.vtf"  
-	PrecacheGeneric "materials/zeppelin_fight_tip_overlay.vmt"  
-	PrecacheGeneric "materials/zeppelin_fight_tip_overlay.vtf"  
+	PrecacheGeneric "darker_color_correction.raw" [$SIGSEGV]
+	PrecacheGeneric "materials/airraid_warning_overlay.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/airraid_warning_overlay.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/supplydrop_crate_warning_overlay.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/supplydrop_crate_warning_overlay.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/supplydrop_tele_warning_overlay.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/supplydrop_tele_warning_overlay.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/zeppelin_fight_tip_overlay.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/zeppelin_fight_tip_overlay.vtf" [$SIGSEGV]
 	
-	PrecacheGeneric "materials/hud/leaderboard_class_plane_lite_blu.vtf"  
-	PrecacheGeneric "materials/hud/leaderboard_class_plane_lite_blu.vmt"  
-	PrecacheGeneric "materials/hud/leaderboard_class_helicopter_blue_nys_nomiplod.vtf"  
-	PrecacheGeneric "materials/hud/leaderboard_class_helicopter_blue_nys_nomiplod.vmt"  
-	PrecacheGeneric "materials/hud/leaderboard_class_blimp2_lite.vtf"  
-	PrecacheGeneric "materials/hud/leaderboard_class_blimp2_lite.vmt"  
+	PrecacheGeneric "materials/hud/leaderboard_class_plane_lite_blu.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/hud/leaderboard_class_plane_lite_blu.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/hud/leaderboard_class_helicopter_blue_nys_nomiplod.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/hud/leaderboard_class_helicopter_blue_nys_nomiplod.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/hud/leaderboard_class_blimp2_lite.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/hud/leaderboard_class_blimp2_lite.vmt" [$SIGSEGV]
 	
-	PrecacheGeneric "materials/models/props_frontline/zeppelin_blue.vtf"  
-	PrecacheGeneric "materials/models/props_frontline/zeppelin_blue.vmt"  
-	PrecacheGeneric "materials/models/props_frontline/warhawk_normal.vtf"  
-	PrecacheGeneric "materials/models/props_frontline/warhawk_blue.vtf"  
-	PrecacheGeneric "materials/models/props_frontline/warhawk_blue.vmt"  
-	PrecacheGeneric "materials/models/props_frontline/warhawk_2_blue.vtf"  
-	PrecacheGeneric "materials/models/props_frontline/warhawk_2_blue.vmt"  
-	PrecacheGeneric "materials/models/props_frontline/helicopter_normal.vtf"  
-	PrecacheGeneric "materials/models/props_frontline/helicopter_propeller.vtf"  
-	PrecacheGeneric "materials/models/props_frontline/helicopter_propeller.vmt"  
-	PrecacheGeneric "materials/models/props_frontline/helicopter_blu.vtf"  
-	PrecacheGeneric "materials/models/props_frontline/helicopter_blu.vmt"  
+	PrecacheGeneric "materials/models/props_frontline/zeppelin_blue.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/zeppelin_blue.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/warhawk_normal.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/warhawk.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/warhawk.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/warhawk_2.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/warhawk_2.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/warhawk_blue.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/warhawk_blue.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/warhawk_2_blue.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/warhawk_2_blue.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/helicopter_normal.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/helicopter_propeller.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/helicopter_propeller.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/helicopter_blu.vtf" [$SIGSEGV]
+	PrecacheGeneric "materials/models/props_frontline/helicopter_blu.vmt" [$SIGSEGV]
 	
-	CustomNavFile "mvm_quetzal_rc5_aztec_aeriality.nav"  
-	CustomScriptSoundFile "scripts/mvm_quetzal_rc5_aztec_aeriality_soundscript.txt"  
+	CustomNavFile "mvm_quetzal_rc5_aztec_aeriality.nav" [$SIGSEGV]
+	CustomScriptSoundFile "scripts/gg_pea_soundscript.txt" [$SIGSEGV]
 	StartingCurrency 1000
 	RespawnWaveTime 3
 	CanBotsAttackWhileInSpawnRoom no
-	SendBotsToSpectatorImmediately 1  
-	NoRomevisionCosmetics 1  
-	// WaveStartCountdown 0  
-	ExtraTankPath   //Adds tank path to follow
+	SendBotsToSpectatorImmediately 1 [$SIGSEGV]
+	NoRomevisionCosmetics 1 [$SIGSEGV]
+	// WaveStartCountdown 0 [$SIGSEGV]
+	ExtraTankPath [$SIGSEGV]
 	{
 		Name "quetzal_blimp_path"
 		Node "0 -5800 150"
@@ -114,7 +120,7 @@ WaveSchedule
 				ItemName "Lo-Fi Longwave"
 				"set item tint RGB" "15132390"
 			}
-			FireInput   
+			FireInput [$SIGSEGV] 
 			{
 				Target !self
 				Action RunScriptCode
@@ -125,7 +131,7 @@ WaveSchedule
 			}
 		}
 	}
-	PointTemplates  
+	PointTemplates [$SIGSEGV]
 	{
 		EnableTeleSpawns
 		{
@@ -169,6 +175,13 @@ WaveSchedule
 			info_target
 			{
 				"targetname" "dummy"
+			}
+		}
+		ZepExplodeWait
+		{
+			info_target
+			{
+				"targetname" "zeppelin_explosion_wait"
 			}
 		}
 	}
@@ -474,18 +487,18 @@ WaveSchedule
 			{
 				Health 10000
 				Speed 75
-				DisableSmokestack 1  
-				ClassIcon blimp2_lite  
-				Scale 1  
-				MaxTurnRate 50  
-				Model "models/bots/boss_bot/boss_blimp.mdl"  
-				Gravity 0  
+				DisableSmokestack 1 [$SIGSEGV]
+				ClassIcon blimp2_lite [$SIGSEGV]
+				Scale 1 [$SIGSEGV]
+				MaxTurnRate 50 [$SIGSEGV]
+				Model "models/bots/boss_bot/boss_blimp.mdl" [$SIGSEGV]
+				Gravity 0 [$SIGSEGV]
 				Skin 1
-				RotatePitch 0  
-				DisableTracks 1  
-				DisableChildModels 1  
-				EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav"  
-				PingSound "npc\combine_gunship\ping_search.wav"  
+				RotatePitch 0 [$SIGSEGV]
+				DisableTracks 1 [$SIGSEGV]
+				DisableChildModels 1 [$SIGSEGV]
+				EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav" [$SIGSEGV]
+				PingSound "npc\combine_gunship\ping_search.wav" [$SIGSEGV]
 				Name "tankboss"
 				StartingPathTrackNode "quetzal_blimp_path_1"
 				OnBombDroppedOutput
@@ -509,7 +522,7 @@ WaveSchedule
 			TotalCurrency 50
 			Squad
 			{
-				NoFormation 1  
+				NoFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Class Scout
@@ -582,7 +595,7 @@ WaveSchedule
 			TotalCurrency 50
 			Squad
 			{
-				NoFormation 1  
+				NoFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Template T_TFBot_Demo_Burst
@@ -1103,18 +1116,18 @@ WaveSchedule
 			{
 				Health 12000
 				Speed 75
-				DisableSmokestack 1  
-				ClassIcon blimp2_lite  
-				Scale 1  
-				MaxTurnRate 50  
-				Model "models/bots/boss_bot/boss_blimp.mdl"  
-				Gravity 0  
+				DisableSmokestack 1 [$SIGSEGV]
+				ClassIcon blimp2_lite [$SIGSEGV]
+				Scale 1 [$SIGSEGV]
+				MaxTurnRate 50 [$SIGSEGV]
+				Model "models/bots/boss_bot/boss_blimp.mdl" [$SIGSEGV]
+				Gravity 0 [$SIGSEGV]
 				Skin 1
-				RotatePitch 0  
-				DisableTracks 1  
-				DisableChildModels 1  
-				EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav"  
-				PingSound "npc\combine_gunship\ping_search.wav"  
+				RotatePitch 0 [$SIGSEGV]
+				DisableTracks 1 [$SIGSEGV]
+				DisableChildModels 1 [$SIGSEGV]
+				EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav" [$SIGSEGV]
+				PingSound "npc\combine_gunship\ping_search.wav" [$SIGSEGV]
 				Name "tankboss"
 				StartingPathTrackNode "quetzal_blimp_path_1"
 				OnBombDroppedOutput
@@ -1133,14 +1146,14 @@ WaveSchedule
 			TotalCount 1
 			WaitForAllDead "W3C-1"
 			WaitBeforeStarting 6
-			HideIcon 1  
+			HideIcon 1 [$SIGSEGV]
 			FirstSpawnOutput
 			{
 				Target gamerules
 				Action RunScriptCode
 				Param "SupplyDropTeles_Start()"
 			}
-			PointTemplate  
+			PointTemplate [$SIGSEGV]
 			{
 				SpawnAtEntity Where
 				Name "EnableTeleSpawns"
@@ -1160,7 +1173,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Soldier_RocketShotgun
-				AddTemplate "T_TeleBot"  
+				AddTemplate "T_TeleBot" [$SIGSEGV]
 				ItemAttributes
 				{
 					ItemName "The Black Box"
@@ -1182,7 +1195,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Pyro_Flare_Spammer
-				AddTemplate "T_TeleBot"  
+				AddTemplate "T_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -1264,18 +1277,18 @@ WaveSchedule
 			{
 				Health 10000
 				Speed 75
-				DisableSmokestack 1  
-				ClassIcon blimp2_lite  
-				Scale 1  
-				MaxTurnRate 50  
-				Model "models/bots/boss_bot/boss_blimp.mdl"  
-				Gravity 0  
+				DisableSmokestack 1 [$SIGSEGV]
+				ClassIcon blimp2_lite [$SIGSEGV]
+				Scale 1 [$SIGSEGV]
+				MaxTurnRate 50 [$SIGSEGV]
+				Model "models/bots/boss_bot/boss_blimp.mdl" [$SIGSEGV]
+				Gravity 0 [$SIGSEGV]
 				Skin 1
-				RotatePitch 0  
-				DisableTracks 1  
-				DisableChildModels 1  
-				EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav"  
-				PingSound "npc\combine_gunship\ping_search.wav"  
+				RotatePitch 0 [$SIGSEGV]
+				DisableTracks 1 [$SIGSEGV]
+				DisableChildModels 1 [$SIGSEGV]
+				EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav" [$SIGSEGV]
+				PingSound "npc\combine_gunship\ping_search.wav" [$SIGSEGV]
 				Name "tankboss"
 				StartingPathTrackNode "quetzal_blimp_path_1"
 				OnBombDroppedOutput
@@ -1329,8 +1342,8 @@ WaveSchedule
 			WaitBeforeStarting 3
 			WaitBetweenSpawns 0
 			TotalCurrency 0
-			HideIcon 1  
-			PointTemplate  
+			HideIcon 1 [$SIGSEGV]
+			PointTemplate [$SIGSEGV]
 			{
 				SpawnAtEntity Where
 				Name "Dummy"
@@ -1347,7 +1360,7 @@ WaveSchedule
 			Where spawnbot
 			Name "W3F-SupplyDropCrate_Enabler-1"
 			WaitForAllDead "W3F-SupplyDropCrate_Init"
-			PointTemplate  
+			PointTemplate [$SIGSEGV]
 			{
 				SpawnAtEntity Where
 				Name "Crate1"
@@ -1358,7 +1371,7 @@ WaveSchedule
 			Where spawnbot
 			Name "W3F-SupplyDropCrate_Enabler-2"
 			WaitForAllDead "W3F-SupplyDropCrate_Init"
-			PointTemplate  
+			PointTemplate [$SIGSEGV]
 			{
 				SpawnAtEntity Where
 				Name "Crate2"
@@ -1369,7 +1382,7 @@ WaveSchedule
 			Where spawnbot
 			Name "W3F-SupplyDropCrate_Enabler-3"
 			WaitForAllDead "W3F-SupplyDropCrate_Init"
-			PointTemplate  
+			PointTemplate [$SIGSEGV]
 			{
 				SpawnAtEntity Where
 				Name "Crate3"
@@ -1389,7 +1402,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_RocketPush
-				FireInput   
+				FireInput [$SIGSEGV] 
 				{
 					Target !self
 					Action RunScriptCode
@@ -1414,7 +1427,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Heavyweapons
-				FireInput   
+				FireInput [$SIGSEGV] 
 				{
 					Target !self
 					Action RunScriptCode
@@ -1439,7 +1452,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_RocketPush
-				FireInput   
+				FireInput [$SIGSEGV] 
 				{
 					Target !self
 					Action RunScriptCode
@@ -1567,14 +1580,14 @@ WaveSchedule
 			TotalCount 1
 			WaitForAllDead "W4A-1"
 			WaitBeforeStarting 3
-			HideIcon 1  
+			HideIcon 1 [$SIGSEGV]
 			FirstSpawnOutput
 			{
 				Target gamerules
 				Action RunScriptCode
 				Param "SupplyDropTeles_Start()"
 			}
-			PointTemplate  
+			PointTemplate [$SIGSEGV]
 			{
 				SpawnAtEntity Where
 				Name "EnableTeleSpawns"
@@ -1595,7 +1608,7 @@ WaveSchedule
 			{
 				Class Scout
 				Skill Normal
-				AddTemplate "T_TeleBot"  
+				AddTemplate "T_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -1628,7 +1641,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Soldier_Spammer
-				AddTemplate "T_TeleBot"  
+				AddTemplate "T_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -1799,7 +1812,7 @@ WaveSchedule
 				Class Pyro
 				Skill Easy
 				Attributes AlwaysFireWeapon
-				AddTemplate "T_TeleBot"  
+				AddTemplate "T_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -1816,7 +1829,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Soldier_Spammer
-				AddTemplate "T_TeleBot"  
+				AddTemplate "T_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -1957,13 +1970,13 @@ WaveSchedule
 				Speed 0
 				Name "zeppelin_engine_1_destructible"
 				StartingPathTrackNode "tank_path_a_10"
-				DisableSmokestack 1   //Disable smoke particles
-				Immobile 1   //If enabled, the tank will not move at all (unless parented). Might be useful when used with other forms of locomotion
-				TriggerDestroyBuildingFix 1   // Fixes trigger entities destroying buildings on touch if parented to the tank (Default: 0)
-				NoCrushDamage 1   // Tanks cannot crush players (Default: 0)
-				NoScreenShake 1   // Disable screen shake (Default: 0)
-				EngineLoopSound "misc/null.wav"  
-				PingSound "misc/null.wav"  
+				DisableSmokestack 1 [$SIGSEGV]
+				Immobile 1 [$SIGSEGV]
+				TriggerDestroyBuildingFix 1 [$SIGSEGV]
+				NoCrushDamage 1 [$SIGSEGV]
+				NoScreenShake 1 [$SIGSEGV]
+				EngineLoopSound "misc/null.wav" [$SIGSEGV]
+				PingSound "misc/null.wav" [$SIGSEGV]
 			}
         }
 		WaveSpawn
@@ -1996,14 +2009,13 @@ WaveSchedule
 				Speed 0
 				Name "zeppelin_engine_2_destructible"
 				StartingPathTrackNode "tank_path_a_10"
-				DisableSmokestack 1   //Disable smoke particles
-				Immobile 1   //If enabled, the tank will not move at all (unless parented). Might be useful when used with other forms of locomotion
-				TriggerDestroyBuildingFix 1   // Fixes trigger entities destroying buildings on touch if parented to the tank (Default: 0)
-				NoCrushDamage 1   // Tanks cannot crush players (Default: 0)
-				SolidToBrushes 1   // Tank is solid to brush entities (Default: 0)
-				NoScreenShake 1   // Disable screen shake (Default: 0)
-				EngineLoopSound "misc/null.wav"  
-				PingSound "misc/null.wav"  
+				DisableSmokestack 1 [$SIGSEGV]
+				Immobile 1 [$SIGSEGV]
+				TriggerDestroyBuildingFix 1 [$SIGSEGV]
+				NoCrushDamage 1 [$SIGSEGV]
+				NoScreenShake 1 [$SIGSEGV]
+				EngineLoopSound "misc/null.wav" [$SIGSEGV]
+				PingSound "misc/null.wav" [$SIGSEGV]
 			}
         }
 		WaveSpawn
@@ -2036,14 +2048,13 @@ WaveSchedule
 				Speed 0
 				Name "zeppelin_engine_3_destructible"
 				StartingPathTrackNode "tank_path_a_10"
-				DisableSmokestack 1   //Disable smoke particles
-				Immobile 1   //If enabled, the tank will not move at all (unless parented). Might be useful when used with other forms of locomotion
-				TriggerDestroyBuildingFix 1   // Fixes trigger entities destroying buildings on touch if parented to the tank (Default: 0)
-				NoCrushDamage 1   // Tanks cannot crush players (Default: 0)
-				SolidToBrushes 1   // Tank is solid to brush entities (Default: 0)
-				NoScreenShake 1   // Disable screen shake (Default: 0)
-				EngineLoopSound "misc/null.wav"  
-				PingSound "misc/null.wav"  
+				DisableSmokestack 1 [$SIGSEGV]
+				Immobile 1 [$SIGSEGV]
+				TriggerDestroyBuildingFix 1 [$SIGSEGV]
+				NoCrushDamage 1 [$SIGSEGV]
+				NoScreenShake 1 [$SIGSEGV]
+				EngineLoopSound "misc/null.wav" [$SIGSEGV]
+				PingSound "misc/null.wav" [$SIGSEGV]
 				Skin 1
 			}
         }
@@ -2147,7 +2158,7 @@ WaveSchedule
 			TotalCurrency 50
 			Squad
 			{
-				NoFormation 1  
+				NoFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Class Soldier
@@ -2431,6 +2442,21 @@ WaveSchedule
 				Template T_TFBot_Giant_Scout_Baseball_Armored
 			}
 		}
+		WaveSpawn
+		{
+			Name "W5-WaitUntilZepExplodes"
+			Where spawnbot
+			SpawnCount 1
+			MaxActive 1
+			TotalCount 1
+			TotalCurrency 0
+			HideIcon 1 [$SIGSEGV]
+			PointTemplate [$SIGSEGV]
+			{
+				SpawnAtEntity Where
+				Name "ZepExplodeWait"
+			}
+		}
 	}
 	// Wave // TEST
 	// {
@@ -2454,25 +2480,147 @@ WaveSchedule
 		// Checkpoint Yes
 		// WaveSpawn
 		// {
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "Zeppelin_Start()"
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Name "Zeppelin-E1"
 			// SpawnCount 1
 			// MaxActive 1
 			// TotalCount 1
-			// WaitBeforeStarting 0
+			// WaitBeforeStarting 8
 			// WaitBetweenSpawns 0
-			// TotalCurrency 75
+			// TotalCurrency 0
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "Zeppelin_ParentTank(1)"
+				// Delay 0.1
+			// }
+			// DoneOutput                                  
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "Zeppelin_DestroyCageStage(1)"
+				// Delay 0.1                    
+			// }
 			// Tank
 			// {
-				// Health 24000
+				// Health 10000
 				// Speed 0
-				// Name "tankboss"
+				// Name "zeppelin_engine_1_destructible"
 				// StartingPathTrackNode "tank_path_a_10"
-				// OnBombDroppedOutput                             
-				// {
-					// Target boss_deploy_relay 
-					// Action Trigger                         
-				// }
+				// DisableSmokestack 1 [$SIGSEGV] //Disable smoke particles
+				// Immobile 1 [$SIGSEGV] //If enabled, the tank will not move at all (unless parented). Might be useful when used with other forms of locomotion
+				// TriggerDestroyBuildingFix 1 [$SIGSEGV] // Fixes trigger entities destroying buildings on touch if parented to the tank (Default: 0)
+				// NoCrushDamage 1 [$SIGSEGV] // Tanks cannot crush players (Default: 0)
+				// NoScreenShake 1 [$SIGSEGV] // Disable screen shake (Default: 0)
+				// EngineLoopSound "misc/null.wav" [$SIGSEGV]
+				// PingSound "misc/null.wav" [$SIGSEGV]
 			// }
         // }
+		// WaveSpawn
+		// {
+			// Name "Zeppelin-E2"
+			// SpawnCount 1
+			// MaxActive 1
+			// TotalCount 1
+			// WaitForAllDead "Zeppelin-E1"
+			// WaitBeforeStarting 5
+			// WaitBetweenSpawns 0
+			// TotalCurrency 0
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "Zeppelin_ParentTank(2)"
+				// Delay 0.1
+			// }
+			// DoneOutput                                  
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "Zeppelin_DestroyCageStage(2)"
+				// Delay 0.1                    
+			// }
+			// Tank
+			// {
+				// Health 10000
+				// Speed 0
+				// Name "zeppelin_engine_2_destructible"
+				// StartingPathTrackNode "tank_path_a_10"
+				// DisableSmokestack 1 [$SIGSEGV] //Disable smoke particles
+				// Immobile 1 [$SIGSEGV] //If enabled, the tank will not move at all (unless parented). Might be useful when used with other forms of locomotion
+				// TriggerDestroyBuildingFix 1 [$SIGSEGV] // Fixes trigger entities destroying buildings on touch if parented to the tank (Default: 0)
+				// NoCrushDamage 1 [$SIGSEGV] // Tanks cannot crush players (Default: 0)
+				// SolidToBrushes 1 [$SIGSEGV] // Tank is solid to brush entities (Default: 0)
+				// NoScreenShake 1 [$SIGSEGV] // Disable screen shake (Default: 0)
+				// EngineLoopSound "misc/null.wav" [$SIGSEGV]
+				// PingSound "misc/null.wav" [$SIGSEGV]
+			// }
+        // }
+		// WaveSpawn
+		// {
+			// Name "Zeppelin-E3"
+			// SpawnCount 1
+			// MaxActive 1
+			// TotalCount 1
+			// WaitForAllDead "Zeppelin-E2"
+			// WaitBeforeStarting 5
+			// WaitBetweenSpawns 0
+			// TotalCurrency 0
+			// FirstSpawnOutput                
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "Zeppelin_ParentTank(3)"
+				// Delay 0.1
+			// }
+			// DoneOutput                                  
+			// {
+				// Target gamerules
+				// Action RunScriptCode
+				// Param "Zeppelin_DestroyCageStage(3)"
+				// Delay 0.1                    
+			// }
+			// Tank
+			// {
+				// Health 10000
+				// Speed 0
+				// Name "zeppelin_engine_3_destructible"
+				// StartingPathTrackNode "tank_path_a_10"
+				// DisableSmokestack 1 [$SIGSEGV] //Disable smoke particles
+				// Immobile 1 [$SIGSEGV] //If enabled, the tank will not move at all (unless parented). Might be useful when used with other forms of locomotion
+				// TriggerDestroyBuildingFix 1 [$SIGSEGV] // Fixes trigger entities destroying buildings on touch if parented to the tank (Default: 0)
+				// NoCrushDamage 1 [$SIGSEGV] // Tanks cannot crush players (Default: 0)
+				// SolidToBrushes 1 [$SIGSEGV] // Tank is solid to brush entities (Default: 0)
+				// NoScreenShake 1 [$SIGSEGV] // Disable screen shake (Default: 0)
+				// EngineLoopSound "misc/null.wav" [$SIGSEGV]
+				// PingSound "misc/null.wav" [$SIGSEGV]
+				// Skin 1
+			// }
+        // }
+		// WaveSpawn
+		// {
+			// Where spawnbot
+			// Name "W5E"
+			// SpawnCount 2
+			// MaxActive 2
+			// TotalCount 2
+			// WaitForAllDead "W5D-1"
+			// WaitBeforeStarting 3600
+			// WaitBetweenSpawns 0
+			// TotalCurrency 100
+			// TFBot
+			// {
+				// Template T_TFBot_Giant_Scout_Baseball_Armored
+			// }
+		// }
 	// }
 }
-// #base judge_restricts.pop

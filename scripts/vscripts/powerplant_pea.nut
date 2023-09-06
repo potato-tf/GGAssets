@@ -321,7 +321,7 @@ if (Entities.FindByName(null, "nav_avoid_giant") == null)
 {
 	if (action == "begin")
 	{
-		EntFireByHandle(gamerules_entity, "PlayVORed", "mvm/mvm_tele_activate.wav", 0.0, null, null)
+		EntFireByHandle(gamerules_entity, "PlayVO", "mvm/mvm_tele_activate.wav", 0.0, null, null)
 		
 		for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
 		{
@@ -348,7 +348,7 @@ if (Entities.FindByName(null, "nav_avoid_giant") == null)
 		EntFire("tele_b_skyparticle", "Stop")
 		EntFire("tele_f_skyparticle", "Stop")
 		
-		EntFireByHandle(gamerules_entity, "PlayVORed", "weapons/teleporter_explode.wav", 0.0, null, null)
+		EntFireByHandle(gamerules_entity, "PlayVO", "weapons/teleporter_explode.wav", 0.0, null, null)
 		
 		teleport_status = "inactive"
 	}
@@ -388,7 +388,7 @@ if (Entities.FindByName(null, "nav_avoid_giant") == null)
 	if (self.HasBotAttribute(32768))
 	{
 		NetProps.SetPropBool(self, "m_bGlowEnabled", true)
-		EntFireByHandle(gamerules_entity, "PlayVORed", "mvm/giant_heavy/giant_heavy_entrance.wav", 0.0, null, null)
+		EntFireByHandle(gamerules_entity, "PlayVO", "mvm/giant_heavy/giant_heavy_entrance.wav", 0.0, null, null)
 		
 		SendGlobalGameEvent("show_annotation", 
 		{

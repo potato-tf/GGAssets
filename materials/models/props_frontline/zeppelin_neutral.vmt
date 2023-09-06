@@ -26,4 +26,3 @@ $envmap env_cubemap
 	"$rimlight" "0.5"
 	"$rimlightexponent" "2"	
 	"$rimlightboost" ".4"
-}

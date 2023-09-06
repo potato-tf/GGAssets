@@ -175,27 +175,6 @@ WaveSchedule
 				ItemName "Festive Force-a-Nature"
 			}
 		}
-        SodaPopA
-        {
-            Name "Unstable Mod: Super Shells"
-            Attribute "provide on active" 
-            Cap 1
-            Increment 1
-            Cost 0
-            SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
-            {
-                "Reload time decreased" 0.25
-				"effect cond override" 19
-				"spread penalty" 0.5
-            }
-            Description "(i)Hype is replaced with mini-crits -25% reload speed -50% accuracy" 
-            Tier 1
-            AllowPlayerClass Scout
-            AllowedWeapons
-            {
-                ItemName "The Soda Popper"
-            }
-        }
 /////Pistols
 		PistolCoK
 		{
