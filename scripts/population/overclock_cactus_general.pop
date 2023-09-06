@@ -69,13 +69,13 @@ WaveSchedule
 			Cap 1.25
 			Increment 0.25
 			Cost 0
-			Description "+25% damage bonus +35% firing speed -100% accuracy -100% slower reload" 
+			Description "+25% damage bonus +40% firing speed -100% accuracy -100% slower reload" 
 			Tier 1
 			SecondaryAttributes
 			{
 				"spread penalty" 1	
 				"Reload time increased" 1
-				"fire rate bonus HIDDEN" -0.35
+				"fire rate bonus HIDDEN" -0.4
 				"halloween reload time decreased" 0.5
 			}
 			AllowPlayerClass Scout
@@ -123,7 +123,7 @@ WaveSchedule
 				"spread penalty" 0.46
 				"Reload time increased" 0.25
 			}
-			Description "+Crits from behind -46% less accurate -25% reload speed" 
+			Description "+Crits from behind -46% accuracy -25% reload speed" 
 			Tier 1
             AllowedWeapons
 			{
@@ -662,11 +662,11 @@ WaveSchedule
 			Cap 5
 			Increment 5
 			Cost 0
-			Description "+On Kill: 5 seconds of mini-crits +25% damage bonus" 
+			Description "+On Kill: 5 seconds of mini-crits +35% damage bonus" 
 			Tier 1
 			SecondaryAttributes
 			{
-				"damage bonus" 0.25
+				"damage bonus" 0.35
 			}
             Allowplayerclass Engineer
             Allowplayerclass Heavyweapons
@@ -808,7 +808,7 @@ WaveSchedule
 		}
 		Equalizer
 		{
-			Name "Stable Mod: Survival Training"
+			Name "Unstable Mod: Survival Training"
 			Attribute "damage bonus"
 			Cap 1.25
 			Increment 0.25
@@ -994,10 +994,10 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"Projectile speed decreased" -0.5
-				"mult afterburn delay" 0.75
+				"mult afterburn delay" 2
 				"mult bleeding dmg" 3
 			}
-			Description "+On Hit: Bleed for 3 seconds +75% faster afterburn -50% projectile speed" 
+			Description "+On Hit: Bleed for 3 seconds +200% faster afterburn -50% projectile speed" 
 			Tier 1
 			AllowedWeapons
 			{
