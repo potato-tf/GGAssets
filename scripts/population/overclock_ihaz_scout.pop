@@ -9,7 +9,7 @@
 boston
 {
 
-LuaScriptFile "dover_custom_weapons.lua"
+LuaScriptFile "scripts/dover2_custom_weapons.lua"
 
 DisallowUpgrade      //Advanced syntax
 {
@@ -342,7 +342,7 @@ Attribute "mult bleeding dmg"
 Cap 3
 Increment 3
 Cost 400
-Description "+30% base health on kill +500% damage +35% critical damage +300% bleed damage -200% swing speed"
+Description "+30% base health on kill +500% damage +25% critical damage +300% bleed damage -200% swing speed"
 Tier 1
 SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 {
@@ -352,7 +352,7 @@ SecondaryAttributes //Secondary attributes applied when upgrade is applied, for 
 "restore health on kill" 30
 "crit mod disabled" -1
 "provide on active" 1
-"mult crit dmg" 0.35
+"mult crit dmg" 0.25
 "dmg taken from self reduced" -0.75
 }
 AllowedWeapons
@@ -424,7 +424,7 @@ ItemName "Sun-on-a-Stick"
 
 lolno
 {
-Name "Balanced Overclock: Shine"
+Name "Clean Overclock: Shine"
 Attribute "melee airblast" 
 Cap 1
 Increment 1

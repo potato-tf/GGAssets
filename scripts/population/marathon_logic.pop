@@ -2031,7 +2031,7 @@ skill expert
 AlwaysGlow 1
 UseMeleeThreatPrioritization 1
 Action MOBBER
-health 30000
+health 25000
 UseCustomModel "models/bots/saxtron/bot_saxtron_v2.mdl"
 Attributes AutoJump
 Attributes Miniboss
@@ -2080,7 +2080,7 @@ ItemName "The Loose Cannon"
 "custom kill icon" "fists"
 "fuse bonus" 0.0001
 "apply look velocity on damage" 30
-"Blast radius increased" 1.25
+"Blast radius increased" 0.75
 }
 
 EventChangeAttributes  

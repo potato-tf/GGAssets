@@ -10,7 +10,10 @@
 // rip this missiom if you are translating this mission for other languages or the mission is broken and is abandoned
 // do not claim that you made this mission
 // do not remove the credits in the popfile credit page (you can remove the explanation credits that is presented in w1 though)
-// do not rip this mission for commerical purposes  (ask for permission if you want to)
+
+// potato event demo changelogs
+// day 1 of event beta: 
+// reduced knockback from major bombard, reduced reload speed and blast radius for colonel homings and set saxtron hp at 25000, nerfed mobber fists speed and nerfed overkill critical damage to 25%
 
 #base robot_giant.pop
 #base robot_standard.pop
@@ -23,8 +26,8 @@ WaveSchedule
 StartingCurrency 1200
 CanBotsAttackWhileInSpawnRoom No
 RespawnWaveTime 20
-UpgradeStationKeepWeapons	1	
 
+SpawnTemplate "MissionName"
 SpawnTemplate "Moosic"
 SpawnTemplate "barriers"
 SpawnTemplate "vendors"
@@ -346,13 +349,11 @@ Wave // wave 2
 
 CustomMaxWaveNumber 4
 
-PlayerAttributes   
+ItemAttributes
 {
-
-Scout
-{
+"ItemSlot" Secondary
 "SET BONUS: dmg taken from fire reduced set bonus" 0.25
-}
+"damage force reduction" 0.25
 }
 
 StartWaveOutput
@@ -515,7 +516,6 @@ Blue 31
 
 CharacterAttributes
 {
-"move speed bonus"	5
 "cannot pick up intelligence" 1
 }
 				
@@ -1270,6 +1270,7 @@ Skill Expert
 Health 4000
 Attributes AlwaysCrit
 Attributes HoldFireUntilFullReload
+Item "The Grenadier's Softcap"
 AimOffset "0 0 200"  
 HomingRockets   
 {
@@ -1290,9 +1291,9 @@ ItemName "TF_WEAPON_ROCKETLAUNCHER"
 "clip size upgrade atomic" 12
 "damage bonus" 0.7
 "fire rate bonus" 0.001
-"faster reload rate" 0.3
+"faster reload rate" 0.5
 "projectile spread angle penalty" 180
-"blast radius increased" 1.5
+"blast radius increased" 1.25
 "projectile trail particle" "halloween_rockettrail"
 }
 
@@ -1417,7 +1418,6 @@ Blue 31
 
 CharacterAttributes
 {
-"move speed bonus"	5
 "cannot pick up intelligence" 1
 }
 				
@@ -1647,5 +1647,5 @@ Template T_TFBot_Scout_Cash
 
 }
 		
-	
-	
+
+
