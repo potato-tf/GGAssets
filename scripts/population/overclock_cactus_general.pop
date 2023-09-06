@@ -2234,10 +2234,10 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"add cond on hit duration" 4.0
-				"reload time increased hidden" 0.25
+				"reload time increased hidden" 0.75
 				"damage penalty" -0.5
 			}
-			Description "+On hit: Apply 4 seconds of Mad Milk -25% slower reload speed -50% damage penalty" 
+			Description "+On hit: Apply 4 seconds of Mad Milk -75% slower reload speed -50% damage penalty" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2255,10 +2255,10 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"add cond on hit duration" 4.0
-				"reload time increased hidden" 0.75
+				"reload time increased hidden" 0.5
 				"damage penalty" -0.20
 			}
-			Description "+Reload entire clip at once -75% slower reload speed -20% damage penalty" 
+			Description "+Reload entire clip at once -50% slower reload speed -20% damage penalty" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2292,16 +2292,16 @@ WaveSchedule
 		{
 			Name "Unstable Mod: Broken Shield Lens"
 			Attribute "heal rate bonus"
-			Cap 1.25
-			Increment 0.25
+			Cap 1.20
+			Increment 0.20
 			Cost 0
-			Description "+25 max hp +25% faster heal rate + 10% faster uber build on overhealed patients -65% shield duration -100% shield damage" 
+			Description "+15 max hp +20% faster heal rate + 5% faster uber build on overhealed patients -65% shield duration -100% shield damage" 
 			Tier 1
 			SecondaryAttributes 
 			{
-				"ubercharge overheal rate penalty" 0.10
+				"ubercharge overheal rate penalty" 0.05
 				"increase buff duration" -0.65
-				"max health additive bonus" 25
+				"max health additive bonus" 15
 				"dmg penalty vs players" -1.0
 			}
             AllowedWeapons
