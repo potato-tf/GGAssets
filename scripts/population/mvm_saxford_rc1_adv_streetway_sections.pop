@@ -6,7 +6,8 @@
 
 #base robot_giant.pop
 #base robot_standard.pop
-StupidNig
+#base overclock_cactus_general.pop
+Stupid
 {
 	StartingCurrency	1200
 	RespawnWaveTime	3
