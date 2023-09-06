@@ -4,45 +4,21 @@ WaveSchedule
 {
 	StartingCurrency 800
 	RespawnWaveTime 2
-	//WaveStartCountdown 0  
+	// WaveStartCountdown 0 [$SIGSEGV]
 	CanBotsAttackWhileInSpawnRoom no
-	CustomNavFile "mvm_powerplant_rc1_adv_three_leaf_takeover.nav"  
-	NoRomevisionCosmetics 1  
-	PrecacheParticle "lava_fireball"  
+	CustomNavFile "mvm_powerplant_rc1_adv_three_leaf_takeover.nav" [$SIGSEGV]
+	CustomScriptSoundFile "scripts/gg_pea_soundscript.txt" [$SIGSEGV]
+	NoRomevisionCosmetics 1 [$SIGSEGV]
+	
+	PrecacheParticle "lava_fireball" [$SIGSEGV]
+	
+	PrecacheModel "models/props_mvm/robot_spawnpoint.mdl" [$SIGSEGV]
+	
+	PrecacheGeneric "materials/teleport_warning_overlay.vmt" [$SIGSEGV]
+	PrecacheGeneric "materials/teleport_warning_overlay.vtf" [$SIGSEGV]
+	
 	Templates
 	{
-		T_WaveSpawn_BombDelivery
-		{
-			Where bomb_delivery_spawn
-			Name "BombDelivery"
-			SpawnCount 1
-			MaxActive 1
-			TotalCount 1
-			TotalCurrency 0
-			HideIcon 1  
-			Support Limited
-			TFBot
-			{
-				Class Sniper
-				Health 1
-				Name "Bomb Delivery Service"
-				WeaponRestrictions SecondaryOnly
-				Item "The HazMat Headcase"
-				ClassIcon special_blimp
-				FireInput   
-				{
-					Target spawnbot*
-					Action Enable
-					Delay 0
-					Cooldown 3600
-				}
-				CharacterAttributes
-				{
-					"move speed bonus" 10
-					"health drain" -10
-				}
-			}
-		}
 		T_TFBot_Medic_AoEUber
 		{
 			Class Medic
@@ -54,12 +30,10 @@ WaveSchedule
 			WeaponRestrictions MeleeOnly
 			Item "The Amputator"
 			Item "Your Worst Nightmare"
-			Action FetchFlag  
-			UseMeleeThreatPrioritization 1  
+			Action FetchFlag [$SIGSEGV]
+			UseMeleeThreatPrioritization 1 [$SIGSEGV]
 			Tag bot_giant
-			Tag aoe_medic
-			SpawnTemplate "UberRadius"  
-			AddCond  
+			AddCond [$SIGSEGV]
 			{
 				Index 55
 			}
@@ -67,216 +41,120 @@ WaveSchedule
 			{
 				"move speed penalty" 0.65
 			}
-		}
-		T_TFTemplate_TeleBot_Hat_Scout
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
+			SpawnTemplate "UberRadius" [$SIGSEGV]
+			FireInput [$SIGSEGV] 
 			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Soldier
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Giant_Soldier
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Pyro
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Giant_Pyro
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Demoman
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Giant_Demoman
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Heavy
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Gauntlet_Heavy
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Giant_Heavy
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Sniper
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Medic
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Gauntlet_Medic
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot_Hat_Giant_Medic
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-		}
-		T_TFTemplate_TeleBot
-		{
-			FireInput   
-			{
-				Target teleport_check
-				Action Test
-				Param ""
+				Target !self
+				Action RunScriptCode
+				Param "AddThinkToEnt(self, `AoEUber_Think`)"
 				Delay 0
 				Cooldown 3600
 				Repeats 0
 			}
 		}
-		T_TFTemplate_TeleBot_Giant
+		T_TFBot_TeleBot
 		{
-			AlwaysGlow 1  
-			FireInput   
+			Item "Lo-Fi Longwave"
+			ItemAttributes
 			{
-				Target teleport_check_giant
-				Action Test
-				Param ""
+				ItemName "Lo-Fi Longwave"
+				"set item tint RGB" "15132390"
+			}
+			FireInput [$SIGSEGV] 
+			{
+				Target !self
+				Action RunScriptCode
+				Param TeleportRobot()
 				Delay 0
 				Cooldown 3600
 				Repeats 0
 			}
 		}
-		T_TFTemplate_TeleBot_SquadLeader
+		T_TFBot_TeleBot_SquadLeader
 		{
-			FireInput   
+			Item "Lo-Fi Longwave"
+			ItemAttributes
 			{
-				Target teleport_check_squadleader
-				Action Test
-				Param ""
+				ItemName "Lo-Fi Longwave"
+				"set item tint RGB" "15132390"
+			}
+			FireInput [$SIGSEGV] 
+			{
+				Target !self
+				Action RunScriptCode
+				Param TeleportRobot(`squad_leader`)
 				Delay 0
 				Cooldown 3600
 				Repeats 0
 			}
 		}
-		T_TFTemplate_TeleBot_SquadMember
+		T_TFBot_TeleBot_SquadMember
 		{
-			FireInput   
+			Item "Lo-Fi Longwave"
+			ItemAttributes
 			{
-				Target teleport_check_squadmember
-				Action Test
-				Param ""
+				ItemName "Lo-Fi Longwave"
+				"set item tint RGB" "15132390"
+			}
+			FireInput [$SIGSEGV] 
+			{
+				Target !self
+				Action RunScriptCode
+				Param TeleportRobot(`squad_member`)
 				Delay 0
 				Cooldown 3600
 				Repeats 0
 			}
 		}
-		T_TFTemplate_TeleBot_Giant_Tutorial
+		T_TFBot_TeleBot_W3D
 		{
-			AlwaysGlow 1  
-			FireInput   
+			Item "Lo-Fi Longwave"
+			ItemAttributes
 			{
-				Target teleport_check_giant_tutorial
-				Action Test
-				Param ""
+				ItemName "Lo-Fi Longwave"
+				"set item tint RGB" "15132390"
+			}
+			FireInput [$SIGSEGV] 
+			{
+				Target !self
+				Action RunScriptCode
+				Param "TeleportRobot(null, true, Vector(-800, -2050, 235), `Surprise attack!`)"
 				Delay 0
 				Cooldown 3600
 				Repeats 0
 			}
 		}
-		T_TFTemplate_TeleBot_Giant_W3D
+		T_TFBot_TeleBot_W5A_SquadLeader
 		{
-			AlwaysGlow 1  
-			FireInput   
+			Item "Lo-Fi Longwave"
+			ItemAttributes
 			{
-				Target teleport_check_giant_w3d
-				Action Test
-				Param ""
+				ItemName "Lo-Fi Longwave"
+				"set item tint RGB" "15132390"
+			}
+			FireInput [$SIGSEGV] 
+			{
+				Target !self
+				Action RunScriptCode
+				Param "TeleportRobot(`squad_leader`, true, Vector(-1850, -700, 285))"
 				Delay 0
 				Cooldown 3600
 				Repeats 0
 			}
 		}
-		T_TFTemplate_TeleBot_Giant_W5A
+		T_TFBot_TeleBot_Boss
 		{
-			AlwaysGlow 1  
-			FireInput   
+			Item "Lo-Fi Longwave"
+			ItemAttributes
 			{
-				Target teleport_check_giant_w5a
-				Action Test
-				Param ""
+				ItemName "Lo-Fi Longwave"
+				"set item tint RGB" "15132390"
+			}
+			FireInput [$SIGSEGV] 
+			{
+				Target !self
+				Action RunScriptCode
+				Param "TeleportRobot(`boss_helper`)"
 				Delay 0
 				Cooldown 3600
 				Repeats 0
@@ -376,12 +254,235 @@ WaveSchedule
 			Template T_TFBot_Engineer_Sentry_Battle
 		}
 	}
+	PointTemplates [$SIGSEGV]
+	{
+		UberRadius
+		{
+			mapobj_cart_dispenser
+			{
+				"touch_trigger" "dispenser_trigger"
+				"TeamNum" "3"
+				"targetname" "tank_dispenser"
+				"spawnflags" "12"
+			}
+			dispenser_touch_trigger
+			{
+				"targetname" "dispenser_trigger"
+				"spawnflags" "1"
+				"mins" "-250 -250 -250"
+				"maxs" "250 250 250"
+			}
+		}
+		BossBot
+		{
+			OnSpawnOutput
+			{
+				Target !parent
+				Action AddOutput
+				Param "targetname boss_bot"
+			}
+			OnSpawnOutput
+			{
+				Target blast_boss_phase_change
+				Action $SetOwner
+				Param !parent
+			}
+			OnSpawnOutput
+			{
+				Target phase2_boss_weapon
+				Action $SetOwner
+				Param !parent
+			}
+			OnSpawnOutput
+			{
+				Target blast_boss_phase_change
+				Action $AddWeaponAttribute
+				Param "explosion particle|fluidSmokeExpl_ring_mvm"
+			}
+			OnSpawnOutput
+			{
+				Target blast_boss_phase_change
+				Action $AddWeaponAttribute
+				Param "damage causes airblast|1"
+			}
+			OnSpawnOutput
+			{
+				Target blast_boss_phase_change
+				Action $AddWeaponAttribute
+				Param "Blast radius increased|4"
+			}
+			OnSpawnOutput
+			{
+				Target blast_boss_phase_change
+				Action $AddWeaponAttribute
+				Param "self dmg push force decreased|0"
+			}
+			OnSpawnOutput
+			{
+				Target blast_boss_phase_change
+				Action $AddWeaponAttribute
+				Param "no self blast dmg|2"
+			}
+			OnSpawnOutput
+			{
+				Target phase2_boss_weapon
+				Action $AddWeaponAttribute
+				Param "projectile gravity|4000"
+			}
+			OnSpawnOutput
+			{
+				Target phase2_boss_weapon
+				Action $AddWeaponAttribute
+				Param "custom projectile model|models/weapons/w_models/w_drg_ball.mdl"
+			}
+			OnSpawnOutput
+			{
+				Target phase2_boss_weapon
+				Action $AddWeaponAttribute
+				Param "projectile trail particle|lava_fireball"
+			}
+			OnSpawnOutput
+			{
+				Target phase2_boss_weapon
+				Action $AddWeaponAttribute
+				Param "projectile spread angle penalty|45"
+			}
+			OnSpawnOutput
+			{
+				Target phase2_boss_weapon
+				Action $AddWeaponAttribute
+				Param "fire input on hit|!caller^$IgnitePlayerDuration^6"
+			}
+			OnSpawnOutput
+			{
+				Target phase2_boss_weapon
+				Action $AddWeaponAttribute
+				Param "fire input on hit name restrict|ignite_me"
+			}
+			OnSpawnOutput
+			{
+				Target phase2_boss_weapon
+				Action $AddWeaponAttribute
+				Param "Projectile speed increased|1.8"
+			}
+			logic_relay
+			{
+				"spawnflags" "0"
+				"targetname" "boss_phase_change_relay"
+				"StartDisabled" "0"
+				"OnTrigger" "boss_skybeam,Start,,9,-1"
+				"OnTrigger" "rename_players,Enable,,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$8,1,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$8,scout,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$8,4,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$9,1,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$9,pyro,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$9,4,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$10,1,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$10,pyro_flare,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$10,4,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$11,1,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$11,heavy_heater_giant,9,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$11,4,9,-1"
+				"OnTrigger" "support_boss_spawnbot*,Enable,,9,-1"
+				"OnTrigger" "phase2_boss_tele_marker,Start,,9,-1"
+				"OnTrigger" "phase2_boss_weapon,FireUser1,,9,-1"
+				"OnTrigger" "player,$PlaySoundToSelf,mvm/mvm_tele_activate.wav,7.5,-1"
+				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags$3,25,5,-1"
+				"OnTrigger" "player,$PlaySoundToSelf,ambient/explosions/explode_2.wav,5,-1"
+				"OnTrigger" "player,$PlaySoundToSelf,vo/mvm/mght/heavy_mvm_m_battlecry06.mp3,5,-1"
+				"OnTrigger" "!parent,$RemovePlayerAttribute,dmg taken increased,5,-1"
+				"OnTrigger" "!parent,$ChangeAttributes,Phase2,5,-1"
+				"OnTrigger" "blast_boss_phase_change,FireMultiple,3,5,-1"
+				"OnTrigger" "alert_boss_phase_change,PlaySound,,5,-1"
+				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 225,4.5,-1"
+				"OnTrigger" "alert_boss_phase_change,PlaySound,,4,-1"
+				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 200,3.5,-1"
+				"OnTrigger" "alert_boss_phase_change,PlaySound,,3,-1"
+				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 175,2.5,-1"
+				"OnTrigger" "alert_boss_phase_change,PlaySound,,2,-1"
+				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 150,1.5,-1"
+				"OnTrigger" "alert_boss_phase_change,PlaySound,,1,-1"
+				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 125,0.5,-1"
+				"OnTrigger" "alert_boss_phase_change,PlaySound,,0,-1"
+				"OnTrigger" "!parent,$AddPlayerAttribute,dmg taken increased|0.1,0,-1"
+				"OnTrigger" "!parent,$AddCond,71 5,0,-1"
+			}
+			ambient_generic
+			{
+				"targetname" "alert_boss_phase_change"		
+				"health" "10"
+				"message" "misc/rd_finale_beep01.wav"
+				"pitch" "100"
+				"pitchstart" "100"
+				"radius" "20000"
+				"spawnflags" "49"
+				"origin" "0 0 160"
+			}
+            tf_point_weapon_mimic
+            {
+                "targetname" "blast_boss_phase_change"
+                "Damage" "90"
+				"angles" "90 0 0"
+                "SplashRadius" "0"
+                "SpreadAngle" "0"
+                "WeaponType" "0"
+				"TeamNum" "3"
+				"$preventshootparent" "1"
+				"$weaponname" "TF_WEAPON_ROCKETLAUNCHER"
+            }
+            tf_point_weapon_mimic
+            {
+                "targetname" "phase2_boss_weapon"
+                "Damage" "90"
+				"angles" "-90 0 0"
+                "SplashRadius" "0"
+                "SpreadAngle" "12"
+                "WeaponType" "0"
+				"TeamNum" "3"
+				"crits" "1"
+				"$killicon" "taunt_pyro"
+				"$preventshootparent" "1"
+				"$weaponnosound" "1" 
+				"$weaponname" "TF_WEAPON_ROCKETLAUNCHER"
+				"OnUser1" "!self,FireOnce,,0,-1"
+				"OnUser1" "!self,FireUser1,,0.6,-1"
+            }
+			trigger_multiple
+			{
+				"targetname" "rename_players"
+				"StartDisabled" "1"
+				"spawnflags" "1"
+				"mins" "-9000 -9000 -9000"
+				"maxs" "9000 9000 9000"
+				"filtername" "filter_redteam"
+				"OnStartTouch" "!activator,AddOutput,targetname ignite_me,0,-1"
+			}
+			info_particle_system
+			{
+				"targetname" "boss_skybeam"
+				"start_active" "0"
+				"angles" "0 90 0"
+				"effect_name" "teleporter_mvm_bot_persist"
+			}
+		}
+	}
+	ExtraSpawnPoint [$SIGSEGV]
+    {
+        Name "support_boss_spawnbot"
+        TeamNum 3
+		StartDisabled 1
+        X "-1040"
+        Y "3280"
+        Z "96"
+    }
 	Wave // WAVE 1
 	{
 		InitWaveOutput
 		{
-			Target bomb_delivery_setup_relay
-			Action Trigger
+			Target gamerules
+			Action RunScriptFile
+			Param "powerplant_pea.nut"
 		}
 		StartWaveOutput
 		{
@@ -392,10 +493,6 @@ WaveSchedule
 		{
 			Target wave_finished_relay
 			Action Trigger
-		}
-		Explanation  
-		{
-			Line "{yellow}For the duration of this mission, certain robots will be teleporting into predefined locations on this map."
 		}
 		WaveSpawn
 		{
@@ -413,7 +510,7 @@ WaveSchedule
 				Health 17500
 				Speed 75
 				StartingPathTrackNode boss_path_1
-				ClassIcon tank  
+				ClassIcon tank [$SIGSEGV]
 				OnKilledOutput
 				{
 					Target boss_dead_relay
@@ -425,11 +522,6 @@ WaveSchedule
 					Action Trigger
 				}
 			}
-		}
-		WaveSpawn
-		{
-			Template T_WaveSpawn_BombDelivery
-			WaitBeforeStarting 8
 		}
 		WaveSpawn
 		{
@@ -516,6 +608,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Soldier_Crit
+					Tag bot_giant
 				}
 				TFBot
 				{
@@ -567,6 +660,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Heavyweapons_Deflector
+				Tag bot_giant
 			}
 		}
 		WaveSpawn
@@ -611,7 +705,7 @@ WaveSchedule
 				Health 10000
 				Speed 75
 				StartingPathTrackNode boss_path_1
-				ClassIcon tank  
+				ClassIcon tank [$SIGSEGV]
 				OnKilledOutput
 				{
 					Target boss_dead_relay
@@ -638,6 +732,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Heavyweapons_Deflector
+				Tag bot_giant
 			}
 		}
 		WaveSpawn
@@ -648,20 +743,9 @@ WaveSchedule
 			WaitBeforeStarting 8
 			FirstSpawnOutput
 			{
-				Target game_state*
-				Action Test
-			}
-		}
-		WaveSpawn
-		{
-			Where spawnbot
-			Name "W1E-TeleInit"
-			WaitForAllDead "W1D-2"
-			WaitBeforeStarting 8
-			FirstSpawnOutput
-			{
-				Target annotation_start*
-				Action Show
+				Target gamerules
+				Action RunScriptCode
+				Param "Teles_StatusChange(`begin`)"
 			}
 		}
 		WaveSpawn
@@ -681,8 +765,7 @@ WaveSchedule
 			{
 				Class Scout
 				Skill Easy
-				AddTemplate "T_TFTemplate_TeleBot"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Scout"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -702,8 +785,7 @@ WaveSchedule
 			{
 				Class Demoman
 				Skill Easy
-				AddTemplate "T_TFTemplate_TeleBot"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Demoman"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -722,6 +804,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Soldier_Crit
+					Tag bot_giant
 				}
 				TFBot
 				{
@@ -773,8 +856,19 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Sniper_Huntsman
-				AddTemplate "T_TFTemplate_TeleBot"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Sniper"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "W1-TeleEnd"
+			WaitForAllSpawned "W1G"
+			FirstSpawnOutput
+			{
+				Target gamerules
+				Action RunScriptCode
+				Param "Teles_StatusChange(`end`)"
 			}
 		}
 	}
@@ -782,8 +876,9 @@ WaveSchedule
 	{
 		InitWaveOutput
 		{
-			Target bomb_delivery_setup_relay
-			Action Trigger
+			Target gamerules
+			Action RunScriptFile
+			Param "powerplant_pea.nut"
 		}
 		StartWaveOutput
 		{
@@ -797,10 +892,6 @@ WaveSchedule
 		}
 		WaveSpawn
 		{
-			Template T_WaveSpawn_BombDelivery
-		}
-		WaveSpawn
-		{
 			Where spawnbot_left
 			Name "W2A-1"
 			SpawnCount 11
@@ -811,7 +902,7 @@ WaveSchedule
 			TotalCurrency 50
 			Squad
 			{
-				NoFormation 1  
+				NoFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Class Soldier
@@ -891,13 +982,14 @@ WaveSchedule
 			Name "W2A-2"
 			SpawnCount 1
 			MaxActive 1
-			TotalCount 1
-			WaitBeforeStarting 15
+			TotalCount 2
+			WaitBeforeStarting 20
 			WaitBetweenSpawns 20
 			TotalCurrency 100
 			TFBot
 			{
 				Template T_TFBot_Giant_Demo_RapidFire
+				Tag bot_giant
 				Attributes AlwaysCrit
 			}
 		}
@@ -909,8 +1001,9 @@ WaveSchedule
 			WaitBeforeStarting 9
 			FirstSpawnOutput
 			{
-				Target game_state*
-				Action Test
+				Target gamerules
+				Action RunScriptCode
+				Param "Teles_StatusChange(`begin`)"
 			}
 		}
 		WaveSpawn
@@ -965,30 +1058,24 @@ WaveSchedule
 			TotalCurrency 100
 			Squad
 			{
-				NoWaitForFormation 1  
+				NoWaitForFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Class Heavyweapons
 					Skill Easy
-					AddTemplate "T_TFTemplate_TeleBot"  
-					AddTemplate "T_TFTemplate_TeleBot_SquadLeader"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+					AddTemplate "T_TFBot_TeleBot_SquadLeader" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Class Heavyweapons
 					Skill Easy
-					AddTemplate "T_TFTemplate_TeleBot"  
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Class Heavyweapons
 					Skill Easy
-					AddTemplate "T_TFTemplate_TeleBot"  
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
 			}
 		}
@@ -1008,6 +1095,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_DemoMan_PrinceTavish
+				Tag bot_giant
 			}
 		}
 		WaveSpawn
@@ -1025,7 +1113,7 @@ WaveSchedule
 			TotalCurrency 50
 			Squad
 			{
-				NoWaitForFormation 1  
+				NoWaitForFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Class Heavyweapons
@@ -1060,8 +1148,7 @@ WaveSchedule
 			{
 				Class Pyro
 				Skill Easy
-				AddTemplate "T_TFTemplate_TeleBot"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Pyro"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -1080,8 +1167,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
-				AddTemplate "T_TFTemplate_TeleBot"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -1091,39 +1177,41 @@ WaveSchedule
 			Where spawnbot_left
 			Name "W2C-2"
 			SpawnCount 1
-			MaxActive 1
-			TotalCount 1
+			MaxActive 2
+			TotalCount 2
 			WaitForAllDead "W2B-2"
 			WaitBeforeStarting 20
-			WaitBetweenSpawns 0
-			TotalCurrency 25
+			WaitBetweenSpawns 25
+			TotalCurrency 50
 			TFBot
 			{
 				Template T_TFBot_Giant_DemoMan_PrinceTavish
-				AddTemplate "T_TFTemplate_TeleBot_Giant_Tutorial"  
-				AddTemplate "T_TFTemplate_TeleBot_SquadLeader"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Giant_Demoman"  
+				Tag bot_giant
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
 		{
-			Where spawnbot_right
-			Where spawnbot_middle
-			Where spawnbot_left
-			Name "W2C-2"
-			SpawnCount 1
-			MaxActive 1
-			TotalCount 1
-			WaitForAllDead "W2B-2"
-			WaitBeforeStarting 45
-			WaitBetweenSpawns 0
-			TotalCurrency 25
-			TFBot
+			Where spawnbot
+			Name "W2-TeleEnd-1"
+			WaitForAllSpawned "W2C-1"
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "W2-TeleEnd-1"
+			WaitForAllSpawned "W2C-2"
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "W2-TeleEnd-2"
+			WaitForAllDead "W2-TeleEnd-1"
+			FirstSpawnOutput
 			{
-				Template T_TFBot_Giant_DemoMan_PrinceTavish
-				AddTemplate "T_TFTemplate_TeleBot_Giant"  
-				AddTemplate "T_TFTemplate_TeleBot_SquadLeader"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Giant_Demoman"  
+				Target gamerules
+				Action RunScriptCode
+				Param "Teles_StatusChange(`end`)"
 			}
 		}
 		WaveSpawn
@@ -1141,7 +1229,7 @@ WaveSchedule
 			TotalCurrency 100
 			Squad
 			{
-				NoFormation 1  
+				NoFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Class Scout
@@ -1199,10 +1287,12 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_DemoMan_PrinceTavish
+					Tag bot_giant
 				}
 				TFBot
 				{
 					Template T_TFBot_Giant_Demo_RapidFire
+					Tag bot_giant
 					Attributes AlwaysCrit
 				}
 			}
@@ -1212,8 +1302,9 @@ WaveSchedule
 	{
 		InitWaveOutput
 		{
-			Target w3_n8_teleport_show_relay
-			Action Trigger
+			Target gamerules
+			Action RunScriptFile
+			Param "powerplant_pea.nut"
 		}
 		StartWaveOutput
 		{
@@ -1240,6 +1331,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Soldier_Extended_Concheror
+					Tag bot_giant
 				}
 				TFBot
 				{
@@ -1273,6 +1365,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Soldier_Extended_Concheror
+					Tag bot_giant
 				}
 				TFBot
 				{
@@ -1298,7 +1391,7 @@ WaveSchedule
 			SpawnCount 2
 			MaxActive 2
 			TotalCount 2
-			WaitBeforeStarting 15
+			WaitBeforeStarting 12
 			WaitBetweenSpawns 0
 			TotalCurrency 75
 			Squad
@@ -1306,10 +1399,12 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Soldier_Extended_Concheror
+					Tag bot_giant
 				}
 				TFBot
 				{
 					Template T_TFBot_Giant_Pyro
+					Tag bot_giant
 				}
 			}
 		}
@@ -1321,8 +1416,9 @@ WaveSchedule
 			WaitBeforeStarting 2
 			FirstSpawnOutput
 			{
-				Target game_state*
-				Action Test
+				Target gamerules
+				Action RunScriptCode
+				Param "Teles_StatusChange(`begin`)"
 			}
 		}
 		WaveSpawn
@@ -1345,8 +1441,7 @@ WaveSchedule
 				Name "Shortstop Scout"
 				Skill Easy
 				Item "The Shortstop"
-				AddTemplate "T_TFTemplate_TeleBot"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Scout"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -1367,30 +1462,26 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Heavyweapons
-					AddTemplate "T_TFTemplate_TeleBot_Giant"  
-					AddTemplate "T_TFTemplate_TeleBot_SquadLeader"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Giant_Heavy"  
+					Tag bot_giant
+					AddTemplate "T_TFBot_TeleBot_SquadLeader" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Class Pyro
 					Skill Normal
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Pyro"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Class Pyro
 					Skill Normal
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Pyro"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Class Pyro
 					Skill Normal
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Pyro"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
 			}
 		}
@@ -1412,7 +1503,7 @@ WaveSchedule
 				Health 18000
 				Speed 75
 				StartingPathTrackNode boss_path_1
-				ClassIcon tank  
+				ClassIcon tank [$SIGSEGV]
 				OnKilledOutput
 				{
 					Target boss_dead_relay
@@ -1441,10 +1532,12 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Heavyweapons
+					Tag bot_giant
 				}
 				TFBot
 				{
 					Template T_TFBot_Giant_Pyro
+					Tag bot_giant
 					Attributes AlwaysFireWeapon
 				}
 			}
@@ -1486,7 +1579,7 @@ WaveSchedule
 				Health 18000
 				Speed 75
 				StartingPathTrackNode boss_path_1
-				ClassIcon tank  
+				ClassIcon tank [$SIGSEGV]
 				OnKilledOutput
 				{
 					Target boss_dead_relay
@@ -1513,6 +1606,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Pyro
+				Tag bot_giant
 			}
 		}
 		WaveSpawn
@@ -1529,6 +1623,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Extended_Concheror
+				Tag bot_giant
 			}
 		}
 		WaveSpawn
@@ -1562,9 +1657,20 @@ WaveSchedule
 				{
 					Template T_TFBot_Demo_Burst
 					Skill Easy
-					AddTemplate "T_TFTemplate_TeleBot"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Demoman"  
+					AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "W3-TeleEnd"
+			WaitForAllSpawned "W3C-2"
+			FirstSpawnOutput
+			{
+				Target gamerules
+				Action RunScriptCode
+				Param "Teles_StatusChange(`end`)"
 			}
 		}
 		WaveSpawn
@@ -1583,8 +1689,8 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Heavyweapons
-				AddTemplate "T_TFTemplate_TeleBot_Giant_W3D"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Giant_Heavy"  
+				Tag bot_giant
+				AddTemplate "T_TFBot_TeleBot_W3D" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -1602,7 +1708,7 @@ WaveSchedule
 			TotalCurrency 125
 			Squad
 			{
-				NoFormation 1  
+				NoFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Class Scout
@@ -1622,8 +1728,9 @@ WaveSchedule
 	{
 		InitWaveOutput
 		{
-			Target bomb_delivery_setup_relay
-			Action Trigger
+			Target gamerules
+			Action RunScriptFile
+			Param "powerplant_pea.nut"
 		}
 		StartWaveOutput
 		{
@@ -1637,12 +1744,8 @@ WaveSchedule
 		}
 		WaveSpawn
 		{
-			Template T_WaveSpawn_BombDelivery
-		}
-		WaveSpawn
-		{
 			Where spawnbot_right
-			Name "W4A"
+			Name "W4A-1"
 			SpawnCount 3
 			MaxActive 6
 			TotalCount 25
@@ -1657,7 +1760,7 @@ WaveSchedule
 		WaveSpawn
 		{
 			Where spawnbot_right
-			Name "W4A"
+			Name "W4A-2"
 			SpawnCount 1
 			MaxActive 1
 			TotalCount 1
@@ -1703,7 +1806,7 @@ WaveSchedule
 		WaveSpawn
 		{
 			Where spawnbot_left
-			Name "W4A"
+			Name "W4A-2"
 			SpawnCount 2
 			MaxActive 4
 			TotalCount 8
@@ -1723,13 +1826,14 @@ WaveSchedule
 			SpawnCount 2
 			MaxActive 2
 			TotalCount 2
-			WaitForAllDead "W4A"
+			WaitForAllDead "W4A-2"
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 75
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout_Baseball
+				Tag bot_giant
 			}
 		}
 		WaveSpawn
@@ -1739,13 +1843,13 @@ WaveSchedule
 			SpawnCount 6
 			MaxActive 6
 			TotalCount 6
-			WaitForAllDead "W4A"
+			WaitForAllDead "W4A-2"
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 25
 			Squad
 			{
-				NoWaitForFormation 1  
+				NoWaitForFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Template T_TFBot_Medic_AoEUber
@@ -1779,13 +1883,13 @@ WaveSchedule
 			SpawnCount 6
 			MaxActive 6
 			TotalCount 6
-			WaitForAllDead "W4A"
+			WaitForAllDead "W4A-2"
 			WaitBeforeStarting 4
 			WaitBetweenSpawns 0
 			TotalCurrency 25
 			Squad
 			{
-				NoWaitForFormation 1  
+				NoWaitForFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Template T_TFBot_Medic_AoEUber
@@ -1819,13 +1923,13 @@ WaveSchedule
 			SpawnCount 6
 			MaxActive 6
 			TotalCount 6
-			WaitForAllDead "W4A"
+			WaitForAllDead "W4A-2"
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 0
 			TotalCurrency 50
 			Squad
 			{
-				NoWaitForFormation 1  
+				NoWaitForFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Template T_TFBot_Medic_AoEUber
@@ -1866,6 +1970,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout_Baseball
+				Tag bot_giant
 			}
 		}
 		WaveSpawn
@@ -1883,7 +1988,7 @@ WaveSchedule
 			TotalCurrency 125
 			Squad
 			{
-				NoWaitForFormation 1  
+				NoWaitForFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Template T_TFBot_Medic_AoEUber
@@ -1938,7 +2043,7 @@ WaveSchedule
 				Health 20000
 				Speed 75
 				StartingPathTrackNode boss_path_1
-				ClassIcon tank  
+				ClassIcon tank [$SIGSEGV]
 				OnKilledOutput
 				{
 					Target boss_dead_relay
@@ -1954,12 +2059,14 @@ WaveSchedule
 		WaveSpawn
 		{
 			Where spawnbot
+			Name "W4D-TeleInit"
 			WaitForAllSpawned "W4C-2"
 			WaitBeforeStarting 18
 			FirstSpawnOutput
 			{
-				Target game_state*
-				Action Test
+				Target gamerules
+				Action RunScriptCode
+				Param "Teles_StatusChange(`begin`)"
 			}
 		}
 		WaveSpawn
@@ -1979,8 +2086,7 @@ WaveSchedule
 			{
 				Template T_TFBot_Heavyweapons_Shotgun
 				Skill Easy
-				AddTemplate "T_TFTemplate_TeleBot"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -2000,8 +2106,7 @@ WaveSchedule
 			{
 				Template T_TFBot_Soldier_Extended_Battalion
 				Skill Easy
-				AddTemplate "T_TFTemplate_TeleBot"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Soldier"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -2020,8 +2125,8 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout_Baseball
-				AddTemplate "T_TFTemplate_TeleBot_Giant"  
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Scout"  
+				Tag bot_giant
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -2040,6 +2145,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer_Reload
+				Tag bot_giant
 			}
 		}
 		WaveSpawn
@@ -2076,10 +2182,11 @@ WaveSchedule
 			TotalCurrency 50
 			Squad
 			{
-				NoWaitForFormation 1  
+				NoWaitForFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Template T_TFBot_Giant_Soldier_Spammer_Reload
+					Tag bot_giant
 				}
 				TFBot
 				{
@@ -2107,6 +2214,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Demo_Burst
+				Tag bot_giant
 			}
 		}
 		WaveSpawn
@@ -2124,44 +2232,49 @@ WaveSchedule
 			TotalCurrency 100
 			Squad
 			{
-				NoWaitForFormation 1  
+				NoWaitForFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Template T_TFBot_Medic_AoEUber
-					AddTemplate "T_TFTemplate_TeleBot"  
-					AddTemplate "T_TFTemplate_TeleBot_SquadLeader"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Gauntlet_Medic"  
+					AddTemplate "T_TFBot_TeleBot_SquadLeader" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Shotgun
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Shotgun
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Shotgun
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Shotgun
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Shotgun
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"  
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "W4-TeleEnd"
+			WaitForAllSpawned "W4E-1"
+			FirstSpawnOutput
+			{
+				Target gamerules
+				Action RunScriptCode
+				Param "Teles_StatusChange(`end`)"
 			}
 		}
 		WaveSpawn
@@ -2179,10 +2292,11 @@ WaveSchedule
 			TotalCurrency 100
 			Squad
 			{
-				NoWaitForFormation 1  
+				NoWaitForFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Template T_TFBot_Giant_Demo_Burst
+					Tag bot_giant
 				}
 				TFBot
 				{
@@ -2195,8 +2309,9 @@ WaveSchedule
 	{
 		InitWaveOutput
 		{
-			Target bomb_delivery_setup_relay
-			Action Trigger
+			Target gamerules
+			Action RunScriptFile
+			Param "powerplant_pea.nut"
 		}
 		StartWaveOutput
 		{
@@ -2210,17 +2325,14 @@ WaveSchedule
 		}
 		WaveSpawn
 		{
-			Template T_WaveSpawn_BombDelivery
-		}
-		WaveSpawn
-		{
 			Where spawnbot
 			Name "W5A-TeleInit"
 			WaitBeforeStarting 3
 			FirstSpawnOutput
 			{
-				Target game_state*
-				Action Test
+				Target gamerules
+				Action RunScriptCode
+				Param "Teles_StatusChange(`begin`)"
 			}
 		}
 		WaveSpawn
@@ -2257,14 +2369,14 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Pyro
-					AddTemplate "T_TFTemplate_TeleBot_Giant_W5A"
-					AddTemplate "T_TFTemplate_TeleBot_SquadLeader"
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Giant_Pyro"  
+					Tag bot_giant
+					AddTemplate "T_TFBot_TeleBot_W5A_SquadLeader"
 				}
 				TFBot
 				{
 					Template T_TFBot_Giant_Medic
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"
+					Tag bot_giant
+					AddTemplate "T_TFBot_TeleBot_SquadMember"
 				}
 			}
 		}
@@ -2371,9 +2483,9 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer
+				Tag bot_giant
 				Attributes AlwaysCrit
-				AddTemplate "T_TFTemplate_TeleBot_Giant"
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Giant_Soldier"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -2392,8 +2504,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Scout_Melee
-				AddTemplate "T_TFTemplate_TeleBot"
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Scout"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -2413,8 +2524,7 @@ WaveSchedule
 			{
 				Template T_TFBot_Heavyweapons_Fist
 				Attributes AlwaysCrit
-				AddTemplate "T_TFTemplate_TeleBot"
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Gauntlet_Heavy"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -2433,10 +2543,12 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Pyro
+					Tag bot_giant
 				}
 				TFBot
 				{
 					Template T_TFBot_Giant_Medic
+					Tag bot_giant
 				}
 			}
 		}
@@ -2477,8 +2589,7 @@ WaveSchedule
 			{
 				Template T_TFBot_Heavyweapons_Fist
 				Attributes AlwaysCrit
-				AddTemplate "T_TFTemplate_TeleBot"
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Gauntlet_Heavy"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -2500,16 +2611,25 @@ WaveSchedule
 				{
 					Class Heavyweapons
 					Skill Expert
-					AddTemplate "T_TFTemplate_TeleBot"
-					AddTemplate "T_TFTemplate_TeleBot_SquadLeader"
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+					AddTemplate "T_TFBot_TeleBot_SquadLeader" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Template T_TFBot_Medic_BigHeal
-					AddTemplate "T_TFTemplate_TeleBot_SquadMember"
-					AddTemplate "T_TFTemplate_TeleBot_Hat_Medic"  
+					AddTemplate "T_TFBot_TeleBot_SquadMember" [$SIGSEGV]
 				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "W5-TeleEnd"
+			WaitForAllSpawned "W5E-2"
+			FirstSpawnOutput
+			{
+				Target gamerules
+				Action RunScriptCode
+				Param "Teles_StatusChange(`end`)"
 			}
 		}
 		WaveSpawn
@@ -2529,8 +2649,7 @@ WaveSchedule
 			{
 				Class Heavyweapons
 				Skill Expert
-				AddTemplate "T_TFTemplate_TeleBot"
-				AddTemplate "T_TFTemplate_TeleBot_Hat_Heavy"  
+				AddTemplate "T_TFBot_TeleBot" [$SIGSEGV]
 			}
 		}
 		WaveSpawn
@@ -2549,11 +2668,13 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Soldier_Spammer
+					Tag bot_giant
 					Attributes AlwaysCrit
 				}
 				TFBot
 				{
 					Template T_TFBot_Giant_Medic_Regen
+					Tag bot_giant
 				}
 			}
 		}
@@ -2573,11 +2694,13 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Soldier_Spammer
+					Tag bot_giant
 					Attributes AlwaysCrit
 				}
 				TFBot
 				{
 					Template T_TFBot_Giant_Medic_Regen
+					Tag bot_giant
 				}
 			}
 		}
@@ -2605,16 +2728,17 @@ WaveSchedule
 				Attributes MiniBoss
 				Attributes UseBossHealthBar
 				Attributes AlwaysFireWeapon // must have this or otherwise it won't shoot fireballs
-				AddCond  
+				Tag bot_giant
+				AddCond [$SIGSEGV]
 				{
 					Index 30
 				}
-				EventChangeAttributes  
+				EventChangeAttributes [$SIGSEGV]
 				{
 					Default
 					{
 						WeaponRestrictions PrimaryOnly
-						FireSound "=70|misc/halloween/spell_fireball_impact.wav"  
+						FireSound "=70|misc/halloween/spell_fireball_impact.wav" [$SIGSEGV]
 						Item "TF_WEAPON_ROCKETLAUNCHER"
 						ItemAttributes
 						{
@@ -2655,7 +2779,7 @@ WaveSchedule
 							"mod_maxhealth_drain_rate" 0
 							"mult_player_movespeed_active" 1
 						} 
-						RingOfFire 5  
+						RingOfFire 5 [$SIGSEGV]
 						CharacterAttributes
 						{
 							"move speed bonus" 0.4
@@ -2668,12 +2792,21 @@ WaveSchedule
 						}
 					}
 				}
-				SpawnTemplate "BossBot"  
-				FireInput   
+				SpawnTemplate "BossBot" [$SIGSEGV]
+				FireInput [$SIGSEGV] 
 				{
 					Target boss_phase_change_relay*
 					Action Trigger
 					Param ""
+					Delay 0
+					Cooldown 3600
+					IfHealthBelow 40000
+				}
+				FireInput [$SIGSEGV] 
+				{
+					Target gamerules
+					Action RunScriptCode
+					Param "AcknowledgeBoss()"
 					Delay 0
 					Cooldown 3600
 					IfHealthBelow 40000
@@ -2692,7 +2825,7 @@ WaveSchedule
 			WaitBetweenSpawns 5
 			TotalCurrency 0
 			Support 1
-			HideIcon 1   
+			HideIcon 1 [$SIGSEGV] 
 			RandomChoice
 			{
 				TFBot
@@ -2701,89 +2834,7 @@ WaveSchedule
 					Item "Sun-on-a-Stick"
 					WeaponRestrictions MeleeOnly
 					ClassIcon spy
-					FireInput   
-					{
-						Target !self
-						Action $TeleportToEntity
-						Param "boss_support_spawn*"
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target tele_sound_relay
-						Action Trigger
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target !self
-						Action AddOutput
-						Param "$$='basevelocity '..vector(randomint(0 - 500,500),randomint(0 - 500,500),600)"
-						Delay 0.05
-						Cooldown 3600
-					}
-				}
-				TFBot
-				{
-					Class Pyro
-					Item "The Flare Gun"
-					WeaponRestrictions SecondaryOnly
-					ClassIcon spy
-					FireInput   
-					{
-						Target !self
-						Action $TeleportToEntity
-						Param "boss_support_spawn*"
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target tele_sound_relay
-						Action Trigger
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target !self
-						Action AddOutput
-						Param "$$='basevelocity '..vector(randomint(0 - 500,500),randomint(0 - 500,500),600)"
-						Delay 0.05
-						Cooldown 3600
-					}
-				}
-				TFBot
-				{
-					Class Pyro
-					Item "The Axtinguisher"
-					WeaponRestrictions MeleeOnly
-					ClassIcon spy
-					FireInput   
-					{
-						Target !self
-						Action $TeleportToEntity
-						Param "boss_support_spawn*"
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target tele_sound_relay
-						Action Trigger
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target !self
-						Action AddOutput
-						Param "$$='basevelocity '..vector(randomint(0 - 500,500),randomint(0 - 500,500),600)"
-						Delay 0.05
-						Cooldown 3600
-					}
+					AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
 				}
 				TFBot
 				{
@@ -2791,29 +2842,7 @@ WaveSchedule
 					Item "Sun-on-a-Stick"
 					WeaponRestrictions MeleeOnly
 					ClassIcon spy
-					FireInput   
-					{
-						Target !self
-						Action $TeleportToEntity
-						Param "boss_support_spawn*"
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target tele_sound_relay
-						Action Trigger
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target !self
-						Action AddOutput
-						Param "$$='basevelocity '..vector(randomint(0 - 500,500),randomint(0 - 500,500),600)"
-						Delay 0.05
-						Cooldown 3600
-					}
+					AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
 				}
 				TFBot
 				{
@@ -2821,29 +2850,15 @@ WaveSchedule
 					Item "The Flare Gun"
 					WeaponRestrictions SecondaryOnly
 					ClassIcon spy
-					FireInput   
-					{
-						Target !self
-						Action $TeleportToEntity
-						Param "boss_support_spawn*"
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target tele_sound_relay
-						Action Trigger
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target !self
-						Action AddOutput
-						Param "$$='basevelocity '..vector(randomint(0 - 500,500),randomint(0 - 500,500),600)"
-						Delay 0.05
-						Cooldown 3600
-					}
+					AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
+				}
+				TFBot
+				{
+					Class Pyro
+					Item "The Flare Gun"
+					WeaponRestrictions SecondaryOnly
+					ClassIcon spy
+					AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
 				}
 				TFBot
 				{
@@ -2851,1376 +2866,24 @@ WaveSchedule
 					Item "The Axtinguisher"
 					WeaponRestrictions MeleeOnly
 					ClassIcon spy
-					FireInput   
-					{
-						Target !self
-						Action $TeleportToEntity
-						Param "boss_support_spawn*"
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target tele_sound_relay
-						Action Trigger
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target !self
-						Action AddOutput
-						Param "$$='basevelocity '..vector(randomint(0 - 500,500),randomint(0 - 500,500),600)"
-						Delay 0.05
-						Cooldown 3600
-					}
+					AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
+				}
+				TFBot
+				{
+					Class Pyro
+					Item "The Axtinguisher"
+					WeaponRestrictions MeleeOnly
+					ClassIcon spy
+					AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
 				}
 				TFBot
 				{
 					Class Heavyweapons
 					Item "The Huo Long Heatmaker"
 					ClassIcon spy
-					FireInput   
-					{
-						Target !self
-						Action $TeleportToEntity
-						Param "boss_support_spawn*"
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target tele_sound_relay
-						Action Trigger
-						Delay 0
-						Cooldown 3600
-					}
-					FireInput   
-					{
-						Target !self
-						Action AddOutput
-						Param "$$='basevelocity '..vector(randomint(0 - 500,500),randomint(0 - 500,500),600)"
-						Delay 0.05
-						Cooldown 3600
-					}
+					AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
 				}
 			}
 		}
 	}
-	SpawnTemplate "TeleportMechanic"  
-	SpawnTemplate "TeleBot_SquadSystem"  
-	SpawnTemplate "Annotations"  
-	PointTemplates  
-	{
-		TeleportMechanic
-		{
-			OnSpawnOutput
-			{
-				Target giant_teleport_control
-				Action $SetVar$pushed
-				Param 0
-			}
-			OnSpawnOutput
-			{
-				Target bombpath_arrows_clear_relay*
-				Action AddOutput
-				Param "OnTrigger teledestination_hologram:Disable::0:-1"
-			}
-			OnSpawnOutput
-			{
-				Target wave_start_relay*
-				Action AddOutput
-				Param "OnTrigger n8_teledestination_hologram:Disable::0:-1"
-			}
-			OnSpawnOutput
-			{
-				Target bombpath_choose_relay*
-				Action AddOutput
-				Param "OnTrigger teledestination_hologram:Enable::1:-1"
-			}
-			OnSpawnOutput
-			{
-				Target wave_finished_relay*
-				Action AddOutput
-				Param "OnTrigger tele5_perma_enable_relay*:FireUser1::0:-1"
-			}
-			OnSpawnOutput
-			{
-				Target wave_finished_relay*
-				Action AddOutput
-				Param "OnTrigger glow_teledestination*:Stop::0:-1"
-			}
-			OnSpawnOutput
-			{
-				Target wave_finished_relay*
-				Action AddOutput
-				Param "OnTrigger telespot_picker:Enable::0:-1"
-			}
-			OnSpawnOutput
-			{
-				Target wave_finished_relay*
-				Action AddOutput
-				Param "OnTrigger giant_teleport_control:SetValueTest:0:0:-1"
-			}
-			OnSpawnOutput
-			{
-				Target wave_finished_relay*
-				Action AddOutput
-				Param "OnTrigger game_state*:$SetVar$teles_active:0:0:-1"
-			}
-			OnSpawnOutput
-			{
-				Target wave_finished_relay*
-				Action AddOutput
-				Param "OnTrigger game_state*:SetValue:1:0:-1"
-			}
-			OnSpawnOutput
-			{
-				Target intel
-				Action AddOutput
-				Param "OnPickup1 !activator:$AddCond:130:0.1:-1"
-			}
-			OnSpawnOutput
-			{
-				Target intel
-				Action AddOutput
-				Param "OnPickup1 filter_just_teleported:TestActivator::0:-1"
-			}
-			OnSpawnOutput
-			{
-				Target game_state*
-				Action $SetVar$teles_active
-				Param 0
-			}
-			filter_tf_condition
-			{
-				"targetname" "filter_bomb_carrier"
-				"condition" "130"
-				"Negated" "0"
-			}
-			filter_tf_condition
-			{
-				"targetname" "filter_just_teleported"
-				"condition" "131"
-				"Negated" "0"
-				"OnPass" "!activator,$RemovePlayerAttribute,no_jump,7.5,-1"
-				"OnPass" "!activator,$RemovePlayerAttribute,SET BONUS: move speed set bonus,5,-1"
-				"OnPass" "!activator,$AddPlayerAttribute,no_jump|1,0,-1"
-				"OnPass" "!activator,$AddPlayerAttribute,SET BONUS: move speed set bonus|0.25,0,-1"
-			}
-			func_flagdetectionzone
-			{
-				"targetname" "halfway_zone_inside"
-				"teamnum" "3"
-				"origin" "-800 -2050 0"
-				"mins" "-1250 -900 -2000"
-				"maxs" "1400 2550 2000"
-				"OnStartTouchFlag" "giant_teleport_control,SetValueTest,$$=?(giant_teleport_control.pushed == 0,1,),0,-1"
-			}
-			func_flagdetectionzone
-			{
-				"targetname" "halfway_zone_outside"
-				"teamnum" "3"
-				"origin" "-500 1200 0"
-				"mins" "-1700 -700 -2000"
-				"maxs" "1800 3300 2000"
-				"OnStartTouchFlag" "giant_teleport_control,SetValueTest,$$=?(giant_teleport_control.pushed == 1,0,),0,-1"
-			}
-			func_flagdetectionzone
-			{
-				"targetname" "2_halfway_zone"
-				"teamnum" "3"
-				"origin" "-500 -600 0"
-				"mins" "-2000 -4000 -2000"
-				"maxs" "2000 0 2000"
-				"OnStartTouchFlag" "tele5_perma_enable_relay,Trigger,,0,-1"
-			}
-			logic_branch
-			{
-				"targetname" "game_state"
-				"InitialValue" "1"
-				"StartDisabled" "0"
-				"OnTrue" "!self,$SetVar$teles_active,1,0.01,-1"
-				//"OnTrue" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$11,1,0,-1"
-				//"OnTrue" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$11,teleporter,0,-1"
-				//"OnTrue" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$11,4,0,-1"
-				"OnTrue" "teleport_check*,SetValue,1,0,-1"
-				//"OnTrue" "glow_teledestination*,Start,,0,-1"
-				//"OnTrue" "teledestination_n*,SetAnimation,running,0,-1"
-				"OnTrue" "player,$PlaySoundToSelf,mvm/mvm_tele_activate.wav,0,-1"
-				//"OnTrue" "!self,$GetVar$teles_active,player|$DisplayTextChat,0,-1"
-				//"OnTrue" "player,$DisplayTextChat,$$=?(game_state.teles_active == 0,'teles were not active','teles were active'),0,-1"
-				//"OnTrue" "annotation_control_case,InValue,$$=?(game_state.teles_active == 0,'Start','Nothing'),0,-1"
-				"OnFalse" "!self,$SetVar$teles_active,0,0.01,-1"
-				//"OnFalse" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$11,0,0,-1"
-				//"OnFalse" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$11,,0,-1"
-				//"OnFalse" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$11,0,0,-1"
-				"OnFalse" "teleport_check*,SetValue,0,0,-1"
-				//"OnFalse" "glow_teledestination*,Stop,,0,-1"
-				//"OnFalse" "teledestination_n*,SetAnimation,idle,0,-1"
-				//"OnFalse" "!self,$GetVar$teles_active,player|$DisplayTextChat,0,-1"
-				//"OnFalse" "player,$DisplayTextChat,$$=?(game_state.teles_active == 1,'teles were active','teles were not active'),0,-1"
-				//"OnFalse" "annotation_control_case,InValue,$$=?(game_state.teles_active == 1,'End','Nothing'),0,-1"
-			}
-			logic_case
-			{
-				"targetname" "annotation_control_case"
-				"case01" "Start"
-				"case02" "End"
-				"case03" "Nothing"
-				"OnCase01" "annotation_start*,Show,,-1,-1"
-				"OnCase01" "player,$PlaySoundToSelf,mvm/mvm_tele_activate.wav,0,-1"
-				"OnCase02" "annotation_end*,Show,,-1,-1"
-				"OnCase03" "!self,$DisplayTextChat,,-1,-1"
-			}
-			logic_branch
-			{
-				"targetname" "teleport_check"
-				"InitialValue" "1"
-				"StartDisabled" "0"
-				"OnTrue" "telespot_picker,PickRandom,,0,-1"
-				"OnTrue" "tele_sound_relay,Trigger,,0,-1"
-				"OnTrue" "!activator,$AddPlayerAttribute,force distribute currency on death|1,0,-1"
-				"OnTrue" "!activator,$AddCond,131,0,-1"
-				"OnTrue" "!activator,RunScriptCode,self.RemoveBotAttribute(1024),3,-1"
-				"OnTrue" "!activator,RunScriptCode,self.AddBotAttribute(1024),0,-1"
-				//"OnTrue" "!activator,$RemovePlayerAttribute,cannot pick up intelligence,8,-1"
-				//"OnTrue" "!activator,$AddPlayerAttribute,cannot pick up intelligence|1,0,-1"
-				//"OnTrue" "!activator,$AddCond,5 1.5,0,-1"
-			}
-			logic_branch
-			{
-				"targetname" "teleport_check_giant"
-				"InitialValue" "1"
-				"StartDisabled" "0"
-				"OnTrue" "giant_teled_annotation,ForceSpawnAtEntityOrigin,!activator,0.1,-1"
-				"OnTrue" "telespot_picker_giant,PickRandom,,0,-1"
-				"OnTrue" "player,$PlaySoundToSelf,mvm/giant_heavy/giant_heavy_entrance.wav,0,-1"
-				"OnTrue" "!activator,$AddCond,131 10,0,-1"
-				"OnTrue" "!activator,RunScriptCode,self.RemoveBotAttribute(1024),3,-1"
-				"OnTrue" "!activator,RunScriptCode,self.AddBotAttribute(1024),0,-1"
-			}
-			logic_branch
-			{
-				"targetname" "teleport_check_giant_tutorial"
-				"InitialValue" "1"
-				"StartDisabled" "0"
-				"OnTrue" "giant_teled_annotation_tutorial,ForceSpawnAtEntityOrigin,!activator,0.1,-1"
-				"OnTrue" "telespot_picker_giant,PickRandom,,0,-1"
-				"OnTrue" "player,$PlaySoundToSelf,mvm/giant_heavy/giant_heavy_entrance.wav,0,-1"
-				"OnTrue" "!activator,$AddCond,131 10,0,-1"
-				"OnTrue" "!activator,RunScriptCode,self.RemoveBotAttribute(1024),3,-1"
-				"OnTrue" "!activator,RunScriptCode,self.AddBotAttribute(1024),0,-1"
-			}
-			logic_branch
-			{
-				"targetname" "teleport_check_giant_w3d"
-				"InitialValue" "1"
-				"StartDisabled" "0"
-				"OnTrue" "n8_teledestination_hologram,Disable,,5,-1"
-				"OnTrue" "teledestination_n8,Disable,,5,-1"
-				"OnTrue" "giant_teled_annotation,ForceSpawnAtEntityOrigin,!activator,0.1,-1"
-				"OnTrue" "!activator,AddOutput,origin -800 -2050 285,0,-1"
-				"OnTrue" "player,$PlaySoundToSelf,mvm/giant_heavy/giant_heavy_entrance.wav,0,-1"
-				"OnTrue" "!activator,$AddCond,131 10,0,-1"
-				"OnTrue" "!activator,RunScriptCode,self.RemoveBotAttribute(1024),3,-1"
-				"OnTrue" "!activator,RunScriptCode,self.AddBotAttribute(1024),0,-1"
-			}
-			logic_branch
-			{
-				"targetname" "teleport_check_giant_w5a"
-				"InitialValue" "1"
-				"StartDisabled" "0"
-				"OnTrue" "giant_teled_annotation,ForceSpawnAtEntityOrigin,!activator,0.1,-1"
-				"OnTrue" "!activator,AddOutput,origin -1850 -700 285,0,-1"
-				"OnTrue" "player,$PlaySoundToSelf,mvm/giant_heavy/giant_heavy_entrance.wav,0,-1"
-				"OnTrue" "!activator,$AddCond,131 10,0,-1"
-				"OnTrue" "!activator,RunScriptCode,self.RemoveBotAttribute(1024),3,-1"
-				"OnTrue" "!activator,RunScriptCode,self.AddBotAttribute(1024),0,-1"
-			}
-			logic_branch
-			{
-				"targetname" "giant_teleport_control" // false = not pushed, true = pushed
-				"InitialValue" "0"
-				"StartDisabled" "0"
-				"OnTrue" "!self,$SetVar$pushed,1,0,-1"
-				"OnTrue" "telespot_picker_giant,$RemoveOutput,OnCase01,0,-1"
-				"OnTrue" "telespot_picker_giant,$RemoveOutput,OnCase02,0,-1"
-				"OnTrue" "telespot_picker_giant,$RemoveOutput,OnCase03,0,-1"
-				"OnTrue" "teledestination_n2_n3_trigger,AddOutput,mins -1500 -913 -1000,0,-1"
-				"OnTrue" "teledestination_n2_n3_trigger,AddOutput,maxs 1500 150 1000,0,-1"
-				"OnTrue" "teledestination_n4_trigger,AddOutput,mins -250 -1350 -2000,0,-1"
-				"OnTrue" "teledestination_n4_trigger,AddOutput,maxs 1250 450 2000,0,-1"
-				"OnTrue" "teledestination_n6_trigger,AddOutput,mins -1650 -950 -2000,0,-1"
-				"OnTrue" "teledestination_n6_trigger,AddOutput,maxs 250 450 2000,0,-1"
-				"OnTrue" "teledestination_n7_trigger,AddOutput,mins -1 -1 -1,0,-1"
-				"OnTrue" "teledestination_n7_trigger,AddOutput,maxs 1 1 1,0,-1"
-				"OnTrue" "telespot_picker_giant,AddOutput,OnCase04 !activator:AddOutput:origin 450 600 110:0:-1,0,-1"
-				"OnTrue" "telespot_picker_giant,AddOutput,OnCase05 !activator:AddOutput:origin -1950 -100 285:0:-1,0,-1"
-				"OnFalse" "telespot_picker_giant,AddOutput,OnCase01 !activator:AddOutput:origin -1850 -700 285:0:-1,0,-1"
-				"OnFalse" "telespot_picker_giant,AddOutput,OnCase02 !activator:AddOutput:origin 450 -450 235:0:-1,0,-1"
-				"OnFalse" "telespot_picker_giant,AddOutput,OnCase03 !activator:AddOutput:origin -800 -2050 235:0:-1,0,-1"
-				"OnFalse" "telespot_picker_giant,$RemoveOutput,OnCase04,0,-1"
-				"OnFalse" "telespot_picker_giant,$RemoveOutput,OnCase05,0,-1"
-				"OnFalse" "teledestination_n2_n3_trigger,AddOutput,mins -1 -1 -1,0,-1"
-				"OnFalse" "teledestination_n2_n3_trigger,AddOutput,maxs 1 1 1,0,-1"
-				"OnFalse" "teledestination_n4_trigger,AddOutput,mins -1 -1 -1,0,-1"
-				"OnFalse" "teledestination_n4_trigger,AddOutput,maxs 1 1 1,0,-1"
-				"OnFalse" "teledestination_n6_trigger,AddOutput,mins -1 -1 -1,0,-1"
-				"OnFalse" "teledestination_n6_trigger,AddOutput,maxs 1 1 1,0,-1"
-				"OnFalse" "teledestination_n7_trigger,AddOutput,mins -100 -150 -1500,0,-1"
-				"OnFalse" "teledestination_n7_trigger,AddOutput,maxs 3000 4000 1500,0,-1"
-				"OnFalse" "!self,$SetVar$pushed,0,0,-1"
-			}
-			logic_relay
-			{
-				"spawnflags" "0"
-				"targetname" "tele5_perma_enable_relay"
-				"StartDisabled" "0"
-				"OnTrigger" "teledestination_n5_trigger,AddOutput,mins -1 -1 -1,0,-1"
-				"OnTrigger" "teledestination_n5_trigger,AddOutput,maxs 1 1 1,0,-1"
-				"OnUser1" "teledestination_n5_trigger,AddOutput,mins -1000 -600 -1000,0,-1"
-				"OnUser1" "teledestination_n5_trigger,AddOutput,maxs 1000 1500 1000,0,-1"
-			}
-			logic_branch
-			{
-				"targetname" "teleport_check_squadleader"
-				"InitialValue" "1"
-				"StartDisabled" "0"
-				"OnTrue" "!activator,AddOutput,targetname ,0.5,-1"
-				"OnTrue" "!activator,AddOutput,targetname squad_leader,0,-1"
-			}
-			logic_branch
-			{
-				"targetname" "teleport_check_squadmember"
-				"InitialValue" "1"
-				"StartDisabled" "0"
-				"OnTrue" "!activator,RunScriptCode,self.RemoveBotAttribute(1024),3,-1"
-				"OnTrue" "!activator,RunScriptCode,self.AddBotAttribute(1024),0,-1"
-				"OnTrue" "!activator,$AddCond,131,0,-1"
-				"OnTrue" "!activator,$TeleportToEntity,squad_leader,0,-1"
-				"OnTrue" "!activator,$TeleportToEntity,squad_leader,0.1,-1"
-				"OnTrue" "!activator,$TeleportToEntity,squad_leader,0.2,-1"
-				"OnTrue" "!activator,$TeleportToEntity,squad_leader,0.3,-1"
-				"OnTrue" "!activator,$TeleportToEntity,squad_leader,0.4,-1"
-				//"OnTrue" "!activator,$AddCond,5 1.5,0,-1"
-			}
-			logic_case
-			{
-				"targetname" "telespot_picker"
-				//"OnCase01" "!activator,AddOutput,origin 190 -1130 350,-1,-1"
-				"OnCase02" "!activator,AddOutput,origin -630 -430 285,-1,-1"
-				"OnCase03" "!activator,AddOutput,origin -1150 -1120 285,-1,-1"
-				"OnCase04" "!activator,AddOutput,origin -1850 -700 285,-1,-1"
-				"OnCase05" "!activator,AddOutput,origin 450 600 110,-1,-1"
-				"OnCase06" "!activator,AddOutput,origin 450 -450 235,-1,-1"
-				"OnCase07" "!activator,AddOutput,origin -1950 -100 285,-1,-1"
-				//"OnCase08" "!activator,AddOutput,origin -800 -2050 235,-1,-1"
-			}
-			logic_case
-			{
-				"targetname" "telespot_picker_giant" // n4 to n8
-				"OnCase01" "!activator,AddOutput,origin -1850 -700 285,-1,-1" // n4
-				"OnCase02" "!activator,AddOutput,origin 450 -450 235,-1,-1" // n6
-				"OnCase03" "!activator,AddOutput,origin -800 -2050 235,-1,-1" // n8
-				//"OnCase04" "!activator,AddOutput,origin 450 600 110,-1,-1" // n5
-				//"OnCase05" "!activator,AddOutput,origin -1950 -100 285,-1,-1" // n7
-			}
-			logic_relay
-			{
-				"spawnflags" "0"
-				"targetname" "w3_n8_teleport_show_relay"
-				"StartDisabled" "0"
-				"OnTrigger" "teledestination_n8,Enable,,0,-1"
-				"OnTrigger" "n8_teledestination_hologram,Enable,,0,-1"
-				"OnUser1" "teledestination_n8,Disable,,0,-1"
-				"OnUser1" "n8_teledestination_hologram,Disable,,0,-1"
-			}
-			logic_relay
-			{
-				"spawnflags" "0"
-				"targetname" "tele_sound_relay"
-				"StartDisabled" "0"
-				"OnTrigger" "!self,Enable,,0.5,-1"
-				"OnTrigger" "!self,Disable,,0,-1"
-				"OnTrigger" "player,$PlaySoundToSelf,=35|mvm/mvm_tele_deliver.wav,0,-1"
-				"OnTrigger" "ignite_me,$PlaySoundToSelf,=35|mvm/mvm_tele_deliver.wav,0,-1"
-			}
-			prop_dynamic
-			{
-				"targetname" "teledestination_n2"
-				"model" "models/props_mvm/robot_spawnpoint.mdl"
-				"origin" "-630 -430 255"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"DefaultAnim" "idle"
-				"StartDisabled" "0"
-			}
-			info_particle_system
-			{
-				"targetname" "glow_teledestination"
-				"start_active" "0"
-				"effect_name" "teleporter_blue_charged_level3"
-				"angles" "0 0 0"
-				"origin" "-630 -430 255"
-			}
-			trigger_multiple
-			{
-				"targetname" "teledestination_n2_n3_trigger"
-				"StartDisabled" "0"
-				"spawnflags" "1"
-				"origin" "-630 -430 255"
-				"mins" "-1 -1 -1"
-				"maxs" "1 1 1"
-				"filtername" "filter_redteam"
-				"OnStartTouchAll" "telespot_picker,$RemoveOutput,OnCase02,0,-1"
-				"OnStartTouchAll" "telespot_picker,$RemoveOutput,OnCase03,0,-1"
-				"OnEndTouchAll" "telespot_picker,AddOutput,OnCase02 !activator:AddOutput:origin -630 -430 285:-1:-1,0,-1"
-				"OnEndTouchAll" "telespot_picker,AddOutput,OnCase03 !activator:AddOutput:origin -1150 -1120 285:-1:-1,0,-1"
-				//"OnStartTouch" "player,$DisplayTextChat,in 2/3,0,-1"
-				//"OnEndTouch" "player,$DisplayTextChat,out 2/3,0,-1"
-			}
-			prop_dynamic
-			{
-				"origin" "-630 -430 265"
-				"targetname" "teledestination_hologram"
-				"StartDisabled" "0"
-				"spawnflags" "0"
-				"solid" "0"
-				"skin" "0"
-				"SetBodyGroup" "0"
-				"rendermode" "0"
-				"renderfx" "0"
-				"rendercolor" "138 187 247"
-				"renderamt" "255"
-				"RandomAnimation" "0"
-				"pressuredelay" "0"
-				"PerformanceMode" "0"
-				"modelscale" "1.0"
-				"model" "models/props_mvm/gatebot_hologram.mdl"
-				"MinAnimTime" "5"
-				"MaxAnimTime" "10"
-				"fadescale" "1"
-				"fademindist" "-1"
-				"ExplodeRadius" "0"
-				"ExplodeDamage" "0"
-				"disableshadows" "1"
-				"disablereceiveshadows" "0"
-				"DisableBoneFollowers" "1"
-				"angles" "0 180 0"
-			}
-			prop_dynamic
-			{
-				"targetname" "teledestination_n3"
-				"model" "models/props_mvm/robot_spawnpoint.mdl"
-				"origin" "-1150 -1120 255"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"DefaultAnim" "idle"
-				"StartDisabled" "0"
-			}
-			info_particle_system
-			{
-				"targetname" "glow_teledestination"
-				"start_active" "0"
-				"effect_name" "teleporter_blue_charged_level3"
-				"angles" "0 0 0"
-				"origin" "-1150 -1120 255"
-			}
-			prop_dynamic
-			{
-				"origin" "-1150 -1120 265"
-				"targetname" "teledestination_hologram"
-				"StartDisabled" "0"
-				"spawnflags" "0"
-				"solid" "0"
-				"skin" "0"
-				"SetBodyGroup" "0"
-				"rendermode" "0"
-				"renderfx" "0"
-				"rendercolor" "138 187 247"
-				"renderamt" "255"
-				"RandomAnimation" "0"
-				"pressuredelay" "0"
-				"PerformanceMode" "0"
-				"modelscale" "1.0"
-				"model" "models/props_mvm/gatebot_hologram.mdl"
-				"MinAnimTime" "5"
-				"MaxAnimTime" "10"
-				"fadescale" "1"
-				"fademindist" "-1"
-				"ExplodeRadius" "0"
-				"ExplodeDamage" "0"
-				"disableshadows" "1"
-				"disablereceiveshadows" "0"
-				"DisableBoneFollowers" "1"
-				"angles" "0 90 0"
-			}
-			prop_dynamic
-			{
-				"targetname" "teledestination_n4"
-				"model" "models/props_mvm/robot_spawnpoint.mdl"
-				"origin" "-1850 -700 255"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"DefaultAnim" "idle"
-				"StartDisabled" "0"
-			}
-			prop_dynamic
-			{
-				"targetname" "giant_teledestination_n4"
-				"model" "models/empty.mdl"
-				"origin" "-1850 -700 255"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"StartDisabled" "0"
-			}
-			info_particle_system
-			{
-				"targetname" "glow_teledestination"
-				"start_active" "0"
-				"effect_name" "teleporter_blue_charged_level3"
-				"angles" "0 0 0"
-				"origin" "-1850 -700 255"
-			}
-			trigger_multiple
-			{
-				"targetname" "teledestination_n4_trigger"
-				"StartDisabled" "0"
-				"spawnflags" "1"
-				"origin" "-1850 -700 0"
-				"mins" "-1 -1 -1"
-				"maxs" "1 1 1"
-				"filtername" "filter_redteam"
-				"OnStartTouchAll" "telespot_picker,$RemoveOutput,OnCase04,0,-1"
-				"OnEndTouchAll" "telespot_picker,AddOutput,OnCase04 !activator:AddOutput:origin -1850 -700 285:-1:-1,0,-1"
-				//"OnStartTouch" "player,$DisplayTextChat,in 4,0,-1"
-				//"OnEndTouch" "player,$DisplayTextChat,out 4,0,-1"
-			}
-			prop_dynamic
-			{
-				"origin" "-1850 -700 265"
-				"targetname" "teledestination_hologram"
-				"StartDisabled" "0"
-				"spawnflags" "0"
-				"solid" "0"
-				"skin" "0"
-				"SetBodyGroup" "0"
-				"rendermode" "0"
-				"renderfx" "0"
-				"rendercolor" "138 187 247"
-				"renderamt" "255"
-				"RandomAnimation" "0"
-				"pressuredelay" "0"
-				"PerformanceMode" "0"
-				"modelscale" "1.0"
-				"model" "models/props_mvm/gatebot_hologram.mdl"
-				"MinAnimTime" "5"
-				"MaxAnimTime" "10"
-				"fadescale" "1"
-				"fademindist" "-1"
-				"ExplodeRadius" "0"
-				"ExplodeDamage" "0"
-				"disableshadows" "1"
-				"disablereceiveshadows" "0"
-				"DisableBoneFollowers" "1"
-				"angles" "0 0 0"
-			}
-			prop_dynamic
-			{
-				"targetname" "teledestination_n5"
-				"model" "models/props_mvm/robot_spawnpoint.mdl"
-				"origin" "450 600 80"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"DefaultAnim" "idle"
-				"StartDisabled" "0"
-			}
-			prop_dynamic
-			{
-				"targetname" "giant_teledestination_n5"
-				"model" "models/empty.mdl"
-				"origin" "450 600 80"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"StartDisabled" "0"
-			}
-			info_particle_system
-			{
-				"targetname" "glow_teledestination"
-				"start_active" "0"
-				"effect_name" "teleporter_blue_charged_level3"
-				"angles" "0 0 0"
-				"origin" "450 600 80"
-			}
-			trigger_multiple
-			{
-				"targetname" "teledestination_n5_trigger"
-				"StartDisabled" "0"
-				"spawnflags" "1"
-				"origin" "450 600 80"
-				"mins" "-1000 -600 -1000"
-				"maxs" "1000 1500 1000"
-				"filtername" "filter_redteam"
-				"OnStartTouchAll" "telespot_picker,$RemoveOutput,OnCase05,0,-1"
-				"OnEndTouchAll" "telespot_picker,AddOutput,OnCase05 !activator:AddOutput:origin 450 600 110:-1:-1,0,-1"
-				//"OnStartTouch" "player,$DisplayTextChat,in 5,0,-1"
-				//"OnEndTouch" "player,$DisplayTextChat,out 5,0,-1"
-			}
-			prop_dynamic
-			{
-				"origin" "450 600 90"
-				"targetname" "teledestination_hologram"
-				"StartDisabled" "0"
-				"spawnflags" "0"
-				"solid" "0"
-				"skin" "0"
-				"SetBodyGroup" "0"
-				"rendermode" "0"
-				"renderfx" "0"
-				"rendercolor" "138 187 247"
-				"renderamt" "255"
-				"RandomAnimation" "0"
-				"pressuredelay" "0"
-				"PerformanceMode" "0"
-				"modelscale" "1.0"
-				"model" "models/props_mvm/gatebot_hologram.mdl"
-				"MinAnimTime" "5"
-				"MaxAnimTime" "10"
-				"fadescale" "1"
-				"fademindist" "-1"
-				"ExplodeRadius" "0"
-				"ExplodeDamage" "0"
-				"disableshadows" "1"
-				"disablereceiveshadows" "0"
-				"DisableBoneFollowers" "1"
-				"angles" "0 180 0"
-			}
-			prop_dynamic
-			{
-				"targetname" "teledestination_n6"
-				"model" "models/props_mvm/robot_spawnpoint.mdl"
-				"origin" "450 -450 205"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"DefaultAnim" "idle"
-				"StartDisabled" "0"
-			}
-			prop_dynamic
-			{
-				"targetname" "giant_teledestination_n6"
-				"model" "models/empty.mdl"
-				"origin" "450 -450 205"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"StartDisabled" "0"
-			}
-			info_particle_system
-			{
-				"targetname" "glow_teledestination"
-				"start_active" "0"
-				"effect_name" "teleporter_blue_charged_level3"
-				"angles" "0 0 0"
-				"origin" "450 -450 205"
-			}
-			trigger_multiple
-			{
-				"targetname" "teledestination_n6_trigger"
-				"StartDisabled" "0"
-				"spawnflags" "1"
-				"origin" "450 -450 0"
-				"mins" "-1 -1 -1"
-				"maxs" "1 1 1"
-				"filtername" "filter_redteam"
-				"OnStartTouchAll" "telespot_picker,$RemoveOutput,OnCase06,0,-1"
-				"OnEndTouchAll" "telespot_picker,AddOutput,OnCase06 !activator:AddOutput:origin 450 -450 235:-1:-1,0,-1"
-				//"OnStartTouch" "player,$DisplayTextChat,in 6,0,-1"
-				//"OnEndTouch" "player,$DisplayTextChat,out 6,0,-1"
-			}
-			prop_dynamic
-			{
-				"origin" "450 -450 215"
-				"targetname" "teledestination_hologram"
-				"StartDisabled" "0"
-				"spawnflags" "0"
-				"solid" "0"
-				"skin" "0"
-				"SetBodyGroup" "0"
-				"rendermode" "0"
-				"renderfx" "0"
-				"rendercolor" "138 187 247"
-				"renderamt" "255"
-				"RandomAnimation" "0"
-				"pressuredelay" "0"
-				"PerformanceMode" "0"
-				"modelscale" "1.0"
-				"model" "models/props_mvm/gatebot_hologram.mdl"
-				"MinAnimTime" "5"
-				"MaxAnimTime" "10"
-				"fadescale" "1"
-				"fademindist" "-1"
-				"ExplodeRadius" "0"
-				"ExplodeDamage" "0"
-				"disableshadows" "1"
-				"disablereceiveshadows" "0"
-				"DisableBoneFollowers" "1"
-				"angles" "0 180 0"
-			}
-			prop_dynamic
-			{
-				"targetname" "teledestination_n7"
-				"model" "models/props_mvm/robot_spawnpoint.mdl"
-				"origin" "-1950 -100 255"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"DefaultAnim" "idle"
-				"StartDisabled" "0"
-			}
-			prop_dynamic
-			{
-				"targetname" "giant_teledestination_n7"
-				"model" "models/empty.mdl"
-				"origin" "-1950 -100 255"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"StartDisabled" "0"
-			}
-			info_particle_system
-			{
-				"targetname" "glow_teledestination"
-				"start_active" "0"
-				"effect_name" "teleporter_blue_charged_level3"
-				"angles" "0 0 0"
-				"origin" "-1950 -100 255"
-			}
-			trigger_multiple
-			{
-				"targetname" "teledestination_n7_trigger"
-				"StartDisabled" "0"
-				"spawnflags" "1"
-				"origin" "-1950 -100 0"
-				"mins" "-100 -150 -1500"
-				"maxs" "3000 4000 1500"
-				"filtername" "filter_redteam"
-				"OnStartTouchAll" "telespot_picker,$RemoveOutput,OnCase07,0,-1"
-				"OnEndTouchAll" "telespot_picker,AddOutput,OnCase07 !activator:AddOutput:origin -1950 -100 285:-1:-1,0,-1"
-				//"OnStartTouch" "player,$DisplayTextChat,in 7,0,-1"
-				//"OnEndTouch" "player,$DisplayTextChat,out 7,0,-1"
-			}
-			prop_dynamic
-			{
-				"origin" "-1950 -100 265"
-				"targetname" "teledestination_hologram"
-				"StartDisabled" "0"
-				"spawnflags" "0"
-				"solid" "0"
-				"skin" "0"
-				"SetBodyGroup" "0"
-				"rendermode" "0"
-				"renderfx" "0"
-				"rendercolor" "138 187 247"
-				"renderamt" "255"
-				"RandomAnimation" "0"
-				"pressuredelay" "0"
-				"PerformanceMode" "0"
-				"modelscale" "1.0"
-				"model" "models/props_mvm/gatebot_hologram.mdl"
-				"MinAnimTime" "5"
-				"MaxAnimTime" "10"
-				"fadescale" "1"
-				"fademindist" "-1"
-				"ExplodeRadius" "0"
-				"ExplodeDamage" "0"
-				"disableshadows" "1"
-				"disablereceiveshadows" "0"
-				"DisableBoneFollowers" "1"
-				"angles" "0 0 0"
-			}
-			prop_dynamic
-			{
-				"targetname" "teledestination_n8"
-				"model" "models/props_mvm/robot_spawnpoint.mdl"
-				"origin" "-800 -2050 205"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"DefaultAnim" "idle"
-				"StartDisabled" "1"
-			}
-			prop_dynamic
-			{
-				"targetname" "giant_teledestination_n8"
-				"model" "models/empty.mdl"
-				"origin" "-800 -2050 205"
-				"skin" "1"
-				"solid" "0"
-				"spawnflags" "0"
-				"StartDisabled" "0"
-			}
-			prop_dynamic
-			{
-				"origin" "-800 -2050 215"
-				"targetname" "n8_teledestination_hologram"
-				"StartDisabled" "1"
-				"spawnflags" "0"
-				"solid" "0"
-				"skin" "0"
-				"SetBodyGroup" "0"
-				"rendermode" "0"
-				"renderfx" "0"
-				"rendercolor" "138 187 247"
-				"renderamt" "255"
-				"RandomAnimation" "0"
-				"pressuredelay" "0"
-				"PerformanceMode" "0"
-				"modelscale" "1.0"
-				"model" "models/props_mvm/gatebot_hologram.mdl"
-				"MinAnimTime" "5"
-				"MaxAnimTime" "10"
-				"fadescale" "1"
-				"fademindist" "-1"
-				"ExplodeRadius" "0"
-				"ExplodeDamage" "0"
-				"disableshadows" "1"
-				"disablereceiveshadows" "0"
-				"DisableBoneFollowers" "1"
-				"angles" "0 90 0"
-			}
-			info_particle_system
-			{
-				"targetname" "glow_teledestination"
-				"start_active" "0"
-				"effect_name" "teleporter_blue_charged_level3"
-				"angles" "0 0 0"
-				"origin" "-800 -2050 205"
-			}
-			filter_damage_type
-			{
-				"targetname" "filter_everything"
-				"damagetype" "64"
-				"Negated" "0"
-			}
-			logic_relay
-			{
-				"spawnflags" "0"
-				"targetname" "bomb_delivery_setup_relay"
-				"StartDisabled" "0"
-				"OnTrigger" "spawnbot*,Disable,,0,-1"
-			}
-			filter_tf_bot_has_tag
-			{
-				"targetname" "filter_not_aoe_medic"
-				"tags" "aoe_medic"
-				"require_all_tags" "1"
-				"Negated" "1"
-			}
-			filter_multi
-			{
-				"targetname" "filter_blueteam_not_aoemedic"
-				"Negated" "0"
-				"filtertype" "0"
-				"Filter02" "filter_not_aoe_medic"
-				"Filter01" "filter_blueteam*"
-			}
-		}
-		giant_teled_annotation
-		{
-			OnSpawnOutput
-			{
-				Target giant_telespawned
-				Action Show
-			}
-			training_annotation
-			{
-				"targetname" "giant_telespawned"
-				"display_text" "!"
-				"lifetime" "3"
-			}
-		}
-		giant_teled_annotation_tutorial
-		{
-			OnSpawnOutput
-			{
-				Target giant_telespawned_tutorial
-				Action Show
-			}
-			training_annotation
-			{
-				"targetname" "giant_telespawned_tutorial"
-				"display_text" "A giant robot has teleported in!"
-				"lifetime" "3"
-			}
-		}
-		TeleBot
-		{
-			OnSpawnOutput
-			{
-				Target teleport_check
-				Action Test
-			}
-		}
-		TeleBot_Giant
-		{
-			OnSpawnOutput
-			{
-				Target teleport_check_giant
-				Action Test
-			}
-		}
-		TeleBot_SquadLeader
-		{
-			OnSpawnOutput
-			{
-				Target teleport_check
-				Action Test
-			}
-			OnSpawnOutput
-			{
-				Target !parent
-				Action AddOutput
-				Param "targetname squad_leader"
-			}
-			OnSpawnOutput
-			{
-				Target !parent
-				Action AddOutput
-				Param "targetname "
-				Delay 1
-			}
-		}
-		TeleBot_SquadMember
-		{
-			OnSpawnOutput
-			{
-				Target teleport_check_squadmember
-				Action Test
-			}
-		}
-		TeleBot_Giant_SquadLeader1
-		{
-			OnSpawnOutput
-			{
-				Target teleport_check_giant
-				Action Test
-			}
-			OnSpawnOutput
-			{
-				Target !parent
-				Action AddOutput
-				Param "targetname squad_leader"
-			}
-		}
-		TeleBot_SquadSystem
-		{
-			NoFixup 1
-			OnSpawnOutput
-			{
-				Target squad_namer
-				Action $SetVar$current_number
-				Param 1
-			}
-			info_target
-			{
-				"targetname" "squad_namer"
-			}
-		}
-		Annotations
-		{
-			training_annotation
-			{
-				"targetname" "annotation_start"
-				"origin" "-640 -830 270"
-				"display_text" "Some robots are teleporting in!"
-				"lifetime" "5"
-			}
-			training_annotation
-			{
-				"targetname" "annotation_end"
-				"origin" "-640 -830 270"
-				"display_text" "The teleporters have shut down!"
-				"lifetime" "5"
-			}
-		}
-		DummySpawn
-		{
-			OnSpawnOutput
-			{
-				Target dumby
-				Action Kill
-			}
-			logic_relay
-			{
-				"spawnflags" "0"
-				"targetname" "dumby"
-				"StartDisabled" "0"
-			}
-		}
-		BossBot
-		{
-			OnSpawnOutput
-			{
-				Target !parent
-				Action AddOutput
-				Param "targetname boss_bot"
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $SetOwner
-				Param !parent
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $SetOwner
-				Param !parent
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $AddWeaponAttribute
-				Param "explosion particle|fluidSmokeExpl_ring_mvm"
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $AddWeaponAttribute
-				Param "damage causes airblast|1"
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $AddWeaponAttribute
-				Param "Blast radius increased|4"
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $AddWeaponAttribute
-				Param "self dmg push force decreased|0"
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $AddWeaponAttribute
-				Param "no self blast dmg|2"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "projectile gravity|4000"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "custom projectile model|models/weapons/w_models/w_drg_ball.mdl"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "projectile trail particle|lava_fireball"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "projectile spread angle penalty|45"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "fire input on hit|!caller^$IgnitePlayerDuration^6"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "fire input on hit name restrict|ignite_me"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "Projectile speed increased|1.8"
-			}
-			logic_relay
-			{
-				"spawnflags" "0"
-				"targetname" "boss_phase_change_relay"
-				"StartDisabled" "0"
-				"OnTrigger" "rename_players,Enable,,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$8,1,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$8,scout,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$8,4,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$9,1,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$9,pyro,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$9,4,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$10,1,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$10,pyro_flare,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$10,4,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$11,1,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$11,heavy_heater_giant,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$11,4,9,-1"
-				"OnTrigger" "support_boss_spawnbot*,Enable,,9,-1"
-				"OnTrigger" "phase2_boss_tele_marker,Start,,9,-1"
-				"OnTrigger" "phase2_boss_weapon,FireUser1,,9,-1"
-				"OnTrigger" "player,$PlaySoundToSelf,mvm/mvm_tele_activate.wav,7.5,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags$3,25,5,-1"
-				"OnTrigger" "player,$PlaySoundToSelf,ambient/explosions/explode_2.wav,5,-1"
-				"OnTrigger" "player,$PlaySoundToSelf,vo/mvm/mght/heavy_mvm_m_battlecry06.mp3,5,-1"
-				"OnTrigger" "!parent,$RemovePlayerAttribute,dmg taken increased,5,-1"
-				"OnTrigger" "!parent,$ChangeAttributes,Phase2,5,-1"
-				"OnTrigger" "blast_boss_phase_change,FireMultiple,3,5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,5,-1"
-				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 225,4.5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,4,-1"
-				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 200,3.5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,3,-1"
-				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 175,2.5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,2,-1"
-				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 150,1.5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,1,-1"
-				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 125,0.5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,0,-1"
-				"OnTrigger" "!parent,$AddPlayerAttribute,dmg taken increased|0.1,0,-1"
-				"OnTrigger" "!parent,$AddCond,71 5,0,-1"
-			}
-			ambient_generic
-			{
-				"targetname" "alert_boss_phase_change"		
-				"health" "10"
-				"message" "misc/rd_finale_beep01.wav"
-				"pitch" "100"
-				"pitchstart" "100"
-				"radius" "20000"
-				"spawnflags" "49"
-				"origin" "0 0 160"
-			}
-            tf_point_weapon_mimic
-            {
-                "targetname" "blast_boss_phase_change"
-                "Damage" "90"
-				"angles" "90 0 0"
-                "SplashRadius" "0"
-                "SpreadAngle" "0"
-                "WeaponType" "0"
-				"TeamNum" "3"
-				"$preventshootparent" "1"
-				"$weaponname" "TF_WEAPON_ROCKETLAUNCHER"
-            }
-            tf_point_weapon_mimic
-            {
-                "targetname" "phase2_boss_weapon"
-                "Damage" "90"
-				"angles" "-90 0 0"
-                "SplashRadius" "0"
-                "SpreadAngle" "12"
-                "WeaponType" "0"
-				"TeamNum" "3"
-				"crits" "1"
-				"$killicon" "taunt_pyro"
-				"$preventshootparent" "1"
-				"$weaponnosound" "1" 
-				"$weaponname" "TF_WEAPON_ROCKETLAUNCHER"
-				"OnUser1" "!self,FireOnce,,0,-1"
-				"OnUser1" "!self,FireUser1,,0.6,-1"
-            }
-			info_target
-			{
-				"targetname" "boss_support_spawn"
-				"origin" "0 0 50"
-			}
-			trigger_multiple
-			{
-				"targetname" "rename_players"
-				"StartDisabled" "1"
-				"spawnflags" "1"
-				"mins" "-9000 -9000 -9000"
-				"maxs" "9000 9000 9000"
-				"filtername" "filter_redteam"
-				"OnStartTouch" "!activator,AddOutput,targetname ignite_me,0,-1"
-			}
-		}
-		UberRadius
-		{
-			OnSpawnOutput
-			{
-				Target "uber"
-				Action FireUser1
-			}
-			trigger_add_tf_player_condition
-			{
-				"targetname" "uber"
-				"StartDisabled" "0"
-				"spawnflags" "3"
-				"mins" "-200 -200 -200"
-				"maxs" "200 200 200"
-			 	"filtername" "filter_blueteam_not_aoemedic"
-				"duration" "1"
-				"condition" "52"
-				//"OnStartTouch" "!activator,$AddCond,52,0,-1"
-				//"OnEndTouch" "!activator,$RemoveCond,52,0,-1"
-				"OnUser1" "!self,AddOutput,maxs 200 200 200,0.01,-1"
-				"OnUser1" "!self,AddOutput,mins -200 -200 -200,0.01,-1"
-				"OnUser1" "!self,AddOutput,maxs 1 1 1,0,-1"
-				"OnUser1" "!self,AddOutput,mins -1 -1 -1,0,-1"
-				"OnUser1" "!self,FireUser1,,0.49,-1"
-			}
-			mapobj_cart_dispenser
-			{
-				"touch_trigger" "dispenser_trigger"
-				"TeamNum" "3"
-				"targetname" "tank_dispenser"
-				"spawnflags" "12"
-			}
-			dispenser_touch_trigger
-			{
-				"targetname" "dispenser_trigger"
-				"spawnflags" "1"
-				"mins" "-200 -200 -200"
-				"maxs" "200 200 200"
-			}
-		}
-	}
-	ExtraSpawnPoint  
-    {
-        Name "bomb_delivery_spawn"
-        TeamNum 3
-		StartDisabled 0
-        X "-640"
-        Y "3344"
-        Z "96"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "bomb_delivery_spawn"
-        TeamNum 3
-		StartDisabled 0
-        X "-1040"
-        Y "3280"
-        Z "96"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "bomb_delivery_spawn"
-        TeamNum 3
-		StartDisabled 0
-        X "544"
-        Y "2640"
-        Z "-128"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "spawnbot_teleport"
-        TeamNum 3
-		StartDisabled 1
-        X "-640"
-        Y "3344"
-        Z "96"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "spawnbot_teleport"
-        TeamNum 3
-		StartDisabled 1
-        X "-1040"
-        Y "3280"
-        Z "96"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "spawnbot_teleport"
-        TeamNum 3
-		StartDisabled 1
-        X "544"
-        Y "2640"
-        Z "-128"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "spawnbot_teleport_giant"
-        TeamNum 3
-		StartDisabled 1
-        X "-640"
-        Y "3344"
-        Z "96"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "spawnbot_teleport_giant"
-        TeamNum 3
-		StartDisabled 1
-        X "-1040"
-        Y "3280"
-        Z "96"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "spawnbot_teleport_giant"
-        TeamNum 3
-		StartDisabled 1
-        X "544"
-        Y "2640"
-        Z "-128"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "spawnbot_disabled_teleport"
-        TeamNum 3
-		StartDisabled 0
-        X "-640"
-        Y "3344"
-        Z "96"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "spawnbot_disabled_teleport"
-        TeamNum 3
-		StartDisabled 0
-        X "-1040"
-        Y "3280"
-        Z "96"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "spawnbot_disabled_teleport"
-        TeamNum 3
-		StartDisabled 0
-        X "544"
-        Y "2640"
-        Z "-128"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "standard_wave_flow_spawn"
-        TeamNum 3
-		StartDisabled 0
-        X "544"
-        Y "2640"
-        Z "-128"
-    }
-	ExtraSpawnPoint  
-    {
-        Name "support_boss_spawnbot"
-        TeamNum 3
-		StartDisabled 1
-        X "-1040"
-        Y "3280"
-        Z "96"
-    }
 }
-// #base judge_restricts.pop
