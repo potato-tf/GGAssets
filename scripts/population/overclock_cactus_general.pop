@@ -818,7 +818,7 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"melee range multiplier"	0.5
+				"melee range multiplier"	1
 			}
 			Description "+On Kill: 4 seconds of critical hits" 
 			Tier 1
@@ -879,13 +879,13 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes
 			{
-				"CARD: damage bonus" 0.15
+				"CARD: damage bonus" 0.1
 				//"bleeding duration" 3
 				"airblast_pushback_disabled" 1
 				"add cond on hit" 123
 				"slow enemy on hit" 1
 			}
-			Description "+15% damage bonus +Ignite non-ignitable targets +100% chance to slow target -airblast no longer pushes back robots" 
+			Description "+10% damage bonus +Ignite non-ignitable targets +100% chance to slow target -airblast no longer pushes back robots" 
 			Tier 1
             AllowedWeapons
 			{
