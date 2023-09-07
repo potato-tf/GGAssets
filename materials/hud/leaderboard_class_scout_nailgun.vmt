@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture" "hud/leaderboard_class_pyro_dragon_fury_swordstone"
+	"$basetexture" "hud/leaderboard_class_scout_nailgun"
 	"$vertexcolor" 1
 	"$no_fullbright" 1
 	"$ignorez" 1

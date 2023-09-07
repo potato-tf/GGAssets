@@ -249,6 +249,7 @@ WaveSchedule
 		Demoman 
 		{
 			Secondary {Item "Parry Addiction"}
+			Secondary {Item "Buster Transformer"}
 			Melee {Item "Caber Buster"}
 		}
 		Engineer 

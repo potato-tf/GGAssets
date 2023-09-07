@@ -109,18 +109,24 @@ WaveSchedule
 				"targetname" "logic_disable_spawn_ts1"
 				"ontrigger" "timeconstraint_support_1,Disable,0,0,-1"
 				"ontrigger" "item_teamflag,ForceResetSilent,0,0,-1"
+				"ontrigger" "item_teamflag,ForceResetSilent,0,1,-1"
+				"ontrigger" "item_teamflag,ForceResetSilent,0,2,-1"
 			}
 			logic_relay
 			{
 				"targetname" "logic_disable_spawn_ts2"
 				"ontrigger" "timeconstraint_support_2,Disable,0,0,-1"
 				"ontrigger" "item_teamflag,ForceResetSilent,0,0,-1"
+				"ontrigger" "item_teamflag,ForceResetSilent,0,1,-1"
+				"ontrigger" "item_teamflag,ForceResetSilent,0,2,-1"
 			}
 			logic_relay
 			{
 				"targetname" "logic_disable_spawn_ts3"
 				"ontrigger" "timeconstraint_support_3,Disable,0,0,-1"
 				"ontrigger" "item_teamflag,ForceResetSilent,0,0,-1"
+				"ontrigger" "item_teamflag,ForceResetSilent,0,1,-1"
+				"ontrigger" "item_teamflag,ForceResetSilent,0,2,-1"
 			}
 			logic_relay
 			{
@@ -150,6 +156,339 @@ WaveSchedule
 				"ontrigger" "bombpath_clearall_relay,Trigger,0,6.5,-1"
 				"ontrigger" "bombpath_arrows_clear_relay,Trigger,0,6.5,-1"
 				"ontrigger" "bombpath_a,Trigger,0,7.0,-1"
+			}
+		}
+		pvpWalls
+		{
+			NoFixup 1
+			logic_relay
+			{
+				"targetname" "enablepvpwalls"
+				"ontrigger" "pvpwall,Enable,0,0,-1"
+			}
+			prop_dynamic
+			{
+				"angles" "0 180 0"
+				"DisableBoneFollowers" "0"
+				"disablereceiveshadows" "0"
+				"ExplodeDamage" "0"
+				"ExplodeRadius" "0"
+				"fademindist" "-1"
+				"fadescale" "1"
+				"MaxAnimTime" "10"
+				"MinAnimTime" "5"
+				"model" "models/props_mvm/reversemvm_redwall_696x337.mdl"
+				"modelscale" "3.0"
+				"PerformanceMode" "0"
+				"pressuredelay" "0"
+				"RandomAnimation" "0"
+				"renderamt" "255"
+				"rendercolor" "255 255 255"
+				"renderfx" "0"
+				"rendermode" "0"
+				"SetBodyGroup" "0"
+				"skin" "0"
+				"solid" "6"
+				"spawnflags" "0"
+				"StartDisabled" "1"
+				"origin" "-176 -848.058 448"
+				"targetname" "pvpwall"
+			}
+			prop_dynamic
+			{
+				"angles" "0 0 0"
+				"DisableBoneFollowers" "0"
+				"disablereceiveshadows" "0"
+				"ExplodeDamage" "0"
+				"ExplodeRadius" "0"
+				"fademindist" "-1"
+				"fadescale" "1"
+				"MaxAnimTime" "10"
+				"MinAnimTime" "5"
+				"model" "models/props_mvm/reversemvm_redwall_384x224.mdl"
+				"modelscale" "1.0"
+				"PerformanceMode" "0"
+				"pressuredelay" "0"
+				"RandomAnimation" "0"
+				"renderamt" "255"
+				"rendercolor" "255 255 255"
+				"renderfx" "0"
+				"rendermode" "0"
+				"SetBodyGroup" "0"
+				"skin" "0"
+				"solid" "6"
+				"spawnflags" "0"
+				"StartDisabled" "1"
+				"origin" "528 -3608 448"
+				"targetname" "pvpwall"
+			}
+			prop_dynamic
+			{
+				"angles" "0 0 0"
+				"DisableBoneFollowers" "0"
+				"disablereceiveshadows" "0"
+				"ExplodeDamage" "0"
+				"ExplodeRadius" "0"
+				"fademindist" "-1"
+				"fadescale" "1"
+				"MaxAnimTime" "10"
+				"MinAnimTime" "5"
+				"model" "models/props_mvm/reversemvm_redwall_384x224.mdl"
+				"modelscale" "1.0"
+				"PerformanceMode" "0"
+				"pressuredelay" "0"
+				"RandomAnimation" "0"
+				"renderamt" "255"
+				"rendercolor" "255 255 255"
+				"renderfx" "0"
+				"rendermode" "0"
+				"SetBodyGroup" "0"
+				"skin" "0"
+				"solid" "6"
+				"spawnflags" "0"
+				"StartDisabled" "1"
+				"origin" "1184 -3520 380.366"
+				"targetname" "pvpwall"
+			}
+			prop_dynamic
+			{
+				"angles" "0 0 0"
+				"DisableBoneFollowers" "0"
+				"disablereceiveshadows" "0"
+				"ExplodeDamage" "0"
+				"ExplodeRadius" "0"
+				"fademindist" "-1"
+				"fadescale" "1"
+				"MaxAnimTime" "10"
+				"MinAnimTime" "5"
+				"model" "models/props_mvm/reversemvm_redwall_512x320.mdl"
+				"modelscale" "1.0"
+				"PerformanceMode" "0"
+				"pressuredelay" "0"
+				"RandomAnimation" "0"
+				"renderamt" "255"
+				"rendercolor" "255 255 255"
+				"renderfx" "0"
+				"rendermode" "0"
+				"SetBodyGroup" "0"
+				"skin" "0"
+				"solid" "6"
+				"spawnflags" "0"
+				"StartDisabled" "1"
+				"origin" "1806.26 -3621.52 520"
+				"targetname" "pvpwall"
+			}
+			prop_dynamic
+			{
+				"angles" "0 0 0"
+				"DisableBoneFollowers" "0"
+				"disablereceiveshadows" "0"
+				"ExplodeDamage" "0"
+				"ExplodeRadius" "0"
+				"fademindist" "-1"
+				"fadescale" "1"
+				"MaxAnimTime" "10"
+				"MinAnimTime" "5"
+				"model" "models/props_mvm/reversemvm_redwall_256x288.mdl"
+				"modelscale" "1.0"
+				"PerformanceMode" "0"
+				"pressuredelay" "0"
+				"RandomAnimation" "0"
+				"renderamt" "255"
+				"rendercolor" "255 255 255"
+				"renderfx" "0"
+				"rendermode" "0"
+				"SetBodyGroup" "0"
+				"skin" "0"
+				"solid" "6"
+				"spawnflags" "0"
+				"StartDisabled" "1"
+				"origin" "-524.648 -2425.16 176"
+				"targetname" "pvpwall"
+			}
+			prop_dynamic
+			{
+				"angles" "0 270 0"
+				"DisableBoneFollowers" "0"
+				"disablereceiveshadows" "0"
+				"ExplodeDamage" "0"
+				"ExplodeRadius" "0"
+				"fademindist" "-1"
+				"fadescale" "1"
+				"MaxAnimTime" "10"
+				"MinAnimTime" "5"
+				"model" "models/props_mvm/reversemvm_redwall_256x288.mdl"
+				"modelscale" "1.0"
+				"PerformanceMode" "0"
+				"pressuredelay" "0"
+				"RandomAnimation" "0"
+				"renderamt" "255"
+				"rendercolor" "255 255 255"
+				"renderfx" "0"
+				"rendermode" "0"
+				"SetBodyGroup" "0"
+				"skin" "0"
+				"solid" "6"
+				"spawnflags" "0"
+				"StartDisabled" "1"
+				"origin" "-633.162 -2099.35 16"
+				"targetname" "pvpwall"
+			}
+			prop_dynamic
+			{
+				"angles" "0 270 0"
+				"DisableBoneFollowers" "0"
+				"disablereceiveshadows" "0"
+				"ExplodeDamage" "0"
+				"ExplodeRadius" "0"
+				"fademindist" "-1"
+				"fadescale" "1"
+				"MaxAnimTime" "10"
+				"MinAnimTime" "5"
+				"model" "models/props_mvm/reversemvm_redwall_256x288.mdl"
+				"modelscale" "1.0"
+				"PerformanceMode" "0"
+				"pressuredelay" "0"
+				"RandomAnimation" "0"
+				"renderamt" "255"
+				"rendercolor" "255 255 255"
+				"renderfx" "0"
+				"rendermode" "0"
+				"SetBodyGroup" "0"
+				"skin" "0"
+				"solid" "6"
+				"spawnflags" "0"
+				"StartDisabled" "1"
+				"origin" "-889.162 -1291.35 360"
+				"targetname" "pvpwall"
+			}
+			prop_dynamic
+			{
+				"angles" "0 270 0"
+				"DisableBoneFollowers" "0"
+				"disablereceiveshadows" "0"
+				"ExplodeDamage" "0"
+				"ExplodeRadius" "0"
+				"fademindist" "-1"
+				"fadescale" "1"
+				"MaxAnimTime" "10"
+				"MinAnimTime" "5"
+				"model" "models/props_mvm/reversemvm_redwall_256x288.mdl"
+				"modelscale" "1.0"
+				"PerformanceMode" "0"
+				"pressuredelay" "0"
+				"RandomAnimation" "0"
+				"renderamt" "255"
+				"rendercolor" "255 255 255"
+				"renderfx" "0"
+				"rendermode" "0"
+				"SetBodyGroup" "0"
+				"skin" "0"
+				"solid" "6"
+				"spawnflags" "0"
+				"StartDisabled" "1"
+				"origin" "-889.162 -1707.35 360"
+				"targetname" "pvpwall"
+			}
+			prop_dynamic
+			{
+				"angles" "0 270 0"
+				"DisableBoneFollowers" "0"
+				"disablereceiveshadows" "0"
+				"ExplodeDamage" "0"
+				"ExplodeRadius" "0"
+				"fademindist" "-1"
+				"fadescale" "1"
+				"MaxAnimTime" "10"
+				"MinAnimTime" "5"
+				"model" "models/props_mvm/reversemvm_redwall_256x288.mdl"
+				"modelscale" "1.0"
+				"PerformanceMode" "0"
+				"pressuredelay" "0"
+				"RandomAnimation" "0"
+				"renderamt" "255"
+				"rendercolor" "255 255 255"
+				"renderfx" "0"
+				"rendermode" "0"
+				"SetBodyGroup" "0"
+				"skin" "0"
+				"solid" "6"
+				"spawnflags" "0"
+				"StartDisabled" "1"
+				"origin" "876.273 -515.353 88"
+				"targetname" "pvpwall"
+			}
+			func_brush
+			{
+				"origin" "528 -3624 448"
+				"mins" "-192 -16 -112"
+				"maxs" "192 16 112"
+				"StartDisabled" "1"
+				"targetname" "pvpwall"
+			}
+			func_brush
+			{
+				"origin" "1184 -3536 380"
+				"mins" "-192 -16 -112"
+				"maxs" "192 16 112"
+				"StartDisabled" "1"
+				"targetname" "pvpwall"
+			}
+			func_brush
+			{
+				"origin" "1808 -3624 1176"
+				"mins" "-256 -8 -816"
+				"maxs" "256 8 816"
+				"StartDisabled" "1"
+				"targetname" "pvpwall"
+			}
+			func_brush
+			{
+				"origin" "-524 -2428 176"
+				"mins" "-132 -4 -144"
+				"maxs" "132 4 144"
+				"StartDisabled" "1"
+				"targetname" "pvpwall"
+			}
+			func_brush
+			{
+				"origin" "-632 -2100 16"
+				"mins" "-4 -132 -144"
+				"maxs" "4 132 144"
+				"StartDisabled" "1"
+				"targetname" "pvpwall"
+			}
+			func_brush
+			{
+				"origin" "-892 -1708 360"
+				"mins" "-4 -132 -144"
+				"maxs" "4 132 144"
+				"StartDisabled" "1"
+				"targetname" "pvpwall"
+			}
+			func_brush
+			{
+				"origin" "-892 -1292 360"
+				"mins" "-4 -132 -144"
+				"maxs" "4 132 144"
+				"StartDisabled" "1"
+				"targetname" "pvpwall"
+			}
+			func_brush
+			{
+				"origin" "873 -516 88"
+				"mins" "-4 -132 -144"
+				"maxs" "4 132 144"
+				"StartDisabled" "1"
+				"targetname" "pvpwall"
+			}
+			func_brush
+			{
+				"origin" "-176 -848 967"
+				"mins" "-1048 -8 -1025"
+				"maxs" "1048 8 1025"
+				"StartDisabled" "1"
+				"targetname" "pvpwall"
 			}
 		}
 		spawnsPrimeWeapon
@@ -2493,6 +2832,8 @@ WaveSchedule
 			Action Trigger
 		}
 
+		SpawnTemplate "pvpWalls"
+
 		WaveSpawn
 		{
 			Name "6_real"
@@ -3039,6 +3380,12 @@ WaveSchedule
 			TotalCurrency 1
 
 			Support Limited
+
+			FirstSpawnOutput
+			{
+				Target enablepvpwalls
+				Action Trigger
+			}
 		
 			Squad
 			{

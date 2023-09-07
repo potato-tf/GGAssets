@@ -2012,6 +2012,7 @@ WaveSchedule
 				Name	"sticky_tank"
 				Speed	60
 				Skin	1
+				ClassIcon tank_sticky_hellmet [$SIGSEGV] // A sticky tank icon for modded servers
 				StartingPathTrackNode "tank_path_a_1"
 				OnKilledOutput
 				{	

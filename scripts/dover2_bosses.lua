@@ -300,6 +300,8 @@ local THRESHOLD = {
 	[4] = 10000,
 }
 
+local SPEED_WHILE_COLLIDING = 0.25
+
 local function lerp(a,b,t)
     return a * (1-t) + b * t
 end
@@ -338,6 +340,31 @@ function SergeantSizer(status, activator)
 	-- 	end
 	-- end
 
+	local callbacks = {}
+
+	callbacks.death = activator:AddCallback(ON_DEATH, function()
+		for _, id in pairs(callbacks) do
+			activator:RemoveCallback(id)
+		end
+	end)
+	callbacks.spawn = activator:AddCallback(ON_SPAWN, function()
+		for _, id in pairs(callbacks) do
+			activator:RemoveCallback(id)
+		end
+	end)
+
+	local collided = false
+
+	callbacks.shouldCollide = activator:AddCallback(ON_SHOULD_COLLIDE, function (_, other)
+		if other.m_iTeamNum ~= TEAM_RED then
+			return
+		end
+
+		collided = true
+		activator:SetAttributeValue("SET BONUS: move speed set bonus", SPEED_WHILE_COLLIDING)
+		return false
+	end)
+
 	local smol = false
 
 	local logic
@@ -346,6 +373,9 @@ function SergeantSizer(status, activator)
 			timer.Stop(logic)
 			return
 		end
+
+		collided = false
+		activator:SetAttributeValue("SET BONUS: move speed set bonus", nil)
 
 		if smol then
 			return

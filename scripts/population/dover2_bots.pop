@@ -140,7 +140,7 @@ WaveSchedule
 			Class Demoman
 			ClassIcon demoknight_charge
 			Name "Pirate Knight"
-            Health 235
+            Health 200
 			
             Skill Expert
 
@@ -629,7 +629,7 @@ WaveSchedule
 
 			CharacterAttributes
 			{
-				"not solid to players" 1
+				// "not solid to players" 1
 				"damage force reduction" 0.5
 				"airblast vulnerability multiplier" 0.5
 				"override footstep sound set" 4
