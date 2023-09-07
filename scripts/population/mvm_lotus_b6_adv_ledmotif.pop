@@ -20,7 +20,6 @@ WaveSchedule
 	CanBotsAttackWhileInSpawnRoom no
 	BodyPartScaleSpeed 10  
 	CustomNavFile "mvm_lotus_thenav"
-	UpgradeStationKeepWeapons	1	
 	
 	PointTemplates  
 	{
@@ -31,7 +30,7 @@ WaveSchedule
 				"origin" "0 0 0" 
 				"targetname" "mainrelay"
 				
-				"OnMapSpawn" "tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,LED-Motif,0,-1"
+				"OnMapSpawn" "tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,LED-Motif (Advanced),0,-1"
 				"OnMapSpawn" "cap_destroy_relay,AddOutput,OnTrigger tankboss:DestroyIfAtCapturePoint:1:-1"
 				"OnMapSpawn" "boss_deploy_relay,AddOutput,OnTrigger tankboss:DestroyIfAtCapturePoint:0:-1"
 				"OnMapSpawn" "tank_path_air_1,AddOutput,OnPass hint_blimp:Show:0:-1"
@@ -1107,8 +1106,8 @@ WaveSchedule
 			FastUpdate 1 			 
 			UseCustomModel "models/bots/skeleton_sniper/skeleton_sniper.mdl"  
 			SpawnTemplate "SmallRider"
-			DeathSound "=150|mvm\giant_soldier\giant_soldier_explode.wav"  
-			FireInput  
+			DeathSound "=150|mvm\giant_soldier\giant_soldier_explode.wav" [$SIGSEGV]
+			FireInput [$SIGSEGV]
 			{
 				Target "!self"
 				Action "$TauntFromItem"
@@ -2084,7 +2083,7 @@ WaveSchedule
 				{
 					"move speed bonus" 3
 				}
-				AddCond  
+				AddCond [$SIGSEGV]
 				{
 					Name TF_COND_SWIMMING_CURSE
 					Delay 3
@@ -2211,7 +2210,7 @@ WaveSchedule
 						ItemName "The Original"
 						"custom impact sound" =150|dsbarexp.wav
 					}
-					ItemColor   //Set item color
+					ItemColor [$SIGSEGV] //Set item color
 					{
 						ItemName "The Original"
 						Red 40
@@ -2238,7 +2237,7 @@ WaveSchedule
 						ItemName "Employee Badge A"
 						Model "models/player/items/heavy/big_jaw.mdl"
 					}
-					ItemColor   //Set item color
+					ItemColor [$SIGSEGV] //Set item color
 					{
 						ItemName "The Original"
 						Red 40
@@ -2874,7 +2873,7 @@ WaveSchedule
 					Item "El Zapateador"
 					Name "El Esqueleto"
 					Scale 1.1
-					ItemColor   //Set item color
+					ItemColor [$SIGSEGV] //Set item color
 					{
 						ItemName "The Original"
 						Red 100
@@ -2929,7 +2928,7 @@ WaveSchedule
 		
 			Tank
 			{
-				Health 45000
+				Health 44444
 				Speed 60
 				Name "tankboss"
 				Skin 1
