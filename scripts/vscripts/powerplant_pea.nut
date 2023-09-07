@@ -248,7 +248,11 @@ local prop_vector = Vector(0, 0, 30)
 
 /////////////////////////////////// TELEPORTERS ///////////////////////////////////
 
+::aoe_medic_counter <- 1
+
 ::boss_entity <- null
+::boss_stage_threshold_reached <- false
+::after_boss_phase_transition <- false
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// LOCALS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// AUTOEXECUTE ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -358,8 +362,13 @@ if (Entities.FindByName(null, "nav_avoid_giant") == null)
 {	
 	if (type != "squad_member" || !manual)
 	{
-		if (intel_entity.GetOrigin().y >= tele_func_threshold) self.Teleport(true, teledestination_table[RandomInt(1, 4).tostring()], false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
-		if (intel_entity.GetOrigin().y < tele_func_threshold)  self.Teleport(true, teledestination_table[RandomInt(5, 8).tostring()], false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+		if (intel_entity.GetOrigin().y >= tele_func_threshold)
+		{
+			if (!self.HasBotAttribute(32768)) self.Teleport(true, teledestination_table[RandomInt(1, 4).tostring()], false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+			else                              self.Teleport(true, teledestination_table[RandomInt(3, 4).tostring()], false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+		}
+		
+		if (intel_entity.GetOrigin().y < tele_func_threshold) self.Teleport(true, teledestination_table[RandomInt(5, 8).tostring()], false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
 	}
 	
 	if (manual) self.Teleport(true, destination, false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
@@ -372,7 +381,7 @@ if (Entities.FindByName(null, "nav_avoid_giant") == null)
 	
 	if (type == "squad_member") self.Teleport(true, current_squad_leader.GetOrigin(), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
 	
-	if (type == "boss_helper") self.Teleport(true, boss_entity.GetOrigin() + Vector(0, 0, 50), false, QAngle(0, 0, 0), true, Vector(RandomInt(-500, 500), RandomInt(-500, 500), 600))
+	if (type == "boss_helper" && boss_entity != null) self.Teleport(true, boss_entity.GetOrigin() + Vector(0, 0, 50), false, QAngle(0, 0, 0), true, Vector(RandomInt(-500, 500), RandomInt(-500, 500), 600))
 	
 	if (!(self.HasBotAttribute(32768)))
 	{
@@ -517,129 +526,187 @@ if (Entities.FindByName(null, "nav_avoid_giant") == null)
 	return
 }
 
-// ::SetUpAoEUber <- function()
-// {	
-	// local uber_beam_1 = SpawnEntityFromTable("dispenser_touch_trigger",
-	// {
-		// targetname    	   = "dispenser_trigger" + aoe_medic_counter
-		// origin             = self.GetOrigin()
-		// spawnflags         = 1
-	// })
+::SetUpAoEUber <- function()
+{	
+	self.KeyValueFromString("targetname", "aoe_medic_" + aoe_medic_counter)
 	
-	// local uber_beam_2 = SpawnEntityFromTable("mapobj_cart_dispenser",
-	// {
-		// targetname    	   = "dispenser_mapobj" + aoe_medic_counter
-		// origin             = self.GetOrigin()
-		// TeamNum            = 3,
-		// spawnflags         = 12
-		// touch_trigger      = "dispenser_trigger" + aoe_medic_counter
-	// })
+	local uber_beam_1 = SpawnEntityFromTable("dispenser_touch_trigger",
+	{
+		targetname    	   = "dispenser_trigger" + aoe_medic_counter
+		origin             = self.GetOrigin()
+		spawnflags         = 1
+	})
 	
-	// uber_beam_2.KeyValueFromInt("solid", 2)
-	// uber_beam_2.KeyValueFromString("mins", "-250 -250 -250")
-	// uber_beam_2.KeyValueFromString("maxs", "250 250 250")
+	local uber_beam_2 = SpawnEntityFromTable("mapobj_cart_dispenser",
+	{
+		targetname    	   = "dispenser_mapobj" + aoe_medic_counter
+		origin             = self.GetOrigin()
+		TeamNum            = 3,
+		spawnflags         = 12
+		touch_trigger      = "dispenser_trigger" + aoe_medic_counter
+	})
 	
-	// EntFire("dispenser_mapobj" + aoe_medic_counter, "SetParent", self)
-	// EntFire("dispenser_trigger" + aoe_medic_counter, "SetParent", self)
+	uber_beam_1.KeyValueFromInt("solid", 2)
+	uber_beam_1.KeyValueFromString("mins", "-250 -250 -250")
+	uber_beam_1.KeyValueFromString("maxs", "250 250 250")
 	
-	// AddThinkToEnt(self, "AoEUber_Think")
+	EntFire("dispenser_trigger" + aoe_medic_counter, "SetParent", "aoe_medic_" + aoe_medic_counter) // can only parent entities to other entities with valid targetnames
+	EntFire("dispenser_mapobj" + aoe_medic_counter, "SetParent", "aoe_medic_" + aoe_medic_counter)
 	
-	// aoe_medic_counter = aoe_medic_counter + 1
-// }
+	AddThinkToEnt(self, "AoEUber_Think")
+	
+	aoe_medic_counter = aoe_medic_counter + 1
+	
+	EntFireByHandle(self, "RunScriptCode", "self.KeyValueFromString(`targetname`, null)", 0.1, null, null) // has to be done because custom targetnames persist across bot deaths
+}
 
 ::AoEUber_Think <- function()
 {	
+	if (NetProps.GetPropInt(self, "m_lifeState") != 0)
+	{	
+		for (local ent; ent = Entities.FindByName(ent, "dispenser_*"); ) if (ent.GetRootMoveParent() == self) ent.Kill()
+		
+		NetProps.SetPropString(self, "m_iszScriptThinkFunction", "")
+		return
+	}
+
 	for (local player_to_shield; player_to_shield = Entities.FindByClassnameWithin(player_to_shield, "player", self.GetOrigin(), 250); )
 	{
 		if (player_to_shield == null) continue
-		if (player_to_shield.GetTeam() == 3 && NetProps.GetPropString(player_to_shield, "m_szNetname").find("Medic") == null) player_to_shield.AddCondEx(52, 0.5, self)
-		
-		if (NetProps.GetPropInt(self, "m_lifeState") != 0) NetProps.SetPropString(self, "m_iszScriptThinkFunction", "");
+		if (player_to_shield.GetTeam() == 3 && !player_to_shield.HasBotTag("aoe_medic")) player_to_shield.AddCondEx(52, 0.5, self)
 	}
 	
 	return
 }
 
-// ::BossState_Think <- function()
-// {	
-	// if (self.GetHealth() < 35000 && !boss_stage_threshold_reached)
-	// {
-		// boss_stage_threshold_reached = true
-		// self.AddCondEx(71, 5.0, self)
-		// self.AddCustomAttribute("dmg taken increased", 0.1, -1)
-		
-		// for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
-		// {
-			// local player = PlayerInstanceFromIndex(i)
-			// if (player == null) continue;
-			// if (IsPlayerABot(player)) continue;
-			
-			// EntFireByHandle(gamerules_entity, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 100.0, 0, 100, player)", 0.0, null, null)
-			// EntFireByHandle(gamerules_entity, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 100.0, 0, 125, player)", 1.0, null, null)
-			// EntFireByHandle(gamerules_entity, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 100.0, 0, 150, player)", 2.0, null, null)
-			// EntFireByHandle(gamerules_entity, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 100.0, 0, 175, player)", 3.0, null, null)
-			// EntFireByHandle(gamerules_entity, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 100.0, 0, 200, player)", 4.0, null, null)
-			// EntFireByHandle(gamerules_entity, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 100.0, 0, 225, player)", 5.0, null, null)
-		// }
-		
-        // local phase_change_explosion = SpawnEntityFromTable("tf_point_weapon_mimic",
-		// {
-			// targetname              = "phase_change_explosion"
-			// origin                  = self.GetOrigin()
-			// angles                  = QAngle(90, 0, 0)
-			// TeamNum                 = 3
-			// "$preventshootparent"   = 1
-			// "$weaponname"           : "TF_WEAPON_ROCKETLAUNCHER"
-		// })
-		
-		// phase_change_explosion.SetOwner(self)
-		
-		// EntFire("phase_change_explosion", "$AddWeaponAttribute", "explosion particle|fluidSmokeExpl_ring_mvm")
-		// EntFire("phase_change_explosion", "$AddWeaponAttribute", "damage causes airblast|1")
-		// EntFire("phase_change_explosion", "$AddWeaponAttribute", "Blast radius increased|4")
-		// EntFire("phase_change_explosion", "$AddWeaponAttribute", "self dmg push force decreased|0")
-		// EntFire("phase_change_explosion", "$AddWeaponAttribute", "no self blast dmg|2")
-		
-		// EntFire("phase_change_explosion", "$FireMultiple", 3, 5.0)
-		
-		// EntFireByHandle(gamerules_entity, "RunScriptCode", "after_boss_phase_transition = true", 7.5, null, null)
-	// }
-	// if (after_boss_phase_transition)
-	// {
-        // local phase_change_explosion = SpawnEntityFromTable("tf_point_weapon_mimic",
-		// {
-			// targetname              = "phase_change_explosion"
-			// origin                  = self.GetOrigin()
-			// angles                  = QAngle(90, 0, 0)
-			// TeamNum                 = 3
-			// "$preventshootparent"   = 1
-			// "$weaponname"           : "TF_WEAPON_ROCKETLAUNCHER"
-		// })
-		
-		// phase_change_explosion.SetOwner(self)
-		
-		// EntFire("phase_change_explosion", "$AddWeaponAttribute", "explosion particle|fluidSmokeExpl_ring_mvm")
-		// EntFire("phase_change_explosion", "$AddWeaponAttribute", "damage causes airblast|1")
-		// EntFire("phase_change_explosion", "$AddWeaponAttribute", "Blast radius increased|4")
-		// EntFire("phase_change_explosion", "$AddWeaponAttribute", "self dmg push force decreased|0")
-		// EntFire("phase_change_explosion", "$AddWeaponAttribute", "no self blast dmg|2")
-		
-		// EntFire("phase_change_explosion", "$FireMultiple", 3, 5.0)
-		
-		// EntFireByHandle(gamerules_entity, "RunScriptCode", "after_boss_phase_transition = true", 7.5, null, null)
-	// }
-	
-	// return
-// }
-
-::AcknowledgeBoss <- function()
+::SetUpBossEnts <- function()
 {	
-	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+	boss_entity = self
+	
+	self.KeyValueFromString("targetname", "firefist_boss")
+	
+	PrecacheSound("misc/rd_finale_beep01.wav")
+	PrecacheSound("ambient/explosions/explode_2.wav")
+	PrecacheSound("vo/mvm/mght/heavy_mvm_m_battlecry06.mp3")
+	
+	local phase_change_explosion = SpawnEntityFromTable("tf_point_weapon_mimic",
 	{
-		local player = PlayerInstanceFromIndex(i)
-		if (player == null) continue
-		if (NetProps.GetPropString(player, "m_szNetname") == "Fire Fist") boss_entity = player
+		targetname              = "phase_change_explosion"
+		origin                  = self.GetOrigin()
+		angles                  = QAngle(90, 0, 0)
+		TeamNum                 = 3
+		"$preventshootparent"   : 1
+		"$weaponname"           : "TF_WEAPON_ROCKETLAUNCHER"
+	})
+	
+	local phase2_weapon = SpawnEntityFromTable("tf_point_weapon_mimic",
+	{
+		targetname              = "phase2_weapon"
+		origin                  = self.GetOrigin()
+		angles                  = QAngle(-90, 0, 0)
+		TeamNum                 = 3
+		"$killicon"             : "taunt_pyro"
+		"$preventshootparent"   : 1
+		"$weaponnosound"        : 1
+		"$weaponname"           : "TF_WEAPON_ROCKETLAUNCHER"
+	})
+	
+	local phase2_skybeam = SpawnEntityFromTable("info_particle_system",
+	{
+		targetname    	   = "phase2_skybeam"
+		origin             = self.GetOrigin()
+		angles             = QAngle(0, 90, 0)
+		start_active       = 0,
+		effect_name        = "teleporter_mvm_bot_persist"
+	})
+	
+	EntFire("phase_change_explosion", "SetParent", "firefist_boss")
+	EntFire("phase2_weapon", "SetParent", "firefist_boss")
+	EntFire("phase2_skybeam", "SetParent", "firefist_boss")
+	
+	EntFire("phase_change_explosion", "$AddWeaponAttribute", "explosion particle|fluidSmokeExpl_ring_mvm")
+	EntFire("phase_change_explosion", "$AddWeaponAttribute", "damage causes airblast|1")
+	EntFire("phase_change_explosion", "$AddWeaponAttribute", "Blast radius increased|4")
+	EntFire("phase_change_explosion", "$AddWeaponAttribute", "self dmg push force decreased|0")
+	EntFire("phase_change_explosion", "$AddWeaponAttribute", "no self blast dmg|2")
+	
+	EntFire("phase2_weapon", "$AddWeaponAttribute", "projectile gravity|4000")
+	EntFire("phase2_weapon", "$AddWeaponAttribute", "custom projectile model|models/weapons/w_models/w_drg_ball.mdl")
+	EntFire("phase2_weapon", "$AddWeaponAttribute", "projectile trail particle|lava_fireball")
+	EntFire("phase2_weapon", "$AddWeaponAttribute", "projectile spread angle penalty|45")
+	EntFire("phase2_weapon", "$AddWeaponAttribute", "fire input on hit|!caller^$IgnitePlayerDuration^6")
+	EntFire("phase2_weapon", "$AddWeaponAttribute", "fire input on hit name restrict|ignite_me")
+	EntFire("phase2_weapon", "$AddWeaponAttribute", "Projectile speed increased|1.8")
+	
+	phase_change_explosion.SetOwner(self)
+	phase2_weapon.SetOwner(self)
+	
+	self.AddCond(30)
+	
+	AddThinkToEnt(self, "BossState_Think")
+	
+	EntFireByHandle(self, "RunScriptCode", "self.KeyValueFromString(`targetname`, null)", 1.0, null, null)
+}
+
+::BossState_Think <- function()
+{	
+	if (NetProps.GetPropInt(self, "m_lifeState") != 0)
+	{
+		EntFire("phase_change_explosion", "Kill")
+		EntFire("phase2_weapon", "Kill")
+		EntFire("phase2_skybeam", "Stop")
+		EntFire("phase2_skybeam", "Kill")
+		
+		boss_entity = null
+		
+		NetProps.SetPropString(self, "m_iszScriptThinkFunction", "")
+		return
 	}
+	
+	if (self.GetHealth() < 40000.0 && !boss_stage_threshold_reached)
+	{
+		boss_stage_threshold_reached = true
+		self.AddCondEx(71, 5.0, self)
+		self.AddCustomAttribute("dmg taken increased", 0.1, -1)
+		
+		for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+		{
+			local player = PlayerInstanceFromIndex(i)
+			if (player == null) continue;
+			if (IsPlayerABot(player)) continue;
+			
+			EntFireByHandle(player, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 300.0, 0, 100, self)", 0.0, null, null)
+			EntFireByHandle(player, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 300.0, 0, 125, self)", 1.0, null, null)
+			EntFireByHandle(player, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 300.0, 0, 150, self)", 2.0, null, null)
+			EntFireByHandle(player, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 300.0, 0, 175, self)", 3.0, null, null)
+			EntFireByHandle(player, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 300.0, 0, 200, self)", 4.0, null, null)
+			EntFireByHandle(player, "RunScriptCode", "EmitAmbientSoundOn(`misc/rd_finale_beep01.wav`, 300.0, 0, 225, self)", 5.0, null, null)
+			
+			EntFireByHandle(player, "RunScriptCode", "EmitAmbientSoundOn(`ambient/explosions/explode_2.wav`, 300.0, 0, 100, self)", 5.0, null, null)
+			EntFireByHandle(player, "RunScriptCode", "EmitAmbientSoundOn(`vo/mvm/mght/heavy_mvm_m_battlecry06.mp3`, 300.0, 0, 100, self)", 5.0, null, null)
+			
+			player.KeyValueFromString("targetname", "ignite_me")
+		}
+		
+		EntFire("phase_change_explosion", "FireMultiple", 3, 5.0)
+		
+		EntFireByHandle(self, "RunScriptCode", "self.RemoveCustomAttribute(`dmg taken increased`)", 5.0, null, null)
+		EntFireByHandle(self, "$ChangeAttributes", "Phase2", 5.0, null, null)
+		
+		EntFireByHandle(gamerules_entity, "PlayVO", "mvm/mvm_tele_activate.wav", 7.5, null, null)
+		EntFireByHandle(gamerules_entity, "RunScriptCode", "after_boss_phase_transition = true", 9.0, null, null)
+		
+		EntFire("support_boss_spawnbot", "Enable", null, 9.0)
+		EntFire("phase2_skybeam", "Start", null, 9.0)
+	}
+	if (after_boss_phase_transition)
+	{
+		EntFire("phase2_weapon", "FireOnce")
+		
+		return 0.5
+	}
+	
+	return
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -647,13 +714,25 @@ if (Entities.FindByName(null, "nav_avoid_giant") == null)
 
 if (debug)
 {
-	function OnGameEvent_player_say(params)
+	::CALLBACKS.OnGameEvent_player_say <- function(params)
 	{
 		local player = GetPlayerFromUserID(params.userid)
 
 		if (params.text == "1")
 		{
-			DispatchParticleEffect("teleporter_mvm_bot_persist", player.GetOrigin() + Vector(-300, 0, 0), Vector(0, 90, 0))
+			player.KeyValueFromString("targetname", "dispenser_1")
+			
+			local roambot_robot = SpawnEntityFromTable("obj_dispenser",
+			{
+				targetname              = "roambot_robot"
+				origin 		            = player.GetOrigin()
+				teamnum                 = 3
+				SolidToPlayer           = 0
+			})
+			
+			EntFireByHandle(roambot_robot, "SetParent", "dispenser_1", 0.0, null, null)
+			
+			EntFireByHandle(player, "RunScriptCode", "self.KeyValueFromString(`targetname`, null)", 0.1, null, null)
 		}
 		if (params.text == "2")
 		{

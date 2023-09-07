@@ -33,6 +33,7 @@ WaveSchedule
 			Action FetchFlag [$SIGSEGV]
 			UseMeleeThreatPrioritization 1 [$SIGSEGV]
 			Tag bot_giant
+			Tag aoe_medic
 			AddCond [$SIGSEGV]
 			{
 				Index 55
@@ -41,12 +42,11 @@ WaveSchedule
 			{
 				"move speed penalty" 0.65
 			}
-			SpawnTemplate "UberRadius" [$SIGSEGV]
 			FireInput [$SIGSEGV] 
 			{
 				Target !self
 				Action RunScriptCode
-				Param "AddThinkToEnt(self, `AoEUber_Think`)"
+				Param "SetUpAoEUber()"
 				Delay 0
 				Cooldown 3600
 				Repeats 0
@@ -252,219 +252,6 @@ WaveSchedule
 		TFBot
 		{
 			Template T_TFBot_Engineer_Sentry_Battle
-		}
-	}
-	PointTemplates [$SIGSEGV]
-	{
-		UberRadius
-		{
-			mapobj_cart_dispenser
-			{
-				"touch_trigger" "dispenser_trigger"
-				"TeamNum" "3"
-				"targetname" "tank_dispenser"
-				"spawnflags" "12"
-			}
-			dispenser_touch_trigger
-			{
-				"targetname" "dispenser_trigger"
-				"spawnflags" "1"
-				"mins" "-250 -250 -250"
-				"maxs" "250 250 250"
-			}
-		}
-		BossBot
-		{
-			OnSpawnOutput
-			{
-				Target !parent
-				Action AddOutput
-				Param "targetname boss_bot"
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $SetOwner
-				Param !parent
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $SetOwner
-				Param !parent
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $AddWeaponAttribute
-				Param "explosion particle|fluidSmokeExpl_ring_mvm"
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $AddWeaponAttribute
-				Param "damage causes airblast|1"
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $AddWeaponAttribute
-				Param "Blast radius increased|4"
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $AddWeaponAttribute
-				Param "self dmg push force decreased|0"
-			}
-			OnSpawnOutput
-			{
-				Target blast_boss_phase_change
-				Action $AddWeaponAttribute
-				Param "no self blast dmg|2"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "projectile gravity|4000"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "custom projectile model|models/weapons/w_models/w_drg_ball.mdl"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "projectile trail particle|lava_fireball"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "projectile spread angle penalty|45"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "fire input on hit|!caller^$IgnitePlayerDuration^6"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "fire input on hit name restrict|ignite_me"
-			}
-			OnSpawnOutput
-			{
-				Target phase2_boss_weapon
-				Action $AddWeaponAttribute
-				Param "Projectile speed increased|1.8"
-			}
-			logic_relay
-			{
-				"spawnflags" "0"
-				"targetname" "boss_phase_change_relay"
-				"StartDisabled" "0"
-				"OnTrigger" "boss_skybeam,Start,,9,-1"
-				"OnTrigger" "rename_players,Enable,,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$8,1,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$8,scout,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$8,4,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$9,1,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$9,pyro,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$9,4,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$10,1,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$10,pyro_flare,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$10,4,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassCounts2$11,1,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_iszMannVsMachineWaveClassNames2$11,heavy_heater_giant,9,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags2$11,4,9,-1"
-				"OnTrigger" "support_boss_spawnbot*,Enable,,9,-1"
-				"OnTrigger" "phase2_boss_tele_marker,Start,,9,-1"
-				"OnTrigger" "phase2_boss_weapon,FireUser1,,9,-1"
-				"OnTrigger" "player,$PlaySoundToSelf,mvm/mvm_tele_activate.wav,7.5,-1"
-				"OnTrigger" "tf_objective_resource,$SetProp$m_nMannVsMachineWaveClassFlags$3,25,5,-1"
-				"OnTrigger" "player,$PlaySoundToSelf,ambient/explosions/explode_2.wav,5,-1"
-				"OnTrigger" "player,$PlaySoundToSelf,vo/mvm/mght/heavy_mvm_m_battlecry06.mp3,5,-1"
-				"OnTrigger" "!parent,$RemovePlayerAttribute,dmg taken increased,5,-1"
-				"OnTrigger" "!parent,$ChangeAttributes,Phase2,5,-1"
-				"OnTrigger" "blast_boss_phase_change,FireMultiple,3,5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,5,-1"
-				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 225,4.5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,4,-1"
-				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 200,3.5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,3,-1"
-				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 175,2.5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,2,-1"
-				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 150,1.5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,1,-1"
-				"OnTrigger" "alert_boss_phase_change,AddOutput,pitch 125,0.5,-1"
-				"OnTrigger" "alert_boss_phase_change,PlaySound,,0,-1"
-				"OnTrigger" "!parent,$AddPlayerAttribute,dmg taken increased|0.1,0,-1"
-				"OnTrigger" "!parent,$AddCond,71 5,0,-1"
-			}
-			ambient_generic
-			{
-				"targetname" "alert_boss_phase_change"		
-				"health" "10"
-				"message" "misc/rd_finale_beep01.wav"
-				"pitch" "100"
-				"pitchstart" "100"
-				"radius" "20000"
-				"spawnflags" "49"
-				"origin" "0 0 160"
-			}
-            tf_point_weapon_mimic
-            {
-                "targetname" "blast_boss_phase_change"
-                "Damage" "90"
-				"angles" "90 0 0"
-                "SplashRadius" "0"
-                "SpreadAngle" "0"
-                "WeaponType" "0"
-				"TeamNum" "3"
-				"$preventshootparent" "1"
-				"$weaponname" "TF_WEAPON_ROCKETLAUNCHER"
-            }
-            tf_point_weapon_mimic
-            {
-                "targetname" "phase2_boss_weapon"
-                "Damage" "90"
-				"angles" "-90 0 0"
-                "SplashRadius" "0"
-                "SpreadAngle" "12"
-                "WeaponType" "0"
-				"TeamNum" "3"
-				"crits" "1"
-				"$killicon" "taunt_pyro"
-				"$preventshootparent" "1"
-				"$weaponnosound" "1" 
-				"$weaponname" "TF_WEAPON_ROCKETLAUNCHER"
-				"OnUser1" "!self,FireOnce,,0,-1"
-				"OnUser1" "!self,FireUser1,,0.6,-1"
-            }
-			trigger_multiple
-			{
-				"targetname" "rename_players"
-				"StartDisabled" "1"
-				"spawnflags" "1"
-				"mins" "-9000 -9000 -9000"
-				"maxs" "9000 9000 9000"
-				"filtername" "filter_redteam"
-				"OnStartTouch" "!activator,AddOutput,targetname ignite_me,0,-1"
-			}
-			info_particle_system
-			{
-				"targetname" "boss_skybeam"
-				"start_active" "0"
-				"angles" "0 90 0"
-				"effect_name" "teleporter_mvm_bot_persist"
-			}
 		}
 	}
 	ExtraSpawnPoint [$SIGSEGV]
@@ -2729,10 +2516,7 @@ WaveSchedule
 				Attributes UseBossHealthBar
 				Attributes AlwaysFireWeapon // must have this or otherwise it won't shoot fireballs
 				Tag bot_giant
-				AddCond [$SIGSEGV]
-				{
-					Index 30
-				}
+				Tag boss_bot
 				EventChangeAttributes [$SIGSEGV]
 				{
 					Default
@@ -2792,24 +2576,13 @@ WaveSchedule
 						}
 					}
 				}
-				SpawnTemplate "BossBot" [$SIGSEGV]
 				FireInput [$SIGSEGV] 
 				{
-					Target boss_phase_change_relay*
-					Action Trigger
-					Param ""
-					Delay 0
-					Cooldown 3600
-					IfHealthBelow 40000
-				}
-				FireInput [$SIGSEGV] 
-				{
-					Target gamerules
+					Target !self
 					Action RunScriptCode
-					Param "AcknowledgeBoss()"
+					Param "SetUpBossEnts()"
 					Delay 0
 					Cooldown 3600
-					IfHealthBelow 40000
 				}
 			}
 		}
@@ -2886,4 +2659,209 @@ WaveSchedule
 			}
 		}
 	}
+	// Wave // TEST
+	// {
+		// InitWaveOutput
+		// {
+			// Target gamerules
+			// Action RunScriptFile
+			// Param "powerplant_pea.nut"
+		// }
+		// StartWaveOutput
+		// {
+			// Target wave_start_relay
+			// Action Trigger
+		// }
+		// DoneOutput
+		// {
+			// Target wave_finished_relay
+			// Action Trigger
+		// }
+		// WaveSpawn
+		// {
+			// Where spawnbot_middle
+			// Name "W5G"
+			// SpawnCount 1
+			// MaxActive 1
+			// TotalCount 1
+			// WaitBeforeStarting 0
+			// WaitBetweenSpawns 0
+			// TotalCurrency 100
+			// FirstSpawnWarningSound "player/taunt_bell.wav"
+			// TFBot
+			// {
+				// Class Heavyweapons
+				// Name "Fire Fist"
+				// ClassIcon pyro_dragon_fury_swordstone
+				// Skill Expert
+				// Health 50000
+				// Item "Festive Gloves of Running Urgently"
+				// Item "Large Luchadore"
+				// Attributes MiniBoss
+				// Attributes UseBossHealthBar
+				// Attributes AlwaysFireWeapon // must have this or otherwise it won't shoot fireballs
+				// Tag bot_giant
+				// Tag boss_bot
+				// AddCond [$SIGSEGV]
+				// {
+					// Index 30
+				// }
+				// EventChangeAttributes [$SIGSEGV]
+				// {
+					// Default
+					// {
+						// WeaponRestrictions PrimaryOnly
+						// FireSound "=70|misc/halloween/spell_fireball_impact.wav" [$SIGSEGV]
+						// Item "TF_WEAPON_ROCKETLAUNCHER"
+						// ItemAttributes
+						// {
+							// ItemName "TF_WEAPON_ROCKETLAUNCHER"
+							// "custom item model" "models/weapons/c_models/c_boxing_gloves/c_boxing_gloves_xmas.mdl"
+							// "custom projectile model" "models/weapons/w_models/w_drg_ball.mdl"
+							// "projectile trail particle" "lava_fireball"
+							// "custom kill icon" "taunt_pyro"
+							// "clip size bonus" 9999
+							// "fire input on hit" "!caller^$IgnitePlayerDuration^6"
+						// }
+						// ItemAttributes
+						// {
+							// ItemName "Festive Gloves of Running Urgently"
+							// "is_passive_weapon" 1
+							// "mod_maxhealth_drain_rate" 0
+							// "mult_player_movespeed_active" 1
+						// }
+						// CharacterAttributes
+						// {
+							// "move speed bonus" 0.5
+							// "damage force reduction" 0.3
+							// "airblast vulnerability multiplier" 0.3
+							// "override footstep sound set" 2
+							// "no_jump" 1
+							// "stomp player force" 270
+						// }
+					// }
+					// Phase2
+					// {
+						// WeaponRestrictions MeleeOnly
+						// Attributes AlwaysFireWeapon
+						// Attributes AlwaysCrit
+						// ItemAttributes
+						// {
+							// ItemName "Festive Gloves of Running Urgently"
+							// "fire rate bonus" 0.25
+							// "mod_maxhealth_drain_rate" 0
+							// "mult_player_movespeed_active" 1
+						// } 
+						// RingOfFire 5 [$SIGSEGV]
+						// CharacterAttributes
+						// {
+							// "move speed bonus" 0.4
+							// "damage force reduction" 0.3
+							// "airblast vulnerability multiplier" 0.3
+							// "override footstep sound set" 2
+							// "no_jump" 1
+							// "stomp player force" 270
+							// "gesture speed increase" 2.5
+						// }
+					// }
+				// }
+				// FireInput [$SIGSEGV] 
+				// {
+					// Target !self
+					// Action RunScriptCode
+					// Param "SetUpBossEnts()"
+					// Delay 0
+					// Cooldown 3600
+				// }
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Where support_boss_spawnbot
+			// Name "W5G-Support"
+			// SpawnCount 3
+			// MaxActive 15
+			// TotalCount 100
+			// WaitBeforeStarting 0
+			// WaitBetweenSpawns 5
+			// TotalCurrency 0
+			// Support 1
+			// HideIcon 1 [$SIGSEGV] 
+			// RandomChoice
+			// {
+				// TFBot
+				// {
+					// Class Scout
+					// Item "Sun-on-a-Stick"
+					// WeaponRestrictions MeleeOnly
+					// ClassIcon spy
+					// AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
+				// }
+				// TFBot
+				// {
+					// Class Scout
+					// Item "Sun-on-a-Stick"
+					// WeaponRestrictions MeleeOnly
+					// ClassIcon spy
+					// AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
+				// }
+				// TFBot
+				// {
+					// Class Pyro
+					// Item "The Flare Gun"
+					// WeaponRestrictions SecondaryOnly
+					// ClassIcon spy
+					// AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
+				// }
+				// TFBot
+				// {
+					// Class Pyro
+					// Item "The Flare Gun"
+					// WeaponRestrictions SecondaryOnly
+					// ClassIcon spy
+					// AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
+				// }
+				// TFBot
+				// {
+					// Class Pyro
+					// Item "The Axtinguisher"
+					// WeaponRestrictions MeleeOnly
+					// ClassIcon spy
+					// AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
+				// }
+				// TFBot
+				// {
+					// Class Pyro
+					// Item "The Axtinguisher"
+					// WeaponRestrictions MeleeOnly
+					// ClassIcon spy
+					// AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
+				// }
+				// TFBot
+				// {
+					// Class Heavyweapons
+					// Item "The Huo Long Heatmaker"
+					// ClassIcon spy
+					// AddTemplate "T_TFBot_TeleBot_Boss" [$SIGSEGV]
+				// }
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Where spawnbot_left
+			// Where spawnbot_middle
+			// Where spawnbot_right
+			// Name "W5A-1"
+			// SpawnCount 3
+			// MaxActive 15
+			// TotalCount 39
+			// WaitBeforeStarting 3600
+			// WaitBetweenSpawns 2.5
+			// TotalCurrency 100
+			// TFBot
+			// {
+				// Template T_TFBot_Scout_Melee
+			// }
+		// }
+	// }
 }
