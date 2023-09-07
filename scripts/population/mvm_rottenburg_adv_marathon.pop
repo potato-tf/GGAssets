@@ -790,7 +790,7 @@ TotalCurrency 100
 TotalCount 6
 MaxActive 6
 SpawnCount 2
-WaitBeforeStarting 0
+WaitBeforeStarting 2
 WaitBetweenSpawns 8
 Where flankers
 
@@ -861,7 +861,7 @@ TotalCount	32
 MaxActive	8
 SpawnCount	4
 Where	spawnbot
-WaitBeforeStarting	0.1
+WaitBeforeStarting	2.1
 WaitBetweenSpawns 4
 Where spawnbot
 TFBot

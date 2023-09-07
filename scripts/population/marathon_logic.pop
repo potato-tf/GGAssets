@@ -1823,6 +1823,8 @@ ItemName "TF_WEAPON_ROCKETLAUNCHER"
 "mod projectile heat seek power" 90
 "mod projectile heat aim error" 90
 "mod projectile heat aim time" 2.5
+"mult projectile scale" 1.25
+"custom projectile size" 1.25
 "projectile trail particle" "eyeboss_projectile"
 "damage bonus" 1.1
 "fire rate bonus" 0.8
@@ -2039,7 +2041,7 @@ AutoJumpMin 1
 AutoJumpMax 1
 item "The Loose Cannon"
 item "TF_WEAPON_FISTS"
-scale 1.35
+scale 1.4
 WeaponRestrictions PrimaryOnly
 Attributes DisableDodge
 Attributes AlwaysFireWeapon
@@ -2094,9 +2096,9 @@ ItemAttributes
 ItemName "TF_WEAPON_FISTS"
 "is_passive_weapon" 1
 "hit self on miss" 1
-"fire rate bonus" 0.7
-"damage bonus" 1.5
+"melee range multiplier" 2
 "melee range multiplier" 1.6
+"damage bonus" 1.5
 "increased jump height" 1.3
 "custom item model" "models/empty.mdl"
 "custom kill icon" "fists"
@@ -2117,8 +2119,7 @@ ItemAttributes
 ItemName "TF_WEAPON_FISTS"
 "is_passive_weapon" 1
 "hit self on miss" 1
-"fire rate bonus" 0.7
-"fire rate bonus" 0.7
+"melee range multiplier" 1.6
 "damage bonus" 1.5
 "melee range multiplier" 2
 "kb fall min velocity" 150
