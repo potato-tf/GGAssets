@@ -122,7 +122,7 @@
 				ClassIcon  medic_kritz
 				Skill  Expert
 				Attributes  SpawnWithFullCharge
-				Attributes IgnoreFlag
+//				Attributes IgnoreFlag
 				Item  "The Overdose"
 				Item  "The Kritzkrieg"
 				Item  "The Weather Master"
