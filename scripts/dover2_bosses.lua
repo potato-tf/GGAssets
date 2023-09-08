@@ -355,7 +355,15 @@ function SergeantSizer(status, activator)
 
 	local collided = false
 
-	callbacks.shouldCollide = activator:AddCallback(ON_SHOULD_COLLIDE, function (_, other)
+	callbacks.shouldCollide = activator:AddCallback(ON_SHOULD_COLLIDE, function (_, other, cause)
+		if not other:IsPlayer() then
+			return
+		end
+
+		if cause ~= ON_SHOULD_COLLIDE_CAUSE_OTHER then
+			return
+		end
+
 		if other.m_iTeamNum ~= TEAM_RED then
 			return
 		end
