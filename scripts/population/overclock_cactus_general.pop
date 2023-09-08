@@ -1177,16 +1177,16 @@ WaveSchedule
 		}
 		ThirdDegree
 		{
-			Name "Unstable Mod: Draining Coils"
-			Attribute "subtract victim medigun charge on hit"
-			Cap 15
-			Increment 15
+			Name "Unstable Mod: Spine Zapper"
+			Attribute "crit from behind"
+			Cap 1
+			Increment 1
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"max health additive penalty" -15
 			}
-			Description "+On hit: drain 15% medigun charge from victim -15 max hp"
+			Description "+Crit from behind -15 max hp"
 			Tier 1
 			AllowedWeapons
 			{
@@ -1538,8 +1538,9 @@ WaveSchedule
 			{
 				"self dmg push force decreased" -3
 				"blast dmg to self increased" 0.50
+				"max health additive penalty" -25
 			}
-			Description "+Grenade is not destroyed on hit + no self-knockback -50% self damage vulnerability" 
+			Description "+Grenade is not destroyed on hit + no self-knockback -50% self damage vulnerability -25 max hp" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -1831,30 +1832,11 @@ WaveSchedule
 				"mult_patient_overheal_penalty_active" 0.4
 				"move speed penalty" -0.2
 			}
-			Description "+40% ranged resistance -100% more vulnerable to melee -60% overheal -15% movement speed"
+			Description "+40% ranged resistance -100% more vulnerable to melee -60% overheal -20% movement speed"
 			Tier 1
 			AllowedWeapons
 			{
 				ItemName "Fists of Steel"
-			}
-		}
-		Widow
-		{
-			Name "Unstable Mod: Sentry Companion A.I"
-			Attribute "engy sentry radius increased"
-			Cap 1.3
-			Increment 0.3
-			Cost 0
-			SecondaryAttributes
-			{
-				"mod ammo per shot" 25
-				"damage bonus bullet vs sentry target" 0.3
-			}
-			Description "+30% damage to sentry's targets +25% sentry range -25 increased metal per shot" 
-			Tier 1
-			AllowedWeapons
-			{
-				ItemName "The Widowmaker"
 			}
 		}
 		EngieShotguns
@@ -2068,7 +2050,6 @@ WaveSchedule
 				"construction rate increased" 2
 				"mult dispenser rate" 2
 				"engy disposable sentries" 1
-				"construction rate increased" 2
 				"mult teleporter recharge rate" -0.5
 			}
 			Description "+1 disposable sentry gun +50% more effecient dispenser and teleporter +25% Melee Damage" 
