@@ -300,8 +300,8 @@ WaveSchedule
 			Attribute "critboost on kill"
 			Cap 4
 			Increment 2
-			Cost 300
-			Description "On kill: Crit for 3 seconds" 
+			Cost 350
+			Description "On kill: Crit for 2 seconds" 
 			AllowedWeapons
 			{
 				ItemName "The Market Gardener"
