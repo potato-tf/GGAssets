@@ -566,7 +566,7 @@
 			ItemAttributes
 			{
 			ItemName "TF_WEAPON_FLAMETHROWER"
-			"mult airblast refire time" 0.01
+//			"mult airblast refire time" 0.01
 			"airblast_destroy_projectile" 1
 			"airblast pushback scale" 2.0
 			}
@@ -574,7 +574,7 @@
 			{
 				"move speed bonus"	0.5
 				"damage force reduction" 0.6
-				"airblast vulnerability multiplier" 0.6
+				"mult airblast refire time" 3
 				"override footstep sound set" 6
 			}
 		}
