@@ -2530,7 +2530,8 @@
 			ItemAttributes
 			{
 			ItemName "TF_WEAPON_FLAMETHROWER"
-			"mult airblast refire time" 0.1
+//			"mult airblast refire time" 0.1
+			"mult airblast refire time" 3
 			"airblast_destroy_projectile" 1
 			}		
 			}
