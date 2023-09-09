@@ -53,7 +53,7 @@ PrecacheModel "models/lilchewchew/lilchewchew_wheels_v3.mdl"
 PrecacheModel "models/lilchewchew/lilchewchew_v3.mdl"
 PrecacheModel "models/player/items/demo/top_hat.mdl"
 
-CustomUpgradesFile "mvm_upgrades_femboi.txt"
+CustomUpgradesFile "mvm_upgrades_femboi_a1.txt"
 
 PrecacheSound "bm_wgh.mp3" 
 PrecacheSound "hl2ep2_sector_sweep_remix.mp3" 
