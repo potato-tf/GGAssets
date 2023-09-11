@@ -1077,7 +1077,7 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"provide on active" 1
-				"damage force reduction" 0.9
+				"damage force reduction" -0.9
 				"dmg penalty vs players" -0.25
 			}
 			Description "(i)When active all +35% bullet resistance +90% resistant to knockback -25% Damage vs. Players"
