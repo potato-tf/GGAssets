@@ -12,7 +12,7 @@
 {
 	StartingCurrency 1200
 	CanBotsAttackWhileInSpawnRoom no
-	RespawnWaveTime 6
+	RespawnWaveTime 4
 	WaveStartCountdown 5
 	NoRomevisionCosmetics 1
 	NoRedBotsRandomCrit 1 
@@ -20,11 +20,11 @@
 	NoRedSniperBotHeadshots 1
 	ImprovedAirblast 1
 	PrecacheModel "models/props_mvm/robot_spawnpoint.mdl"
+	PrecacheModel "models\bots\soldier\bot_soldier_gibby.mdl"
 	PrecacheModel "models/bots/soldier/bot_soldier_gray.mdl"
 	PrecacheModel "models/bots/heavy/bot_heavy_gray.mdl"
 	PrecacheModel "models/bots/scout/bot_scout_gray.mdl"
 	PrecacheModel "models/bots/sniper/bot_sniper_gray.mdl"
-	PrecacheModel "models/bots/medic/bot_medic_gray.mdl"
 	PrecacheModel "models/bots/demo/bot_demo_gray.mdl"
 	PrecacheModel "models/bots/pyro/bot_pyro_gray.mdl"
 	PrecacheModel "models/bots/soldier_boss/bot_soldier_gray_boss.mdl"
@@ -78,6 +78,7 @@
 			CharacterAttributes
 			{
 				"increase buff duration"	40.0
+				"move speed bonus" 0.65
 			}
 		}
 		T_TFBot_Scout_Cola //template ripped from a random choice block in fiber ops and slightly edited
@@ -289,8 +290,10 @@
 		Class Soldier 
 		Skill Expert
 		Name "Veteran Soldier"
+		UseCustomModel "models\bots\soldier\bot_soldier_gibby.mdl"
 		UseBestWeapon 1 
 		RocketJump 1
+		Health 150
 		AimLeadProjectileSpeed 1
 		AimTrackingInterval 0.025
 		Item "Tyrantium Helmet"
@@ -304,6 +307,7 @@
 				"bullets per shot bonus" 3
 				"damage bonus" 0.33
 				"paintkit_proto_def_index" 414
+				"self mark for death" 1
 				"set_item_texture_wear" 0
 			}
 			ItemAttributes
@@ -316,6 +320,7 @@
 				ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
 				"paintkit_proto_def_index" 414
 				"set_item_texture_wear" 0
+				"self mark for death" 1
 				"passive reload" 1 //to fix a bug related to them never using their rocket launcher again
 			}
 			CharacterAttributes
@@ -566,7 +571,7 @@
 			ItemAttributes
 			{
 			ItemName "TF_WEAPON_FLAMETHROWER"
-//			"mult airblast refire time" 0.01
+			"mult airblast refire time" 0.5
 			"airblast_destroy_projectile" 1
 			"airblast pushback scale" 2.0
 			}
@@ -574,7 +579,7 @@
 			{
 				"move speed bonus"	0.5
 				"damage force reduction" 0.6
-				"mult airblast refire time" 3
+				"airblast vulnerability multiplier" 0.6
 				"override footstep sound set" 6
 			}
 		}
@@ -802,7 +807,7 @@
 			}
 		}
 		T_TFBot_Medic_BigHeal_Shield //lifted from robot yucatan, if it ain't broke don't fix it
-		{
+		{ //not actually a bigheal now
 			Name "Shield Medic"
 			Class Medic
 			Skill Expert
@@ -810,12 +815,16 @@
 			Item "The Quick-Fix"
 			Attributes ProjectileShield
 			Attributes SpawnWithFullCharge
+			Attributes IgnoreEnemies
 			ItemAttributes
 			{
 				ItemName "The Quick-Fix"
 				"generate rage on heal" 2
-				"heal rate bonus" 10
 				"increase buff duration" 3
+			}
+			CharacterAttributes
+			{
+			"bot medic uber health threshold" 1
 			}
 		}
 		T_TFBot_Heavy_Deflector
@@ -826,6 +835,7 @@
 			Skill Hard
 			Item "Deflector"
 			Item "The U-clank-a"
+			MaxVisionRange 1200
 		}
 			T_TFBot_Sniper_Carbine
 			{
@@ -845,39 +855,6 @@
 					Type "Secondary"
 				}			
 			}
-		T_TFBot_Spy_Enforcer_Conch
-		{
-			Class Spy
-			Name "Conch Enforcer Spy"
-			ClassIcon spy_conch_lite
-			Skill Expert
-			Action FetchFlag
-			Item "The Enforcer"
-			Item "The concheror"
-			Item "Murderer's Motif"	
-			Attributes SpawnWithFullCharge
-			CharacterAttributes
-			{
-			"increase buff duration"	40.0
-			"cannot disguise" 1
-			}
-			WeaponRestrictions PrimaryOnly
-		}
-		T_TFBot_Spy_Enforcer
-		{
-			Class Spy
-			Name "Enforcer Spy"
-			ClassIcon spy_enforcer_nys
-			Skill Expert
-			Action FetchFlag
-			Item "The Enforcer"
-			Item "Murderer's Motif"	
-			CharacterAttributes
-			{
-			"cannot disguise" 1
-			}
-			WeaponRestrictions PrimaryOnly
-		}
 	}
 	ExtraSpawnPoint 
 	//Grey Left Spawn
@@ -1154,7 +1131,7 @@
 					"startdisabled" 1
 					"modelscale" "0.75"
 					"targetname" spawner_boss
-					"skin" 2
+					"skin" 0
 					"origin" "775.54 -1200.09 -122.37"
 				}
 								prop_dynamic
@@ -1164,7 +1141,7 @@
 					"startdisabled" 1
 					"modelscale" "0.75"
 					"targetname" spawner_boss
-					"skin" 2
+					"skin" 0
 					"origin" "-15.19 -1923.99 -118"
 				}
 												prop_dynamic
@@ -1174,7 +1151,7 @@
 					"startdisabled" 1
 					"modelscale" "0.75"
 					"targetname" spawner_boss
-					"skin" 2
+					"skin" 0
 					"origin" "784.12 -2218.46 133.69"
 				}
 												prop_dynamic
@@ -1184,7 +1161,7 @@
 					"startdisabled" 1
 					"modelscale" "0.75"
 					"targetname" spawner_boss
-					"skin" 2
+					"skin" 0
 					"origin" "-671.34 -850.14 100.54"
 				}
 												prop_dynamic
@@ -1194,7 +1171,7 @@
 					"startdisabled" 1
 					"modelscale" "0.75"
 					"targetname" spawner_boss
-					"skin" 2
+					"skin" 0
 					"origin" "-1302.02 -1645.81 228.88"
 				}
 												prop_dynamic
@@ -1204,7 +1181,7 @@
 					"startdisabled" 1
 					"modelscale" "0.75"
 					"targetname" spawner_boss
-					"skin" 2
+					"skin" 0
 					"origin" "-1392.17 -2969.67 104.31"
 				}
 			}
@@ -1216,6 +1193,7 @@
 				"ontrigger" "spawner_building,disable,,0,-1"
 				"ontrigger" "spawner_sniper,enable,,0,1"
 				"ontrigger" "tankdoor_2_relay,trigger,,0,1"
+				"ontrigger" "tankdoor_1_relay,trigger,,0,1"
 				"ontrigger" "intel,SetReturnTime,120,0,1"
 				}
 								prop_dynamic
@@ -1228,6 +1206,17 @@
 						"skin" 2
 						"targetname" spawner_sniper
 						"origin" "261.48 -664.17 202.92"
+					}
+								prop_dynamic
+					{
+						"model" "models/props_mvm/robot_spawnpoint.mdl"
+						"disableshadows" 1
+						"startdisabled" 1
+						"defaultanim" "idle"
+						"angles" "0 180 0"
+						"skin" 2
+						"targetname" spawner_sniper
+						"origin" "436.39 2310.38 -93.98"
 					}
 								prop_dynamic
 					{
@@ -1271,6 +1260,7 @@
 				"ontrigger" "spawner_forward,disable,,0,-1"
 				"ontrigger" "spawner_building,enable,,0,1"
 				"ontrigger" "tankdoor_2_relay,trigger,,0,1"
+				"ontrigger" "tankdoor_1_relay,trigger,,0,1"
 				"ontrigger" "intel,SetReturnTime,120,0,1"
 				}
 								prop_dynamic
@@ -1283,6 +1273,17 @@
 						"skin" 2
 						"targetname" spawner_building
 						"origin" "261.48 -664.17 182.92"
+					}
+								prop_dynamic
+					{
+						"model" "models/props_mvm/robot_spawnpoint.mdl"
+						"disableshadows" 1
+						"startdisabled" 1
+						"defaultanim" "idle"
+						"angles" "0 180 0"
+						"skin" 2
+						"targetname" spawner_building
+						"origin" "436.39 2310.38 -93.98"
 					}
 				}
 				spawner_forward
@@ -1314,6 +1315,7 @@
 				"targetname" "spawner_invasion_relay"
 				"ontrigger" "spawner_sniper,disable,,0,-1"
 				"ontrigger" "tankdoor_2_relay,trigger,,0,1"
+				"ontrigger" "tankdoor_1_relay,trigger,,0,1"
 				"ontrigger" "spawner_invasion,enable,,0,1"
 				"ontrigger" "intel,SetReturnTime,120,0,1"
 				}
@@ -1339,6 +1341,17 @@
 					"targetname" spawner_invasion
 					"origin" "240.13 -688.58 -28.2"
 				}
+												prop_dynamic
+					{
+						"model" "models/props_mvm/robot_spawnpoint.mdl"
+						"disableshadows" 1
+						"startdisabled" 1
+						"defaultanim" "idle"
+						"angles" "0 180 0"
+						"skin" 2
+						"targetname" spawner_invasion
+						"origin" "436.39 2310.38 -93.98"
+					}
 					prop_dynamic
 				{
 					"model" "models/props_mvm/robot_spawnpoint.mdl"
@@ -1827,6 +1840,7 @@
 					CharacterAttributes
 					{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					}
 				}
 				TFBot 
@@ -1878,6 +1892,7 @@
 					CharacterAttributes
 					{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					}
 				}
 			}
@@ -1942,6 +1957,7 @@
 					CharacterAttributes
 					{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					}
 				}
 				TFBot 
@@ -1985,6 +2001,7 @@
 					CharacterAttributes
 					{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					}
 				}
 			}
@@ -2050,6 +2067,7 @@
 					CharacterAttributes
 					{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					}
 				}
 				TFBot 
@@ -2101,6 +2119,7 @@
 					CharacterAttributes
 					{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					}
 				}
 			}
@@ -2167,6 +2186,7 @@
 					CharacterAttributes
 					{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					}
 				}
 				TFBot 
@@ -2220,6 +2240,7 @@
 					CharacterAttributes
 					{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					}
 				}
 			}
@@ -2390,7 +2411,6 @@
 				ItemAttributes
 				{
 					ItemName "Fists of Steel"
-					"damage bonus" 2
 					"gesture speed increase" 1.5
 					"melee cleave attack" 1
 					"alt-fire disabled" 1 //I am assuming this is here so they don't break the giant punch animations
@@ -2464,7 +2484,7 @@
 			WaitBetweenSpawns  6
 			WaitForAllDead     "wave02e"
 			
-			TFBot {Template  T_TFBot_Giant_Demo_Burst_Ignite}
+			TFBot {Template  T_TFBot_Giant_Demo_Burst}
 		}
 //  [$50]
 		WaveSpawn
@@ -2483,7 +2503,6 @@
 			TFBot
 			{
 			Template  T_TFBot_Soldier_Skilled
-			Attributes AlwaysCrit
 			}
 		}
 //  [$0]
@@ -2530,8 +2549,7 @@
 			ItemAttributes
 			{
 			ItemName "TF_WEAPON_FLAMETHROWER"
-//			"mult airblast refire time" 0.1
-			"mult airblast refire time" 3
+			"mult airblast refire time" 0.8
 			"airblast_destroy_projectile" 1
 			}		
 			}
@@ -2539,15 +2557,15 @@
 	//  [$0]
 		WaveSpawn
 		{
-			Where spawnbot_gry_building //see if interrupts would be any good for making these guys not flood the map
+			Where spawnbot_gry_forward_armored
 
 			TotalCount 30
 			MaxActive  2
 			SpawnCount 2
 			TotalCurrency 0
 			Support 1
-			WaitBeforeStarting 15
-			WaitBetweenSpawns  20
+			WaitBeforeStarting 5
+			WaitBetweenSpawns  10
 				TFBot 
 				{
 					Class Heavy
@@ -2590,25 +2608,24 @@
 					{
 						Target !self
 						Action $PlaySound
-						Param "=85|mvm\mvm_tele_deliver.wav"
+						Param "=65|mvm\mvm_tele_deliver.wav"
 						Delay 0
 						Repeats 1
 					}
+							FireInput
+				{
+					Target !self
+					Action $SetLocalOrigin
+					Param "436.39 1990.38 -73.98"
+					Delay 0.1
+					Repeats 1
+				}
 				CharacterAttributes
 				{
 				"crit mod disabled" 0
+				"not solid to players" 1
 				}
 					ClassIcon gry_lite
-					InterruptAction
-					{
-						Target "261.48 -664.17 202.92"
-						Delay 0.1
-						Repeats 0
-						Cooldown 2
-						Duration 0.01
-						Distance 700
-						WaitUntilDone 1
-					}
 				}
 		}
 		//  [$0]
@@ -2655,6 +2672,7 @@
 				CharacterAttributes
 				{
 				"crit mod disabled" 0
+				"not solid to players" 1
 				}
 					InterruptAction
 					{
@@ -2691,7 +2709,7 @@
 			{
 				Line "{CCFFCC}///////////BEGIN TRANSMISSION////////////////"
 				Line ""
-				Line "{CCCCCC}Neutral Armored Soldiers and Armored Snipers will be active this wave"
+				Line "{CCCCCC}Neutral Black Box Soldiers and Armored Snipers will be active this wave"
 				Line" {CCCCCC}All {CCCCFF}blue robots{CCCCCC} will also have an initial 4 second speed boost this wave"
 				Line "{CCCCCC}Yes,{FF0000} ALL OF THEM"
 				Line ""
@@ -2792,7 +2810,8 @@
 
 			TFBot 
 			{
-			Template T_TFBot_Soldier_Ignite 
+			Class Soldier
+			Skill Hard			
 			AddCond
 			{
 			Index 32
@@ -3299,7 +3318,7 @@
 		}
 		WaveSpawn
 		{
-		Where spawnbot_gry_sniper
+		Where spawnbot_gry_forward_armored
 
 		TotalCount 20
 		MaxActive 2
@@ -3356,10 +3375,19 @@
 				"collect currency on kill" 1
 				"sniper fires tracer" 1
 				}
+							FireInput
+				{
+					Target !self
+					Action $SetLocalOrigin
+					Param "436.39 1990.38 -73.98"
+					Delay 0.1
+					Repeats 1
+				}
 				CharacterAttributes
 				{
 				"sniper no headshots" 1
 				"crit mod disabled" 0
+				"not solid to players" 1
 				"head scale" 0.85
 				"voice pitch scale" 0.85
 				"no_jump" 1
@@ -3371,8 +3399,8 @@
 		Where spawnbot_gry_sniper
 
 		TotalCount 20
-		MaxActive 2
-		SpawnCount 2
+		MaxActive 3
+		SpawnCount 3
 		TotalCurrency 0
 		FirstSpawnWarningSound "vo/mvm/norm/soldier_mvm_battlecry05"
 		FirstSpawnMessage "{grey}The greys are here!"
@@ -3382,15 +3410,14 @@
 		TFBot
 		{
 			Class Soldier
+			Template T_TFBot_Soldier_RocketShotgun
 			ClassIcon gry_lite
-			Name "Armored Rapid Reload Soldier"
-			Skill Expert
 			SpawnTemplate "GreyGlows"
 			UseMeleeThreatPrioritization 1
 					Addcond 
 					{ 
 					Name TF_COND_REPROGRAMMED_NEUTRAL 
-					Delay 6
+					Delay 3
 					}
 					Addcond
 					{
@@ -3403,24 +3430,18 @@
 					Duration 6
 					}
 			UseCustomModel "models/bots/soldier/bot_soldier_gray.mdl"
-			Scale 1.4
-			Health 650
 			Item	"the gunboats"
-			Attributes AutoJump
 				Action Mobber
 				Attributes DisableDodge
 				ItemAttributes
 				{
 				ItemName "TF_WEAPON_ROCKETLAUNCHER"
-				"faster reload rate" -0.4
 				"collect currency on kill" 1
 				}
 				CharacterAttributes
 				{
 				"crit mod disabled" 0
-				"head scale" 0.85
-				"voice pitch scale" 0.85
-				
+				"not solid to players" 1	
 				}
 				FireInput
 				{
@@ -3549,7 +3570,7 @@
 			SpawnCount 3
 			TotalCurrency 100
 
-			WaitBeforeStarting 30
+			WaitBeforeStarting 25
 			WaitBetweenSpawns  4
 
 			TFBot
@@ -3560,7 +3581,7 @@
 //  [$225]
 		WaveSpawn
 		{
-			Name  "wave04b"
+			Name  "wave04b1"
 			Where spawnbot_upper
 
 			TotalCount 4
@@ -3568,7 +3589,7 @@
 			SpawnCount 1
 			TotalCurrency 225
 			WaitBeforeStarting 15
-			WaitBetweenSpawns  50
+			WaitBetweenSpawns  35
 
 			TFBot
 			{
@@ -3582,7 +3603,7 @@
 			Where spawnbot_upper
 
 			TotalCount 15
-			MaxActive  3
+			MaxActive  5
 			SpawnCount 3
 			TotalCurrency 125
 
@@ -3606,7 +3627,7 @@
 			TotalCurrency 200
 			WaitForAllSpawned "wave04b"
 			WaitBeforeStarting 0
-			WaitBetweenSpawns  16
+			WaitBetweenSpawns  0
 			Squad 
 			{
 				TFBot {Template T_TFBot_Giant_Pyro_Dragon_Spammer}
@@ -3681,6 +3702,7 @@
 				CharacterAttributes
 				{
 				"crit mod disabled" 0
+				"not solid to players" 1
 				}
 				AddCond
 				{
@@ -3739,6 +3761,7 @@
 				CharacterAttributes
 				{
 				"crit mod disabled" 0
+				"not solid to players" 1
 				}
 				CustomEyeGlowColor "255 255 255"
 				AddCond
@@ -3763,7 +3786,135 @@
 				SpawnTemplate "GreyGlows"
 			}
 		}
-	}
+		WaveSpawn
+		{
+			Where spawnbot_gry_forward_armored
+			TotalCount 30
+			MaxActive  2
+			SpawnCount 2
+			TotalCurrency 0
+			WaitBeforeStarting 40
+			WaitBetweenSpawns  20
+			Support 1
+			TFBot 
+			{
+				Class Pyro
+				Skill Expert
+				Item "The Backburner"
+				Name "Backburner Pyro"
+				Action Mobber
+				Attributes DisableDodge
+				MoveBehindEnemy 1
+				UseMeleeThreatPrioritization 1
+				ItemAttributes
+				{
+				ItemName "The Backburner"
+				"collect currency on kill" 1
+				"airblast disabled" 1
+				}
+				CharacterAttributes
+				{
+				"crit mod disabled" 0
+				"not solid to players" 1
+				}
+				CustomEyeGlowColor "255 255 255"
+				AddCond
+				{
+					Name "TF_COND_MVM_BOT_STUN_RADIOWAVE" 
+					Delay 0.1
+					Duration 2
+				}
+				AddCond
+				{
+					Index 5
+					Delay 0.1
+					Duration 3
+				}
+				Addcond 
+				{ 
+				Name TF_COND_REPROGRAMMED_NEUTRAL 
+				Delay 0.8
+				}
+				UseCustomModel "models/bots/pyro/bot_pyro_gray.mdl"
+				ClassIcon gry_lite
+				SpawnTemplate "GreyGlows"
+				FireInput
+				{
+					Target !self
+					Action $SetLocalOrigin
+					Param "436.39 1990.38 -73.98"
+					Delay 0.1
+					Repeats 1
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_gry_forward_armored
+			TotalCount 30
+			MaxActive  2
+			SpawnCount 2
+			TotalCurrency 0
+			WaitBeforeStarting 40
+			WaitBetweenSpawns  20
+			Support 1
+			TFBot 
+			{
+				Class Demoman
+				Name "Demoknight"
+				Skill Expert
+				UseMeleeThreatPrioritization 1
+				Item "The Chargin' Targe"
+				Item "The Eyelander"
+				WeaponRestrictions MeleeOnly
+				Action Mobber
+				Attributes DisableDodge
+				Skill Expert // increased to improve ability to hit with melee
+				ItemAttributes
+				{
+				ItemName "The Eyelander"
+				"collect currency on kill" 1
+				"add cond when active" 36
+				"crit vs burning players" 1
+				"crit vs non burning players" 1
+				}
+				ItemAttributes
+				{
+				ItemName "The Chargin' Targe"
+				"collect currency on kill" 1
+				}
+				CharacterAttributes
+				{
+				"crit mod disabled" 0
+				"not solid to players" 1
+				}
+				AddCond
+				{
+					Name "TF_COND_MVM_BOT_STUN_RADIOWAVE" 
+					Delay 0.1
+					Duration 2
+				}
+				AddCond
+				{
+					Index 5
+					Delay 0.1
+					Duration 3
+				}
+				Addcond { Name TF_COND_REPROGRAMMED_NEUTRAL }
+				UseCustomModel "models/bots/demo/bot_demo_gray.mdl"
+				SpawnTemplate "GreyGlows"
+				ClassIcon gry_lite
+				FireInput
+				{
+					Target !self
+					Action $SetLocalOrigin
+					Param "436.39 1990.38 -73.98"
+					Delay 0.1
+					Repeats 1
+				}
+			}
+		}
+	}							
 // WAVE 5 [$600]
 	Wave
 	{
@@ -4141,20 +4292,44 @@
 			{
 				TFBot 
 				{
-				Template T_TFBot_Giant_Soldier_Spammer
+			Class Soldier
+			Skill Expert
+			Name "Giant Burnless Box Soldier"
+			Health 4200
+			
+			Item "fortunate son"
+			Item "The Hurt Locher"
+			Item "The Black Box"
+			Attributes MiniBoss
+			Attributes HoldFireUntilFullReload
+			ItemAttributes
+			{
+			ItemName "The Black Box"
+			"damage bonus" 0.75
+			"faster reload rate" 0.6
+			"Projectile speed increased"	0.7
+			"clip size upgrade atomic" 6
+			"heal on hit for rapidfire" 200
+			"passive reload" 1
+			}
 				ClassIcon gry_lite
 				UseMeleeThreatPrioritization 1
 				CharacterAttributes
 				{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					"voice pitch scale" 0
 					"damage force reduction" 0
 					"airblast vulnerability multiplier" 0
+					"deploy time increased" 0.01
+					"move speed bonus"	0.5
+					"damage force reduction" 0.4
+					"override footstep sound set" 3
 				}
 						Addcond 
 						{ 
 						Name TF_COND_REPROGRAMMED_NEUTRAL
-						Delay 0.8
+						Delay 1
 						}
 						SpawnTemplate "GreyGlows"
 					AddCond
@@ -4227,11 +4402,12 @@
 				}
 				TFBot 
 				{
-				Template T_TFBot_Giant_Medic
+				Template T_TFBot_Giant_Soldier_Spammer
 				ClassIcon gry_lite
 				CharacterAttributes
 				{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					"voice pitch scale" 0
 					"damage force reduction" 0
 					"airblast vulnerability multiplier" 0
@@ -4262,9 +4438,45 @@
 								Delay 0
 								Repeats 1
 							}
+					InterruptAction
+					{
+						Target "512.86 35.31 11.43"
+						Delay 5
+						Repeats 0
+						Cooldown 2
+						Duration 2
+						Distance 25
+						
+						WaitUntilDone 1
+						AddToQueue 1
+					}
+					InterruptAction
+					{
+						Target "775.54 -1200.09 -100.06"
+						Delay 5
+						Repeats 0
+						Cooldown 2
+						Duration 2
+						Distance 25
+						
+						WaitUntilDone 1
+						AddToQueue 1
+					}
+					InterruptAction
+					{
+						Target "-15.19 -1923.99 -118"
+						Delay 5
+						Repeats 0
+						Cooldown 2
+						Duration 2
+						Distance 25
+						
+						WaitUntilDone 1
+						AddToQueue 1
+					}
 					Action Mobber
 					Attributes DisableDodge
-					UseCustomModel "models/bots/medic/bot_medic_gray.mdl"
+					UseCustomModel "models/bots/soldier_boss/bot_soldier_gray_boss.mdl"
 						FireInput
 						{
 							Target !self
@@ -4301,6 +4513,7 @@
 				CharacterAttributes
 				{
 					"crit mod disabled" 0
+					"not solid to players" 1
 					"voice pitch scale" 0
 					"damage force reduction" 0
 					"airblast vulnerability multiplier" 0
