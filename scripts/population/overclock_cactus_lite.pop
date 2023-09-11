@@ -1420,6 +1420,10 @@ WaveSchedule
 				//ItemName "The Pomson 6000"
 				ItemName "The Frontier Justice"
 			}
+			DisallowedWeapons // Disallow those weapons
+			{
+				ItemName "The Widowmaker"
+			}
 		}
 		Pomson
 		{
