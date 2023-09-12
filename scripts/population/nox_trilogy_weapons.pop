@@ -85,9 +85,9 @@ WaveSchedule
 			"paintkit_proto_def_index" 300 // https://nikke.gg/characters/ludmilla/ :troll:
 			"minigun spinup time increased" 1.3
 			"damage penalty" 0.85
-			"heal on hit for slowfire" 7
+			"heal on hit for slowfire" 8
 			"no damage falloff" 1
-			"spread penalty" 1.5
+			"spread penalty" 1.4
 			"reduced_healing_from_medics" 0.1
 		}
 		

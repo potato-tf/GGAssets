@@ -649,12 +649,10 @@ WaveSchedule
 		{
 			Name "w3b"
 			WaitForAllSpawned "w3a"
-			TotalCurrency 50 // 350
-			TotalCount 2
-			MaxActive 2
+			TotalCurrency 25 // 350
+			TotalCount 1
+			MaxActive 1
 			SpawnCount 1
-			Where spawnbot
-			WaitBetweenSpawns 20
 			WaitBeforeStarting 15
 			FirstSpawnOutput
 			{
@@ -663,7 +661,7 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 9000
+				Health 10000
 				Name "tankboss"
 				Speed 110
 				Scale 0.7
@@ -671,6 +669,43 @@ WaveSchedule
 				IsMiniBoss 0
 				MaxTurnRate 50
 				StartingPathTrackNode "boss_path_wbomb"
+				OnKilledOutput
+				{
+					Target boss_dead_relay
+					Action Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target boss_deploy_relay
+					Action Trigger
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "w3b"
+			WaitForAllSpawned "w3a"
+			TotalCurrency 25 // 350
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			FirstSpawnOutput
+			{
+				Target boss_spawn_relay
+				Action Trigger
+			}
+			Tank
+			{
+				Health 10000
+				Name "tankboss"
+				Speed 110
+				Scale 0.7
+				DisableSmokestack 1
+				IsMiniBoss 0
+				MaxTurnRate 50
+				StartingPathTrackNode "boss_path_abomb"
 				OnKilledOutput
 				{
 					Target boss_dead_relay
@@ -1025,12 +1060,10 @@ WaveSchedule
 		{
 			Name "w4c"
 			WaitForAllSpawned "w4b"
-			TotalCurrency 150 // 900
-			TotalCount 2
-			MaxActive 2
+			TotalCurrency 75 // 900
+			TotalCount 1
+			MaxActive 1
 			SpawnCount 1
-			Where spawnbot
-			WaitBetweenSpawns 25
 			WaitBeforeStarting 15
 			FirstSpawnOutput
 			{
@@ -1039,7 +1072,7 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 9500
+				Health 11500
 				Name "tankboss"
 				Speed 90
 				Scale 0.7
@@ -1047,6 +1080,43 @@ WaveSchedule
 				IsMiniBoss 0
 				MaxTurnRate 50
 				StartingPathTrackNode "boss_path_wbomb"
+				OnKilledOutput
+				{
+					Target boss_dead_relay
+					Action Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target boss_deploy_relay
+					Action Trigger
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "w4c"
+			WaitForAllSpawned "w4b"
+			TotalCurrency 75 // 900
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 35
+			FirstSpawnOutput
+			{
+				Target boss_spawn_relay
+				Action Trigger
+			}
+			Tank
+			{
+				Health 11500
+				Name "tankboss"
+				Speed 90
+				Scale 0.7
+				DisableSmokestack 1
+				IsMiniBoss 0
+				MaxTurnRate 50
+				StartingPathTrackNode "boss_path_abomb"
 				OnKilledOutput
 				{
 					Target boss_dead_relay
@@ -1611,6 +1681,7 @@ WaveSchedule
 					"rage giving scale"	0.3
 					"mult stun resistance" 0
 					"no_jump" 1
+					//"increased jump height" 2.5
 					"no self blast dmg" 2
 					//"dmg taken from crit reduced" 0.6
 				}

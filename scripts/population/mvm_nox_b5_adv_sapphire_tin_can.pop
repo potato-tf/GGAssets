@@ -15,7 +15,6 @@ WaveSchedule
 	NoRomevisionCosmetics 1
 	SentryHintMinDistanceFromBomb 900
 	TextPrintTime 0
-	UpgradeStationKeepWeapons	1	
 	
 	Mission // sentry buster w1 w2 w3 w4 w5
 	{
@@ -201,7 +200,7 @@ WaveSchedule
 				"airblast vertical vulnerability multiplier" 0.1			
 				"Projectile speed increased" 0.4
 			}
-			HomingRockets   
+			HomingRockets [$SIGSEGV] 
 			{
 				IgnoreDisguisedSpies 1
 				IgnoreStealthedSpies 1 
@@ -285,7 +284,7 @@ WaveSchedule
 								"projectile detonate time" 5
 								"projectile trail particle" "eyeboss_projectile"
 							}
-							HomingRockets   
+							HomingRockets [$SIGSEGV] 
 							{
 								IgnoreDisguisedSpies 1
 								IgnoreStealthedSpies 1 
@@ -296,6 +295,7 @@ WaveSchedule
 								//MaxAimError 90
 								//MaxAimError 40
 							}
+							AddCond [$SIGSEGV] { name TF_COND_SODAPOPPER_HYPE }
 						}
 
 						SwitchTwo
@@ -317,7 +317,7 @@ WaveSchedule
 								"projectile acceleration start time" 0.6
 								"projectile detonate time" 1.5
 							}
-							HomingRockets   
+							HomingRockets [$SIGSEGV] 
 							{
 								IgnoreDisguisedSpies 1
 								IgnoreStealthedSpies 1 
@@ -1375,7 +1375,7 @@ WaveSchedule
 			MaxActive 6
 			SpawnCount 3
 			Where spawnbot_adjacent
-			WaitBetweenSpawns 3
+			WaitBetweenSpawns 3.2
 			TFBot
 			{
 				Template T_TFBot_Scout_Bonk
@@ -1388,7 +1388,7 @@ WaveSchedule
 		{
 			Name "w3a"
 			TotalCurrency 50 // 550
-			TotalCount 10
+			TotalCount 14
 			MaxActive 4
 			SpawnCount 2
 			Where spawnbot_adjacent
@@ -1870,7 +1870,7 @@ WaveSchedule
 			MaxActive 6
 			SpawnCount 2
 			Where spawnbot
-			WaitBetweenSpawns 22
+			WaitBetweenSpawns 20
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_RocketShotgun
@@ -1885,12 +1885,12 @@ WaveSchedule
 			Support 1
 			WaitForAllSpawned "w5b"
 			TotalCurrency 50 // 900	
-			TotalCount 30
-			MaxActive 8
-			SpawnCount 4
+			TotalCount 32
+			MaxActive 10
+			SpawnCount 5
 			Where spawnbot
 			WaitBeforeStarting 12
-			WaitBetweenSpawns 7
+			WaitBetweenSpawns 6
 			TFBot
 			{
 				Template T_TFBot_Soldier_Extended_Battalion
