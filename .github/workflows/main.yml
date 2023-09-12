@@ -41,10 +41,16 @@ jobs:
       - name: Create asset pack
         run: |
           mv 'tf/.github/HOW TO INSTALL!.gif' .
-          zip -r gg-assets.zip tf -x '*/.*' -x '*.bz2' -x 'tf_mvm_missioncycle.res'
-          zip gg-assets.zip 'HOW TO INSTALL!.gif'
-          zip -r gg-assets-no-maps.zip tf -x '*/.*' -x '*.bz2' -x 'tf/maps/*' -x 'tf_mvm_missioncycle.res'
-          zip gg-assets-no-maps.zip 'HOW TO INSTALL!.gif'
+          {
+            zip -r gg-assets.zip tf -x '*/.*' -x '*.bz2' -x 'tf_mvm_missioncycle.res' 
+            zip gg-assets.zip 'HOW TO INSTALL!.gif'
+          } &
+          
+          {
+            zip -r gg-assets-no-maps.zip tf -x '*/.*' -x '*.bz2' -x 'tf/maps/*' -x 'tf_mvm_missioncycle.res'
+            zip gg-assets-no-maps.zip 'HOW TO INSTALL!.gif'
+          } &
+          wait
           rm 'HOW TO INSTALL!.gif'
 
       - name: Upload to R2
