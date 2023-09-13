@@ -1,3 +1,5 @@
+self.ValidateScriptScope()
+::CALLBACKS <- {}
 ClearGameEventCallbacks()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// LOCALS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -13,16 +15,16 @@ local debug_zeppelin = false
 /////////////////////////////////// DEBUGGING ///////////////////////////////////
 /////////////////////////////////// GLOBAL ENTITIES ///////////////////////////////////
 
-local gamerules_entity;
+::gamerules_entity <- null
 gamerules_entity = Entities.FindByName(gamerules_entity, "gamerules")
 
-local objective_resource_entity;
+::objective_resource_entity <- null
 objective_resource_entity = Entities.FindByClassname(objective_resource_entity, "tf_objective_resource")
 
-local wave_start_relay_entity;
+::wave_start_relay_entity <- null
 wave_start_relay_entity = Entities.FindByName(wave_start_relay_entity, "wave_start_relay")
 
-local intel_entity;
+::intel_entity <- null
 intel_entity = Entities.FindByName(intel_entity, "Classic_Mode_Intel")
 
 /////////////////////////////////// GLOBAL ENTITIES ///////////////////////////////////
@@ -35,45 +37,59 @@ local planes_done_flying = 0
 /////////////////////////////////// AIR RAID ///////////////////////////////////
 /////////////////////////////////// SUPPLY DROP (TELEPORTERS) ///////////////////////////////////
 
+::back1 <- "back1"
+::back2 <- "back2"
+::back3 <- "back3"
+::middle1 <- "middle1"
+::middle2 <- "middle2"
+::forward1 <- "forward1"
+::forward2 <- "forward2"
+	
 local helis_done_flying = 0
 
-local tele_spot_1 = null
-local tele_spot_2 = null
-local tele_spot_3 = null
-local tele_spot_4 = null
-local tele_spot_5 = null
-local tele_spot_6 = null
-local tele_spot_7 = null
+local tele_spot_back1 = null
+local tele_spot_back2 = null
+local tele_spot_back3 = null
 
-local skybeam_tele_spot_1 = null
-local skybeam_tele_spot_2 = null
-local skybeam_tele_spot_3 = null
-local skybeam_tele_spot_4 = null
-local skybeam_tele_spot_5 = null
-local skybeam_tele_spot_6 = null
-local skybeam_tele_spot_7 = null
+local tele_spot_middle1 = null
+local tele_spot_middle2 = null
+
+local tele_spot_forward1 = null
+local tele_spot_forward2 = null
+
+local skybeam_tele_spot_back1 = null
+local skybeam_tele_spot_back2 = null
+local skybeam_tele_spot_back3 = null
+
+local skybeam_tele_spot_middle1 = null
+local skybeam_tele_spot_middle2 = null
+
+local skybeam_tele_spot_forward1 = null
+local skybeam_tele_spot_forward2 = null
 
 local teledestination_table =
 {
-	"1": Vector(-500, 200, -250) // a1
-	"2": Vector(1100, 0, -400) // a1
-	"3": Vector(500, 200, -250) // a1
-	"4": Vector(-100, -1400, -150) // a2
-	"5": Vector(500, -700, -150) // a2
-	"6": Vector(1000, -2000, -400) // a3
-	"7": Vector(-600, -1700, -380) // a3
+	"1": Vector(-500, 200, -250) // b1
+	"2": Vector(1100, 0, -400) // b2
+	"3": Vector(500, 200, -250) // b3
+	"4": Vector(-100, -1400, -150) // m1
+	"5": Vector(500, -700, -150) // m2
+	"6": Vector(1000, -2000, -400) // f1
+	"7": Vector(-600, -1700, -380) // f2
 }
 
 local teleport_status = "disabled"
+
+::crate_dropsounds <-
+{
+	"1": "physics/wood/wood_box_break" + RandomInt(1,2) + ".wav",
+	"2": "physics/wood/wood_crate_break" + RandomInt(1,5) + ".wav"
+}
 
 /////////////////////////////////// SUPPLY DROP (TELEPORTERS) ///////////////////////////////////
 /////////////////////////////////// SUPPLY DROP (GIANT CRATES) ///////////////////////////////////
 
 local cratehelis_done_flying = 0
-
-local has_crate1_dropped = false
-local has_crate2_dropped = false
-local has_crate3_dropped = false
 
 /////////////////////////////////// SUPPLY DROP (GIANT CRATES) ///////////////////////////////////
 /////////////////////////////////// ZEPPELIN BOSS ///////////////////////////////////
@@ -113,10 +129,134 @@ local helium_crate_number = 1
 
 /////////////////////////////////// HELIUM CRATES ///////////////////////////////////
 
+local explosion_soundtable =
+{
+	"1": "ambient/explosions/explode_1.wav"
+	"2": "ambient/explosions/explode_2.wav"
+	"3": "ambient/explosions/explode_3.wav"
+	"4": "ambient/explosions/explode_4.wav"
+	"5": "ambient/explosions/explode_5.wav"
+	"6": "ambient/explosions/explode_7.wav"
+	"7": "ambient/explosions/explode_8.wav"
+	"8": "ambient/explosions/explode_9.wav"
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// LOCALS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// AUTOEXECUTE ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////// CALLBACKS ///////////////////////////////////
+
+::CALLBACKS.OnGameEvent_player_spawn <- function(params) // VERY IMPORTANT: bot attributes get very fucked up within first moments of its spawn, make sure to delay them to end of frame with "RunScriptCode"
+{
+	if (NetProps.GetPropBool(objective_resource_entity, "m_bMannVsMachineBetweenWaves") == true) return
+	
+	local bot = GetPlayerFromUserID(params.userid)
+	
+	if (!bot.IsFakeClient()) return
+	
+	EntFireByHandle(bot, "RunScriptCode", "SupplyDropTeles_TeleportRobot()", -1.0, null, null)
+}
+
+/////////////////////////////////// CALLBACKS ///////////////////////////////////
+/////////////////////////////////// ONCE ///////////////////////////////////
+
+if (Entities.FindByName(null, "blimp_path_1") == null)
+{
+	local blimp_path_7 = SpawnEntityFromTable("path_track", 
+	{
+		origin 		            = Vector(0, 1700, 450),
+		targetname              = "blimp_path_7"
+		speed                   = 75.0,
+	})
+
+	local blimp_path_6 = SpawnEntityFromTable("path_track", 
+	{
+		origin 		            = Vector(0, 1450, 450),
+		targetname              = "blimp_path_6"
+		speed                   = 75.0
+		target                  = "blimp_path_7"
+	})
+
+	local blimp_path_5 = SpawnEntityFromTable("path_track", 
+	{
+		origin 		            = Vector(0, 500, 150),
+		targetname              = "blimp_path_5"
+		speed                   = 75.0
+		target                  = "blimp_path_6"
+	})
+
+	local blimp_path_4 = SpawnEntityFromTable("path_track", 
+	{
+		origin 		            = Vector(0, -2650, 150),
+		targetname              = "blimp_path_4"
+		speed                   = 75.0
+		target                  = "blimp_path_5"
+	})
+
+	local blimp_path_3 = SpawnEntityFromTable("path_track", 
+	{
+		origin 		            = Vector(800, -2650, 150),
+		targetname              = "blimp_path_3"
+		speed                   = 75.0
+		target                  = "blimp_path_4"
+	})
+
+	local blimp_path_2 = SpawnEntityFromTable("path_track", 
+	{
+		origin 		            = Vector(800, -5100, 150),
+		targetname              = "blimp_path_2"
+		speed                   = 75.0
+		target                  = "blimp_path_3"
+	})
+
+	local blimp_path_1 = SpawnEntityFromTable("path_track", 
+	{
+		origin 		            = Vector(0, -5800, 150),
+		targetname              = "blimp_path_1"
+		speed                   = 75.0
+		target                  = "blimp_path_2"
+	})
+}
+
+/////////////////////////////////// ONCE ///////////////////////////////////
 /////////////////////////////////// EVERY WAVE ///////////////////////////////////
+
+if (!("onetimeactions_performed" in getroottable()))
+{
+	::onetimeactions_performed <- true
+	
+	local a79 = NavMesh.GetNavAreaByID(79)
+	local a275 = NavMesh.GetNavAreaByID(275)
+	local a582 = NavMesh.GetNavAreaByID(582)
+	local a3131 = NavMesh.GetNavAreaByID(3131)
+	
+	a582.Disconnect(a79)
+	a582.Disconnect(a275)
+	a582.Disconnect(a3131)
+	
+	a3131.Disconnect(a582)
+
+	PrecacheSound("mvm/mvm_tele_deliver.wav")
+	PrecacheSound("ambient/alarms/doomsday_lift_alarm.wav")
+	
+	PrecacheSound("physics/wood/wood_box_break1.wav")
+	PrecacheSound("physics/wood/wood_box_break2.wav")
+	
+	PrecacheSound("physics/wood/wood_crate_break1.wav")
+	PrecacheSound("physics/wood/wood_crate_break2.wav")
+	PrecacheSound("physics/wood/wood_crate_break3.wav")
+	PrecacheSound("physics/wood/wood_crate_break4.wav")
+	PrecacheSound("physics/wood/wood_crate_break5.wav")
+	
+	PrecacheSound("ambient/explosions/explode_1.wav")
+	PrecacheSound("ambient/explosions/explode_2.wav")
+	PrecacheSound("ambient/explosions/explode_3.wav")
+	PrecacheSound("ambient/explosions/explode_4.wav")
+	PrecacheSound("ambient/explosions/explode_5.wav")
+	PrecacheSound("ambient/explosions/explode_7.wav")
+	PrecacheSound("ambient/explosions/explode_8.wav")
+	PrecacheSound("ambient/explosions/explode_9.wav")
+}
 
 NetProps.SetPropString(gamerules_entity, "m_iszScriptThinkFunction", "");
 
@@ -130,47 +270,7 @@ for (local think_to_clear; think_to_clear = Entities.FindByName(think_to_clear, 
 	think_to_clear.Kill()
 }
 
-/////////////// EVERYTHING BELOW THIS MUST BE DONE THIS WAY OR ELSE IT CRASHES THE SERVER
-
 /////////////////////////////////// EVERY WAVE ///////////////////////////////////
-/////////////////////////////////// WAVE 2 ///////////////////////////////////
-
-if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 2)
-{	
-	EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassCounts$9", "1")
-	EntFire("tf_objective_resource", "$SetProp$m_iszMannVsMachineWaveClassNames$9", "plane_lite_blu")
-	EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$9", "4")
-}
-
-/////////////////////////////////// WAVE 2 ///////////////////////////////////
-/////////////////////////////////// WAVE 3 ///////////////////////////////////
-
-if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 3)
-{
-	EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassCounts$10", "1")
-	EntFire("tf_objective_resource", "$SetProp$m_iszMannVsMachineWaveClassNames$10", "teleporter")
-	EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$10", "4")
-	
-	EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassCounts$11", "1")
-	EntFire("tf_objective_resource", "$SetProp$m_iszMannVsMachineWaveClassNames$11", "helicopter_blue_nys_nomiplod")
-	EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$11", "4")
-}
-
-/////////////////////////////////// WAVE 3 ///////////////////////////////////
-/////////////////////////////////// WAVE 4 ///////////////////////////////////
-
-if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 4)
-{
-	EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassCounts$9", "1")
-	EntFire("tf_objective_resource", "$SetProp$m_iszMannVsMachineWaveClassNames$9", "teleporter")
-	EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$9", "4")
-	
-	EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassCounts$10", "1")
-	EntFire("tf_objective_resource", "$SetProp$m_iszMannVsMachineWaveClassNames$10", "plane_lite_blu")
-	EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$10", "4")
-}
-
-/////////////////////////////////// WAVE 4 ///////////////////////////////////
 /////////////////////////////////// WAVE 5 ///////////////////////////////////
 
 if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 5)
@@ -182,11 +282,14 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	EntFireByHandle(gamerules_entity, "RunScriptCode", "ScreenFade(null, 175, 175, 175, 255, 0.25, 0.25, 1)", 10.25, null, null)
 	EntFireByHandle(gamerules_entity, "RunScriptCode", "SetSkyboxTexture(`sky_alpinestorm_01`)", 10.5, null, null)
 	EntFireByHandle(gamerules_entity, "RunScriptCode", "SetUpRain()", 10.5, null, null)
+	
+	NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 8)
+	NetProps.SetPropInt(objective_resource_entity, "m_nMannVsMachineWaveEnemyCount", 73)
+	
+	EntFire("spawnbot_invasion", "Disable")
 }
 
 /////////////////////////////////// WAVE 5 ///////////////////////////////////
-
-/////////////// EVERYTHING ABOVE THIS MUST BE DONE THIS WAY OR ELSE IT CRASHES THE SERVER
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// AUTOEXECUTE ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -197,14 +300,8 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 {
 	airraid_dmg_multiplier = dmg
 	
-	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 2)
-	{	
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$9", "4")
-	}
-	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 4)
-	{	
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$10", "4")
-	}
+	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 2) NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 4, 6)
+	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 4) NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 4, 8)
 	
 	EntFireByHandle(gamerules_entity, "PlayVO", "mvm/ambient_mp3/mvm_siren.mp3", 3.0, null, null)
 	
@@ -334,14 +431,8 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 		EntFire("plane_spawnpoint_*", "Kill")
 		EntFire("plane_pathtrain_*", "Kill")
 		
-		if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 2)
-		{	
-			EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$9", "0")
-		}
-		if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 4)
-		{	
-			EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$10", "0")
-		}
+		if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 2) NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 6)
+		if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 4) NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 8)
 	}
 }
 
@@ -371,33 +462,29 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 {
 	if (debug_supplydrop_teles) ClientPrint(null,3,"supply drop tele initiated\n")
 	
-	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 3)
-	{	
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$10", "4")
-	}
-	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 4)
-	{	
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$9", "4")
-	}
+	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 3) NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 4, 8)
+	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 4) NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 4, 7)
 	
 	EntFireByHandle(gamerules_entity, "PlayVO", "supplydrop_morse.wav", 0.0, null, null)
 	
-	EntFireByHandle(gamerules_entity, "RunScriptCode","SupplyDropTeles_SpawnHeliTemplate(1, -500, 200)", RandomFloat(1.0,5.0), null, null);
-	EntFireByHandle(gamerules_entity, "RunScriptCode","SupplyDropTeles_SpawnHeliTemplate(2, -100, -1400)", RandomFloat(1.0,5.0), null, null);
-	EntFireByHandle(gamerules_entity, "RunScriptCode","SupplyDropTeles_SpawnHeliTemplate(3, 500, -700)", RandomFloat(1.0,5.0), null, null);
-	EntFireByHandle(gamerules_entity, "RunScriptCode","SupplyDropTeles_SpawnHeliTemplate(4, 500, 200)", RandomFloat(1.0,5.0), null, null);
-	EntFireByHandle(gamerules_entity, "RunScriptCode","SupplyDropTeles_SpawnHeliTemplate(5, 1000, -2000)", RandomFloat(1.0,5.0), null, null);
-	EntFireByHandle(gamerules_entity, "RunScriptCode","SupplyDropTeles_SpawnHeliTemplate(6, 1100, 0)", RandomFloat(1.0,5.0), null, null);
-	EntFireByHandle(gamerules_entity, "RunScriptCode","SupplyDropTeles_SpawnHeliTemplate(7, -600, -1700)", RandomFloat(1.0,5.0), null, null);
+	EntFireByHandle(gamerules_entity, "RunScriptCode", "SupplyDropTeles_SpawnHeliTemplate(back1, -500, 200)", RandomFloat(1.0,5.0), null, null);
+	EntFireByHandle(gamerules_entity, "RunScriptCode", "SupplyDropTeles_SpawnHeliTemplate(back2, 1100, 0)", RandomFloat(1.0,5.0), null, null);
+	EntFireByHandle(gamerules_entity, "RunScriptCode", "SupplyDropTeles_SpawnHeliTemplate(back3, 500, 200)", RandomFloat(1.0,5.0), null, null);
+	EntFireByHandle(gamerules_entity, "RunScriptCode", "SupplyDropTeles_SpawnHeliTemplate(middle1, -100, -1400)", RandomFloat(1.0,5.0), null, null);
+	EntFireByHandle(gamerules_entity, "RunScriptCode", "SupplyDropTeles_SpawnHeliTemplate(middle2, 500, -700)", RandomFloat(1.0,5.0), null, null);
+	EntFireByHandle(gamerules_entity, "RunScriptCode", "SupplyDropTeles_SpawnHeliTemplate(forward1, 1000, -2000)", RandomFloat(1.0,5.0), null, null);
+	EntFireByHandle(gamerules_entity, "RunScriptCode", "SupplyDropTeles_SpawnHeliTemplate(forward2, -600, -1700)", RandomFloat(1.0,5.0), null, null);
 	
 	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
 	{
 		local player = PlayerInstanceFromIndex(i)
 		if (player == null) continue;
 		if (IsPlayerABot(player)) continue;
+		
 		AddThinkToEnt(player, "SupplyDropTeles_PlayerInteraction_Think")
-		EntFireByHandle(player, "SetScriptOverlayMaterial","supplydrop_tele_warning_overlay", 0.0, null, null);
-		EntFireByHandle(player, "SetScriptOverlayMaterial","", 8.0, null, null);
+		
+		EntFireByHandle(player, "SetScriptOverlayMaterial", "supplydrop_tele_warning_overlay", 0.0, null, null);
+		EntFireByHandle(player, "SetScriptOverlayMaterial", null, 8.0, null, null);
 	}
 	
 	teleport_status = "inactive"
@@ -405,7 +492,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 
 ::SupplyDropTeles_SpawnHeliTemplate <- function(num, x, y)
 {
-	local z = RandomInt(800,1050)
+	local z = RandomInt(800, 1050)
 	
 	local teleheli_ent1 = SpawnEntityFromTable("path_track", 
 	{
@@ -484,11 +571,11 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	AddThinkToEnt(telecrate, "CrateCrushPlayers")
 	EntFire("telecrate_" + num, "Kill", null, 2)
 	
-	if (num == 1)
+	if (num == "back1")
 	{
-		tele_spot_1 = SpawnEntityFromTable("prop_dynamic",
+		tele_spot_back1 = SpawnEntityFromTable("prop_dynamic",
 		{
-			targetname    = "telespot_" + num,
+			targetname    = "tele_spot_" + num,
 			origin        = Vector(-500, 200, -280)
 			angles        = QAngle(0, 90, 0)
 			StartDisabled = 1
@@ -497,9 +584,9 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 			DefaultAnim   = "idle"
 		})
 		
-		skybeam_tele_spot_1 = SpawnEntityFromTable("info_particle_system",
+		skybeam_tele_spot_back1 = SpawnEntityFromTable("info_particle_system",
 		{
-			targetname    	   = "skybeam_telespot_" + num
+			targetname    	   = "tele_spot_skybeam_" + num
 			origin        	   = Vector(-500, 200, -280)
 			angles             = QAngle(0, 90, 0)
 			start_active       = 0,
@@ -509,111 +596,11 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(-500, 200, -280), Vector(0, 90, 0))", 2.0, null, null)
 	}
 	
-	if (num == 2)
+	if (num == "back2")
 	{
-		tele_spot_2 = SpawnEntityFromTable("prop_dynamic",
+		tele_spot_back3 = SpawnEntityFromTable("prop_dynamic",
 		{
-			targetname    = "telespot_" + num,
-			origin        = Vector(-100, -1400, -182)
-			angles        = QAngle(0, 90, 0)
-			StartDisabled = 1
-			model         = "models/props_mvm/robot_spawnpoint.mdl"
-			skin          = 1
-			DefaultAnim   = "idle"
-		})
-		
-		skybeam_tele_spot_2 = SpawnEntityFromTable("info_particle_system",
-		{
-			targetname    	   = "skybeam_telespot_" + num
-			origin        	   = Vector(-100, -1400, -182)
-			angles             = QAngle(0, 90, 0)
-			start_active       = 0,
-			effect_name        = "teleporter_mvm_bot_persist"
-		})
-		
-		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(-100, -1400, -180), Vector(0, 90, 0))", 2.0, null, null)
-	}
-	
-	if (num == 3)
-	{
-		tele_spot_3 = SpawnEntityFromTable("prop_dynamic",
-		{
-			targetname    = "telespot_" + num,
-			origin        = Vector(500, -700, -184)
-			angles        = QAngle(0, 90, 0)
-			StartDisabled = 1
-			model         = "models/props_mvm/robot_spawnpoint.mdl"
-			skin          = 1
-			DefaultAnim   = "idle"
-		})
-		
-		skybeam_tele_spot_3 = SpawnEntityFromTable("info_particle_system",
-		{
-			targetname    	   = "skybeam_telespot_" + num
-			origin        	   = Vector(500, -700, -184)
-			angles             = QAngle(0, 90, 0)
-			start_active       = 0,
-			effect_name        = "teleporter_mvm_bot_persist"
-		})
-		
-		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(500, -700, -190), Vector(0, 90, 0))", 2.0, null, null)
-	}
-	
-	if (num == 4)
-	{
-		tele_spot_4 = SpawnEntityFromTable("prop_dynamic",
-		{
-			targetname    = "telespot_" + num,
-			origin        = Vector(500, 200, -284)
-			angles        = QAngle(0, 90, 0)
-			StartDisabled = 1
-			model         = "models/props_mvm/robot_spawnpoint.mdl"
-			skin          = 1
-			DefaultAnim   = "idle"
-		})
-		
-		skybeam_tele_spot_4 = SpawnEntityFromTable("info_particle_system",
-		{
-			targetname    	   = "skybeam_telespot_" + num
-			origin        	   = Vector(500, 200, -284)
-			angles             = QAngle(0, 90, 0)
-			start_active       = 0,
-			effect_name        = "teleporter_mvm_bot_persist"
-		})
-		
-		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(500, 200, -280), Vector(0, 90, 0))", 2.0, null, null)
-	}
-	
-	if (num == 5)
-	{
-		tele_spot_5 = SpawnEntityFromTable("prop_dynamic",
-		{
-			targetname    = "telespot_" + num,
-			origin        = Vector(1000, -2000, -407)
-			angles        = QAngle(0, 90, 0)
-			StartDisabled = 1
-			model         = "models/props_mvm/robot_spawnpoint.mdl"
-			skin          = 1
-			DefaultAnim   = "idle"
-		})
-		
-		skybeam_tele_spot_5 = SpawnEntityFromTable("info_particle_system",
-		{
-			targetname    	   = "skybeam_telespot_" + num
-			origin        	   = Vector(1000, -2000, -407)
-			angles             = QAngle(0, 90, 0)
-			start_active       = 0,
-			effect_name        = "teleporter_mvm_bot_persist"
-		})
-		
-		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(1000, -2000, -410), Vector(0, 90, 0))", 2.0, null, null)
-	}
-	
-	if (num == 6)
-	{
-		tele_spot_6 = SpawnEntityFromTable("prop_dynamic",
-		{
-			targetname    = "telespot_" + num,
+			targetname    = "tele_spot_" + num,
 			origin        = Vector(1100, 0, -413)
 			angles        = QAngle(0, -90, 0)
 			StartDisabled = 1
@@ -622,9 +609,9 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 			DefaultAnim   = "idle"
 		})
 		
-		skybeam_tele_spot_6 = SpawnEntityFromTable("info_particle_system",
+		skybeam_tele_spot_back3 = SpawnEntityFromTable("info_particle_system",
 		{
-			targetname    	   = "skybeam_telespot_" + num
+			targetname    	   = "tele_spot_skybeam_" + num
 			origin        	   = Vector(1100, 0, -413)
 			angles             = QAngle(0, 90, 0)
 			start_active       = 0,
@@ -634,11 +621,111 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(1100, 0, -420), Vector(0, 90, 0))", 2.0, null, null)
 	}
 	
-	if (num == 7)
+	if (num == "back3")
 	{
-		tele_spot_7 = SpawnEntityFromTable("prop_dynamic",
+		tele_spot_back2 = SpawnEntityFromTable("prop_dynamic",
 		{
-			targetname    = "telespot_" + num,
+			targetname    = "tele_spot_" + num,
+			origin        = Vector(500, 200, -284)
+			angles        = QAngle(0, 90, 0)
+			StartDisabled = 1
+			model         = "models/props_mvm/robot_spawnpoint.mdl"
+			skin          = 1
+			DefaultAnim   = "idle"
+		})
+		
+		skybeam_tele_spot_back2 = SpawnEntityFromTable("info_particle_system",
+		{
+			targetname    	   = "tele_spot_skybeam_" + num
+			origin        	   = Vector(500, 200, -284)
+			angles             = QAngle(0, 90, 0)
+			start_active       = 0,
+			effect_name        = "teleporter_mvm_bot_persist"
+		})
+		
+		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(500, 200, -280), Vector(0, 90, 0))", 2.0, null, null)
+	}
+	
+	if (num == "middle1")
+	{
+		tele_spot_middle1 = SpawnEntityFromTable("prop_dynamic",
+		{
+			targetname    = "tele_spot_" + num,
+			origin        = Vector(-100, -1400, -182)
+			angles        = QAngle(0, 90, 0)
+			StartDisabled = 1
+			model         = "models/props_mvm/robot_spawnpoint.mdl"
+			skin          = 1
+			DefaultAnim   = "idle"
+		})
+		
+		skybeam_tele_spot_middle1 = SpawnEntityFromTable("info_particle_system",
+		{
+			targetname    	   = "tele_spot_skybeam_" + num
+			origin        	   = Vector(-100, -1400, -182)
+			angles             = QAngle(0, 90, 0)
+			start_active       = 0,
+			effect_name        = "teleporter_mvm_bot_persist"
+		})
+		
+		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(-100, -1400, -180), Vector(0, 90, 0))", 2.0, null, null)
+	}
+	
+	if (num == "middle2")
+	{
+		tele_spot_middle2 = SpawnEntityFromTable("prop_dynamic",
+		{
+			targetname    = "tele_spot_" + num,
+			origin        = Vector(500, -700, -184)
+			angles        = QAngle(0, 90, 0)
+			StartDisabled = 1
+			model         = "models/props_mvm/robot_spawnpoint.mdl"
+			skin          = 1
+			DefaultAnim   = "idle"
+		})
+		
+		skybeam_tele_spot_middle2 = SpawnEntityFromTable("info_particle_system",
+		{
+			targetname    	   = "tele_spot_skybeam_" + num
+			origin        	   = Vector(500, -700, -184)
+			angles             = QAngle(0, 90, 0)
+			start_active       = 0,
+			effect_name        = "teleporter_mvm_bot_persist"
+		})
+		
+		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(500, -700, -190), Vector(0, 90, 0))", 2.0, null, null)
+	}
+	
+	if (num == "forward1")
+	{
+		tele_spot_forward1 = SpawnEntityFromTable("prop_dynamic",
+		{
+			targetname    = "tele_spot_" + num,
+			origin        = Vector(1000, -2000, -407)
+			angles        = QAngle(0, 90, 0)
+			StartDisabled = 1
+			model         = "models/props_mvm/robot_spawnpoint.mdl"
+			skin          = 1
+			DefaultAnim   = "idle"
+		})
+		
+		skybeam_tele_spot_forward1 = SpawnEntityFromTable("info_particle_system",
+		{
+			targetname    	   = "tele_spot_skybeam_" + num
+			origin        	   = Vector(1000, -2000, -407)
+			angles             = QAngle(0, 90, 0)
+			start_active       = 0,
+			effect_name        = "teleporter_mvm_bot_persist"
+		})
+		
+		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(1000, -2000, -410), Vector(0, 90, 0))", 2.0, null, null)
+	}
+	
+	if (num == "forward2")
+	{
+		tele_spot_forward2 = SpawnEntityFromTable("prop_dynamic",
+		{
+			targetname    = "tele_spot_" + num,
 			origin        = Vector(-600, -1700, -381)
 			angles        = QAngle(0, -90, 0)
 			StartDisabled = 1
@@ -647,9 +734,9 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 			DefaultAnim   = "idle"
 		})
 		
-		skybeam_tele_spot_7 = SpawnEntityFromTable("info_particle_system",
+		skybeam_tele_spot_forward2 = SpawnEntityFromTable("info_particle_system",
 		{
-			targetname    	   = "skybeam_telespot_" + num
+			targetname    	   = "tele_spot_skybeam_" + num
 			origin             = Vector(-600, -1700, -381)
 			angles             = QAngle(0, 90, 0)
 			start_active       = 0,
@@ -659,21 +746,13 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(-600, -1700, -380), Vector(0, 90, 0))", 2.0, null, null)
 	}
 	
-	local crate_dropsounds =
-	{
-		"1": "physics/wood/wood_box_break" + RandomInt(1,2) + ".wav",
-		"2": "physics/wood/wood_crate_break" + RandomInt(1,5) + ".wav"
-	}
-	
-	EntFire("telespot_" + num, "$PlaySound", crate_dropsounds[RandomInt(1,2).tostring()], 2)
-	EntFire("telespot_" + num, "Enable", null, 3)
+	EntFire("tele_spot_" + num, "RunScriptCode", "EmitSoundEx({sound_name = crate_dropsounds[RandomInt(1,2).tostring()], channel = 6, origin = self.GetOrigin(), sound_level = 100})", 2)
+	EntFire("tele_spot_" + num, "Enable", null, 3)
 }
 
 ::SupplyDropTeles_ActivateTeleporters <- function()
 {
 	helis_done_flying = helis_done_flying + 1
-	
-	local teleport_spawn_enabler = Entities.FindByName(null, "enable_teles")
 	
 	if (helis_done_flying == 7)
 	{
@@ -682,11 +761,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 		EntFire("heli_spawnpoint_*", "Kill")
 		EntFire("heli_pathtrain_*", "Kill")
 		
-		if (teleport_spawn_enabler != null)
-		{
-			EntFireByHandle(teleport_spawn_enabler, "Kill", null, 3.0, null, null)
-			EntFireByHandle(gamerules_entity, "PlayVO", "mvm/mvm_tele_activate.wav", 0.0, null, null)
-		}
+		EntFireByHandle(gamerules_entity, "PlayVO", "mvm/mvm_tele_activate.wav", 0.0, null, null)
 		
 		teleport_status = "active"
 	}
@@ -708,35 +783,37 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 
 ::SupplyDropTeles_End <- function()
 {
-	for (local telespot; telespot = Entities.FindByName(telespot, "telespot_*"); )
+	for (local telespot; telespot = Entities.FindByName(telespot, "tele_spot_*"); )
 	{
-		DispatchParticleEffect("fluidSmokeExpl_ring_mvm", telespot.GetOrigin(), Vector(0, 0, 0))
-		EntFireByHandle(telespot, "Kill", "", 0.0, null, null)
-	}
-	
-	for (local skybeam; skybeam = Entities.FindByName(skybeam, "skybeam_telespot_*"); )
-	{
-		EntFireByHandle(skybeam, "Stop", "", -1.0, null, null)
-		EntFireByHandle(skybeam, "Kill", "", 0.1, null, null)
+		if (telespot.GetClassname() == "prop_dynamic") DispatchParticleEffect("fluidSmokeExpl_ring_mvm", telespot.GetOrigin(), Vector(0, 0, 0))
+		if (telespot.GetClassname() == "prop_dynamic") EntFireByHandle(telespot, "Kill", null, 0.0, null, null)
+		if (telespot.GetClassname() == "info_particle_system") EntFireByHandle(telespot, "Stop", null, -1.0, null, null)
+		if (telespot.GetClassname() == "info_particle_system") EntFireByHandle(telespot, "Kill", null, 0.1, null, null)
 	}
 	
 	EntFireByHandle(gamerules_entity, "PlayVO", "weapons/teleporter_explode.wav", 0.0, null, null)
 	
-	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 3)
-	{	
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$10", "0")
-	}
-	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 4)
-	{	
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$9", "0")
-	}
+	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 3) NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 8)
+	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 4) NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 7)
 	
 	teleport_status = "disabled"
 }
 
 ::SupplyDropTeles_TeleportRobot <- function()
-{	
-	if (!(self.HasBotAttribute(32768)))
+{
+	if (self.HasBotTag("disband_squad")) self.DisbandCurrentSquad()
+	
+	if (self.HasBotTag("telebot_crate1") || self.HasBotTag("telebot_crate2") || self.HasBotTag("telebot_crate3")) self.SetMoveType(0, 0)
+	
+	if (self.HasBotTag("end_zep_sequence"))
+	{
+		self.Teleport(true, Vector(1000, -4000, 0), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+		self.TakeDamage(1000.0, 64, null)
+	}
+	
+	if (!self.HasBotTag("telebot")) return
+	
+	if (!self.HasBotAttribute(32768))
 	{
 		for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
 		{
@@ -744,9 +821,10 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 			if (player_to_alert == null) continue
 			if (IsPlayerABot(player_to_alert)) continue
 			
-			EmitSoundOn("GG.BotTeleported", player_to_alert)
+			EmitSoundEx({sound_name = "mvm/mvm_tele_deliver.wav", channel = 6, entity = player_to_alert, pitch = 100, filter_type = 4})
 		}
 	}
+	
 	if (self.HasBotAttribute(32768))
 	{
 		NetProps.SetPropBool(self, "m_bGlowEnabled", true)
@@ -757,13 +835,9 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	if (intel_entity.GetOrigin().y > -2500.0 && intel_entity.GetOrigin().y <= -1200.0)  self.Teleport(true, teledestination_table[RandomInt(1, 3).tostring()], false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
 	if (intel_entity.GetOrigin().y > -1200.0) 											self.Teleport(true, teledestination_table[RandomInt(6, 7).tostring()], false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
 	
-	for (local entity_to_telefrag; entity_to_telefrag = Entities.FindInSphere(entity_to_telefrag, self.GetOrigin(), 100); )
-	{
-		if (entity_to_telefrag.GetTeam() == 2)
-		{
-			entity_to_telefrag.TakeDamage(1000.0, 64, self)
-		}
-	}
+	// self.GenerateAndWearItem("Lo-Fi Longwave") // do not use, causes server stutters, put hat in pop file instead
+	
+	EntFireByHandle(self, "RunScriptCode", "TeleFrag()", 0.2, null, null) // smallest comfortable amount of time required by the populator to fill in all of the bot's identity without issues
 }
 
 ::SupplyDropTeles_PlayerInteraction_Think <- function()
@@ -790,10 +864,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	
 	EntFireByHandle(gamerules_entity, "PlayVO", "supplydrop_morse.wav", 0.0, null, null)
 	
-	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 3)
-	{	
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$11", "4")
-	}
+	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 3) NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 4, 9)
 	
 	EntFireByHandle(gamerules_entity, "RunScriptCode","SupplyDropCrates_SpawnHeliTemplate(1, -3500)", RandomFloat(1.0,2.0), null, null);
 	EntFireByHandle(gamerules_entity, "RunScriptCode","SupplyDropCrates_SpawnHeliTemplate(2, -2000)", RandomFloat(3.0,4.0), null, null);
@@ -897,10 +968,6 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 {
 	if (debug_supplydrop_crates) ClientPrint(null,3,"coords are " + num + y + z)
 	
-	has_crate1_dropped = true
-	has_crate2_dropped = true
-	has_crate3_dropped = true
-	
 	local telecrate = SpawnEntityFromTable("prop_physics_multiplayer",
 	{
 		origin                  = Vector(0, y, z)
@@ -912,77 +979,119 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	
 	AddThinkToEnt(telecrate, "CrateCrushPlayers")
 	
-	local giantcrate_dropsounds =
-	{
-		"1": "physics/wood/wood_box_break" + RandomInt(1,2) + ".wav",
-		"2": "physics/wood/wood_crate_break" + RandomInt(1,5) + ".wav"
-	}
-	
-	EntFire("giantcrate_" + num, "$PlaySound", giantcrate_dropsounds[RandomInt(1,2).tostring()], 2.0)
+	EntFire("giantcrate_" + num, "RunScriptCode", "EmitSoundEx({sound_name = crate_dropsounds[RandomInt(1,2).tostring()], channel = 6, origin = self.GetOrigin(), sound_level = 100})", 2.0)
 	EntFire("giantcrate_" + num, "Kill", null, 2.0)
-	EntFireByHandle(gamerules_entity, "RunScriptCode", "SupplyDropCrates_ActivateTeleporting(" + num + ")", 2.0, null, null)
+	// EntFireByHandle(gamerules_entity, "RunScriptCode", "SupplyDropCrates_ActivateTeleporting(`apply`)", 2.0, null, null)
 	
 	if (num == 1)
 	{
 		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(0, -3500, -350), Vector(0, 90, 0))", 2.0, null, null)
+		for (local giant_to_teleport; giant_to_teleport = Entities.FindByClassname(giant_to_teleport, "player"); )
+		{
+			if (giant_to_teleport == null) continue;
+			if (!giant_to_teleport.IsFakeClient()) return
+			
+			if (giant_to_teleport.HasBotTag("telebot_crate1")) EntFireByHandle(giant_to_teleport, "RunScriptCode", "SupplyDropCrates_TeleportRobotToCrate()", 2.0, null, null)
+		}
 	}
 	if (num == 2)
 	{	
 		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(0, -2000, -350), Vector(0, 90, 0))", 2.0, null, null)
+		for (local giant_to_teleport; giant_to_teleport = Entities.FindByClassname(giant_to_teleport, "player"); )
+		{
+			if (giant_to_teleport == null) continue;
+			if (!giant_to_teleport.IsFakeClient()) return
+			
+			if (giant_to_teleport.HasBotTag("telebot_crate2")) EntFireByHandle(giant_to_teleport, "RunScriptCode", "SupplyDropCrates_TeleportRobotToCrate()", 2.0, null, null)
+		}
 	}
 	if (num == 3)
 	{
 		EntFireByHandle(gamerules_entity, "RunScriptCode", "DispatchParticleEffect(`fireSmoke_Collumn_mvmAcres`, Vector(0, -1000, -100), Vector(0, 90, 0))", 2.0, null, null)
+		for (local giant_to_teleport; giant_to_teleport = Entities.FindByClassname(giant_to_teleport, "player"); )
+		{
+			if (giant_to_teleport == null) continue;
+			if (!giant_to_teleport.IsFakeClient()) return
+			
+			if (giant_to_teleport.HasBotTag("telebot_crate3")) EntFireByHandle(giant_to_teleport, "RunScriptCode", "SupplyDropCrates_TeleportRobotToCrate()", 2.0, null, null)
+		}
 	}
 }
 
-::SupplyDropCrates_ActivateTeleporting <- function(num)
-{	
-	if (num == 1)
-	{
-		local crate1_spawn_enabler = Entities.FindByName(null, "enable_crate1_spawn")
+// ::SupplyDropCrates_ActivateTeleporting <- function(action)
+// {	
+	// if (action == "apply") for (local ent; ent = Entities.FindByClassname(ent, "info_player_teamspawn"); ) if (ent.GetName() == "spawnbot_invasion") EntFireByHandle(ent, "Enable", null, -1.0, null, null)
+	
+	// if (action == "undo")
+	// {
+		// for (local ent; ent = Entities.FindByClassname(ent, "info_player_teamspawn"); )
+		// {
+			// if (NetProps.GetPropInt(ent, "m_iHammerID") == 18074) ent.KeyValueFromString("targetname", "spawnbot_invasion") // spawnbot_invasion 1
+			// if (NetProps.GetPropInt(ent, "m_iHammerID") == 40391) ent.KeyValueFromString("targetname", "spawnbot") // spawnbot 1
+			// if (NetProps.GetPropInt(ent, "m_iHammerID") == 581477) ent.KeyValueFromString("targetname", "spawnbot_invasion") // spawnbot_invasion 2
+		// }
+	// }
+	
+	// if (num == 1)
+	// {
+		// local crate1_spawn_enabler = Entities.FindByName(null, "enable_crate1_spawn")
 
-		EntFireByHandle(crate1_spawn_enabler, "Kill", null, 0.0, null, null)
-	}
-	if (num == 2)
-	{
-		local crate2_spawn_enabler = Entities.FindByName(null, "enable_crate2_spawn")
+		// EntFireByHandle(crate1_spawn_enabler, "Kill", null, 0.0, null, null)
+	// }
+	// if (num == 2)
+	// {
+		// local crate2_spawn_enabler = Entities.FindByName(null, "enable_crate2_spawn")
 
-		EntFireByHandle(crate2_spawn_enabler, "Kill", null, 0.0, null, null)
-	}
-	if (num == 3)
-	{
-		local crate3_spawn_enabler = Entities.FindByName(null, "enable_crate3_spawn")
+		// EntFireByHandle(crate2_spawn_enabler, "Kill", null, 0.0, null, null)
+	// }
+	// if (num == 3)
+	// {
+		// local crate3_spawn_enabler = Entities.FindByName(null, "enable_crate3_spawn")
 
-		EntFireByHandle(crate3_spawn_enabler, "Kill", null, 0.0, null, null)
-	}
-}
+		// EntFireByHandle(crate3_spawn_enabler, "Kill", null, 0.0, null, null)
+	// }
+// }
 
-::SupplyDropCrates_TeleportRobotToCrate <- function(num)
+::SupplyDropCrates_TeleportRobotToCrate <- function()
 {
+	self.SetMoveType(2, 0)
+	
 	NetProps.SetPropBool(self, "m_bGlowEnabled", true)
 	EntFireByHandle(self, "RunScriptCode", "self.AddBotAttribute(8)", 0.0, null, null)
 	EntFireByHandle(self, "RunScriptCode", "self.RemoveBotAttribute(8)", 2.5, null, null)
 	
-	if (num == 1 && has_crate1_dropped == true)
-	{
-		self.Teleport(true, Vector(0, -3500, -350), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
-		
-		has_crate1_dropped = false
-	}
-	if (num == 2 && has_crate2_dropped == true)
-	{
-		self.Teleport(true, Vector(0, -2000, -350), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
-		
-		has_crate2_dropped = false
-	}
-	if (num == 3 && has_crate3_dropped == true)
-	{
-		self.Teleport(true, Vector(0, -1000, -100), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
-		
-		has_crate3_dropped = false
-	}
+	if (self.HasBotTag("telebot_crate1")) self.Teleport(true, Vector(0, -3500, -350), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+	if (self.HasBotTag("telebot_crate2")) self.Teleport(true, Vector(0, -2000, -350), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+	if (self.HasBotTag("telebot_crate3")) self.Teleport(true, Vector(0, -1000, -100), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+	
+	EntFireByHandle(self, "RunScriptCode", "TeleFrag()", 0.2, null, null) // smallest comfortable amount of time required by the populator to fill in all of the bot's identity without issues
 }
+
+// ::SupplyDropCrates_TeleportRobotToCrate_Old <- function(num)
+// {
+	// NetProps.SetPropBool(self, "m_bGlowEnabled", true)
+	// EntFireByHandle(self, "RunScriptCode", "self.AddBotAttribute(8)", 0.0, null, null)
+	// EntFireByHandle(self, "RunScriptCode", "self.RemoveBotAttribute(8)", 2.5, null, null)
+	
+	// if (num == 1 && has_crate1_dropped == true)
+	// {
+		// self.Teleport(true, Vector(0, -3500, -350), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+		
+		// has_crate1_dropped = false
+	// }
+	// if (num == 2 && has_crate2_dropped == true)
+	// {
+		// self.Teleport(true, Vector(0, -2000, -350), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+		
+		// has_crate2_dropped = false
+	// }
+	// if (num == 3 && has_crate3_dropped == true)
+	// {
+		// self.Teleport(true, Vector(0, -1000, -100), false, QAngle(0, 0, 0), false, Vector(0, 0, 0))
+		
+		// has_crate3_dropped = false
+	// }
+// }
 
 ::SupplyDropCrates_PlayerInteraction_Think <- function()
 {
@@ -1006,12 +1115,11 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 {	
 	if (debug_zeppelin) ClientPrint(null,3,"zeppelin spawned")
 	
-	local heliumcraterotate_ent = SpawnEntityFromTable("logic_relay",
-	{
-		targetname = "heliumcraterotate_ent"
-	})
-	
+	local heliumcraterotate_ent = SpawnEntityFromTable("logic_relay", {targetname = "heliumcraterotate_ent"})
 	AddThinkToEnt(heliumcraterotate_ent, "RotateHeliumCrates_Think")
+	
+	local zeptank_colfix_ent = SpawnEntityFromTable("logic_relay", {targetname = "zeptank_colfix_ent"})
+	AddThinkToEnt(zeptank_colfix_ent, "CollisionFix_Think")
 	
 	AddThinkToEnt(gamerules_entity, "Zeppelin_SpawnHeliumCrates_Think")
 	
@@ -1163,7 +1271,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	local zeppelin_cage_s1 = SpawnEntityFromTable("prop_dynamic", 
 	{
 		targetname   = "zeppelin_cage_model_wall_s1"
-		origin       = Vector(256, -6278, 1050)
+		origin       = Vector(256, -6293, 1050)
 		model        = "models/props_gameplay/security_fence512.mdl"
         angles       = QAngle(0, 0, 180),
         solid        = 6
@@ -1172,7 +1280,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	local zeppelin_cage_s1 = SpawnEntityFromTable("prop_dynamic", 
 	{
 		targetname   = "zeppelin_cage_model_wall_s1"
-		origin       = Vector(256, -6278, 1306)
+		origin       = Vector(256, -6293, 1306)
 		model        = "models/props_gameplay/security_fence512.mdl"
         angles       = QAngle(0, 0, 180),
         solid        = 6
@@ -1181,7 +1289,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	local zeppelin_cage_s2 = SpawnEntityFromTable("prop_dynamic", 
 	{
 		targetname   = "zeppelin_cage_model_wall_s2"
-		origin       = Vector(-256, -6278, 1050)
+		origin       = Vector(-256, -6293, 1050)
 		model        = "models/props_gameplay/security_fence512.mdl"
         angles       = QAngle(0, 0, 180),
         solid        = 6
@@ -1190,7 +1298,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	local zeppelin_cage_s2 = SpawnEntityFromTable("prop_dynamic", 
 	{
 		targetname   = "zeppelin_cage_model_wall_s2"
-		origin       = Vector(-256, -6278, 1306)
+		origin       = Vector(-256, -6293, 1306)
 		model        = "models/props_gameplay/security_fence512.mdl"
         angles       = QAngle(0, 0, 180),
         solid        = 6
@@ -1201,7 +1309,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	local zeppelin_cage_s1 = SpawnEntityFromTable("prop_dynamic", 
 	{
 		targetname   = "zeppelin_cage_model_wall_s1"
-		origin       = Vector(256, -5728, 1050)
+		origin       = Vector(256, -5713, 1050)
 		model        = "models/props_gameplay/security_fence512.mdl"
         angles       = QAngle(0, 0, 180),
         solid        = 6
@@ -1210,7 +1318,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	local zeppelin_cage_s1 = SpawnEntityFromTable("prop_dynamic", 
 	{
 		targetname   = "zeppelin_cage_model_wall_s1"
-		origin       = Vector(256, -5728, 1306)
+		origin       = Vector(256, -5713, 1306)
 		model        = "models/props_gameplay/security_fence512.mdl"
         angles       = QAngle(0, 0, 180),
         solid        = 6
@@ -1219,7 +1327,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	local zeppelin_cage_s2 = SpawnEntityFromTable("prop_dynamic", 
 	{
 		targetname   = "zeppelin_cage_model_wall_s2"
-		origin       = Vector(-256, -5728, 1050)
+		origin       = Vector(-256, -5713, 1050)
 		model        = "models/props_gameplay/security_fence512.mdl"
         angles       = QAngle(0, 0, 180),
         solid        = 6
@@ -1228,7 +1336,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	local zeppelin_cage_s2 = SpawnEntityFromTable("prop_dynamic", 
 	{
 		targetname   = "zeppelin_cage_model_wall_s2"
-		origin       = Vector(-256, -5728, 1306)
+		origin       = Vector(-256, -5713, 1306)
 		model        = "models/props_gameplay/security_fence512.mdl"
         angles       = QAngle(0, 0, 180),
         solid        = 6
@@ -1338,19 +1446,19 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	zeppelin_cage_tankprop1_teledest = SpawnEntityFromTable("info_target", 
 	{
 		targetname   = "zeppelin_cage_model_s1_teledest"
-		origin       = Vector(536, -6008, 910)
+		origin       = Vector(536, -6008, 920)
 	})
 	
 	zeppelin_cage_tankprop2_teledest = SpawnEntityFromTable("info_target", 
 	{
 		targetname   = "zeppelin_cage_model_s2_teledest"
-		origin       = Vector(24, -6008, 910)
+		origin       = Vector(24, -6008, 920)
 	})
 	
 	zeppelin_cage_tankprop3_teledest = SpawnEntityFromTable("info_target", 
 	{
 		targetname   = "zeppelin_cage_model_s3_teledest"
-		origin       = Vector(-488, -6008, 910)
+		origin       = Vector(-488, -6008, 920)
 	})
 	
 	EntFire("zeppelin_model", "SetParent", "zeppelin_pathtrain")
@@ -1396,12 +1504,14 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 		zeppelin_cage_tankprop3.Kill()
 	}
 	
-	EntFire("zeppelin_engine_" + num + "_destructible", "$SetLocalAngles", "0 0 0")
+	cur_zeppelin_tank.SetLocalAngles(QAngle(0, 90, 0))
 }
 
 ::Zeppelin_DestroyCageStage <- function(num)
 {
 	if (debug_zeppelin) ClientPrint(null,3,"function ran")
+	
+	cur_zeppelin_tank = null
 	
 	EntFire("zeppelin_cage_model_s" + num + "*", "Kill")
 	
@@ -1461,34 +1571,51 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 			if (player_to_sound_alarm == null) continue
 			if (IsPlayerABot(player_to_sound_alarm)) continue
 			
-			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundOn(`Zeppelin.CrashAlarm_P100`, self)", 0.0, null, null)
-			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundOn(`Zeppelin.CrashAlarm_P105`, self)", 2.75, null, null)
-			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundOn(`Zeppelin.CrashAlarm_P110`, self)", 5.5, null, null)
-			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundOn(`Zeppelin.CrashAlarm_P115`, self)", 8.25, null, null)
-			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundOn(`Zeppelin.CrashAlarm_P120`, self)", 11.0, null, null)
-			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundOn(`Zeppelin.CrashAlarm_P125`, self)", 13.75, null, null)
-			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundOn(`Zeppelin.CrashAlarm_P130`, self)", 16.5, null, null)
-			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundOn(`Zeppelin.CrashAlarm_P135`, self)", 19.25, null, null)
-			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundOn(`Zeppelin.CrashAlarm_P140`, self)", 22.0, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 100, filter_type = 4})", 0.0, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 105, filter_type = 4})", 2.75, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 110, filter_type = 4})", 5.5, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 115, filter_type = 4})", 8.25, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 120, filter_type = 4})", 11.0, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 125, filter_type = 4})", 13.75, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 130, filter_type = 4})", 16.5, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 135, filter_type = 4})", 19.25, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 140, filter_type = 4})", 22.0, null, null)
+			
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 100, volume = 0.5, filter_type = 4})", 0.0, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 105, volume = 0.5, filter_type = 4})", 2.75, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 110, volume = 0.5, filter_type = 4})", 5.5, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 115, volume = 0.5, filter_type = 4})", 8.25, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 120, volume = 0.5, filter_type = 4})", 11.0, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 125, volume = 0.5, filter_type = 4})", 13.75, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 130, volume = 0.5, filter_type = 4})", 16.5, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 135, volume = 0.5, filter_type = 4})", 19.25, null, null)
+			EntFireByHandle(player_to_sound_alarm, "RunScriptCode", "EmitSoundEx({sound_name = `ambient/alarms/doomsday_lift_alarm.wav`, channel = 6, entity = self, pitch = 140, volume = 0.5, filter_type = 4})", 22.0, null, null)
 		}
 		
 		for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
 		{
-			local bot_to_pacify = PlayerInstanceFromIndex(i)
+			local player = PlayerInstanceFromIndex(i)
 			
-			if (bot_to_pacify == null) continue;
-			if (!IsPlayerABot(bot_to_pacify)) continue;
-			
-			bot_to_pacify.AddCustomAttribute("cannot pick up intelligence", 1.0, -1.0)
-			bot_to_pacify.DropFlag(true)
-			bot_to_pacify.AddBotAttribute(8)
+			if (player == null) continue;
+			if (IsPlayerABot(player))
+			{
+				player.AddCustomAttribute("cannot pick up intelligence", 1.0, -1.0)
+				player.DropFlag(true)
+				player.AddBotAttribute(8)
+				continue
+			}
+			else
+			{
+				player.RemoveCondEx(107, true)
+				player.RemoveCustomAttribute("voice pitch scale")
+			}
 		}
 		
-		EntFire("player", "$RemoveCond", 107)
-		EntFire("player", "$RemovePlayerAttribute", "voice pitch scale")
 		EntFire("helium_crate*", "Kill")
 		EntFire("crate_glow*", "Kill")
 		EntFire("give_effects_trigger_*", "Kill")
+		EntFire("heliumcraterotate_ent", "Kill")
+		EntFire("zeptank_colfix_ent", "Kill")
 	}
 }
 
@@ -1543,7 +1670,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 			if (player_to_alert == null) continue;
 			if (IsPlayerABot(player_to_alert)) continue;
 			
-			EmitSoundOn("Zeppelin.CrashExplosion_" + RandomInt(1,8), player_to_alert)
+			EmitSoundEx({sound_name = explosion_soundtable[RandomInt(1,8).tostring()], channel = 6, entity = player_to_alert, pitch = 100, filter_type = 4})
 		}
 	}
 	if (zeppelin_crash_frame >= 950)
@@ -1574,16 +1701,16 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 			if (player_to_alert == null) continue;
 			if (IsPlayerABot(player_to_alert)) continue;
 			
-			EmitSoundOn("Zeppelin.MainExplosion", player_to_alert)
-			EmitSoundOn("Zeppelin.MainExplosion", player_to_alert)
+			EmitSoundOn("ambient/explosions/explode_6.wav", player_to_alert)
+			EmitSoundOn("ambient/explosions/explode_6.wav", player_to_alert)
 		}
 		
-		for (local player_to_hurt; player_to_hurt = Entities.FindByClassnameWithin(player_to_hurt, "player", self.GetOrigin(), 3000); )
+		for (local player_to_hurt; player_to_hurt = Entities.FindInSphere(player_to_hurt, self.GetOrigin(), 3000.0); )
 		{
-			if (player_to_hurt == null) continue;
-			if (NetProps.GetPropInt(player_to_hurt, "m_lifeState") != 0) continue
+			if (player_to_hurt == null) continue
+			if (player_to_hurt.GetClassname() == "player" && NetProps.GetPropInt(player_to_hurt, "m_lifeState") != 0) continue
 			
-			player_to_hurt.TakeDamage(10000.0, 64, null)
+			player_to_hurt.TakeDamage(10000.0, 64, self)
 		}
 		
 		SpawnEntityFromTable("info_particle_system",
@@ -1604,7 +1731,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 			bot_to_depacify.RemoveBotAttribute(8)
 		}
 		
-		for (local end_sequence_pt; end_sequence_pt = Entities.FindByName(end_sequence_pt, "zeppelin_explosion_wait"); ) EntFireByHandle(end_sequence_pt, "RunScriptCode", "self.Kill()", 5.0, null, null)
+		EntFire("spawnbot_invasion", "Enable")
 		
 		self.Kill()
 	}
@@ -1643,6 +1770,14 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 		EntFireByHandle(gamerules_entity, "PlayVO", "physics/metal/metal_chainlink_impact_hard" + RandomInt(1,3) + ".wav", 0.0, null, null)
 	}
 	
+}
+
+::CollisionFix_Think <- function()
+{
+	try { cur_zeppelin_tank.GetLocomotionInterface().Reset() }
+	catch (e) { return } // prevent issues in moments where there is no tank
+	
+	return -1
 }
 
 ::Zeppelin_DropTankIntoHatch_Think <- function()
@@ -1758,15 +1893,12 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 		the_helium_crate_trigger.KeyValueFromString("mins", "-64 -64 -64")
 		the_helium_crate_trigger.KeyValueFromString("maxs", "64 64 64")
 		
-		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "!activator", "AddOutput", "basevelocity 0 0 800", 0.0, -1)
-		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "!activator", "$AddCond", "107 12", 1.0, -1)
-		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "!activator", "$AddPlayerAttribute", "voice pitch scale|2", 0.0, -1)
-		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "!activator", "$RemovePlayerAttribute", "voice pitch scale", 12.0, -1)
-		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "!activator", "RunScriptCode", "HeliumTutorialCheck()", -1.0, -1)
+		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "!activator", "AddOutput", "basevelocity 0 0 800", -1.0, -1)
+		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "!activator", "RunScriptCode", "ApplyHeliumToPlayer()", -1.0, -1)
 		
-		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "crate_glow_" + helium_crate_number, "Kill", null, 0.0, -1)
-		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "helium_crate_" + helium_crate_number, "Kill", null, 0.0, -1)
-		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "give_effects_trigger_" + helium_crate_number, "Kill", null, 0.0, -1)
+		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "crate_glow_" + helium_crate_number, "Kill", null, -1.0, -1)
+		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "helium_crate_" + helium_crate_number, "Kill", null, -1.0, -1)
+		EntityOutputs.AddOutput(the_helium_crate_trigger, "OnStartTouch", "give_effects_trigger_" + helium_crate_number, "Kill", null, -1.0, -1)
 		
 		if (helium_crate_number == 3)
 		{
@@ -1831,8 +1963,13 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	else return 3600
 }
 
-::HeliumTutorialCheck <- function()
+::ApplyHeliumToPlayer <- function()
 {
+	self.AddCustomAttribute("voice pitch scale", 2, -1.0)
+	EntFireByHandle(self, "RunScriptCode", "self.RemoveCustomAttribute(`voice pitch scale`)", 12.0, null, null)
+	
+	self.AddCondEx(107, 12.0, self)
+	
 	self.ValidateScriptScope()
 	local scope = self.GetScriptScope()
 	
@@ -1849,56 +1986,47 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 
 ::SetUpInWaveHUD <- function()
 {
-	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 1)
-	{	
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$3", "0") // jumping sandman support
-	}
+	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 1) NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 3) // jumping sandman support
 	
 	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 2)
 	{	
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$5", "0") // soldier support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 5) // soldier support
 		
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassCounts$9", "1") // air raid support
-		EntFire("tf_objective_resource", "$SetProp$m_iszMannVsMachineWaveClassNames$9", "plane_lite_blu") // air raid support
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$9", "0") // air raid support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 6) // air raid support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassCounts", 1, 6) // air raid support
 	}
 	
 	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 3)
 	{	
-		local think_havedefendersbeenpushed = SpawnEntityFromTable("logic_relay", {
-			targetname = "defenderspushedcheck"
-		})
+		local think_havedefendersbeenpushed = SpawnEntityFromTable("logic_relay", { targetname = "defenderspushedcheck" })
 		AddThinkToEnt(think_havedefendersbeenpushed, "HaveDefendersBeenPushed_Think")
 		
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassCounts$10", "1") // suppply drop tele support
-		EntFire("tf_objective_resource", "$SetProp$m_iszMannVsMachineWaveClassNames$10", "teleporter") // suppply drop tele support
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$10", "0") // suppply drop tele support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 8) // suppply drop tele support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassCounts", 1, 8) // suppply drop tele support
 		
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassCounts$11", "1") // suppply drop crate support
-		EntFire("tf_objective_resource", "$SetProp$m_iszMannVsMachineWaveClassNames$11", "helicopter_blue_nys_nomiplod") // suppply drop crate support
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$11", "0") // suppply drop crate support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 9) // suppply drop crate support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassCounts", 1, 9) // suppply drop crate support
 	}
 	
 	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 4)
 	{
-		local think_havedefendersbeenpushed = SpawnEntityFromTable("logic_relay", {
-			targetname = "defenderspushedcheck"
-		})
+		local think_havedefendersbeenpushed = SpawnEntityFromTable("logic_relay", { targetname = "defenderspushedcheck" })
 		AddThinkToEnt(think_havedefendersbeenpushed, "HaveDefendersBeenPushed_Think")
 		
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassCounts$9", "1")
-		EntFire("tf_objective_resource", "$SetProp$m_iszMannVsMachineWaveClassNames$9", "teleporter")
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$9", "0")
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 7) // suppply drop tele support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassCounts", 1, 7) // suppply drop tele support
 		
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassCounts$10", "1")
-		EntFire("tf_objective_resource", "$SetProp$m_iszMannVsMachineWaveClassNames$10", "plane_lite_blu")
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$10", "0")
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 8) // air raid support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassCounts", 1, 8) // air raid support
 	}
 	
 	if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") == 5)
 	{	
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$2", "0") // demoknight support
-		EntFire("tf_objective_resource", "$SetProp$m_nMannVsMachineWaveClassFlags$6", "0") // pyro support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 2) // demoknight support
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 6) // pyro support
+		
+		NetProps.SetPropIntArray(objective_resource_entity, "m_nMannVsMachineWaveClassFlags", 0, 8) // hide zep crash sequence dummy spawn
+		NetProps.SetPropInt(objective_resource_entity, "m_nMannVsMachineWaveEnemyCount", 73)
 	}
 }
 
@@ -1909,119 +2037,91 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	if (teleport_status == "disabled") return
 	if (teleport_status == "inactive")
 	{
-		NetProps.SetPropInt(tele_spot_1, "m_nSkin", 2)
-		NetProps.SetPropInt(tele_spot_2, "m_nSkin", 2)
-		NetProps.SetPropInt(tele_spot_3, "m_nSkin", 2)
-		NetProps.SetPropInt(tele_spot_4, "m_nSkin", 2)
-		NetProps.SetPropInt(tele_spot_5, "m_nSkin", 2)
-		NetProps.SetPropInt(tele_spot_6, "m_nSkin", 2)
-		NetProps.SetPropInt(tele_spot_7, "m_nSkin", 2)
+		for (local ent; ent = Entities.FindByName(ent, "tele_spot_*"); )
+		{
+			if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropInt(ent, "m_nSkin", 2)
+			if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropFloat(ent, "m_flPlaybackRate", 0.0)
+			if (ent.GetClassname() == "info_particle_system") EntFireByHandle(ent, "Stop", null, -1.0, null, null)
+		}
 		
-		NetProps.SetPropFloat(tele_spot_1, "m_flPlaybackRate", 0.0)
-		NetProps.SetPropFloat(tele_spot_2, "m_flPlaybackRate", 0.0)
-		NetProps.SetPropFloat(tele_spot_3, "m_flPlaybackRate", 0.0)
-		NetProps.SetPropFloat(tele_spot_4, "m_flPlaybackRate", 0.0)
-		NetProps.SetPropFloat(tele_spot_5, "m_flPlaybackRate", 0.0)
-		NetProps.SetPropFloat(tele_spot_6, "m_flPlaybackRate", 0.0)
-		NetProps.SetPropFloat(tele_spot_7, "m_flPlaybackRate", 0.0)
-		
-		EntFireByHandle(skybeam_tele_spot_1, "Stop", "", -1.0, null, null)
-		EntFireByHandle(skybeam_tele_spot_2, "Stop", "", -1.0, null, null)
-		EntFireByHandle(skybeam_tele_spot_3, "Stop", "", -1.0, null, null)
-		EntFireByHandle(skybeam_tele_spot_4, "Stop", "", -1.0, null, null)
-		EntFireByHandle(skybeam_tele_spot_5, "Stop", "", -1.0, null, null)
-		EntFireByHandle(skybeam_tele_spot_6, "Stop", "", -1.0, null, null)
-		EntFireByHandle(skybeam_tele_spot_7, "Stop", "", -1.0, null, null)
+		for (local ent; ent = Entities.FindByName(ent, "skybeam_*"); ) EntFireByHandle(ent, "Stop", null, -1.0, null, null)
 	}
+	
 	if (teleport_status == "active")
 	{
-		if (intel_entity.GetOrigin().y < -2500.0)
-		{	
-			NetProps.SetPropInt(tele_spot_1, "m_nSkin", 1)
-			NetProps.SetPropInt(tele_spot_2, "m_nSkin", 1)
-			NetProps.SetPropInt(tele_spot_3, "m_nSkin", 1)
-			NetProps.SetPropInt(tele_spot_4, "m_nSkin", 1)
-			NetProps.SetPropInt(tele_spot_5, "m_nSkin", 2)
-			NetProps.SetPropInt(tele_spot_6, "m_nSkin", 1)
-			NetProps.SetPropInt(tele_spot_7, "m_nSkin", 2)
-			
-			NetProps.SetPropFloat(tele_spot_1, "m_flPlaybackRate", 1.0)
-			NetProps.SetPropFloat(tele_spot_2, "m_flPlaybackRate", 1.0)
-			NetProps.SetPropFloat(tele_spot_3, "m_flPlaybackRate", 1.0)
-			NetProps.SetPropFloat(tele_spot_4, "m_flPlaybackRate", 1.0)
-			NetProps.SetPropFloat(tele_spot_5, "m_flPlaybackRate", 0.0)
-			NetProps.SetPropFloat(tele_spot_6, "m_flPlaybackRate", 1.0)
-			NetProps.SetPropFloat(tele_spot_7, "m_flPlaybackRate", 0.0)
-		
-			EntFireByHandle(skybeam_tele_spot_1, "Start", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_2, "Start", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_3, "Start", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_4, "Start", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_5, "Stop", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_6, "Start", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_7, "Stop", "", -1.0, null, null)
-			
-			// ClientPrint(null,3,"not pushed/n");
-		}
-		else if (intel_entity.GetOrigin().y < -1200.0)
+		for (local ent; ent = Entities.FindByName(ent, "tele_spot_*"); )
 		{
-			NetProps.SetPropInt(tele_spot_1, "m_nSkin", 1)
-			NetProps.SetPropInt(tele_spot_2, "m_nSkin", 2)
-			NetProps.SetPropInt(tele_spot_3, "m_nSkin", 2)
-			NetProps.SetPropInt(tele_spot_4, "m_nSkin", 1)
-			NetProps.SetPropInt(tele_spot_5, "m_nSkin", 2)
-			NetProps.SetPropInt(tele_spot_6, "m_nSkin", 1)
-			NetProps.SetPropInt(tele_spot_7, "m_nSkin", 2)
+			if (intel_entity.GetOrigin().y < -2500.0)
+			{	
+				if (ent.GetName().find("forward") != null)
+				{
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropInt(ent, "m_nSkin", 2)
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropFloat(ent, "m_flPlaybackRate", 0.0)
+					if (ent.GetClassname() == "info_particle_system") EntFireByHandle(ent, "Stop", null, -1.0, null, null)
+				}
+				
+				else
+				{
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropInt(ent, "m_nSkin", 1)
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropFloat(ent, "m_flPlaybackRate", 1.0)
+					if (ent.GetClassname() == "info_particle_system") EntFireByHandle(ent, "Start", null, -1.0, null, null)
+				}
+				
+				// ClientPrint(null,3,"not pushed/n");
+			}
 			
-			NetProps.SetPropFloat(tele_spot_1, "m_flPlaybackRate", 1.0)
-			NetProps.SetPropFloat(tele_spot_2, "m_flPlaybackRate", 0.0)
-			NetProps.SetPropFloat(tele_spot_3, "m_flPlaybackRate", 0.0)
-			NetProps.SetPropFloat(tele_spot_4, "m_flPlaybackRate", 1.0)
-			NetProps.SetPropFloat(tele_spot_5, "m_flPlaybackRate", 0.0)
-			NetProps.SetPropFloat(tele_spot_6, "m_flPlaybackRate", 1.0)
-			NetProps.SetPropFloat(tele_spot_7, "m_flPlaybackRate", 0.0)
-		
-			EntFireByHandle(skybeam_tele_spot_1, "Start", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_2, "Stop", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_3, "Stop", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_4, "Start", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_5, "Stop", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_6, "Start", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_7, "Stop", "", -1.0, null, null)
+			else if (intel_entity.GetOrigin().y < -1200.0)
+			{
+				if (ent.GetName().find("back") != null)
+				{
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropInt(ent, "m_nSkin", 1)
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropFloat(ent, "m_flPlaybackRate", 1.0)
+					if (ent.GetClassname() == "info_particle_system") EntFireByHandle(ent, "Start", null, -1.0, null, null)
+				}
+				
+				else
+				{
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropInt(ent, "m_nSkin", 2)
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropFloat(ent, "m_flPlaybackRate", 0.0)
+					if (ent.GetClassname() == "info_particle_system") EntFireByHandle(ent, "Stop", null, -1.0, null, null)
+				}
+				
+				// ClientPrint(null,3,"pushed to tunnel/n");
+			}
 			
-			// ClientPrint(null,3,"pushed to tunnel/n");
-		}
-		else
-		{
-			NetProps.SetPropInt(tele_spot_1, "m_nSkin", 2)
-			NetProps.SetPropInt(tele_spot_2, "m_nSkin", 2)
-			NetProps.SetPropInt(tele_spot_3, "m_nSkin", 2)
-			NetProps.SetPropInt(tele_spot_4, "m_nSkin", 2)
-			NetProps.SetPropInt(tele_spot_5, "m_nSkin", 1)
-			NetProps.SetPropInt(tele_spot_6, "m_nSkin", 2)
-			NetProps.SetPropInt(tele_spot_7, "m_nSkin", 1)
-			
-			NetProps.SetPropFloat(tele_spot_1, "m_flPlaybackRate", 0.0)
-			NetProps.SetPropFloat(tele_spot_2, "m_flPlaybackRate", 0.0)
-			NetProps.SetPropFloat(tele_spot_3, "m_flPlaybackRate", 0.0)
-			NetProps.SetPropFloat(tele_spot_4, "m_flPlaybackRate", 0.0)
-			NetProps.SetPropFloat(tele_spot_5, "m_flPlaybackRate", 1.0)
-			NetProps.SetPropFloat(tele_spot_6, "m_flPlaybackRate", 0.0)
-			NetProps.SetPropFloat(tele_spot_7, "m_flPlaybackRate", 1.0)
-		
-			EntFireByHandle(skybeam_tele_spot_1, "Stop", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_2, "Stop", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_3, "Stop", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_4, "Stop", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_5, "Start", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_6, "Stop", "", -1.0, null, null)
-			EntFireByHandle(skybeam_tele_spot_7, "Start", "", -1.0, null, null)
-			
-			// ClientPrint(null,3,"pushed to incline/n");
+			else
+			{
+				if (ent.GetName().find("forward") != null)
+				{
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropInt(ent, "m_nSkin", 1)
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropFloat(ent, "m_flPlaybackRate", 1.0)
+					if (ent.GetClassname() == "info_particle_system") EntFireByHandle(ent, "Start", null, -1.0, null, null)
+				}
+				
+				else
+				{
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropInt(ent, "m_nSkin", 2)
+					if (ent.GetClassname() == "prop_dynamic") NetProps.SetPropFloat(ent, "m_flPlaybackRate", 0.0)
+					if (ent.GetClassname() == "info_particle_system") EntFireByHandle(ent, "Stop", null, -1.0, null, null)
+				}
+				
+				// ClientPrint(null,3,"pushed to incline/n");
+			}
 		}
 	}
 	
 	return
+}
+
+::TeleFrag <- function()
+{
+	for (local entity_to_telefrag; entity_to_telefrag = Entities.FindInSphere(entity_to_telefrag, self.GetOrigin(), 100); )
+	{
+		if (entity_to_telefrag.GetTeam() == 2)
+		{
+			entity_to_telefrag.TakeDamage(1000.0, 64, self)
+		}
+	}
 }
 
 ::CrateCrushPlayers <- function()
@@ -2030,6 +2130,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 	{
 		entity_to_crush.TakeDamage(1000.0, 64, self)
 	}
+	
 	return
 }
 
@@ -2334,29 +2435,22 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 
 if (debug)
 {
-	function OnGameEvent_player_say(params)
+	::TestThink <- function()
+	{
+		ClientPrint(null,3,"" + NetProps.GetPropInt(self, "m_nSimulationTick"))
+	}
+	
+	::CALLBACKS.OnGameEvent_player_say <- function(params)
 	{
 		local player = GetPlayerFromUserID(params.userid)
 
 		if (params.text == "1")
 		{
-			player.SetScriptOverlayMaterial("airraid_warning_overlay")
+			AddThinkToEnt(player, "TestThink")
 		}
 		if (params.text == "2")
 		{
-			player.SetScriptOverlayMaterial("supplydrop_tele_warning_overlay")
-		}
-		if (params.text == "3")
-		{
-			player.SetScriptOverlayMaterial("supplydrop_crate_warning_overlay")
-		}
-		if (params.text == "4")
-		{
-			player.SetScriptOverlayMaterial("zeppelin_fight_tip_overlay")
-		}
-		if (params.text == "5")
-		{
-			player.SetScriptOverlayMaterial(null)
+			NetProps.SetPropString(player, "m_iszScriptThinkFunction", "");
 		}
 	}
 	
@@ -2387,4 +2481,4 @@ if (debug)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// DEBUGGING ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-__CollectGameEventCallbacks(this)
+__CollectGameEventCallbacks(::CALLBACKS)

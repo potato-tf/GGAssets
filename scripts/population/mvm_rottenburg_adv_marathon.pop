@@ -2,7 +2,6 @@
 //REVISION 4 (more giants+medics since last revision was boring)
 
 //Credits to royal for the winger dash
-//Robot guide pop made by Stardustspy
 //Overclocks/Custom upgrades made by me
 //yes, i do have permission from Royal, or just everyone in general (hell even the model creator) shut the fuck up
 
@@ -14,6 +13,8 @@
 // potato event demo changelogs
 // day 1 of event beta: 
 // reduced knockback from major bombard, reduced reload speed and blast radius for colonel homings and set saxtron hp at 25000, nerfed mobber fists speed and nerfed overkill critical damage to 25%
+// day ??? of event beta:
+// buffed shortstop oc 
 
 #base robot_giant.pop
 #base robot_standard.pop
@@ -1291,7 +1292,7 @@ ItemName "TF_WEAPON_ROCKETLAUNCHER"
 "clip size upgrade atomic" 12
 "damage bonus" 0.7
 "fire rate bonus" 0.001
-"faster reload rate" 0.5
+"faster reload rate" 0.4
 "projectile spread angle penalty" 180
 "blast radius increased" 1.25
 "projectile trail particle" "halloween_rockettrail"

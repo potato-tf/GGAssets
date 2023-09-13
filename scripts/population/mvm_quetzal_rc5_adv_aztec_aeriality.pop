@@ -75,25 +75,12 @@ WaveSchedule
 	PrecacheGeneric "materials/models/props_frontline/helicopter_blu.vtf" [$SIGSEGV]
 	PrecacheGeneric "materials/models/props_frontline/helicopter_blu.vmt" [$SIGSEGV]
 	
-	CustomNavFile "mvm_quetzal_rc5_aztec_aeriality.nav" [$SIGSEGV]
-	CustomScriptSoundFile "scripts/gg_pea_soundscript.txt" [$SIGSEGV]
 	StartingCurrency 1000
 	RespawnWaveTime 3
 	CanBotsAttackWhileInSpawnRoom no
 	SendBotsToSpectatorImmediately 1 [$SIGSEGV]
 	NoRomevisionCosmetics 1 [$SIGSEGV]
 	// WaveStartCountdown 0 [$SIGSEGV]
-	ExtraTankPath [$SIGSEGV]
-	{
-		Name "quetzal_blimp_path"
-		Node "0 -5800 150"
-		Node "800 -5100 150"
-		Node "800 -2650 150"
-		Node "0 -2650 150"
-		Node "0 500 150"
-		Node "0 1450 450"
-		Node "0 1700 450"
-	}
 	Templates
 	{
 		T_TFBot_Soldier_Spammer
@@ -110,78 +97,6 @@ WaveSchedule
 				"faster reload rate" -0.8
 				"fire rate bonus" 0.5
 				"Projectile speed increased" 0.65
-			}
-		}
-		T_TeleBot
-		{
-			Item "Lo-Fi Longwave"
-			ItemAttributes
-			{
-				ItemName "Lo-Fi Longwave"
-				"set item tint RGB" "15132390"
-			}
-			FireInput [$SIGSEGV] 
-			{
-				Target !self
-				Action RunScriptCode
-				Param SupplyDropTeles_TeleportRobot()
-				Delay 0
-				Cooldown 3600
-				Repeats 0
-			}
-		}
-	}
-	PointTemplates [$SIGSEGV]
-	{
-		EnableTeleSpawns
-		{
-			NoFixup 1
-			info_target
-			{
-				"targetname" "enable_teles"
-			}
-		}
-		Crate1
-		{
-			NoFixup 1
-			info_target
-			{
-				"targetname" "enable_crate1_spawn"
-			}
-		}
-		Crate2
-		{
-			NoFixup 1
-			info_target
-			{
-				"targetname" "enable_crate2_spawn"
-			}
-		}
-		Crate3
-		{
-			NoFixup 1
-			info_target
-			{
-				"targetname" "enable_crate3_spawn"
-			}
-		}
-		Dummy
-		{
-			OnSpawnOutput
-			{
-				Target dummy
-				Action Kill
-			}
-			info_target
-			{
-				"targetname" "dummy"
-			}
-		}
-		ZepExplodeWait
-		{
-			info_target
-			{
-				"targetname" "zeppelin_explosion_wait"
 			}
 		}
 	}
@@ -364,7 +279,7 @@ WaveSchedule
 			{
 				Target gamerules
 				Action RunScriptCode
-				Param "EntFire(`tf_objective_resource`, `$SetProp$m_nMannVsMachineWaveClassFlags$3`, `2`)"
+				Param "NetProps.SetPropIntArray(objective_resource_entity, `m_nMannVsMachineWaveClassFlags`, 2, 3)"
 			}
 			TFBot
 			{
@@ -500,7 +415,7 @@ WaveSchedule
 				EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav" [$SIGSEGV]
 				PingSound "npc\combine_gunship\ping_search.wav" [$SIGSEGV]
 				Name "tankboss"
-				StartingPathTrackNode "quetzal_blimp_path_1"
+				StartingPathTrackNode "blimp_path_1"
 				OnBombDroppedOutput
 				{
 					Target boss_deploy_relay
@@ -522,11 +437,11 @@ WaveSchedule
 			TotalCurrency 50
 			Squad
 			{
-				NoFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Class Scout
 					Skill Normal
+					Tag disband_squad
 				}
 				TFBot
 				{
@@ -595,10 +510,10 @@ WaveSchedule
 			TotalCurrency 50
 			Squad
 			{
-				NoFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Template T_TFBot_Demo_Burst
+					Tag disband_squad
 				}
 				TFBot
 				{
@@ -772,7 +687,7 @@ WaveSchedule
 			{
 				Target gamerules
 				Action RunScriptCode
-				Param "EntFire(`tf_objective_resource`, `$SetProp$m_nMannVsMachineWaveClassFlags$5`, `2`)"
+				Param "NetProps.SetPropIntArray(objective_resource_entity, `m_nMannVsMachineWaveClassFlags`, 2, 5)"
 			}
 			TFBot
 			{
@@ -931,6 +846,11 @@ WaveSchedule
 					Template T_TFBot_Giant_Medic_Regen
 				}
 			}
+		}
+		WaveSpawn
+		{
+			Support 1
+			TFBot { ClassIcon plane_lite_blu }
 		}
 	}
 	Wave // WAVE 3
@@ -1129,7 +1049,7 @@ WaveSchedule
 				EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav" [$SIGSEGV]
 				PingSound "npc\combine_gunship\ping_search.wav" [$SIGSEGV]
 				Name "tankboss"
-				StartingPathTrackNode "quetzal_blimp_path_1"
+				StartingPathTrackNode "blimp_path_1"
 				OnBombDroppedOutput
 				{
 					Target boss_deploy_relay
@@ -1139,24 +1059,13 @@ WaveSchedule
         }
 		WaveSpawn
 		{
-			Name "W3D-SupplyDropTele"
-			Where spawnbot
-			SpawnCount 1
-			MaxActive 1
-			TotalCount 1
 			WaitForAllDead "W3C-1"
 			WaitBeforeStarting 6
-			HideIcon 1 [$SIGSEGV]
 			FirstSpawnOutput
 			{
 				Target gamerules
 				Action RunScriptCode
 				Param "SupplyDropTeles_Start()"
-			}
-			PointTemplate [$SIGSEGV]
-			{
-				SpawnAtEntity Where
-				Name "EnableTeleSpawns"
 			}
 		}
 		WaveSpawn
@@ -1166,19 +1075,20 @@ WaveSchedule
 			SpawnCount 3
 			MaxActive 12
 			TotalCount 30
-			WaitForAllDead "W3D-SupplyDropTele"
-			WaitBeforeStarting 0
+			WaitForAllDead "W3C-1"
+			WaitBeforeStarting 25
 			WaitBetweenSpawns 7
 			TotalCurrency 50
 			TFBot
 			{
 				Template T_TFBot_Soldier_RocketShotgun
-				AddTemplate "T_TeleBot" [$SIGSEGV]
+				Tag telebot
 				ItemAttributes
 				{
 					ItemName "The Black Box"
 					"max health additive bonus" 180
 				}
+				Item "Lo-Fi Longwave"
 			}
 		}
 		WaveSpawn
@@ -1188,30 +1098,30 @@ WaveSchedule
 			SpawnCount 1
 			MaxActive 3
 			TotalCount 3
-			WaitForAllDead "W3D-SupplyDropTele"
-			WaitBeforeStarting 12
+			WaitForAllDead "W3C-1"
+			WaitBeforeStarting 38
 			WaitBetweenSpawns 15
 			TotalCurrency 25
 			TFBot
 			{
 				Template T_TFBot_Giant_Pyro_Flare_Spammer
-				AddTemplate "T_TeleBot" [$SIGSEGV]
+				Tag telebot
+				Item "Lo-Fi Longwave"
 			}
 		}
 		WaveSpawn
 		{
-			Name "W3D-EndTeles-1"
+			Name "W3D-EndTeles"
 			WaitForAllSpawned "W3D-1"
 		}
 		WaveSpawn
 		{
-			Name "W3D-EndTeles-1"
+			Name "W3D-EndTeles"
 			WaitForAllSpawned "W3D-2"
 		}
 		WaveSpawn
 		{
-			Name "W3D-EndTeles-2"
-			WaitForAllDead "W3D-EndTeles-1"
+			WaitForAllDead "W3D-EndTeles"
 			DoneOutput
 			{
 				Target gamerules
@@ -1290,7 +1200,7 @@ WaveSchedule
 				EngineLoopSound "npc\combine_gunship\dropship_engine_distant_loop1.wav" [$SIGSEGV]
 				PingSound "npc\combine_gunship\ping_search.wav" [$SIGSEGV]
 				Name "tankboss"
-				StartingPathTrackNode "quetzal_blimp_path_1"
+				StartingPathTrackNode "blimp_path_1"
 				OnBombDroppedOutput
 				{
 					Target boss_deploy_relay
@@ -1333,21 +1243,8 @@ WaveSchedule
 		}
 		WaveSpawn
 		{
-			Name "W3F-SupplyDropCrate_Init"
-			Where spawnbot
-			SpawnCount 1
-			MaxActive 1
-			TotalCount 1
 			WaitForAllDead "W3E-1"
 			WaitBeforeStarting 3
-			WaitBetweenSpawns 0
-			TotalCurrency 0
-			HideIcon 1 [$SIGSEGV]
-			PointTemplate [$SIGSEGV]
-			{
-				SpawnAtEntity Where
-				Name "Dummy"
-			}
 			FirstSpawnOutput
 			{
 				Target gamerules
@@ -1358,59 +1255,18 @@ WaveSchedule
 		WaveSpawn
 		{
 			Where spawnbot
-			Name "W3F-SupplyDropCrate_Enabler-1"
-			WaitForAllDead "W3F-SupplyDropCrate_Init"
-			PointTemplate [$SIGSEGV]
-			{
-				SpawnAtEntity Where
-				Name "Crate1"
-			}
-		}
-		WaveSpawn
-		{
-			Where spawnbot
-			Name "W3F-SupplyDropCrate_Enabler-2"
-			WaitForAllDead "W3F-SupplyDropCrate_Init"
-			PointTemplate [$SIGSEGV]
-			{
-				SpawnAtEntity Where
-				Name "Crate2"
-			}
-		}
-		WaveSpawn
-		{
-			Where spawnbot
-			Name "W3F-SupplyDropCrate_Enabler-3"
-			WaitForAllDead "W3F-SupplyDropCrate_Init"
-			PointTemplate [$SIGSEGV]
-			{
-				SpawnAtEntity Where
-				Name "Crate3"
-			}
-		}
-		WaveSpawn
-		{
-			Where spawnbot
 			Name "W3F"
 			SpawnCount 1
 			MaxActive 1
 			TotalCount 1
-			WaitForAllDead "W3F-SupplyDropCrate_Enabler-1"
-			WaitBeforeStarting 0
+			WaitForAllDead "W3E-1"
+			WaitBeforeStarting 5
 			WaitBetweenSpawns 0
 			TotalCurrency 25
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_RocketPush
-				FireInput [$SIGSEGV] 
-				{
-					Target !self
-					Action RunScriptCode
-					Param SupplyDropCrates_TeleportRobotToCrate(1)
-					Delay 0
-					Cooldown 3600
-					Repeats 0
-				}
+				Tag telebot_crate1
 			}
 		}
 		WaveSpawn
@@ -1420,22 +1276,14 @@ WaveSchedule
 			SpawnCount 1
 			MaxActive 1
 			TotalCount 1
-			WaitForAllDead "W3F-SupplyDropCrate_Enabler-2"
-			WaitBeforeStarting 0
+			WaitForAllDead "W3E-1"
+			WaitBeforeStarting 5
 			WaitBetweenSpawns 0
 			TotalCurrency 25
 			TFBot
 			{
 				Template T_TFBot_Giant_Heavyweapons
-				FireInput [$SIGSEGV] 
-				{
-					Target !self
-					Action RunScriptCode
-					Param SupplyDropCrates_TeleportRobotToCrate(2)
-					Delay 0
-					Cooldown 3600
-					Repeats 0
-				}
+				Tag telebot_crate2
 			}
 		}
 		WaveSpawn
@@ -1445,23 +1293,25 @@ WaveSchedule
 			SpawnCount 1
 			MaxActive 1
 			TotalCount 1
-			WaitForAllDead "W3F-SupplyDropCrate_Enabler-3"
-			WaitBeforeStarting 0
+			WaitForAllDead "W3E-1"
+			WaitBeforeStarting 5
 			WaitBetweenSpawns 0
 			TotalCurrency 25
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_RocketPush
-				FireInput [$SIGSEGV] 
-				{
-					Target !self
-					Action RunScriptCode
-					Param SupplyDropCrates_TeleportRobotToCrate(3)
-					Delay 0
-					Cooldown 3600
-					Repeats 0
-				}
+				Tag telebot_crate3
 			}
+		}
+		WaveSpawn
+		{
+			Support 1
+			TFBot { ClassIcon teleporter }
+		}
+		WaveSpawn
+		{
+			Support 1
+			TFBot { ClassIcon helicopter_blue_nys_nomiplod }
 		}
 	}
 	Wave // WAVE 4
@@ -1573,24 +1423,13 @@ WaveSchedule
 		}
 		WaveSpawn
 		{
-			Name "W4B-SupplyDropTele"
-			Where spawnbot
-			SpawnCount 1
-			MaxActive 1
-			TotalCount 1
 			WaitForAllDead "W4A-1"
 			WaitBeforeStarting 3
-			HideIcon 1 [$SIGSEGV]
 			FirstSpawnOutput
 			{
 				Target gamerules
 				Action RunScriptCode
 				Param "SupplyDropTeles_Start()"
-			}
-			PointTemplate [$SIGSEGV]
-			{
-				SpawnAtEntity Where
-				Name "EnableTeleSpawns"
 			}
 		}
 		WaveSpawn
@@ -1600,15 +1439,16 @@ WaveSchedule
 			SpawnCount 1
 			MaxActive 16
 			TotalCount 16
-			WaitForAllDead "W4B-SupplyDropTele"
-			WaitBeforeStarting 0
+			WaitForAllDead "W4A-1"
+			WaitBeforeStarting 24
 			WaitBetweenSpawns 1.5
 			TotalCurrency 50
 			TFBot
 			{
 				Class Scout
 				Skill Normal
-				AddTemplate "T_TeleBot" [$SIGSEGV]
+				Tag telebot
+				Item "Lo-Fi Longwave"
 			}
 		}
 		WaveSpawn
@@ -1618,8 +1458,8 @@ WaveSchedule
 			SpawnCount 1
 			MaxActive 2
 			TotalCount 2
-			WaitForAllDead "W4B-SupplyDropTele"
-			WaitBeforeStarting 12
+			WaitForAllDead "W4A-1"
+			WaitBeforeStarting 36
 			WaitBetweenSpawns 12
 			TotalCurrency 50
 			TFBot
@@ -1634,30 +1474,30 @@ WaveSchedule
 			SpawnCount 1
 			MaxActive 4
 			TotalCount 4
-			WaitForAllDead "W4B-SupplyDropTele"
-			WaitBeforeStarting 18
+			WaitForAllDead "W4A-1"
+			WaitBeforeStarting 42
 			WaitBetweenSpawns 4
 			TotalCurrency 25
 			TFBot
 			{
 				Template T_TFBot_Soldier_Spammer
-				AddTemplate "T_TeleBot" [$SIGSEGV]
+				Tag telebot
+				Item "Lo-Fi Longwave"
 			}
 		}
 		WaveSpawn
 		{
-			Name "W4B-PauseTeles-1"
+			Name "W4B-PauseTeles"
 			WaitForAllSpawned "W4B-1"
 		}
 		WaveSpawn
 		{
-			Name "W4B-PauseTeles-1"
+			Name "W4B-PauseTeles"
 			WaitForAllSpawned "W4B-2"
 		}
 		WaveSpawn
 		{
-			Name "W4B-PauseTeles-2"
-			WaitForAllDead "W4B-PauseTeles-1"
+			WaitForAllDead "W4B-PauseTeles"
 			DoneOutput
 			{
 				Target gamerules
@@ -1757,7 +1597,6 @@ WaveSchedule
 		}
 		WaveSpawn
 		{
-			Name "W4D-AirStrike"
 			WaitForAllDead "W4C-2"
 			WaitBeforeStarting 3
 			FirstSpawnOutput
@@ -1769,7 +1608,6 @@ WaveSchedule
 		}
 		WaveSpawn
 		{
-			Name "W4D-ResumeTeleports"
 			WaitForAllDead "W4C-2"
 			DoneOutput
 			{
@@ -1812,7 +1650,8 @@ WaveSchedule
 				Class Pyro
 				Skill Easy
 				Attributes AlwaysFireWeapon
-				AddTemplate "T_TeleBot" [$SIGSEGV]
+				Tag telebot
+				Item "Lo-Fi Longwave"
 			}
 		}
 		WaveSpawn
@@ -1829,23 +1668,23 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Soldier_Spammer
-				AddTemplate "T_TeleBot" [$SIGSEGV]
+				Tag telebot
+				Item "Lo-Fi Longwave"
 			}
 		}
 		WaveSpawn
 		{
-			Name "W4D-EndTeles-1"
+			Name "W4D-EndTeles"
 			WaitForAllSpawned "W4D-1"
 		}
 		WaveSpawn
 		{
-			Name "W4D-EndTeles-1"
+			Name "W4D-EndTeles"
 			WaitForAllSpawned "W4D-2"
 		}
 		WaveSpawn
 		{
-			Name "W4D-EndTeles-2"
-			WaitForAllDead "W4D-EndTeles-1"
+			WaitForAllDead "W4D-EndTeles"
 			DoneOutput
 			{
 				Target gamerules
@@ -1910,6 +1749,16 @@ WaveSchedule
 				Template T_TFBot_Giant_Demoman
 				Attributes AlwaysCrit
 			}
+		}
+		WaveSpawn
+		{
+			Support 1
+			TFBot { ClassIcon teleporter }
+		}
+		WaveSpawn
+		{
+			Support 1
+			TFBot { ClassIcon plane_lite_blu }
 		}
 	}
 	Wave // WAVE 5
@@ -2088,7 +1937,7 @@ WaveSchedule
 			{
 				Target gamerules
 				Action RunScriptCode
-				Param "EntFire(`tf_objective_resource`, `$SetProp$m_nMannVsMachineWaveClassFlags$2`, `18`)"
+				Param "NetProps.SetPropIntArray(objective_resource_entity, `m_nMannVsMachineWaveClassFlags`, 18, 2)"
 			}
 			TFBot
 			{
@@ -2158,12 +2007,12 @@ WaveSchedule
 			TotalCurrency 50
 			Squad
 			{
-				NoFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Class Soldier
 					Skill Normal
 					Item "The Direct Hit"
+					Tag disband_squad
 				}
 				TFBot
 				{
@@ -2255,7 +2104,7 @@ WaveSchedule
 			{
 				Target gamerules
 				Action RunScriptCode
-				Param "EntFire(`tf_objective_resource`, `$SetProp$m_nMannVsMachineWaveClassFlags$6`, `2`)"
+				Param "NetProps.SetPropIntArray(objective_resource_entity, `m_nMannVsMachineWaveClassFlags`, 2, 6)"
 			}
 			TFBot
 			{
@@ -2444,17 +2293,15 @@ WaveSchedule
 		}
 		WaveSpawn
 		{
-			Name "W5-WaitUntilZepExplodes"
-			Where spawnbot
+			Where spawnbot_invasion
 			SpawnCount 1
 			MaxActive 1
 			TotalCount 1
 			TotalCurrency 0
-			HideIcon 1 [$SIGSEGV]
-			PointTemplate [$SIGSEGV]
+			TFBot
 			{
-				SpawnAtEntity Where
-				Name "ZepExplodeWait"
+				Class Scout
+				Tag end_zep_sequence
 			}
 		}
 	}
