@@ -4,6 +4,7 @@ WaveSchedule
 
 	CustomUpgradesFile "mvm_upgrades_cactus_medieval_a2.txt"
 //	PrecacheModel "models/buildables/amplifier_test/amplifier.mdl"
+	PrecacheModel "models/props_mvm/mvm_comically_small_player_shield.mdl"
     ExtendedUpgrades  
 	{
 /////Scout
