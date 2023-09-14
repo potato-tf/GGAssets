@@ -13,6 +13,7 @@ Stupid
 	RespawnWaveTime	3
 	CanBotsAttackWhileInSpawnRoom	no
 	TextPrintTime 0
+	UpgradeStationKeepWeapons	1
 	PrecacheModel "models/bots/demo/bot_sentry_buster_gibby.mdl"
 	PrecacheModel "models/props_frontline/tank_cart.mdl"
 	PrecacheSound "megabuster_faster.mp3"

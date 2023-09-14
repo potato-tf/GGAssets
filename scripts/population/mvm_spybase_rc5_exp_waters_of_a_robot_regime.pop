@@ -17,6 +17,7 @@ TremendoPinoHePlantado
 	WaveStartCountdown 3
 	TextPrintTime 0
 	SpawnTemplate timerbot_logic
+	UpgradeStationKeepWeapons	1
 	PrecacheModel "models\props_mvm\robot_spawnpoint_warning.mdl"
 	PrecacheModel "models/bots/demo/bot_sentry_buster_gibby.mdl"
 	PrecacheModel "models/bots/demo/bot_demo_gibby.mdl"
