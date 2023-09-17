@@ -3,7 +3,7 @@
 #base robot_gatebot.pop
 #base robot_damno.pop
 #base robot_damno_gatebot.pop
-#base overclock_cactus_general.pop
+#base judge_restricts.pop
 
 
 //Thanks to Yuugi for uncommon squad behaviors, love you bro
@@ -30,7 +30,6 @@ WaveSchedule
     //CustomNavFile "mvm_sequoia_rc4_gmedfix" //Thanks Whurr for this nav file, helped for sure (outdated but still thank you)
     //FixedRespawnWaveTime Yes
     RespawnWaveTime 2
-    UpgradeStationKeepWeapons	1	
 
     PrecacheModel "models/bots/boss_bot/boss_tank_color.mdl" // RGB Tank .mdl
 
@@ -445,7 +444,7 @@ WaveSchedule
                 Name "Heavy Mitten"
                 Class HeavyWeapons
                 WeaponRestrictions MeleeOnly
-                ClassIcon heavy_mittens_blu
+                ClassIcon heavy_mittens_blu2
                 Item "The Holiday Punch"
                 Attributes AlwaysCrit
                 Action Mobber
@@ -1226,7 +1225,7 @@ WaveSchedule
             WaitBetweenSpawns 10
             //WaitBeforeStarting 1000
             Where spawnbot_carrier
-            TotalCurrency 100
+            TotalCurrency 175
 
             TFBot
             {
@@ -1245,7 +1244,7 @@ WaveSchedule
             WaitForAllDead "a1"
             WaitForAllSpawned "a1a"
 
-            TotalCurrency 100
+            TotalCurrency 175
             
             TFBot
             {
@@ -1372,7 +1371,7 @@ WaveSchedule
             MaxActive 8
             Where spawnbot
             RandomSpawn 1
-            WaitForAllDead "a3"
+            WaitForAllSpawned "a3"
             TotalCurrency 100
             WaitBetweenSpawns 6.5
             WaitBeforeStarting 2
@@ -1535,7 +1534,7 @@ WaveSchedule
                         "fire rate bonus" 0.5
                         "faster reload rate" 2.7 // 170% slower reload
                         "scattergun knockback mult" 5
-                        "damage penalty" 0.90		// vanilla damage reduction
+                        "damage penalty" 0.5		// vanilla damage reduction
                         "weapon spread bonus" 0.4
                     }
                     CharacterAttributes
