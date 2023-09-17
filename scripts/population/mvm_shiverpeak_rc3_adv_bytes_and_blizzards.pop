@@ -1,35 +1,22 @@
 //Bytes and Blizzards, by Seelpit
 //Endurance Advanced for Shiverpeak, by Sntr
 
+//Additional thanks:
+//- Hellblade, for helping me through the toughest times and providing design advice and general support. <3
+//- rafradek, for providing backend fixes and the original sword-throwing Demoknight in Midnight Patrol.
+//- royal, for a variety of lua files and inspiration (now less present than in earlier iterations)
+//- Yuugi, for general creative bot inspiration, and to remind me to dress them up prettily
+//- Bazooks, for occassional design advice and the specialized boss vulnerabilities
+//- NotYourSagittarius, lite, and JugadorXEI for a variety of fancy icons and icon bases that I edited
+//- Sntr, for the original -7 uber duration popping Giant Medic in Spookee, and making this cool map. Heha, puns.
+//- colonel, for bot inspiration (see: medics that do everything)
+//- Unsaken, for their words of kindness and support.
+
 //Where names:
 //spawnbot, spawnbot_flank, spawnbot_mission_sniper
 
-//Testing notes 
-//W1
-//- 
-
-//W2 
-//- 
-
-//W3
-//- 
-
-//W4 
-//- 
-
-//Patch Notes
-//W2
-//- Giant Picnic Heavy now no longer has knife resistance while picnicking as a result of the changes to wave 4.
-
-//W4
-//- Fixed Air Strike, Beggar's Bazooka, and Dragon's Fury bonus damage not working.
-
-
 #base robot_standard.pop
 #base robot_giant.pop
-
-#base judge_restricts.pop //TESTING ONLY
-
 
 Embrace_Eachother_For_It_Is_Winter
 {
@@ -39,7 +26,6 @@ Embrace_Eachother_For_It_Is_Winter
 	CanBotsAttackWhileInSpawnRoom No
 	
 	PrecacheModel "models/bots/sniper_boss/bot_sniper_boss.mdl"
-	PrecacheModel "models/props_gameplay/cap_square_512.mdl"
 	
 	//Frostblade Demo
 	PrecacheParticle "utaunt_ice_bodyglow"
@@ -54,9 +40,8 @@ Embrace_Eachother_For_It_Is_Winter
 	CustomNavFile "mvm_shiverpeak_rc3_seelpit.nav"
 	
 	BotTeleportUberDuration 2
-	MaxRedPlayers 5 //TESTING ONLY
 	
-	TextPrintTime 0  
+	TextPrintTime 0 [$SIGSEGV]
 	ItemAttributes   //Make compatible with the boss' damage multiplier list. Has no effect on other bots.
 	{
 		ItemName "The Air Strike"
@@ -72,7 +57,7 @@ Embrace_Eachother_For_It_Is_Winter
 		ItemName "The Dragon's Fury"
 		"special damage type" 3
 	}
-	PointTemplates  
+	PointTemplates [$SIGSEGV]
 	{
 		//All waves
 		FakeIcon
@@ -83,23 +68,8 @@ Embrace_Eachother_For_It_Is_Winter
 			}
 		}
 		
-		AllWaveLogic //No timer on reset, boss titles, gravity filters
+		AllWaveLogic //Boss titles, gravity filters
 		{
-			// OnSpawnOutput
-			// {
-				// Target intel_ironman
-				// Action AddOutput
-				// Param "OnReturn !self:SetReturnTime:60000:0:-1"
-				// Delay 0.1
-			// }
-			// OnSpawnOutput
-			// {
-				// Target wave_start_relay_endurance
-				// Action AddOutput
-				// Param "OnTrigger intel_ironman:SetReturnTime:35:0:-1"
-				// Delay 0.1
-			// }
-			
 			//Title cards I stole from royal with permission.
 			//In that sense, it's no longer stealing!
 			game_text
@@ -228,9 +198,6 @@ Embrace_Eachother_For_It_Is_Winter
 				"OnUser4" "spawnbot_limited2,Disable,,0.1,-1"
 				
 				"$OnUser5" "spawnbot_limited2,Enable,,0.1,-1"
-				// "$OnUser6" ""
-				// "$OnUser7" ""
-				// "$OnUser8" ""
 			}
 		}
 		
@@ -286,17 +253,6 @@ Embrace_Eachother_For_It_Is_Winter
 			}
 		}
 		
-		PropClimbingCommander
-		{
-			prop_dynamic
-			{
-				"targetname" "prop_climbingcommander"
-				"origin" "0 0 0"
-				"model" "models/workshop/player/items/soldier/dec18_climbing_commander/dec18_climbing_commander.mdl" //"Climbing Commander"
-				"skin" 1
-			}
-		}
-		
 		//Wave 2
 		
 		Annotations_W2
@@ -314,17 +270,6 @@ Embrace_Eachother_For_It_Is_Winter
 				"display_text" "Airdrop incoming! Look up!"
 				"lifetime" "5"
 				"origin" "-7080 -300 250"
-			}
-		}
-		SkyTeleports
-		{
-			logic_case
-			{
-				"targetname" "skyspawner_logic"
-				"OnCase01" "!activator,$SetLocalOrigin,-3100 1000 800,0,-1"
-				"OnCase02" "!activator,$SetLocalOrigin,-3100 1400 800,0,-1"
-				"OnCase03" "!activator,$SetLocalOrigin,-3800 1400 800,0,-1"
-				"OnCase04" "!activator,$SetLocalOrigin,-3800 1000 800,0,-1"
 			}
 		}
 		
@@ -430,12 +375,6 @@ Embrace_Eachother_For_It_Is_Winter
 		}
 		SwordProp
 		{
-			// OnSpawnOutput
-			// {
-				// Target player
-				// Action "$DisplayTextChat"
-				// Param "SwordProp spawned!"
-			// }
 			prop_dynamic
 			{
 				"targetname" "sword_proj"
@@ -526,62 +465,6 @@ Embrace_Eachother_For_It_Is_Winter
 				"origin" "0 0 0"
 			}
 		}
-		EscortRockets //TODO: check if $fakeparent also moves an entity if the parent rotates!
-		{
-			OnSpawnOutput
-			{
-				Target "escort_prop_left"
-				Action $RotateTowards
-				Param !activator
-				Delay 0.01
-			}
-			OnSpawnOutput
-			{
-				Target "escort_mimic_left"
-				Action $RotateTowards
-				Param !activator
-				Delay 0.01
-			}
-			prop_dynamic
-			{
-				"targetname" "escort_prop_left"
-				"origin" "-50 0 0" //check if actually left?
-				"angles" "90 0 90"
-				"model" "models/weapons/c_models/c_rocketlauncher/c_rocketlauncher.mdl"
-				"skin" 1
-			}
-			// info_particle_system
-			// {
-				// "targetname" "escort_particle_left"
-				// "parentname" "escort_prop_left"
-				// "effect_name" "utaunt_astralbodies_teamcolor_blue"
-				// "start_active" 1
-				// "origin" "0 0 0" //check offset
-			// }
-			tf_point_weapon_mimic
-			{
-				"targetname" "escort_mimic_left"
-				"origin" "-50 0 0"
-				"angles" "90 0 90"
-				"$weaponname" "Giant Launcher"
-				"$preventshootparent" 1
-				
-				"$modules" "rotator"
-				// "$projectilespeed" "715"
-				"$lookat" "aim"
-				"$rotationspeedx" "350"
-				"$rotationspeedy" "350"
-			}
-		}
-		EscortRocketsFire
-		{
-			OnSpawnOutput
-			{
-				Target "escort_mimic*"
-				Action FireOnce
-				Delay 0.01
-			}
-		}
 		PortableTeleport
 		{
 			OnParentKilledOutput
@@ -662,105 +545,13 @@ Embrace_Eachother_For_It_Is_Winter
 				"$modules" "fakeparent"
 				"$positiononly" 1
 				"$fakeparentoffset" "0 0 140"
-				
-				// "WeaponType"   "3"
-				// "TeamNum"	   "2"
-				// "ModelScale"   "1"
-				// "SpeedMax"     "525"
-				// "SpeedMin"     "525"
-				// "Crits"        "0"
-				// "Damage"       "105"
-				// "SpreadAngle"  "25"
-				// "SplashRadius" "125"
 			}
 		}
 		
 		//Wave 4
-		
-		BombSections
-		{
-			//X: -7300 to -4600 | 2700 -> -1350	| -5950
-			//Y: 2500 to 250	| 2250 -> 1125	| 1375
-			//Z: 400 to -200	| 600 -> 300	| 100
-			func_flagdetectionzone
-			{
-				"targetname" "bombsection_front"
-				"origin" "-5950 1375 100"
-				"mins" "-1350 -1125 -300"
-				"maxs" "1350 1125 300"
-				"alarm" 0
-				"TeamNum" 3
-				
-				"OnStartTouchFlag" "popscript,$UpdateBombSection,front,0,-1"
-				"OnDroppedFlag" "popscript,$UpdateBombSection,front,0,-1"
-			}
-			//X: -4600 to -2000 | 2600 -> -1300	| -3300
-			//Y: 2500 to 50		| 2450 -> 1225	| 1275
-			//Z: 400 to -200	| 600 -> 300	| 100
-			func_flagdetectionzone
-			{
-				"targetname" "bombsection_mid"
-				"origin" "-3300 1275 100"
-				"mins" "-1300 -1225 -300"
-				"maxs" "1300 1225 300"
-				"alarm" 0
-				"TeamNum" 3
-				
-				"OnStartTouchFlag" "popscript,$UpdateBombSection,mid,0,-1"
-				"OnDroppedFlag" "popscript,$UpdateBombSection,mid,0,-1"
-			}
-			//X: -2000 to 100 | 2100 -> -1050	| -950
-			//Y: 2500 to -600	| 3100 -> 1550	| 950
-			//Z: 400 to -200	| 600 -> 300	| 100
-			func_flagdetectionzone
-			{
-				"targetname" "bombsection_hatch"
-				"origin" "-950 950 100"
-				"mins" "-1050 -1125 -300"
-				"maxs" "1050 1125 300"
-				"alarm" 0
-				"TeamNum" 3
-				
-				"OnStartTouchFlag" "popscript,$UpdateBombSection,hatch,0,-1"
-				"OnDroppedFlag" "popscript,$UpdateBombSection,hatch,0,-1"
-			}
-		}
-		//From royal: Dover's Undying Runner lua script, repurposed!
-		RecallBot
-		{
-			OnSpawnOutput
-			{
-				Target "popscript"
-				Action "$UndyingSpawn"
-				Param "$RechargeTime$" // recharge time	
-			}
-		}
-		KillPowerupsOnDeath
-		{
-			OnParentKilledOutput
-			{
-				Target item_powerup_rune*
-				Action Kill
-				Delay 0
-			}
-		}
+
 		BossPositions
 		{
-			info_target
-			{
-				"targetname" "boss_target_front"
-				"origin" "-4940 1340 -134"
-			}
-			info_target
-			{
-				"targetname" "boss_target_mid"
-				"origin" "-3290 1200 -50"
-			}
-			info_target
-			{
-				"targetname" "boss_target_hatch"
-				"origin" "0 0 0"
-			}
 			logic_relay
 			{
 				"targetname" "boss_voiceline_relay"
@@ -916,7 +707,6 @@ Embrace_Eachother_For_It_Is_Winter
 				"InitialValue" "0"
 				"OnTrue" "player,$PlaySoundToSelf,vo\mvm\norm\sniper_mvm_autodejectedtie03.mp3,0,-1"
 				"OnTrue" "player,$PlaySoundToSelf,=35|mvm/mvm_used_powerup.wav,1,-1"
-				"OnTrue" "popscript,$ToggleAntiDeflect,1,1,-1"
 				"OnTrue" "player,$DisplayTextChat,{blue}{activator} {FBEBCA}has used their {06FD00}ANTI-DEFLECTION {reset}Power Up Canteen!,1,-1"
 				"OnTrue" "!parent,$AddItemAttribute,projectile no deflect|1|0,1,-1"
 			}
@@ -995,11 +785,6 @@ Embrace_Eachother_For_It_Is_Winter
 			// "custom projectile model" "models/weapons/w_models/w_arrow.mdl"
 			"projectile spread angle penalty" 5
 		}
-		"Arrow Mastery Launcher"
-		{
-			OriginalItemName "The Huntsman"
-			"arrow mastery" 2
-		}
 		"Loretta Sticky Launcher"
 		{
 			OriginalItemName "TF_WEAPON_PIPEBOMBLAUNCHER"
@@ -1007,18 +792,6 @@ Embrace_Eachother_For_It_Is_Winter
 			"projectile range decreased" 0.07
 			"blast dmg to self increased" 0.01
 			"self dmg push force decreased" 0.01
-		}
-		"Lightning Launcher"
-		{
-			OriginalItemName "TF_WEAPON_ROCKETLAUNCHER"
-			"explosion particle" "wrenchmotron_teleport_beam"
-			"damage bonus" 2
-			"disable buildings on hit" 4
-			"projectile detonate time" 0.1
-			"projectile speed increased" 0.1
-			"custom projectile model" "models/empty.mdl"
-			"projectile trail particle" "~halopoint"
-			// "custom impact sound" "fdfdf"
 		}
 	}
 	
@@ -1146,7 +919,7 @@ Embrace_Eachother_For_It_Is_Winter
 			Health 650
 			Scale 1.4
 			ClassIcon scout_wrap_armored
-			FireWeapon  
+			FireWeapon [$SIGSEGV]
 			{
 				Delay 0
 				Type "Secondary"
@@ -1455,8 +1228,8 @@ Embrace_Eachother_For_It_Is_Winter
 			Health 350
 			Scale 1.2
 			ClassIcon pyro_flare_burst_nys
-			AimAt Head  
-			FireWeapon  
+			AimAt Head [$SIGSEGV]
+			FireWeapon [$SIGSEGV]
 			{
 				Delay 0
 				Type "Primary"
@@ -1746,9 +1519,9 @@ Embrace_Eachother_For_It_Is_Winter
 			Item "Brain Cane"
 			Item "Festive Crusader's Crossbow"
 			WeaponRestrictions PrimaryOnly
-			AimAt Body  
-			AimOffset "0 0 10"  
-			Action FetchFlag  
+			AimAt Body [$SIGSEGV]
+			AimOffset "0 0 10" [$SIGSEGV]
+			Action FetchFlag [$SIGSEGV]
 		}
 		//QFix Medic that always ubers.
 		//Heals at the same rate as a fully ramped-up QFix ubercharge!
@@ -1926,8 +1699,8 @@ Embrace_Eachother_For_It_Is_Winter
 			Item "Festive Ambassador"
 			// Item "The Cut-Throat Concierge"
 			Item "Towering Pile Of Presents"
-			Action Sniper  
-			AimAt Head  
+			Action Sniper [$SIGSEGV]
+			AimAt Head [$SIGSEGV]
 		}
 		
 		///////////////////////////////////////////////////////////////////
@@ -2046,33 +1819,6 @@ Embrace_Eachother_For_It_Is_Winter
 			}
 		}
 		
-		//A Giant Soldier that fires 3 rockets at once, with "escorts" around 'm!
-		T_TFBot_Giant_Soldier_Escort
-		{
-			Template T_TFBot_Giant_Soldier
-			Name "Giant Snow Spirit Soldier"
-			SpawnTemplate
-			{
-				Name EscortRockets
-				Bone bip_head
-			}
-			ItemAttributes
-			{
-				ItemName "TF_WEAPON_ROCKETLAUNCHER"
-				"faster reload rate" 0
-				// "attach particle effect static" 3040
-			}
-			UseHumanAnimations 1
-			CharacterAttributes
-			{
-				"attach particle effect" 3040
-			}
-			ShootTemplate
-			{
-				Name "EscortRocketsFire"
-				ItemName "TF_WEAPON_ROCKETLAUNCHER"
-			}
-		}
 		T_TFBot_Giant_Pyro_Backburner
 		{
 			Template T_TFBot_Giant_Pyro
@@ -2279,7 +2025,7 @@ Embrace_Eachother_For_It_Is_Winter
 			Item "Summer Hat"
 			ClassIcon heavy_robosandvich_nys
 			UseHumanAnimations 1
-			FireInput   
+			FireInput [$SIGSEGV] 
 			{
 				Target !activator
 				Action $SetProp$m_iAmmo$4
@@ -2289,7 +2035,7 @@ Embrace_Eachother_For_It_Is_Winter
 				Cooldown 15
 				Delay 0.5
 			}
-			FireInput   
+			FireInput [$SIGSEGV] 
 			{
 				Target !activator
 				Action $SetProp$m_iAmmo$4
@@ -2536,7 +2282,7 @@ Embrace_Eachother_For_It_Is_Winter
 				Delay 0.1
 				IfHealthBelow 1200
 			}
-			AddAttribute   
+			AddAttribute [$SIGSEGV] 
 			{
 				Item "Player"
 				Name "move speed penalty"
@@ -2553,6 +2299,7 @@ Embrace_Eachother_For_It_Is_Winter
 			Name "Giant Insulated Medic"
 			Health 4500
 			ClassIcon medic_shield_lite
+			MaxVisionRange 700
 			Item "Festive Crusader's Crossbow"
 			Item "Festive Medigun 2011"
 			Item "Battle Boonie"
@@ -2660,6 +2407,7 @@ Embrace_Eachother_For_It_Is_Winter
 				"projectile acceleration start time" 0.2
 				// "projectile gravity" 20
 				"projectile acceleration time" 0.5
+				"projectile trail particle" "eyeboss_projectile"
 			}
 			CharacterAttributes
 			{
@@ -2667,161 +2415,6 @@ Embrace_Eachother_For_It_Is_Winter
 				"damage force reduction" 0.4
 				"airblast vulnerability multiplier" 0.4
 				"rage giving scale" 0.25
-			}
-		}
-		
-		T_TFBot_Chief_Scout_Recall
-		{
-			Template T_TFBot_Giant_Scout
-			Name "Giant Snowblitz Scout"
-			Health 1600
-			Skill Expert //Redefined for clarity
-			Item "Blizzard Britches"
-			Item "Death Racer's Helmet"
-			Item "Weight Room Warmer"
-			Item "Memes vs Machines Creator 2019"
-			Item "Festive Bat 2011"
-			// ClassIcon powerup_vampire_lite
-			ClassIcon scout_giant_fast
-			Attributes DisableDodge
-			Attributes UseBossHealthBar
-			WeaponRestrictions MeleeOnly
-			ItemAttributes
-			{
-				ItemName "Festive Bat 2011"
-				"heal on kill" 800
-				"health regen" 20
-			}
-			AddCond { Index 94	}
-			AddCond { Index 129	} //Removes dmg resist
-			EventChangeAttributes
-			{
-				Default
-				{
-					CharacterAttributes
-					{
-						"cannot pick up intelligence" 0
-					}
-				}
-				Recharging 
-				{
-					Attributes IgnoreFlag
-					CharacterAttributes
-					{
-						"cannot pick up intelligence" 1
-					}
-				}
-			}
-			
-			SpawnTemplate KillPowerupsOnDeath
-			SpawnTemplate
-			{
-				Name "RecallBot"
-				Params
-				{
-					RechargeTime "20"
-				}
-			}
-		}
-		T_TFBot_Chief_Demo_Recall
-		{
-			Template T_TFBot_Giant_Demoman
-			Name "Giant Hailstorm Demo"
-			Item "Upgradeable TF_WEAPON_GRENADELAUNCHER"
-			Item "The Bomber Knight"
-			Item "EOTL_hiphunter_jacket" //Snow Sleeves
-			Item "Canteen Crasher Gold Uber Medal 2018"
-			Item "Festive Grenade Launcher"
-			// ClassIcon powerup_haste_lite
-			ClassIcon demo_burst_giant
-			Attributes UseBossHealthBar
-			Attributes HoldFireUntilFullReload
-			ItemAttributes
-			{
-				ItemName "Festive Grenade Launcher"
-				"fire rate bonus" 0.1
-				"faster reload rate" 0.6
-				"projectile speed increased" 1.1
-				"clip size upgrade atomic" 6 //14 total grenades
-				"projectile spread angle penalty" 2
-			}
-			AddCond { Index 91 }
-			EventChangeAttributes
-			{
-				Default
-				{
-					CharacterAttributes
-					{
-						"cannot pick up intelligence" 0
-					}
-				}
-				Recharging 
-				{
-					Attributes IgnoreFlag
-					CharacterAttributes
-					{
-						"cannot pick up intelligence" 1
-					}
-				}
-			}
-			
-			SpawnTemplate KillPowerupsOnDeath
-			SpawnTemplate
-			{
-				Name "RecallBot"
-				Params
-				{
-					"RechargeTime" "25"
-				}
-			}
-		}
-		//Royal Ravager, a King-boosted Giant Heavy!
-		T_TFBot_Chief_Heavy_Recall
-		{
-			Template T_TFBot_Giant_Heavyweapons
-			Name "Royal Ravager"
-			Item "Class Crown"
-			Item "Commissar's Coat"
-			Item "Madness vs Machines Chaotic Crystal 2019"
-			Item "Festive Minigun 2011"
-			// ClassIcon powerup_king_lite
-			Attributes UseBossHealthBar
-			ItemAttributes
-			{
-				ItemName "Festive Minigun 2011"
-				"damage bonus" 1.3
-				//Fire rate bonus is about 16.7%, which gets rounded up to once every 6 ticks still
-				//1.3 * 1.16 = ~1.5 total damage bonus, roughly.
-				//But the higher fire rate may make it a bit stronger vs resists, aye?
-			}
-			AddCond { Index 109 }
-			EventChangeAttributes
-			{
-				Default
-				{
-					CharacterAttributes
-					{
-						"cannot pick up intelligence" 0
-					}
-				}
-				Recharging 
-				{
-					Attributes IgnoreFlag
-					CharacterAttributes
-					{
-						"cannot pick up intelligence" 1
-					}
-				}
-			}
-			
-			SpawnTemplate KillPowerupsOnDeath
-			SpawnTemplate
-			{
-				Name "RecallBot"
-				Params
-				{
-					RechargeTime "30"
-				}
 			}
 		}
 		
@@ -3019,7 +2612,7 @@ Embrace_Eachother_For_It_Is_Winter
 		}
 	}
 	
-	ExtraSpawnPoint  
+	ExtraSpawnPoint [$SIGSEGV]
 	{
 		Name "spawnbot_limited"
 		StartDisabled 0
@@ -3028,39 +2621,12 @@ Embrace_Eachother_For_It_Is_Winter
 		Z 250
 		TeamNum 3
 	}
-	ExtraSpawnPoint  
+	ExtraSpawnPoint [$SIGSEGV]
 	{
 		Name "spawnbot_limited2"
 		StartDisabled 0
 		X -7464
 		Y -288
-		Z 250
-		TeamNum 3
-	}
-	ExtraSpawnPoint  
-	{
-		Name "spawnbot_undying_front"
-		StartDisabled 0
-		X -7464
-		Y -460
-		Z 250
-		TeamNum 3
-	}
-	ExtraSpawnPoint  
-	{
-		Name "spawnbot_undying_mid"
-		StartDisabled 1
-		X -7464
-		Y -460
-		Z 250
-		TeamNum 3
-	}
-	ExtraSpawnPoint  
-	{
-		Name "spawnbot_undying_hatch"
-		StartDisabled 1
-		X -7464
-		Y -460
 		Z 250
 		TeamNum 3
 	}
@@ -3198,12 +2764,6 @@ Embrace_Eachother_For_It_Is_Winter
 	
 	Wave
 	{
-		Explanation  
-		{
-			Line "{F8EB00}If you can see this, you are playing the {FF0000}TESTING{F8EB00} version of the mission!"
-			Line "{F8EB00}Vote for the other Bytes and Blizzards to play the {FF0000}JUDGING{F8EB00} version of the mission!"
-		}
-		
 		InitWaveOutput
 		{
 			Target wave_start_relay
@@ -4500,7 +4060,7 @@ Embrace_Eachother_For_It_Is_Winter
 			TotalCount 1
 			MaxActive 1
 			SpawnCount 1
-			TotalCurrency 230
+			TotalCurrency 150
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -4686,6 +4246,7 @@ Embrace_Eachother_For_It_Is_Winter
 		WaveSpawn
 		{
 			Name "wave3d_2"
+			WaitForAllDead "wave3c" //To ensure support money is dropped.
 			WaitForAllSpawned "wave3d_1"
 			WaitBeforeStarting 20
 			Where spawnbot_flank
@@ -4813,9 +4374,10 @@ Embrace_Eachother_For_It_Is_Winter
 			Where spawnbot_flank
 			Where spawnbot_mission_sniper
 			WaitBetweenSpawns 25
-			TotalCount 10
+			TotalCount 40
 			MaxActive 1
 			SpawnCount 1
+			TotalCurrency 40 //$1 each
 			Support 1
 			TFBot
 			{
@@ -4829,9 +4391,10 @@ Embrace_Eachother_For_It_Is_Winter
 			Where spawnbot_flank
 			Where spawnbot_mission_sniper
 			WaitBetweenSpawns 7
-			TotalCount 10
+			TotalCount 40
 			MaxActive 10
 			SpawnCount 4
+			TotalCurrency 40 //$1 each
 			Support 1
 			Squad
 			{
