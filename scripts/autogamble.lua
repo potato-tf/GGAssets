@@ -176,6 +176,35 @@ function SpawnBlackjackBot()
 end
 
 function OnWaveReset(wave)
+
+	if wave == 1 then
+		for i = 1, ents.FindByClass('tf_objective_resource').m_nMannVsMachineMaxWaveCount do
+			WaveState[i] = {
+					RouletteWinnings = 0,
+					RouletteWinningsTotal = 0,
+					PachinkoWinnings = 0,
+					PachinkoWinningsTotal = 0,
+					SlotsWinnings = 0,
+					SlotsWinningsTotal = 0,
+					BlackjackWinnings = 0,
+					BlackjackWinningsTotal = 0,
+					RouletteLevel = 0,
+					PachinkoLevel = 0,
+					SlotsLevel = 0,
+					BlackjackLevel = 0,
+					TicketsOwned = 0,
+					CashedOut = 0,
+					EMPBought = false,
+					NukeBought = false,
+					EMPUsed = false,
+					NukeUsed = false,
+					HeliBought = false,
+					ShieldBought = false,
+					ShieldCounter = 0,
+					SpecialPrize = false,
+					SpentChips = 0}
+			end
+	end
 	RouletteWinnings = WaveState[wave].RouletteWinnings
 	RouletteWinningsTotal = WaveState[wave].RouletteWinningsTotal
 	PachinkoWinnings = WaveState[wave].PachinkoWinnings
@@ -385,6 +414,8 @@ function OnWaveInit(wave)
 	end)
 
 	timer.Simple(0.1, function()
+		ents.FindByName('tickets_text_counter_buffer'):AcceptInput('SetValue', TicketsOwned)
+
 		ents.FindByName('snd_tickets_lose'):AcceptInput('AddOutput', 'message null')
 		ents.FindByName('snd_tickets_earn'):AcceptInput('AddOutput', 'message null')
 
