@@ -5914,6 +5914,21 @@ TremendoPinoHePlantado
 						"no_duck" 1
 						"voice pitch scale" 0
 					}
+					CustomWeaponModel [$SIGSEGV]
+					{
+						Slot 0
+						Model "models/empty.mdl"
+					}
+					CustomWeaponModel [$SIGSEGV]
+					{
+						Slot 1
+						Model "models/empty.mdl"
+					}
+					CustomWeaponModel [$SIGSEGV]
+					{
+						Slot 2
+						Model "models/empty.mdl"
+					}
 					FireInput
 					{
 						Target player //targets the bot this is on
