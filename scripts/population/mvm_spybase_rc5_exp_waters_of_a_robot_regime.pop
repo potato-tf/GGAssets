@@ -17,7 +17,6 @@ TremendoPinoHePlantado
 	WaveStartCountdown 3
 	TextPrintTime 0
 	SpawnTemplate timerbot_logic
-	UpgradeStationKeepWeapons	1
 	PrecacheModel "models\props_mvm\robot_spawnpoint_warning.mdl"
 	PrecacheModel "models/bots/demo/bot_sentry_buster_gibby.mdl"
 	PrecacheModel "models/bots/demo/bot_demo_gibby.mdl"
@@ -198,6 +197,41 @@ TremendoPinoHePlantado
 	}
 	PointTemplates
 	{
+		temp_fix_remove_when_charlie_fixes_performance_issues_on_rc6_2
+		{
+			OnSpawnOutput
+			{
+				Target trigger_hurt*
+				Action kill
+			}
+			OnSpawnOutput
+			{
+				target temp_fix_remove_when_charlie_fixes_performance_issues_on_rc6
+				Action ForceSpawn
+				Delay 1
+			}
+		}
+		temp_fix_remove_when_charlie_fixes_performance_issues_on_rc6
+		{
+			OnSpawnOutput
+			{
+				Target water_hurt
+				Action Enable
+				Delay 0.1
+			}
+			trigger_hurt
+			{
+				"targetname" "water_hurt"
+				"origin" "0 0 0"
+				"angles" "0 0 0"
+				"mins" "-20000 -20000 -500"
+				"maxs" "20000 20000 1"
+				"damagetype" "16384"
+				"damage" "9999999999"
+				"StartDisabled" "1"
+				"spawnflags" "64"
+			}
+		}
 		EMP_annotation
 		{
 			OnSpawnOutput
@@ -2416,6 +2450,8 @@ TremendoPinoHePlantado
 			}
 		}
 	}
+	SpawnTemplate temp_fix_remove_when_charlie_fixes_performance_issues_on_rc6_2
+	SpawnTemplate temp_fix_remove_when_charlie_fixes_performance_issues_on_rc6
 	SpawnTemplate grand_finale_sounds
 	SpawnTemplate resetbossstatues
 	SpawnTemplate w6intro
@@ -2897,7 +2933,7 @@ TremendoPinoHePlantado
 					TFBot
 					{
 						Name "Overclocked Buff Soldier"
-						ClassIcon soldier_banner_trio_lite
+						ClassIcon banner_buff_conch
 						Template	T_TFBot_Soldier_Extended_Buff_Banner
 						AimAt Head
 						ItemAttributes
@@ -2915,27 +2951,8 @@ TremendoPinoHePlantado
 					TFBot
 					{
 						Name "Overclocked Conch Soldier"
-						ClassIcon soldier_banner_trio_lite
+						ClassIcon banner_buff_conch
 						Template	T_TFBot_Soldier_Extended_Concheror
-						AimAt Head
-						ItemAttributes
-						{
-							ItemName	tf_weapon_rocketlauncher
-							"projectile gravity" 700
-							"damage bonus"	1.25
-							"Blast radius increased"	1.35
-							"clip size bonus"	0.25
-							"faster reload rate"	1.75
-							"fire rate bonus"	1.4
-						}
-					}
-				
-					TFBot
-					{
-						Name	"Overclocked Backup Soldier"
-						ClassIcon soldier_banner_trio_lite
-						Template	T_TFBot_Soldier_Extended_Battalion
-						Tag giant
 						AimAt Head
 						ItemAttributes
 						{
