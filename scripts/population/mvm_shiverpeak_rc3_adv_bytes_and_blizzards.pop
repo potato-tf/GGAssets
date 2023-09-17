@@ -4451,8 +4451,6 @@ Embrace_Eachother_For_It_Is_Winter
 			// Line "{F8EB00}The bomb will {FF0000}>> NOT RESET <<{F8EB00} during this wave!"
 		// }
 		
-		SpawnTemplate BombSections
-		
 		WaveSpawn
 		{
 			Name "wave4boss"
