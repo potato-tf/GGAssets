@@ -2680,7 +2680,7 @@
 			{
 				Line "{CCFFCC}///////////BEGIN TRANSMISSION////////////////"
 				Line ""
-				Line "{CCCCCC}Neutral Black Box Soldiers and Armored Snipers will be active this wave"
+				Line "{CCCCCC}Neutral Soldiers and Armored Snipers will be active this wave"
 				Line "{CCCCCC}All {CCCCFF}blue robots{CCCCCC} will also have an initial 4 second speed boost this wave"
 				Line "{CCCCCC}Yes,{FF0000} ALL OF THEM"
 				Line ""
