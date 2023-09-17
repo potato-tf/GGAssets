@@ -77,7 +77,7 @@ Increment 0.75
 Cap 1.4
 SecondaryAttributes
 {
-"damage bonus HIDDEN" 1.1
+"damage bonus HIDDEN" 1.25
 "crit mod disabled" -1
 "hidden primary max ammo bonus" 0.75
 "override projectile type"  2
@@ -133,10 +133,10 @@ SecondaryAttributes //Secondary attributes applied when upgrade is applied, for 
 {
 "Reload time decreased" 0.25
 "effect cond override" 16
-"special item description" "Hype is replaced with mini-crits -25% reload speed -50% accurate" 
-"spread penalty" 0.5
+"special item description" "Hype is replaced with mini-crits -25% reload speed -25% accurate" 
+"spread penalty" 0.25
 }
-Description "Hype is replaced with mini-crits -25% reload speed -50% accurate" 
+Description "Hype is replaced with mini-crits -25% reload speed -25% accurate" 
 Tier 1
 AllowPlayerClass Scout
 AllowedWeapons

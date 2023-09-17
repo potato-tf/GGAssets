@@ -47,13 +47,14 @@ PrecacheModel "models/props_2fort/milkjug001.mdl"
 PrecacheModel "models/props_forest/milk_crate.mdl"
 PrecacheModel "models/weapons/c_models/c_madmilk/c_madmilk.mdl"
 
+PrecacheModel "models/props_halloween/fist_projectile_purple.mdl"
 PrecacheModel "models/player/hwm/heavy.mdl"
 
 PrecacheModel "models/lilchewchew/lilchewchew_wheels_v3.mdl"
 PrecacheModel "models/lilchewchew/lilchewchew_v3.mdl"
 PrecacheModel "models/player/items/demo/top_hat.mdl"
 
-CustomUpgradesFile "mvm_upgrades_femboi_a1.txt"
+CustomUpgradesFile "mvm_upgrades_femboi.txt"
 
 PrecacheSound "bm_wgh.mp3" 
 PrecacheSound "hl2ep2_sector_sweep_remix.mp3" 
@@ -650,13 +651,6 @@ Delay 0
 
 OnSpawnOutput
 {
-Target uh_oh_engine_on_fire
-Action Start
-Delay 0
-}
-
-OnSpawnOutput
-{
 Target chewchewfix
 Action Trigger
 Delay 0
@@ -720,14 +714,6 @@ info_particle_system
 "effect_name" "kart_braking_sparks"
 }
 
-info_particle_system
-{
-"targetname" "uh_oh_engine_on_fire"
-"origin" "-112 4 76"
-"angles" "0 180 0"
-"effect_name" "lava_fireball_02"
-}
-
 trigger_hurt 
 {
 "targetname" "chew_hurt"
@@ -761,7 +747,6 @@ logic_relay
 "targetname" "wellshit"
 "OnTrigger" "boss_smokestack,Stop,,0,-1"
 "OnTrigger" "sparks,Stop,,0,-1"
-"OnTrigger" "uh_oh_engine_on_fire,Stop,,0,-1"
 }
 
 }
@@ -1796,7 +1781,7 @@ Templates
 
 T_TFBot_Dave
 {
-Health 4000
+Health 5000
 WeaponRestrictions PrimaryOnly
 Attributes MiniBoss
 MaxVisionRange 1200
@@ -1820,18 +1805,18 @@ ItemName "TF_WEAPON_ROCKETLAUNCHER"
 "custom impact sound" "Weapon_BoxingGloves.HitWorld"
 "explosion particle" mvm_soldier_shockwave
 "custom kill icon" steel_fists
-"mod projectile heat seek power" 90
-"mod projectile heat aim error" 90
+"mod projectile heat seek power" 120
+"mod projectile heat aim error" 120
 "mod projectile heat aim time" 2.5
 "mult projectile scale" 1.25
 "custom projectile size" 1.25
 "projectile trail particle" "eyeboss_projectile"
-"damage bonus" 1.1
+"damage bonus" 1.2
 "fire rate bonus" 0.8
 "dmg pierces resists absorbs" 1
 "clip size upgrade atomic" -2
 "increased jump height" -4
-"Projectile speed increased" 0.4
+"Projectile speed increased" 0.5
 "blast radius increased" 0.25
 }
 
@@ -1966,8 +1951,38 @@ ItemAttributes
 ItemName "The Righteous Bison" // makes him the funny laser firing variant 
 "faster reload rate" -0.8
 "fire rate bonus" 0.01
-"particle color rainbow" 50
 }
+
+// bison
+
+AddAttribute   
+{
+Item "The Righteous Bison"
+Name "particle color rgb"
+Value 14090353
+Delay 0.2
+Cooldown 1
+Repeats 0
+}
+AddAttribute   
+{
+Item "The Righteous Bison"
+Name "particle color rgb"
+Value 10243735
+Delay 0.6
+Cooldown 1
+Repeats 0
+}
+AddAttribute   
+{
+Item "The Righteous Bison"
+Name "particle color rgb"
+Value 13738
+Delay 0.8
+Cooldown 1
+Repeats 0
+}
+
 
 CharacterAttributes
 {

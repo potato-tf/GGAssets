@@ -1,7 +1,6 @@
 // Steep Drill Down Disaster made by Sergeant Table: https://steamcommunity.com/profiles/76561199046757586
 // Special Thanks to: Yuugi, B855, Seelpit and Tragic Fool Bus for the help with PointTemplates regarding the missile gimmick
 // To anyone looking at the popfile and looks at the name of the PTs, I don't hate them at all or do I not like them, they are all friends and I love them, so don't worry :)
-
 #base overclock_cactus_general.pop
 #base robot_giant.pop
 #base robot_standard.pop
@@ -12,7 +11,6 @@ IShatMyself
 	CanBotsAttackWhileInSpawnRoom	no
 	TextPrintTime 0
 	BotTeleportUberDuration 2
-	UpgradeStationKeepWeapons	1	
 	
 	PrecacheSound "bossbar1.wav"
 	PrecacheSound "bossstatus1.wav"
@@ -23,7 +21,7 @@ IShatMyself
     PrecacheSound "beat-warn.wav"
 	
 	
-	ExtraSpawnPoint  
+	ExtraSpawnPoint [$SIGSEGV]
 	{
 		Name "spawnbot_disposable_a"
 		TeamNum 3
@@ -32,7 +30,7 @@ IShatMyself
 		Z	"129.031311"
 		StartDisabled 1
 	}
-	ExtraSpawnPoint  
+	ExtraSpawnPoint [$SIGSEGV]
 	{
 		Name "spawnbot_disposable_b"
 		TeamNum 3
@@ -41,7 +39,7 @@ IShatMyself
 		Z	"-254.96868"
 		StartDisabled 1
 	}
-	ExtraSpawnPoint  
+	ExtraSpawnPoint [$SIGSEGV]
 	{
 		Name "spawnbot_boss"
 		TeamNum 3
@@ -50,7 +48,7 @@ IShatMyself
 		Z	"129.031311"
 		StartDisabled 1
 	}
-	ExtraSpawnPoint  
+	ExtraSpawnPoint [$SIGSEGV]
 	{
 		Name "spawnbot_boss2"
 		TeamNum 3
@@ -59,7 +57,7 @@ IShatMyself
 		Z	"129.031311"
 		StartDisabled 1
 	}
-	ExtraSpawnPoint  
+	ExtraSpawnPoint [$SIGSEGV]
 	{
 		Name "spawnbot_giant_support"
 		TeamNum 3
@@ -68,7 +66,7 @@ IShatMyself
 		Z	"129.031311"
 		StartDisabled 1
 	}
-	ExtraSpawnPoint  
+	ExtraSpawnPoint [$SIGSEGV]
 	{
 		Name "spawnbot_boss3"
 		TeamNum 3
@@ -1280,6 +1278,24 @@ IShatMyself
 					"OnTrigger"	"oops_you_died_1,Disable,,7.85,-1"
 				}
 			}
+			No_pyro_stuck
+			{
+				trigger_teleport
+				{
+					"targetname" "filter_teleport"
+					"origin" "-196.208984 -1539.151855 1086.874146"
+					"mins" "-300 -300 -150"
+					"maxs" "300 300 9900"
+					"spawnflags" "1" 
+					"filtername" "filter_blueteam"
+					"target" "out_position"
+				}
+				info_target 
+				{
+					"targetname" "out_position"
+					"origin" "-689.625244 -1540.906616 754.235901" 
+				}
+			}
 			CarrierLaunchBoss
 			{
 				NoFixup 1
@@ -1878,6 +1894,7 @@ IShatMyself
 			}
 		}
 	}
+	SpawnTemplate No_pyro_stuck
 	SpawnTemplate MissionName
 	SpawnTemplate Live
     SpawnTemplate CarrierLaunch
@@ -1931,7 +1948,7 @@ IShatMyself
 				TFBot
 				{
 					
-					Name	"Quick-Ãœber Medic"
+					Name	"Quick-Über Medic"
 					Template	T_TFBot_Medic_QuickUber
 					Item	"honest halo"
 				}
@@ -2440,7 +2457,7 @@ IShatMyself
 				TFBot
 				{
 					
-					Name	"Quick-Ãœber Medic"
+					Name	"Quick-Über Medic"
 					Template	T_TFBot_Medic_QuickUber
 					Item	"honest halo"
 				}
@@ -2516,6 +2533,7 @@ IShatMyself
 				Skill	Easy
 				Attributes AlwaysFireWeapon
 				ClassIcon	pyro_backburner_nys
+				Item	"the backburner"
                 AddCond
 					{
 						Index 66
@@ -2727,28 +2745,28 @@ IShatMyself
 				TFBot
 				{
 					
-					Name	"Quick-Ãœber Medic"
+					Name	"Quick-Über Medic"
 					Template	T_TFBot_Medic_QuickUber
 					Item	"honest halo"
 				}
 				TFBot
 				{
 					
-					Name	"Quick-Ãœber Medic"
+					Name	"Quick-Über Medic"
 					Template	T_TFBot_Medic_QuickUber
 					Item	"honest halo"
 				}
 				TFBot
 				{
 					
-					Name	"Quick-Ãœber Medic"
+					Name	"Quick-Über Medic"
 					Template	T_TFBot_Medic_QuickUber
 					Item	"honest halo"
 				}
 				TFBot
 				{
 					
-					Name	"Quick-Ãœber Medic"
+					Name	"Quick-Über Medic"
 					Template	T_TFBot_Medic_QuickUber
 					Item	"honest halo"
 				}
@@ -2947,6 +2965,7 @@ IShatMyself
 				ClassIcon soldier_homing_nys_giant
 				Item	"the cow mangler 5000"
 				Item	"dr's dapper topper"
+				addcond {Index 36}
 				ItemAttributes
 				{
 					ItemName "the cow mangler 5000"
@@ -3082,6 +3101,7 @@ IShatMyself
 					"override footstep sound set"	3
 					"Projectile speed increased"	0.9
 					"rage giving scale" 0.1
+					"overheal penalty" 0.0001
 					"healing received bonus" 320
 					"deploy time decreased" 0.01
 				}
@@ -3402,7 +3422,7 @@ IShatMyself
 						Cooldown 999
 						Delay 4
 					}
-                    FireInput  
+                    FireInput [$SIGSEGV]
 					{
 						Target "spawnbot_giant_support"
 						Action "Enable"
@@ -3862,6 +3882,7 @@ IShatMyself
 					Name	"Giant Homing Burst Soldier"
 					ClassIcon soldier_burstfire_homing_giant
 					Template	T_TFBot_Giant_Soldier_Spammer_Reload
+					addcond {Index 36}
 					
 					ItemAttributes
 					{
@@ -4132,15 +4153,16 @@ IShatMyself
 		{
 			TotalCurrency	0
 			TotalCount	10
-			MaxActive	1
+			MaxActive	3
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	70
-			WaitBetweenSpawns	20
+			WaitBetweenSpawns	17
 			Support	1
 			TFBot
 			{
 				Template T_TFBot_Small_Buster
+				ClassIcon sentry_buster_caber_sgtc
 				Name "Player Buster"
 				Item "lo-fi longwave"
 				Scale 0.9
@@ -4254,7 +4276,7 @@ IShatMyself
 						"airblast vulnerability multiplier"	0.7
 						"override footstep sound set"	5
 					}
-                    FireInput  
+                    FireInput [$SIGSEGV]
 					{
 						Target "phase2music"
 						Action PlaySound
@@ -4262,7 +4284,7 @@ IShatMyself
 						Repeats 1
 						IfHealthBelow 40000
 					}
-                    FireInput  
+                    FireInput [$SIGSEGV]
 					{
 						Target "phase1music"
 						Action StopSound
@@ -4270,7 +4292,7 @@ IShatMyself
 						Repeats 1
 						IfHealthBelow 40000
 					}
-					FireInput  
+					FireInput [$SIGSEGV]
 					{
 						Target "spawnbot_giant_support"
 						Action "Enable"

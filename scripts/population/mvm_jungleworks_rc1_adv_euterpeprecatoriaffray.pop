@@ -1,6 +1,6 @@
 #base robot_giant.pop
 #base robot_standard.pop
-#base judge_restricts.pop
+//#base judge_restricts.pop
 
 WaveSchedule
 {
@@ -438,7 +438,7 @@ WaveSchedule
 		Objective	spy
 		TFBot
 		{
-			Template T_liquidation
+			Template	T_TFBot_Spy
 			CharacterAttributes
 			{
 			"mod weapon blocks healing" 1
@@ -470,7 +470,7 @@ WaveSchedule
 			MaxActive 1
 			SpawnCount 1
 			WaitBeforeStarting 5
-			WaitBetweenSpawnsAfterDeath 5
+			WaitBetweenSpawnsAfterDeath 4
 			TotalCurrency 0
 Support 1			
 			 TFBot
@@ -610,7 +610,7 @@ Action SuicideBomber
 			Waitforalldead 12
 			TotalCurrency	150
 			TotalCount	12
-			MaxActive	8
+			MaxActive	10
 			SpawnCount	2
 			Where	spawnbot_cave
 			WaitBeforeStarting	0
@@ -934,7 +934,7 @@ Action SuicideBomber
 		}
 		WaveSpawn
 		{
-		    Name 31
+		    //Name 31
 			Where	spawnbot
 			TotalCount 1
 			MaxActive 1
@@ -956,7 +956,7 @@ Action SuicideBomber
 		}
 		WaveSpawn
 		{
-		   // Name 31
+		    Name 31
 			Where	spawnbot
 			TotalCount	25
 			MaxActive	10
@@ -991,13 +991,14 @@ Action SuicideBomber
 		WaveSpawn
 		{
 		   // Name 32
+		    Name 32-a
 		    Waitforalldead 31
 			Where	spawnbot
 			TotalCount	32
 			MaxActive	16
 			SpawnCount	8
-            WaitBeforeStarting 3
-            WaitBetweenSpawns 10			
+            WaitBeforeStarting 5
+            WaitBetweenSpawns 11			
 			TotalCurrency	50
 			TFBot
 			{
@@ -1036,6 +1037,24 @@ Action SuicideBomber
 		}
 		WaveSpawn
 		{
+		   // Name 32
+		    Waitforallspawned 32-a
+			Where	spawnbot_cave
+			TotalCount	25
+			MaxActive	15
+			SpawnCount	5
+            WaitBeforeStarting 5
+            WaitBetweenSpawns 10		
+			TotalCurrency	50
+			Support 1
+			TFBot
+			{
+			Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
+			Skill Expert
+			}
+		}
+		WaveSpawn
+		{
 		    Name 32
 		    //Waitforalldead 31
 			Where	spawnbot
@@ -1043,7 +1062,7 @@ Action SuicideBomber
 			MaxActive	4
 			SpawnCount	2
             WaitBeforeStarting 5
-            WaitBetweenSpawns 19			
+            WaitBetweenSpawns 17.5			
 			TotalCurrency	100
 			Squad
 			{
@@ -1068,7 +1087,7 @@ Action SuicideBomber
 			MaxActive	4
 			SpawnCount	4			
 			// 20
-			WaitBeforeStarting 10
+			WaitBeforeStarting 0
 			TotalCurrency	420
 			Squad
 			{
@@ -2126,7 +2145,7 @@ Tag antistuck
                 {
                     IgnoreDisguisedSpies 1
                     IgnoreStealthedSpies 1
-                    TurnPower 45
+                    TurnPower 50
                     MaxAimError 300
                     RocketSpeed 0.5
                 }
@@ -2140,11 +2159,11 @@ item "The Shellmet"
                 {
                     ItemName "TF_Weapon_Rocketlauncher"
 					"clip size bonus" 4.5
+					"damage bonus" 1.25
 					"faster reload rate" 0.3
 					"projectile spread angle penalty" 5
-					"Blast radius decreased" 0.7
 					"fire rate bonus" 0.1
-					"projectile spread penalty" 5
+					//"projectile spread penalty" 5
                 }
                     
                 CharacterAttributes
@@ -2195,7 +2214,7 @@ item "The Shellmet"
 			MaxActive 8
 			SpawnCount 4
 			WaitBeforeStarting 0
-			WaitBetweenSpawns 5
+			WaitBetweenSpawns 1
 			TotalCurrency 50
 			Where spawnbot
 			TFBot
@@ -2235,10 +2254,9 @@ item "The Shellmet"
 			Skill Expert
 			Attributes AlwaysFireWeapon
 			}
-			 TFBot
+			TFBot
 				{
-				Template T_TFBot_Medic_Bigheal
-				name "Bigheal Medic"
+				Template T_TFBot_Medic_Quickuber
 				}
 			}
 		}
@@ -2304,8 +2322,7 @@ item "The Shellmet"
 			}
 			 TFBot
 				{
-				Template T_TFBot_Medic_Bigheal
-				name "Bigheal Medic"
+				Template T_TFBot_Medic_Quickuber
 				}
 			}
 		}
@@ -2313,18 +2330,18 @@ item "The Shellmet"
         {
             WaitforallSpawned 71-a
 			TotalCount 8
-			MaxActive 3
+			MaxActive 4
 			SpawnCount 1
 			TotalCurrency 160
 			WaitBeforeStarting 10
-			WaitBetweenSpawns 10.5
+			WaitBetweenSpawns 9
 			Where spawnbot
            TFBot
 		   
           {
 		  Template T_TFBot_Giant_Scout_Baseball_Armored
 		  Name "Batshit Insane"
-		  health 2500
+		  health 3000
 		  item "Full Metal Helmet"
 		  Tag antistuck
 		  Classicon 	scout_stun_armored_hyper
@@ -2401,7 +2418,7 @@ item "The Shellmet"
            TFBot
               {
 			  Template T_TFbot_Giant_Heavyweapons
-			 // Attributes AlwaysCrit
+			 Attributes AlwaysCrit
 			  Tag antistuck
 			  Skill Expert
 			  item "the lawnmaker"
@@ -2432,35 +2449,8 @@ Name "Exponential Enforcer"
 			  }
 			  	TFBot
 			{
-			 Name "Giant Kritzkrieg Medic"
-			Class Medic
-			ClassIcon medic_kritz
-			Tag antistuck
-			Skill Expert
-			Health 4500
-			Attributes MiniBoss
-			Attributes SpawnWithFullCharge
-			Attributes IgnoreEnemies
-			Item "The Kritzkrieg"
-			
-			ItemAttributes
-			{
-				ItemName "The Kritzkrieg"
-				"ubercharge rate bonus" 999
-				"uber duration bonus" 999
-				"heal rate bonus" 200
-			}
-			
-			CharacterAttributes
-			{
-				"move speed bonus"	0.5
-				"damage force reduction" 0.01
-				"airblast vulnerability multiplier" 0.01
-				"airblast vertical vulnerability multiplier" 0.01
-				"bot medic uber health threshold" 4501
-			}
-			}
-				
+			Template T_TFbot_Giant_Medic
+				}
 				}
 		 }
 	}
@@ -2609,7 +2599,7 @@ Name "Exponential Enforcer"
 						"damage force reduction"	0.2
 						"airblast vertical vulnerability multiplier" 0.2
 						"rage giving scale" 0.1
-						"dmg bonus vs buildings" 1.25 //fuck off
+						"dmg bonus vs buildings" 1.5 //fuck off
 						"bot medic uber deploy delay duration" 420
 						
 						// Knockback, stun and damage nearby enemies when landing. The value specifies the minimum fall velocity before applying knockback
@@ -2644,11 +2634,11 @@ Name "Exponential Enforcer"
 			Where	spawnbot_cave
 			WaitforallDead 81
 			TotalCount	25
-			MaxActive	6
+			MaxActive	8
 			SpawnCount	2
 			Support 1
             WaitBeforeStarting 2	
-WaitBetweenSpawns 6
+WaitBetweenSpawns 4
 			TotalCurrency	50
 			RandomChoice
 			{
@@ -2658,12 +2648,13 @@ WaitBetweenSpawns 6
 				Skill Expert
 				Attributes AlwaysCrit
 				Action  Mobber
+				item "The Gunboats" 
 				Attributes HoldFireUntilFullReload
 				classicon soldier_airstrike
 				RocketJump 2 //Enables rocket jumping. Type RocketJump 2 to only rocket jump when the clip is full
 				CharacterAttributes
 				{
-				"move speed bonus" 0.75
+				//"move speed bonus" 0.75
 				"faster reload rate" 0.7
 				}
 			}
@@ -2712,7 +2703,7 @@ WaitBetweenSpawns 10
 			FireWeapon    //Periodically fires weapon
                 {
                     Delay 0
-                    Cooldown 10
+                    Cooldown 5
 					IfSeeTarget 1 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
                     Duration 0.1 //How long should the button be pressed (Default: 0.1)
 					Type "Jump" // Type of fire input, Possible values:
@@ -2723,7 +2714,7 @@ WaitBetweenSpawns 10
 				//"dmg penalty vs players" 0.75
 				//"charge recharge rate increased" 2
 				"increased jump height" 1.5
-				"move speed bonus" 0.75
+				//"move speed bonus" 0.75
 			}
 			}
 		}

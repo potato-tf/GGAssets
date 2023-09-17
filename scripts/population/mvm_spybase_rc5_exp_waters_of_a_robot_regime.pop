@@ -197,6 +197,41 @@ TremendoPinoHePlantado
 	}
 	PointTemplates
 	{
+		temp_fix_remove_when_charlie_fixes_performance_issues_on_rc6_2
+		{
+			OnSpawnOutput
+			{
+				Target trigger_hurt*
+				Action kill
+			}
+			OnSpawnOutput
+			{
+				target temp_fix_remove_when_charlie_fixes_performance_issues_on_rc6
+				Action ForceSpawn
+				Delay 1
+			}
+		}
+		temp_fix_remove_when_charlie_fixes_performance_issues_on_rc6
+		{
+			OnSpawnOutput
+			{
+				Target water_hurt
+				Action Enable
+				Delay 0.1
+			}
+			trigger_hurt
+			{
+				"targetname" "water_hurt"
+				"origin" "0 0 0"
+				"angles" "0 0 0"
+				"mins" "-20000 -20000 -500"
+				"maxs" "20000 20000 1"
+				"damagetype" "16384"
+				"damage" "9999999999"
+				"StartDisabled" "1"
+				"spawnflags" "64"
+			}
+		}
 		EMP_annotation
 		{
 			OnSpawnOutput
@@ -2415,6 +2450,8 @@ TremendoPinoHePlantado
 			}
 		}
 	}
+	SpawnTemplate temp_fix_remove_when_charlie_fixes_performance_issues_on_rc6_2
+	SpawnTemplate temp_fix_remove_when_charlie_fixes_performance_issues_on_rc6
 	SpawnTemplate grand_finale_sounds
 	SpawnTemplate resetbossstatues
 	SpawnTemplate w6intro
@@ -2896,7 +2933,7 @@ TremendoPinoHePlantado
 					TFBot
 					{
 						Name "Overclocked Buff Soldier"
-						ClassIcon soldier_banner_trio_lite
+						ClassIcon banner_buff_conch
 						Template	T_TFBot_Soldier_Extended_Buff_Banner
 						AimAt Head
 						ItemAttributes
@@ -2914,27 +2951,8 @@ TremendoPinoHePlantado
 					TFBot
 					{
 						Name "Overclocked Conch Soldier"
-						ClassIcon soldier_banner_trio_lite
+						ClassIcon banner_buff_conch
 						Template	T_TFBot_Soldier_Extended_Concheror
-						AimAt Head
-						ItemAttributes
-						{
-							ItemName	tf_weapon_rocketlauncher
-							"projectile gravity" 700
-							"damage bonus"	1.25
-							"Blast radius increased"	1.35
-							"clip size bonus"	0.25
-							"faster reload rate"	1.75
-							"fire rate bonus"	1.4
-						}
-					}
-				
-					TFBot
-					{
-						Name	"Overclocked Backup Soldier"
-						ClassIcon soldier_banner_trio_lite
-						Template	T_TFBot_Soldier_Extended_Battalion
-						Tag giant
 						AimAt Head
 						ItemAttributes
 						{
@@ -4278,7 +4296,7 @@ TremendoPinoHePlantado
 					WeaponRestrictions	PrimaryOnly
 					Attributes	"HoldFireUntilFullReload"
 					Attributes	"MiniBoss"
-					Item	"the pomson 6000"
+					Item	"the widowmaker"
 					Item	"tf_weapon_pistol"
 					Item	"tf_weapon_wrench"
 					Tag giant
@@ -5895,6 +5913,21 @@ TremendoPinoHePlantado
 						"no_jump" 1
 						"no_duck" 1
 						"voice pitch scale" 0
+					}
+					CustomWeaponModel [$SIGSEGV]
+					{
+						Slot 0
+						Model "models/empty.mdl"
+					}
+					CustomWeaponModel [$SIGSEGV]
+					{
+						Slot 1
+						Model "models/empty.mdl"
+					}
+					CustomWeaponModel [$SIGSEGV]
+					{
+						Slot 2
+						Model "models/empty.mdl"
 					}
 					FireInput
 					{

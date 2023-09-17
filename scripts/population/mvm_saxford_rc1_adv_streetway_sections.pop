@@ -62,6 +62,7 @@ Stupid
 		Z	"-108.968681"
 		StartDisabled 1
 	}
+	SpawnTemplate MissionName
 	PointTemplates
 	{
 		MissionName
@@ -1257,7 +1258,7 @@ Stupid
 			WaitBetweenSpawns	3.5
 			Squad
 			{
-				NoWaitForFormation 1  
+				NoWaitForFormation 1 [$SIGSEGV]
 				TFBot
 				{
 					Skill	Normal
@@ -1292,9 +1293,9 @@ Stupid
 				StartingPathTrackNode "path_tank_b1"
 				//Scale 0.55
 				//Model "models/empty.mdl"
-				//DisableChildModels 1  
-				//DisableSmokestack 1  
-				//SpawnTemplate   "Driverandbomb" 				
+				//DisableChildModels 1 [$SIGSEGV]
+				//DisableSmokestack 1 [$SIGSEGV]
+				//SpawnTemplate [$SIGSEGV] "Driverandbomb" 				
 				OnBombDroppedOutput                       
 				{
 					Target boss_deploy_relay 	
@@ -1588,9 +1589,9 @@ Stupid
 				StartingPathTrackNode "path_tank_a1"		
 				//Scale 0.55
 				//Model "models/empty.mdl"
-				//DisableChildModels 1  
-				//DisableSmokestack 1  
-				//SpawnTemplate   "Driverandbomb" 
+				//DisableChildModels 1 [$SIGSEGV]
+				//DisableSmokestack 1 [$SIGSEGV]
+				//SpawnTemplate [$SIGSEGV] "Driverandbomb" 
 				OnBombDroppedOutput                       
 				{
 					Target boss_deploy_relay 	
@@ -3335,7 +3336,7 @@ Stupid
 			WaitForAllSpawned boss
 			TotalCurrency	0
 			TotalCount	99
-			MaxActive	8
+			MaxActive	4
 			SpawnCount	4
 			Where	spawnbot_boss1
 			WaitBeforeStarting	31
@@ -3476,7 +3477,7 @@ Stupid
 		{
 			TotalCurrency 500
 			TotalCount	200
-			MaxActive	9
+			MaxActive	6
 			SpawnCount	3
 			Where	spawnbot
 			Where	spawnbot_side

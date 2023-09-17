@@ -2365,7 +2365,7 @@
 
 			WaitBeforeStarting 10
 			WaitBetweenSpawns  40
-			WaitForAllSpawned     "wave02b"
+			WaitForAllSpawned     "wave02a"
 			Squad{
 						TFBot //mobo giant gauntlet with a few changes
 			{
@@ -2413,7 +2413,7 @@
 			MaxActive  3
 			SpawnCount 2
 			TotalCurrency 75
-			WaitForAllSpawned     "wave02b"
+			WaitForAllSpawned     "wave02a"
 			WaitBeforeStarting 0
 			WaitBetweenSpawns  1
 			
@@ -2680,8 +2680,8 @@
 			{
 				Line "{CCFFCC}///////////BEGIN TRANSMISSION////////////////"
 				Line ""
-				Line "{CCCCCC}Neutral Black Box Soldiers and Armored Snipers will be active this wave"
-				Line" {CCCCCC}All {CCCCFF}blue robots{CCCCCC} will also have an initial 4 second speed boost this wave"
+				Line "{CCCCCC}Neutral Soldiers and Armored Snipers will be active this wave"
+				Line "{CCCCCC}All {CCCCFF}blue robots{CCCCCC} will also have an initial 4 second speed boost this wave"
 				Line "{CCCCCC}Yes,{FF0000} ALL OF THEM"
 				Line ""
 				Line "{CCFFCC}////////////END TRANSMISSION/////////////////"
@@ -2702,7 +2702,7 @@
 			Squad{
 			TFBot 
 			{ 
-			Template T_TFBot_Giant_Pyro_Dragon
+			Template T_TFBot_Giant_Pyro_Dragon //This indentation with the addconds sucks absolutely, no I am not willing to fix it, it is ultimately my problem, and I am willing to deal with it.
 			AddCond
 			{
 			Index 32

@@ -74,13 +74,18 @@
 // TODO:
 // quickiebomb change
 
-// UPDATE 05
+// UPDATE 06
 // Changes:
-// Volcanic Edge (Sun-on-a-Stick)
-// - Damage bonus vs burning 400% -> 200%
-// Scattered Justice (Iron Bomber)
-// - Added -70% self blast damage
-// - Added -85% self push force
+// Updated description for Ghost (Bonk! Atomic Punch) to clarify attacking removes invisibility
+// Blaze (Flame Thrower)
+// - Removed bleed on hit for 3 seconds
+// Spoiled Strike (Scottish Handshake)
+// - Removed +100% damage vs Giant Robots
+// Updated description for Adaptation (Buffalo Steak Sandvich) to clarify primary weapons can be used during the effect
+// Fired Up (Widowmaker)
+// - Sentry Gun damage bonus 15% -> 10%
+// Cautious Shot (Wrangler)
+// - Added -15% reserve metal
 
 // Bronze Mods: 1-2 upsides with no downsides, or a stat replacement
 // Silver Mods: 1-2 upsides with 1-2 downsides
@@ -265,7 +270,7 @@ WaveSchedule
 		{
 			Name "Platinum Mod: Ghost"
 			//Description "Bonk! Atomic Punch now grants invisibility instead of damage negation. Invisibility is lost when attacking."
-			Description "*Drink effect is replaced with invisibility"
+			Description "*Drink effect is replaced with invisibility; Attacking removes invisibility"
 			AllowPlayerClass Scout
 			AllowedWeapons
 			{
@@ -1013,7 +1018,7 @@ WaveSchedule
 		{
 			Name "Gold Mod: Blaze"
 			//Description "Flame Thrower and Backburner pierce resistances and damage is increased by 10%."
-			Description "+Pierces resistances; +15% damage; +Bleed on hit for 3 seconds; -Airblast doesn't push enemies"
+			Description "+Pierces resistances; +15% damage; -Airblast doesn't push enemies"
 			AllowPlayerClass Pyro
 			AllowedWeapons
 			{
@@ -1877,11 +1882,11 @@ WaveSchedule
 				"honorbound"				1
 			}
 		}
-		ModScottishHandshake	// scottish handshake mod - +crit while blast jumping, +damages all connected via heal beams, +damage, +damage vs giants, -attack speed, -no random crits
+		ModScottishHandshake	// scottish handshake mod - +crit while blast jumping, +damages all connected via heal beams, +damage, -attack speed, -no random crits
 		{
 			Name "Platinum Mod: Spoiled Strike"
 			//Description "Scottish Handshake now functions like the Market Gardener, damage to Giant Robots is increased by 50% and damages enemies connected via healing beams."
-			Description "+Crits while blast jumping; +Damages targets via heal beams; +25% damage; +100% damage vs Giant Robots; -35% attack speed; -No random crits"
+			Description "+Crits while blast jumping; +Damages targets via heal beams; +25% damage; -35% attack speed; -No random crits"
 			AllowPlayerClass Demoman
 			AllowedWeapons
 			{
@@ -1895,7 +1900,6 @@ WaveSchedule
 			{
 				"damage all connected"	1
 				"damage bonus"			0.25
-				"mult dmg vs giants"	1
 				"fire rate penalty"		0.35
 				"crit mod disabled"		0
 			}
@@ -2098,7 +2102,7 @@ WaveSchedule
 		{
 			Name "Platinum Mod: Adaptation"
 			//Description "Buffalo Steak Sandvich now grants the Battalion's Backup's effect instead of mini-crits, damage vulnerability is removed, and allows primary weapons to be used."
-			Description "*Lunchbox effect replaced with Battalion's Backup effect"
+			Description "*Lunchbox effect replaced with Battalion's Backup effect; Miniguns can be used while the effect is active"
 			AllowPlayerClass HeavyWeapons
 			AllowedWeapons
 			{
@@ -2363,7 +2367,7 @@ WaveSchedule
 		{
 			Name "Silver Mod: Fired Up"
 			//Description "Widowmaker increases Sentry damage by 15%."
-			Description "+15% Sentry Gun damage; -Additional 10 metal cost per shot"
+			Description "+10% Sentry Gun damage; -Additional 10 metal cost per shot"
 			AllowPlayerClass Engineer
 			AllowedWeapons
 			{
@@ -2371,8 +2375,8 @@ WaveSchedule
 			}
 			Cost 0
 			Attribute "engy sentry damage bonus"
-			Increment 0.15
-			Cap 1.15
+			Increment 0.1
+			Cap 1.1
 			SecondaryAttributes
 			{
 				"mod ammo per shot"	10
@@ -2459,11 +2463,11 @@ WaveSchedule
 				"engy building health bonus"	0.5
 			}
 		}
-		ModWrangler	// wrangler mod - +self blast damage, +no falling damage
+		ModWrangler	// wrangler mod - +self blast damage, +no falling damage, -metal max
 		{
 			Name "Bronze Mod: Cautious Shot"
 			//Description "Wrangler grants 80% resistance to your Sentry Gun's rockets while active."
-			Description "+90% self blast damage resistance while active; +Fall damage immunity while active"
+			Description "+90% self blast damage resistance while active; +Fall damage immunity while active; -15% reserve metal"
 			AllowPlayerClass Engineer
 			AllowedWeapons
 			{
@@ -2479,6 +2483,7 @@ WaveSchedule
 			{
 				"rocket jump damage reduction"	-0.9
 				"cancel falling damage"			1
+				"maxammo metal reduced"			-0.15
 			}
 		}
 		ModShortCircuit	// short circuit mod - +building health, +damage, -projectile speed, -fire rate

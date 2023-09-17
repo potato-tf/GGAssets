@@ -340,6 +340,27 @@ WaveSchedule
 				ItemName "The Atomizer"
 			}
 		}
+		BlackBoxB
+		{
+			Name "Unstable Mod: Tank Buster"
+			Attribute "mult dmg vs tanks" 
+			Cap 1.2
+			Increment 0.2
+			Cost 0
+			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+			{
+				"Projectile speed decreased" -0.25
+				"heal on hit for rapidfire" 15
+				"health on radius damage" -20
+			}
+			Description "+Heal on hit stacks with multiple enemies +20% damage Vs. Tanks -25% slower projectile speed" 
+			Tier 1
+			AllowedWeapons
+			{
+				ItemName "The Black Box"
+				ItemName "Festive Black Box"
+			}
+		}
 		DirectHitB
 		{
 			Name "Unstable Mod: Extra Gunpowder"
@@ -385,11 +406,15 @@ WaveSchedule
 		ShotgunMark
 		{
 			Name "Stable Mod: Debuff Rounds"
-			Attribute "mark for death" 
+			Attribute "+Mark for death +15% damage bonus" 
 			Cap 1
 			Increment 1
 			Cost 0
 			Description "Weapon will now mark 1 target for death" 
+			SecondaryAttributes 
+			{
+				"damage bonus" 0.15
+			}
 			Tier 1
 			AllowedWeapons
 			{
@@ -553,7 +578,7 @@ WaveSchedule
 //////MELEE SOLDIER
 		ShovelA
 		{
-			Name "Unstable Mod: Support Beacon"
+			Name "Stable Mod: Support Beacon"
 			Attribute "mod soldier buff range"
 			Cap 2.0
 			Increment 1.0
@@ -564,9 +589,8 @@ WaveSchedule
 				//"increase buff duration" 1.5
 				"provide on active" 1
 				"damage bonus" 0.25
-				"hit self on miss" 1
 			}
-			Description "(i)When active: +100% buff range +25% damage bonus -On miss: hit yourself, idiot." 
+			Description "(i)When active: +100% buff range +25% damage bonus" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -777,7 +801,7 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"provide on active" 1
-				"damage force reduction" 0.9
+				"damage force reduction" -0.9
 				"dmg penalty vs players" -0.25
 			}
 			Description "(i)When active all +35% bullet resistance +90% resistant to knockback -25% Damage vs. Players"
@@ -1000,6 +1024,27 @@ WaveSchedule
 			{
 				ItemName "Ali Baba's Wee Booties"
 				ItemName "The Bootlegger"
+			}
+		}
+		Quickie
+		{
+			Name "Unstable Mod: Prototype Sensor"
+			Attribute "stickybomb fizzle time"
+			Cap 1.5
+			Increment 1.5
+			Cost 0
+			SecondaryAttributes
+			{
+				"clip size penalty" 0.25
+				"stickybomb_charge_damage_increase" 0.15
+				"mult projectile scale" 1.0
+				"stickybomb charge rate" -0.15
+			}
+			Description "+25% clip size +15% damage at full charge +15% Charge speed -Stickies fizzle after 1.5 seconds" 
+			Tier 1
+			AllowedWeapons
+			{
+				ItemName "The Quickiebomb Launcher"
 			}
 		}
 		Shield_Generic
@@ -1624,9 +1669,9 @@ WaveSchedule
 				"damage bonus while disguised" 1.8
 				"Reload time increased" 0.5
 				"auto fires full clip" 1
-				"mark for death" 1
+				"closerange backattack minicrits" 1
 			}
-			Description "(i)Uses Beggars Style Reload +Mark victim for death +50% damage bonus +180% damage while disguised -50% slower reload" 
+			Description "(i)Uses Beggars Style Reload +Mini crits from behind +50% damage bonus +180% damage while disguised -50% slower reload" 
 			Tier 1
             AllowedWeapons
 			{
@@ -1751,6 +1796,27 @@ WaveSchedule
 			}
 		}
 ///mediguns
+		QuickFix
+		{
+			Name "Unstable Mod: Prototype Module"
+			Attribute "overheal decay penalty"
+			Cap 0.25
+			Increment -0.75
+			Cost 0
+			Description "+50% faster heal rate +Building Beam -50% overheal -20% slower uber build on overhealed patients" 
+			Tier 1
+			SecondaryAttributes 
+			{
+				"overheal penalty" -0.5
+				"heal rate bonus" 0.5
+				"ubercharge overheal rate penalty" -0.2
+				"medic machinery beam" 4
+			}
+            AllowedWeapons
+			{
+				ItemName "The Quick-Fix"
+			}
+		}
 ////Bonesaws
 		BonesawCleanA
 		{
@@ -1778,12 +1844,16 @@ WaveSchedule
 			Cap 10
 			Increment 10
 			Cost 0
-			Description "+Mark For Death" 
+			Description "+Mark For Death +20% damage bonus" 
 			Tier 1
             Allowplayerclass Medic
             AllowedWeapons
 			{
 				Slot "Melee"
+			}
+			SecondaryAttributes 
+			{
+				"damage bonus" 0.2
 			}
             DisallowedWeapons
             {
