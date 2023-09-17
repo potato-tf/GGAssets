@@ -194,15 +194,8 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Demoman
-					Attributes AlwaysCrit
 					ClassIcon demo_spammer
 					Tag default
-					ItemAttributes
-					{
-						ItemName "TF_WEAPON_GRENADELAUNCHER"
-						"faster reload rate" -0.4
-						"fire rate bonus" 0.5
-					}
 				}
 				
 				TFBot
@@ -245,11 +238,11 @@ WaveSchedule
 			WaitForAllSpawned "w1a"
 			TotalCurrency 250 // 800
 			TotalCount 75
-			MaxActive 12
-			SpawnCount 4
+			MaxActive 8
+			SpawnCount 2
 			Where spawnbot_adjacent
-			WaitBetweenSpawns 3
-			WaitBeforeStarting 15
+			WaitBetweenSpawns 2.5
+			WaitBeforeStarting 20
 			TFBot
 			{
 				Class Soldier
@@ -290,10 +283,6 @@ WaveSchedule
 			Template T_TFBot_Engineer_Sentry_Teleporter
 			TeleportWhere spawnbot
 			TeleportWhere spawnbot_all
-			CharacterAttributes
-			{
-				"engy building health bonus" 1.2
-			}
 		}
 	}
 	
@@ -388,10 +377,6 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout_Fast
-				CharacterAttributes
-				{
-					"move speed bonus" 1.2
-				}
 				Tag default
 			}
 		}
@@ -402,24 +387,16 @@ WaveSchedule
 			//Support Limited
 			TotalCurrency 50 // 450
 			TotalCount 40
-			MaxActive 14
+			MaxActive 10
 			SpawnCount 2
 			Where spawnbot_all
 			RandomSpawn 1
-			WaitBetweenSpawns 2
+			WaitBetweenSpawns 3
 			WaitBeforeStarting 0
 			TFBot
 			{
 				Template T_TFBot_Soldier_RocketShotgun
 				Tag default
-				ItemAttributes
-				{
-					ItemName "The Black Box"
-					"damage bonus" 0.5
-					"blast radius increased" 1.3
-					"projectile spread angle penalty" 2
-					"heal on hit for rapidfire" 80
-				}
 			}
 		}
 		
@@ -437,10 +414,11 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Crit
+				//Template T_TFBot_Giant_Soldier
+				//Attributes AlwaysCrit
 				ItemAttributes
 				{
 					ItemName "The Original"
-					"damage bonus" 2
 					"fire rate bonus" 1.5
 					"Projectile speed increased" 0.6
 				}
@@ -501,7 +479,7 @@ WaveSchedule
 			Skill Expert
 			CharacterAttributes
 			{
-				"move speed bonus" 1.2
+				"move speed bonus" 1.1
 			}
 		}
 	}
@@ -534,11 +512,6 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_DemoMan_PrinceTavish
-					ItemAttributes
-					{
-						ItemName "The Eyelander"
-						"damage bonus" 1.5
-					}
 					Attributes AlwaysCrit
 					Tag default
 				}
@@ -603,17 +576,17 @@ WaveSchedule
 		{
 			Name "w3a"
 			TotalCurrency 50 // 200
-			TotalCount 40
+			TotalCount 36
 			MaxActive 12
 			SpawnCount 4
 			Where spawnbot_adjacent
-			WaitBetweenSpawns 3
+			WaitBetweenSpawns 6
 			WaitBeforeStarting 1
 			TFBot
 			{
-				Class Demoman
-				Skill Expert
 				Tag default
+				Class Demoman
+				Skill Hard
 			}
 		}
 		
@@ -636,7 +609,7 @@ WaveSchedule
 					Class Sniper
 					ClassIcon sniper_bow_multi
 					//Name "Giant Master Bowman"
-					Name "Giant Rapid Burst Bowman"
+					Name "Giant Burst Bowman"
 					Health 3000
 					Skill Expert
 					Attributes MiniBoss
@@ -648,7 +621,6 @@ WaveSchedule
 					{
 						ItemName "The Huntsman"
 						"arrow mastery" 1
-						"fire rate bonus" 0.5
 					}
 					CharacterAttributes
 					{
@@ -661,12 +633,14 @@ WaveSchedule
 				
 				TFBot
 				{
-					Template T_TFBot_Medic
+					Template T_TFBot_Medic_QuickUber
+					Name "Quick Uber Medic"
 				}
 				
 				TFBot
 				{
-					Template T_TFBot_Medic
+					Template T_TFBot_Medic_QuickUber
+					Name "Quick Uber Medic"
 				}
 			}
 		}
@@ -679,7 +653,7 @@ WaveSchedule
 			TotalCount 1
 			MaxActive 1
 			SpawnCount 1
-			WaitBeforeStarting 10
+			WaitBeforeStarting 15
 			FirstSpawnOutput
 			{
 				Target boss_spawn_relay
@@ -687,9 +661,9 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 12000
+				Health 10000
 				Name "tankboss"
-				Speed 120
+				Speed 110
 				Scale 0.7
 				DisableSmokestack 1
 				IsMiniBoss 0
@@ -716,7 +690,7 @@ WaveSchedule
 			TotalCount 1
 			MaxActive 1
 			SpawnCount 1
-			WaitBeforeStarting 20
+			WaitBeforeStarting 35
 			FirstSpawnOutput
 			{
 				Target boss_spawn_relay
@@ -724,9 +698,9 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 12000
+				Health 10000
 				Name "tankboss"
-				Speed 120
+				Speed 110
 				Scale 0.7
 				DisableSmokestack 1
 				IsMiniBoss 0
@@ -751,16 +725,26 @@ WaveSchedule
 			WaitForAllSpawned "w3a"
 			TotalCurrency 50 // 400
 			TotalCount 32
-			MaxActive 14
+			MaxActive 10
 			SpawnCount 2
-			Where spawnbot_adjacent
+			Where spawnbot_all
 			WaitBetweenSpawns 2
 			WaitBeforeStarting 10
-			TFBot
+			Squad
 			{
-				Template T_TFBot_Soldier_RocketPush
-				Skill Expert
-				Tag default
+				NoFormation 1
+				TFBot
+				{
+					Class Soldier
+					Skill Hard
+					Tag default
+				}
+				TFBot
+				{
+					Template T_TFBot_Soldier_RocketPush
+					Skill Expert
+					Tag default
+				}
 			}
 		}
 		
@@ -773,17 +757,12 @@ WaveSchedule
 			MaxActive 6
 			SpawnCount 2
 			Where spawnbot
-			WaitBetweenSpawns 18
+			WaitBetweenSpawns 20
 			WaitBeforeStarting 0
 			TFBot
 			{
 				Template T_TFBot_Giant_Soldier_Spammer
 				Tag default
-				ItemAttributes
-				{
-					ItemName "TF_WEAPON_ROCKETLAUNCHER"
-					"fire rate bonus" 0.4
-				}
 			}
 		}
 		
@@ -797,40 +776,20 @@ WaveSchedule
 			MaxActive 12
 			SpawnCount 3
 			Where spawnbot_all
-			WaitBetweenSpawns 5
+			WaitBetweenSpawns 6
 			WaitBeforeStarting 8
 			RandomChoice
 			{
 				TFBot
 				{
 					Template T_TFBot_Pyro_DF
-					Skill Hard
 					Tag default
 				}
-				
-				TFBot
-				{
-					Template T_TFBot_Pyro_DF
-					Skill Hard
-					Tag default
-				}
-				
-				TFBot
-				{
-					Template T_TFBot_Pyro_DF
-					Skill Hard
-					Tag default
-				}
-				
 				TFBot
 				{
 					Class Scout
 					Skill Normal
 					Tag default
-					CharacterAttributes
-					{
-						"move speed bonus" 1.1
-					}
 				}
 			}
 		}
@@ -865,7 +824,7 @@ WaveSchedule
 		TFBot
 		{
 			Template T_TFBot_Sniper
-			Skill Hard
+			Skill Normal
 		}
 	}
 	
@@ -897,12 +856,6 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Heavyweapons_CritOnKill
-					ItemAttributes
-					{
-						ItemName "TF_WEAPON_MINIGUN"
-						"critboost on kill" 5
-						"fire rate bonus" 0.9
-					}
 					Tag default
 				}
 				
@@ -940,8 +893,7 @@ WaveSchedule
 			TFBot
 			{
 				Class Scout
-				Skill Hard
-				Attributes AlwaysCrit
+				Skill Normal
 				Tag default
 			}
 		}
@@ -963,17 +915,6 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Giant_Soldier_SlowBarrage
-					ItemAttributes
-					{
-						ItemName "TF_WEAPON_ROCKETLAUNCHER"
-						"faster reload rate" 0.18
-						"fire rate bonus" 0.18
-						"projectile spread angle penalty" 5
-					}
-					CharacterAttributes
-					{		
-						"Projectile speed increased" 0.6
-					}
 					Tag default
 				}
 				
@@ -983,7 +924,7 @@ WaveSchedule
 					//ClassIcon heavy_buff
 					ClassIcon heavy_buff_litho
 					Name "Buff Heavy"
-					Skill Hard
+					Skill Normal
 					Scale 1.2
 					Health 600
 					Attributes SpawnWithFullCharge
@@ -1001,7 +942,7 @@ WaveSchedule
 					//ClassIcon heavy_buff
 					ClassIcon heavy_buff_litho
 					Name "Buff Heavy"
-					Skill Hard
+					Skill Normal
 					Scale 1.2
 					Health 600
 					Attributes SpawnWithFullCharge
@@ -1019,7 +960,7 @@ WaveSchedule
 					//ClassIcon heavy_buff
 					ClassIcon heavy_buff_litho
 					Name "Buff Heavy"
-					Skill Hard
+					Skill Normal
 					Scale 1.2
 					Health 600
 					Attributes SpawnWithFullCharge
@@ -1033,7 +974,7 @@ WaveSchedule
 				
 				TFBot
 				{
-					Template T_TFBot_Medic
+					Template T_TFBot_Medic_QuickUber
 				}
 			}
 		}
@@ -1044,16 +985,15 @@ WaveSchedule
 			WaitForAllSpawned "w4a"
 			TotalCurrency 150 // 600
 			TotalCount 40
-			MaxActive 10
-			SpawnCount 5
+			MaxActive 8
+			SpawnCount 2
 			Where spawnbot_all
-			RandomSpawn 1
 			WaitBetweenSpawns 3
 			WaitBeforeStarting 10
 			TFBot
 			{
 				Template T_TFBot_Pyro_DF
-				Skill Hard
+				//Skill Expert
 				Tag default
 			}
 		}
@@ -1063,11 +1003,11 @@ WaveSchedule
 			Name "w4c"
 			WaitForAllDead "w4b"
 			TotalCurrency 150 // 750
-			TotalCount 9
-			MaxActive 6
-			SpawnCount 3
+			TotalCount 6
+			MaxActive 4
+			SpawnCount 2
 			Where spawnbot
-			WaitBetweenSpawns 18
+			WaitBetweenSpawns 17
 			WaitBeforeStarting 0
 			Squad
 			{
@@ -1075,7 +1015,6 @@ WaveSchedule
 				{			
 					Class Heavy
 					ClassIcon heavy_shotgun_burst_lite
-					Attributes AlwaysCrit
 					Name "Giant Burst Fire Shotgun Heavy"
 					Health 5000
 					Skill Expert
@@ -1088,9 +1027,9 @@ WaveSchedule
 					ItemAttributes
 					{
 						ItemName "TF_WEAPON_SHOTGUN_HWG"
-						"bullets per shot bonus" 4
-						"auto fires full clip" 1
-						"auto fires when full" 1
+						"bullets per shot bonus" 4.0
+						"auto fires full clip" 1.0
+						"auto fires when full" 1.0
 						"faster reload rate" 0.65
 						"fire rate bonus" 0.10
 						"damage bonus" 0.50
@@ -1106,12 +1045,7 @@ WaveSchedule
 				
 				TFBot
 				{
-					Template T_TFBot_Medic
-				}
-				
-				TFBot
-				{
-					Template T_TFBot_Medic
+					Template T_TFBot_Medic_QuickUber
 				}
 			}
 		}
@@ -1132,9 +1066,9 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 14000
+				Health 11500
 				Name "tankboss"
-				Speed 120
+				Speed 90
 				Scale 0.7
 				DisableSmokestack 1
 				IsMiniBoss 0
@@ -1169,9 +1103,9 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 14000
+				Health 11500
 				Name "tankboss"
-				Speed 120
+				Speed 90
 				Scale 0.7
 				DisableSmokestack 1
 				IsMiniBoss 0
@@ -1196,7 +1130,7 @@ WaveSchedule
 			WaitForAllDead "w4b"
 			TotalCurrency 100 // 1000
 			TotalCount 27
-			MaxActive 12
+			MaxActive 9
 			SpawnCount 3
 			Where spawnbot_all
 			WaitBetweenSpawns 5
@@ -1218,11 +1152,11 @@ WaveSchedule
 			Name "w4d"
 			WaitForAllSpawned "w4c"
 			TotalCurrency 1200 // 2200
-			TotalCount 4
-			MaxActive 4
-			SpawnCount 4
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
 			Where spawnbot
-			WaitBeforeStarting 13.5
+			WaitBeforeStarting 15
 			Squad
 			{
 				TFBot
@@ -1233,18 +1167,8 @@ WaveSchedule
 					{
 						ItemName "Deflector"
 						"attack projectiles" 2 // THIS WILL TROLL PLAYERS SO HARD OMFFG
-						"fire rate bonus" 0.9
 					}
 					Tag default
-				}
-				
-				TFBot
-				{
-					Template T_TFBot_Giant_Medic_Regen
-					CharacterAttributes
-					{
-						"reduced_healing_from_medics" 0.1
-					}
 				}
 				
 				TFBot
@@ -1300,10 +1224,6 @@ WaveSchedule
 		{
 			Class Spy
 			Skill Expert
-			CharacterAttributes
-			{
-				"move speed bonus" 1.1
-			}
 		}
 	}
 	
@@ -1313,16 +1233,12 @@ WaveSchedule
 		BeginAtWave 5
 		RunForThisManyWaves 1
 		InitialCooldown 20
-		CooldownTime 20
+		CooldownTime 30
 		DesiredCount 1
 		Where spawnbot
 		TFBot
 		{
 			Template T_TFBot_Engineer_Sentry_Teleporter
-			CharacterAttributes
-			{
-				"build rate bonus" 0.75
-			}
 		}
 	}
 	
@@ -1359,7 +1275,7 @@ WaveSchedule
 					ItemAttributes
 					{
 						ItemName "TF_WEAPON_ROCKETLAUNCHER"
-						"faster reload rate" 0.3
+						"faster reload rate" 0.35
 						"fire rate bonus" 0.15
 						"clip size upgrade atomic" 6.0
 					}
@@ -1399,7 +1315,7 @@ WaveSchedule
 					ItemAttributes
 					{
 						ItemName "The Dragon's Fury"
-						"mult_item_meter_charge_rate" 0.9
+						//"mult_item_meter_charge_rate" 0.8
 					}
 				}
 			}
@@ -1442,7 +1358,7 @@ WaveSchedule
 						ItemName "The KritzKrieg"
 						"uber duration bonus" 10000
 						"ubercharge rate bonus" 10000
-						"heal rate bonus" 5
+						//"heal rate bonus" 200
 					}
 					CharacterAttributes
 					{
@@ -1461,12 +1377,11 @@ WaveSchedule
 			MaxActive 4
 			SpawnCount 2
 			Where spawnbot
-			WaitBetweenSpawns 25
+			WaitBetweenSpawns 30
 			WaitBeforeStarting 10
 			TFBot
 			{
 				Template T_TFBot_Giant_Pyro_DF
-				Skill Expert
 				Attributes AlwaysCrit
 				Tag default
 				ClassIcon pyro_dragon_fury_swordstone_giant
@@ -1490,7 +1405,7 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 30000
+				Health 28000
 				Name "tankboss"
 				Speed 80
 				StartingPathTrackNode "boss_path_abomb"
@@ -1526,11 +1441,6 @@ WaveSchedule
 					Skill Hard
 					Attributes AlwaysCrit
 					Tag default
-					CharacterAttributes
-					{
-						"projectile speed increased" 1.2
-						"fire rate bonus" 0.85
-					}
 				}
 				
 				TFBot
@@ -1558,13 +1468,6 @@ WaveSchedule
 				{
 					Template T_TFBot_Giant_Heavyweapons_Deflector
 					Attributes AlwaysCrit
-					ItemAttributes
-					{
-						ItemName "Deflector"
-						"damage bonus" 1.75
-						"attack projectiles" 2
-						"fire rate bonus" 0.9
-					}
 				}
 				
 				TFBot
@@ -1683,12 +1586,11 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 32000
+				Health 30500
 				Name "tankboss"
 				Speed 80
 				Skin 1
 				StartingPathTrackNode "boss_path_abomb"
-				ForceRomeVision 1 
 				OnKilledOutput
 				{
 					Target boss_dead_relay
@@ -1713,18 +1615,14 @@ WaveSchedule
 			SpawnCount 2
 			Where spawnbot
 			WaitBetweenSpawns 8
-			WaitBeforeStarting 0
+			WaitBeforeStarting 10
 			TFBot
 			{
 				Class Scout
-				Skill Expert
+				Skill Normal
 				Attributes AlwaysCrit
+				Tag default
 				Action Mobber
-				CharacterAttributes
-				{
-					"fire rate bonus" 0.8
-					"faster reload rate" 0.8
-				}
 			}
 		}
 		
@@ -1811,8 +1709,8 @@ WaveSchedule
 							"projectile spread angle penalty" 80
 							"projectile detonate time" 5
 							"projectile trail particle" "eyeboss_projectile"
-							"mod projectile heat seek power" 90
-							"mod projectile heat aim error" 40
+							"mod projectile heat seek power" 80
+							"mod projectile heat aim error" 50
 							
 							"Projectile speed increased" 0.65
 							"damage bonus" 1.5
