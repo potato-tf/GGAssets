@@ -4296,7 +4296,7 @@ TremendoPinoHePlantado
 					WeaponRestrictions	PrimaryOnly
 					Attributes	"HoldFireUntilFullReload"
 					Attributes	"MiniBoss"
-					Item	"the pomson 6000"
+					Item	"the widowmaker"
 					Item	"tf_weapon_pistol"
 					Item	"tf_weapon_wrench"
 					Tag giant
