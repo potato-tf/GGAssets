@@ -2,7 +2,6 @@
 // Akure Intermediate
 
 #base overclocks_tindall.pop
-// // #base judge_restricts.pop
 population
 {
 	StartingCurrency				400
@@ -10,33 +9,33 @@ population
 	CanBotsAttackWhileInSpawnRoom	no
 	FixedRespawnWaveTime			Yes
 	// Rafmod cvars
-	BodyPartScaleSpeed			50	 
-	FixSetCustomModelInput		1	 
-	NoRomevisionCosmetics		1	 
-	TextPrintTime				0	 
-	UpgradeStationKeepWeapons	1	 
+	BodyPartScaleSpeed			50	[$SIGSEGV]
+	FixSetCustomModelInput		1	[$SIGSEGV]
+	NoRomevisionCosmetics		1	[$SIGSEGV]
+	TextPrintTime				0	[$SIGSEGV]
+	UpgradeStationKeepWeapons	1	[$SIGSEGV]
 	// Custom nav
-	CustomNavFile	"mvm_akure_rc1a_unfucked"	 	// Fixes stuck spots, also fixes spawnbot dropdown for Giant Medics thanks to Whurr
+	CustomNavFile	"mvm_akure_rc1a_unfucked"	[$SIGSEGV]	// Fixes stuck spots, also fixes spawnbot dropdown for Giant Medics thanks to Whurr
 	// Model precache
-	PrecacheModel	"models\weapons\c_models\c_entrenched_gun\c_scattergun.mdl"	 
-	PrecacheModel	"models\workshop\weapons\c_models\c_hornetsnest\c_atom_launcher.mdl"	 
-	PrecacheModel	"models\weapons\c_models\c_howitzer\c_lochnload.mdl"	 
-	PrecacheModel	"models\weapons\w_bugbait.mdl"	 
-	PrecacheModel	"models\workshop\weapons\c_models\c_tactigatling\c_russian_riot.mdl"	 
-	PrecacheModel	"models\workshop_partner\weapons\c_models\c_great_peace_preserver\c_dex_shotgun.mdl"	 
-	PrecacheModel	"models\weapons\c_models\c_gupgun\c_leechgun.mdl"	 
-	PrecacheModel	"models\props_2fort\cow001_reference.mdl"	 
+	PrecacheModel	"models\weapons\c_models\c_entrenched_gun\c_scattergun.mdl"	[$SIGSEGV]
+	PrecacheModel	"models\workshop\weapons\c_models\c_hornetsnest\c_atom_launcher.mdl"	[$SIGSEGV]
+	PrecacheModel	"models\weapons\c_models\c_howitzer\c_lochnload.mdl"	[$SIGSEGV]
+	PrecacheModel	"models\weapons\w_bugbait.mdl"	[$SIGSEGV]
+	PrecacheModel	"models\workshop\weapons\c_models\c_tactigatling\c_russian_riot.mdl"	[$SIGSEGV]
+	PrecacheModel	"models\workshop_partner\weapons\c_models\c_great_peace_preserver\c_dex_shotgun.mdl"	[$SIGSEGV]
+	PrecacheModel	"models\weapons\c_models\c_gupgun\c_leechgun.mdl"	[$SIGSEGV]
+	PrecacheModel	"models\props_2fort\cow001_reference.mdl"	[$SIGSEGV]
 	// Sound precache
-	PrecacheSound	"weapons/china_lake_shoot.wav"	 
-	PrecacheSound	"weapons/sven_shotgun_shoot.wav"	 
-	PrecacheSound	"weapons/mp40_shoot.wav"	 
-	PrecacheSound	"weapons/supernailgun_shoot.wav"	 
-	PrecacheSound	"music/pinpinneon_inferior_fabrications.mp3"	 
-	PrecacheSound	"terraria/mechboss_laser.wav"	 
-	PrecacheSound	"terraria/mourning_spine.wav"	 
+	PrecacheSound	"weapons/china_lake_shoot.wav"	[$SIGSEGV]
+	PrecacheSound	"weapons/sven_shotgun_shoot.wav"	[$SIGSEGV]
+	PrecacheSound	"weapons/mp40_shoot.wav"	[$SIGSEGV]
+	PrecacheSound	"weapons/supernailgun_shoot.wav"	[$SIGSEGV]
+	PrecacheSound	"music/pinpinneon_inferior_fabrications.mp3"	[$SIGSEGV]
+	PrecacheSound	"terraria/mechboss_laser.wav"	[$SIGSEGV]
+	PrecacheSound	"terraria/mourning_spine.wav"	[$SIGSEGV]
 	// Custom weapons
 	// Scout
-	CustomWeapon	 	// Scout Slug Scattergun
+	CustomWeapon	[$SIGSEGV]	// Scout Slug Scattergun
 	{
 		Name								"Steel Slugger"
 		OriginalItemName					"The Back Scatter"
@@ -53,11 +52,10 @@ population
 		"special item description 2"		"Doink!"
 	}
 	// Soldier
-	CustomWeapon	 	// Soldier Homing Rocket Launcher
+	CustomWeapon	[$SIGSEGV]	// Soldier Homing Rocket Launcher
 	{
 		Name									"Psychopath's Seeker"
 		OriginalItemName						"The Liberty Launcher"
-		"no primary ammo from dispensers while active" 1
 		"clip size bonus"						2.5
 		"hidden primary max ammo bonus"			1.5
 		"fire rate bonus HIDDEN"				0.35
@@ -78,7 +76,7 @@ population
 		"special item description"				"Launches a wide spread of low damage rockets that home in on the crosshair."
 		"special item description 2"			"If you run, you'll only die tired."
 	}
-	CustomWeapon	 	// Soldier Nuke Launcher
+	CustomWeapon	[$SIGSEGV]	// Soldier Nuke Launcher
 	{
 		Name							"Atomic Anguish"
 		OriginalItemName				"The Black Box"
@@ -99,7 +97,7 @@ population
 		"special item description 2"	"This was not a good idea at any point in time."
 	}
 	// Pyro
-	CustomWeapon	 	// Pyro Airblast Flame Thrower
+	CustomWeapon	[$SIGSEGV]	// Pyro Airblast Flame Thrower
 	{
 		Name									"Con-man's Compressor"
 		OriginalItemName						"The Degreaser"
@@ -117,7 +115,7 @@ population
 		"special item description 2"			"We're puttin' on a clinic!"
 	}
 	// Demoman
-	CustomWeapon	 	// Demoman Auto Grenade Launcher
+	CustomWeapon	[$SIGSEGV]	// Demoman Auto Grenade Launcher
 	{
 		Name								"Burst of Brimstone"
 		OriginalItemName					"The Loch-n-Load"
@@ -138,7 +136,7 @@ population
 		"special item description"			"Rapidly launches low damage grenades with a smaller explosion radius that explode on impact."
 		"special item description 2"		"Blammo!"
 	}
-	CustomWeapon	 	// Demoman Toxic Grenade Launcher
+	CustomWeapon	[$SIGSEGV]	// Demoman Toxic Grenade Launcher
 	{
 		Name							"Toxic Torid"
 		OriginalItemName				"Upgradeable TF_WEAPON_GRENADELAUNCHER"
@@ -164,7 +162,7 @@ population
 		"special item description 2"	"Smelly, smelly gas!"
 	}
 	// Heavy
-	CustomWeapon	 	// Heavy Deflector
+	CustomWeapon	[$SIGSEGV]	// Heavy Deflector
 	{
 		Name							"Bootleg Deflector"
 		OriginalItemName				"Deflector"
@@ -176,7 +174,7 @@ population
 		"special item description"		"Destroys projectiles in a wider spread and deals slightly more damage, but spins up slower."
 		"special item description 2"	"I hate metal!"
 	}
-	CustomWeapon	 	// Homing Rocket Minigun
+	CustomWeapon	[$SIGSEGV]	// Homing Rocket Minigun
 	{
 		Name									"Bludger's Barrage"
 		OriginalItemName						"Tomislav"
@@ -202,7 +200,7 @@ population
 		"special item description"				"Fires homing rockets in a wide spread that converge on the crosshair."
 		"special item description 2"			"I have one question for you: EXPLOSIONS?!"
 	}
-	CustomWeapon	 	// Heavy Auto Shotgun
+	CustomWeapon	[$SIGSEGV]	// Heavy Auto Shotgun
 	{
 		Name							"Soviet Slammer"
 		OriginalItemName				"The Family Business"
@@ -215,13 +213,13 @@ population
 		"damage penalty"				1
 		"clip size bonus"				1
 		"fire rate bonus"				1
-		"custom weapon fire sound"		"=75|weapons/sven_shotgun_shoot.wav"
+		"custom weapon fire sound"		"=55|weapons/sven_shotgun_shoot.wav"
 		"custom item model"				"models\workshop\weapons\c_models\c_tactigatling\c_russian_riot.mdl"
 		"special item description"		"Fires inaccurate shells rather quickly."
 		"special item description 2"	"I am 100 metres from your location and approaching rapidly."
 	}
 	// Engineer
-	CustomWeapon	 	// Engineer Machine Gun
+	CustomWeapon	[$SIGSEGV]	// Engineer Machine Gun
 	{
 		Name								"Veruc"
 		OriginalItemName					"TF_WEAPON_SHOTGUN_PRIMARY"
@@ -232,31 +230,32 @@ population
 		"bullets per shot bonus"			0.3
 		"spread penalty"					2
 		"damage bonus"						1.66
-		"custom weapon fire sound"			"=70|weapons/mp40_shoot.wav"
+		"custom weapon fire sound"			"=55|weapons/mp40_shoot.wav"
 		"custom item model"					"models\workshop_partner\weapons\c_models\c_great_peace_preserver\c_dex_shotgun.mdl"
 		"special item description"			"Rapidly fires three bullets in a horizontal spread."
 		"special item description 2"		"I want that rifle, Daddy!"
 	}
 	// Medic
-	CustomWeapon	 	// Medic Burst Fire Syringe Gun
-	{
-		Name								"Four Part Plan"
-		OriginalItemName					"The Blutsauger"
-		"single wep deploy time increased"	1.35
-		"clip size penalty"					0.1
-		"maxammo primary reduced"			0.133
-		"fire rate bonus HIDDEN"			0.5
-		"damage bonus"						2
-		"no reduced damage rampup"			1
-		"mark for death"					1
-		"heal on hit for rapidfire"			0
-		"custom weapon fire sound"			"=75|weapons/supernailgun_shoot.wav"
-		"custom item model"					"models\weapons\c_models\c_gupgun\c_leechgun.mdl"
-		"special item description"			"Rapidly fires high damage syringes that mark enemies for death."
-		"special item description 2"		"Part five: booby trap the stalemate button!"
-	}
+    CustomWeapon    [$SIGSEGV]    // Medic Burst Fire Syringe Gun
+    {
+        Name								"Four Part Plan"
+        OriginalItemName					"The Blutsauger"
+        "add cond on hit"					24    // jarate
+        "add cond on hit duration"			7
+        "single wep deploy time increased"	1.35
+        "clip size penalty"					0.1
+        "maxammo primary reduced"			0.133
+        "fire rate bonus HIDDEN"			0.5
+        "damage bonus"						2
+        "no reduced damage rampup"			1
+        "heal on hit for rapidfire"			0
+        "custom weapon fire sound"			"=75|weapons/supernailgun_shoot.wav"
+        "custom item model"					"models\weapons\c_models\c_gupgun\c_leechgun.mdl"
+        "special item description"			"Rapidly fires high damage syringes that coat enemies with Jarate."
+        "special item description 2"		"Part five: booby trap the stalemate button!"
+    }
 	// Spy
-	CustomWeapon	 	// Spy Multi-shot Revolver
+	CustomWeapon	[$SIGSEGV]	// Spy Multi-shot Revolver
 	{
 		Name							"Maggie"	// Based on the Maggie from Borderlands 2
 		OriginalItemName				"TF_WEAPON_REVOLVER"
@@ -272,7 +271,7 @@ population
 		"special item description"		"Fires six bullets in a wide spread."
 		"special item description 2"	"Monty's wife don't take no guff."
 	}
-	ExtraLoadoutItems	 
+	ExtraLoadoutItems	[$SIGSEGV]
 	{
 		Scout
 		{
@@ -312,85 +311,85 @@ population
 		}
 	}
 	// Upgrade bans
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Rocket Jumper"
 		Upgrade		"clip size upgrade atomic"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Rocket Jumper"
 		Upgrade		"faster reload rate"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Atomic Anguish"
 		Upgrade		"clip size upgrade atomic"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Con-man's Compressor"
 		Upgrade		"airblast pushback scale"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Stickybomb Jumper"
 		Upgrade		"clip size bonus upgrade"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Stickybomb Jumper"
 		Upgrade		"faster reload rate"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Bludger's Barrage"
 		Upgrade		"projectile penetration heavy"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Bludger's Barrage"
 		Upgrade		"attack projectiles"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Bludger's Barrage"
 		Upgrade		"generate rage on damage"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Soviet Slammer"
 		Upgrade		"fire rate bonus"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Upgrade		"engy sentry fire rate increased"
 		MaxLevel	2
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"Four Part Plan"
 		Upgrade		"mad milk syringes"
 		MaxLevel	0
 	}
-	DisallowUpgrade	 
+	DisallowUpgrade	[$SIGSEGV]
 	{
 		Name		"The Vaccinator"
 		Upgrade		"uber duration bonus"
 		MaxLevel	1
 	}
 	// Point templates
-	PointTemplates	 
+	PointTemplates	[$SIGSEGV]
 	{
 		NoFixup 1
 		FunMapEntities
@@ -521,7 +520,7 @@ population
 			{
 				"model"				"models/props_soho/door002.mdl"
 				"disableshadows"	"1"
-				"origin"			"-704 -1054 -360" // Front
+				"origin"			"-704 -1056 -360" // Front
 				"angles"			"0 180 0"
 			}
 			point_teleport
@@ -608,48 +607,36 @@ population
 			logic_case
 			{
 				"targetname"	"rng1"
-				"OnCase01"		"frontdoor,Teleport,,,"
-				"OnCase01"		"doorsfx,PlaySound,,0.1,"
-				"OnCase02"		"frontdoor,Teleport,,,"
-				"OnCase02"		"doorsfx,PlaySound,,0.1,"
-				"OnCase03"		"frontdoor,Teleport,,,"
-				"OnCase03"		"doorsfx,PlaySound,,0.1,"
-				"OnCase04"		"frontdoor,Teleport,,,"
-				"OnCase04"		"doorsfx,PlaySound,,0.1,"
-				"OnCase05"		"frontdoor,Teleport,,,"
-				"OnCase05"		"doorsfx,PlaySound,,0.1,"
-				"OnCase06"		"frontdoor,Teleport,,,"
-				"OnCase06"		"doorsfx,PlaySound,,0.1,"
-				"OnCase07"		"frontdoor,Teleport,,,"
-				"OnCase07"		"doorsfx,PlaySound,,0.1,"
-				"OnCase08"		"frontdoor,Teleport,,,"
-				"OnCase08"		"doorsfx,PlaySound,,0.1,"
-				"OnCase09"		"frontdoor,Teleport,,,"
-				"OnCase09"		"doorsfx,PlaySound,,0.1,"
+				"OnCase01"		"doorteleport,Trigger,,,"
+				"OnCase02"		"doorteleport,Trigger,,,"
+				"OnCase03"		"doorteleport,Trigger,,,"
+				"OnCase04"		"doorteleport,Trigger,,,"
+				"OnCase05"		"doorteleport,Trigger,,,"
+				"OnCase06"		"doorteleport,Trigger,,,"
+				"OnCase08"		"doorteleport,Trigger,,,"
+				"OnCase09"		"doorteleport,Trigger,,,"
 				"OnCase10"		"rng2,PickRandom,,,"
 			}
 			logic_case
 			{
 				"targetname"	"rng2"
-				"OnCase01"		"frontdoor,Teleport,,,"
-				"OnCase01"		"doorsfx,PlaySound,,0.1,"
-				"OnCase02"		"frontdoor,Teleport,,,"
-				"OnCase02"		"doorsfx,PlaySound,,0.1,"
-				"OnCase03"		"frontdoor,Teleport,,,"
-				"OnCase03"		"doorsfx,PlaySound,,0.1,"
-				"OnCase04"		"frontdoor,Teleport,,,"
-				"OnCase04"		"doorsfx,PlaySound,,0.1,"
-				"OnCase05"		"frontdoor,Teleport,,,"
-				"OnCase05"		"doorsfx,PlaySound,,0.1,"
-				"OnCase06"		"frontdoor,Teleport,,,"
-				"OnCase06"		"doorsfx,PlaySound,,0.1,"
-				"OnCase07"		"frontdoor,Teleport,,,"
-				"OnCase07"		"doorsfx,PlaySound,,0.1,"
-				"OnCase08"		"frontdoor,Teleport,,,"
-				"OnCase08"		"doorsfx,PlaySound,,0.1,"
-				"OnCase09"		"frontdoor,Teleport,,,"
-				"OnCase09"		"doorsfx,PlaySound,,0.1,"
+				"OnCase01"		"doorteleport,Trigger,,,"
+				"OnCase02"		"doorteleport,Trigger,,,"
+				"OnCase03"		"doorteleport,Trigger,,,"
+				"OnCase04"		"doorteleport,Trigger,,,"
+				"OnCase05"		"doorteleport,Trigger,,,"
+				"OnCase06"		"doorteleport,Trigger,,,"
+				"OnCase07"		"doorteleport,Trigger,,,"
+				"OnCase08"		"doorteleport,Trigger,,,"
+				"OnCase09"		"doorteleport,Trigger,,,"
 				"OnCase10"		"doorslam,Trigger,,," // 1/100 chance to activate
+			}
+			logic_relay
+			{
+				"targetname"	"doorteleport"
+				"OnTrigger"		"frontdoor,Teleport,,,"
+				"OnTrigger"		"doorsfx,PlaySound,,0.1,"
+				"OnTrigger"		"@bb-753 -1057 -416 -657 -977 -392@obj_teleporter,RemoveHealth,864,0.1," // Destroy teleporters in front of door so players don't get stuck in them
 			}
 			logic_relay
 			{
@@ -657,8 +644,8 @@ population
 				"OnTrigger"		"rotationpoint,Open,,,"
 				"OnTrigger"		"doorkill,Enable,,0.05,"
 				"OnTrigger"		"floorkill,Enable,,0.1,"
-				"OnTrigger"		"doorkill,Disable,,1,"
-				"OnTrigger"		"floorkill,Disable,,1,"
+				"OnTrigger"		"doorkill,Disable,,0.6,"
+				"OnTrigger"		"floorkill,Disable,,0.6,"
 				"OnTrigger"		"doorkillsfx,PlaySound,1,,"
 			}
 		}
@@ -1109,8 +1096,8 @@ population
 			Scale 1.35
 			WeaponRestrictions MeleeOnly
 			Tag	bot_probe
-			Attributes IgnoreFlag	 
-			Action Mobber	 
+			Attributes IgnoreFlag	[$SIGSEGV]
+			Action Mobber	[$SIGSEGV]
 			Item "The Scotsman's Skullcutter"
 			Item "Alcoholic Automaton"
 			ItemAttributes
@@ -1118,7 +1105,7 @@ population
 				ItemName "The Scotsman's Skullcutter"
 				"custom kill icon"	"splendid_screen"
 			}
-			ItemAttributes	 
+			ItemAttributes	[$SIGSEGV]
 			{
 				ItemName "Alcoholic Automaton"
 				"set item tint rgb"	12073019	// team spirit red
@@ -1457,25 +1444,25 @@ population
 			Health 80000
 			Attributes MiniBoss
 			Attributes UseBossHealthBar
-			Attributes IgnoreFlag	 
-			Action Mobber	 
-			AlwaysGlow 1	 
-			SpawnTemplate "DestroyerTeleportTarget"	 
-			Message	 
+			Attributes IgnoreFlag	[$SIGSEGV]
+			Action Mobber	[$SIGSEGV]
+			AlwaysGlow 1	[$SIGSEGV]
+			SpawnTemplate "DestroyerTeleportTarget"	[$SIGSEGV]
+			Message	[$SIGSEGV]
 			{
 				Name			"{99CCFF}The Destroyer {FBECCB}:  MINOR DAMAGE SUSTAINED. DISCARDING OBSOLETE ARMOUR PLATING. LASER CANNONS ENGAGED."
 				IfHealthBelow	48000
 				Delay			0
 				Repeats			1
 			}
-			Message	 
+			Message	[$SIGSEGV]
 			{
 				Name			"{99CCFF}The Destroyer {FBECCB}:  MODERATE DAMAGE SUSTAINED. DISCARDING LASER CANNONS. HEAT SEEKERS ENGAGED."
 				IfHealthBelow	24000
 				Delay			0
 				Repeats			1
 			}
-			ChangeAttributes	 
+			ChangeAttributes	[$SIGSEGV]
 			{
 				Name			"Phase1"
 				IfHealthBelow	90000
@@ -1483,7 +1470,7 @@ population
 				Repeats			1
 				Cooldown		999
 			}
-			ChangeAttributes	 
+			ChangeAttributes	[$SIGSEGV]
 			{
 				Name			"Phase2"
 				IfHealthBelow	48000
@@ -1491,7 +1478,7 @@ population
 				Repeats			1
 				Cooldown		999
 			}
-			ChangeAttributes	 
+			ChangeAttributes	[$SIGSEGV]
 			{
 				Name			"Phase3"
 				IfHealthBelow	24000
@@ -1681,7 +1668,7 @@ population
 						"dmg taken increased"							1.75
 						"mult stun resistance"							0
 					}
-					RocketCustomParticle "eyeboss_projectile"	 
+					RocketCustomParticle "eyeboss_projectile"	[$SIGSEGV]
 				}
 			}
 		}
@@ -1707,9 +1694,9 @@ population
 			}
 		}
 	}
-	SpawnTemplate "FunMapEntities"	 
-	SpawnTemplate "TeleporterDoor"	 
-	SpawnTemplate "KillerDoor"	 
+	SpawnTemplate	"FunMapEntities"	[$SIGSEGV]
+	SpawnTemplate	"TeleporterDoor"	[$SIGSEGV]
+	SpawnTemplate	"KillerDoor"	[$SIGSEGV]
 	Mission // Sentry Busters
 	{
 		Objective	DestroySentries
@@ -1906,10 +1893,11 @@ population
 			SpawnCount	1
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
+			FirstSpawnWarningSound	"#mvm/mvm_tank_start.wav"	// Not built into the map
 			Tank
 			{
 				Health	18000
-				Name	"tankboss"
+				Name	"Tank"
 				Speed	75
 				StartingPathTrackNode	tank_path_left_a_1
 				OnKilledOutput
@@ -2311,10 +2299,11 @@ population
 			SpawnCount	1
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
+			FirstSpawnWarningSound	"#mvm/mvm_tank_start.wav"
 			Tank
 			{
 				Health	30000
-				Name	"tankboss"
+				Name	"Tank"
 				Speed	75
 				StartingPathTrackNode	tank_path_left_a_1
 				OnKilledOutput
@@ -2741,10 +2730,11 @@ population
 			SpawnCount	1
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
+			FirstSpawnWarningSound	"#mvm/mvm_tank_start.wav"
 			Tank
 			{
 				Health	28000
-				Name	"tankboss"
+				Name	"Tank"
 				Speed	75
 				StartingPathTrackNode	tank_path_left_a_1
 				OnKilledOutput
@@ -2864,10 +2854,11 @@ population
 			SpawnCount	1
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
+			FirstSpawnWarningSound	"#mvm/mvm_tank_start.wav"
 			Tank
 			{
 				Health	28000
-				Name	"tankboss"
+				Name	"Tank"
 				Speed	75
 				Skin	1
 				StartingPathTrackNode	tank_path_left_a_1
@@ -2948,9 +2939,9 @@ population
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		SpawnTemplate	"DestroyerLogic"	 
-		SpawnTemplate	"DestroyerProbeTeleport"	 
-		Explanation	 
+		SpawnTemplate	"DestroyerLogic"	[$SIGSEGV]
+		SpawnTemplate	"DestroyerProbeTeleport"	[$SIGSEGV]
+		Explanation	[$SIGSEGV]
 		{
 			Line	"{AF4BFF}You feel vibrations from deep below..."
 		}
@@ -2963,12 +2954,12 @@ population
 			WaitBeforeStarting	12
 			WaitBetweenSpawns	0
 			Where	spawnbot
-			FirstSpawnOutput	 
+			FirstSpawnOutput	[$SIGSEGV]
 			{
 				Target	relay_destroyer_spawned
 				Action	Trigger
 			}
-			DoneOutput	 
+			DoneOutput	[$SIGSEGV]
 			{
 				Target	relay_destroyer_killed
 				Action	Trigger

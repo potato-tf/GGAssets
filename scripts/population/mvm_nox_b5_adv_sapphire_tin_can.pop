@@ -1768,7 +1768,7 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 30000
+				Health 32000
 				Name "tankboss"
 				Speed 75
 				StartingPathTrackNode "boss_path_abomb"
@@ -1898,7 +1898,7 @@ WaveSchedule
 				Tag default
 				CharacterAttributes
 				{
-					"increase buff duration" 1.25 // due to nox being a small map
+					"increase buff duration" 1.4 // due to nox being a small map
 				}
 			}
 		}

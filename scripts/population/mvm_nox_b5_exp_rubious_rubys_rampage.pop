@@ -782,13 +782,7 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Class Pyro
-					Skill Normal
-					ItemAttributes
-					{
-						ItemName "TF_WEAPON_FLAMETHROWER"
-						"airblast disabled" 1
-					}
+					Template T_TFBot_Pyro_DF
 					Tag default
 				}
 				TFBot
@@ -1098,8 +1092,8 @@ WaveSchedule
 			Name "w4c"
 			WaitForAllSpawned "w4b"
 			TotalCurrency 75 // 900
-			TotalCount 2
-			MaxActive 2
+			TotalCount 1
+			MaxActive 1
 			SpawnCount 1
 			WaitBeforeStarting 35
 			FirstSpawnOutput

@@ -96,7 +96,7 @@ population
             "targetname" "filter_bot_is_umed_pocket"
             "onpass" "!activator,$AddPlayerAttribute,airblast vertical vulnerability multiplier|0.05,0,-1"
             "onpass" "!activator,$AddPlayerAttribute,airblast vulnerability multiplier|0.05,0,-1"
-            "onpass" "!activator,$AddPlayerAttribute,damage force increase hidden|0.33,0,-1"
+            "onpass" "!activator,$AddPlayerAttribute,damage force increase hidden|0.2,0,-1"
             "Negated" "1"
             "tags" "umed_pocket"
             }
@@ -1014,7 +1014,7 @@ population
 						"damage force reduction" 0.3
 						"airblast vulnerability multiplier" 0.4
 						"airblast vertical vulnerability multiplier" 0.1
-						//"rage giving scale"	0.9
+						"rage giving scale"	0.2
 						"dmg bonus vs buildings" 1.33 //Fuck you
 						"override footstep sound set" 2
 					}
@@ -1058,7 +1058,7 @@ population
 						"damage force reduction" 0.3
 						"airblast vulnerability multiplier" 0.4
 						"airblast vertical vulnerability multiplier" 0.1
-						//"rage giving scale"	0.9
+						"rage giving scale"	0.2
 						"dmg bonus vs buildings" 1.33 //Fuck you
 						"override footstep sound set" 2
 					}
@@ -1093,7 +1093,7 @@ population
 						"damage force reduction" 0.3
 						"airblast vulnerability multiplier" 0.4
 						"airblast vertical vulnerability multiplier" 0.1
-						//"rage giving scale"	0.9
+						"rage giving scale"	0.2
 						"dmg bonus vs buildings" 1.33 //Fuck you
 						"override footstep sound set" 2
 					}
@@ -1351,7 +1351,7 @@ Attributes AlwaysCrit
 						ItemName	"the air strike"
 						"fire rate bonus"	0.22
 						"mini rockets" 0
-						"faster reload rate"	0.6
+						"faster reload rate"	0.5
 						"Projectile speed decreased" 0.65
 						"projectile spread angle penalty" 1
 						"projectile trail particle" "rockettrail"
@@ -1389,7 +1389,7 @@ Attributes AlwaysCrit
 						"fire rate bonus"	0.125
 						"mini rockets" 0
 						"damage penalty" 1
-						"faster reload rate"	0.531 //why not
+						"faster reload rate"	0.5 //why not
 						"Projectile speed decreased" 0.73
 						"projectile spread angle penalty" 1
 						"projectile trail particle" "rockettrail"
@@ -1400,7 +1400,7 @@ Attributes AlwaysCrit
 						"move speed bonus"	0.38
 						"dmg bonus vs buildings" 1.25 //Fuck you
 						"no self blast dmg" 1
-						"damage bonus" 1.33
+						"damage bonus" 1.5
 						"airblast vulnerability multiplier"	0.01
 						"damage force reduction"	0.01
 						//"rage giving scale"	0.25
@@ -1410,247 +1410,6 @@ Attributes AlwaysCrit
 					Item "the peacebreaker"
 					Item "the diplomat"
 	}
-	T_FinalBoss
-		{
-					ClassIcon	demo_robot_nys
-					Health	25000
-					AlwaysGlow 1
-					Name	"Chief Demoknight"
-					Scale	1.7
-					tag bot_giant
-					UseMeleeThreatPrioritization 1
-					DesiredAttackRange 70
-					Action Mobber
-					Class	Demoman
-					Skill	expert
-					Attributes	"MiniBoss"
-					Attributes	"UseBossHealthBar"
-					ItemAttributes
-					{
-						ItemName "the eyelander"
-						"damage bonus" 2
-					}
-					ItemAttributes
-					{
-						ItemName	"safety stripes"
-						"set item tint RGB"	1315860
-					}
-					CharacterAttributes
-					{
-						"health regen"	25
-						"airblast vulnerability multiplier"	0.1
-						"airblast vertical vulnerability multiplier"	0.1
-						"move speed penalty"	0.5
-						"increased jump height"	3
-						"cancel falling damage"	1
-						"dmg taken from blast increased" 1.15
-						"dmg taken from fire increased" 1.35
-						"mult charge turn control" 1.5
-						"charge recharge rate increased" 10
-						"Attack not cancel charge" 1
-						"mult stun resistance" 0.33
-						"dmg bonus vs buildings" 1.25
-						"melee range multiplier" 1.15
-						"damage penalty" 0.7
-						"dmg penalty vs players" 0.65
-					}
-					Item	"warbird_grenadelauncher_butcherbird"
-					Item	"the eyelander"
-					Item	"safety stripes"
-					EventChangeAttributes  
-			             { 
-SAMURAI
-{
-    WeaponRestrictions MeleeOnly
-	FireWeapon    //Periodically fires weapon
-                {
-
-                    Cooldown 5
-					IfSeeTarget 1 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
-                    Duration 0.5 //How long should the button be pressed (Default: 0.1)
-					Type "Jump" // Type of fire input, Possible values:
-				}
-	Attributes AirChargeOnly
-	            FireWeapon    //Periodically fires weapon
-                {
-                    Cooldown 5 //Time between each fire input (Default: 10)
-					IfSeeTarget 1 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
-					Type "Secondary" 
-				}
-				CharacterAttributes
-				{
-				"kb fall min velocity" 400
-                "kb fall radius" 200
-				"dmg bonus vs buildings" 5
-				"increased jump height" 2.5
-                "kb fall stun time" 0.25
-				"kb fall force" 300
-				"kb fall damage" 75
-				"damage bonus" 1.1
-				}
-				Item	"the chargin' targe"
-}
-SUICIDECHARGER  
-{
-Attributes AirChargeOnly
-	            FireWeapon    //Periodically fires weapon
-                {
-                    Delay 1 //Time before the first fire input starts (Default: 10)
-                    Cooldown 1 //Time between each fire input (Default: 10)
-					IfSeeTarget 1 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
-					Type "Secondary" 
-				}
-RingOfFire 15
-WeaponRestrictions PrimaryOnly
-Attributes AlwaysFireWeapon
-UseMeleeThreatPrioritization 1
-item "The Splendid Screen"
-ItemAttributes
-{
-itemname "warbird_grenadelauncher_butcherbird"
-"fuse bonus" 0.8
-"blast radius increased" 1.35
-"fire rate bonus" 0.5
-"faster reload rate" 0.1
-}
-CharacterAttributes
-					{
-						"blast dmg to self increased" 0.05
-						"mult stun resistance" 0.9
-						"charge impact damage increased" 1.5
-						"charge time increased" 1
-						"charge recharge rate increased" 15
-						"damage bonus" 0.65
-						"kb fall min velocity" 400
-                "kb fall radius" 200
-				"dmg bonus vs buildings" 5
-				"increased jump height" 2.5
-                "kb fall stun time" 0.25
-				"kb fall force" 300
-				"kb fall damage" 75
-					}
-						 }
-SWORDLASERS   
-{
-WeaponRestrictions PrimaryOnly
-Attributes AlwaysFireWeapon
-UseMeleeThreatPrioritization 1
-item "The Righteous Bison"
-ItemAttributes
-{
-itemname "warbird_grenadelauncher_butcherbird"
-"mult projectile count" 10
-"blast radius increased" 1.25
-"fire rate bonus" 1.5
-"damage bonus" 1.33
-"projectile speed increased" 1.15
-"faster reload rate" 0.1
-"projectile spread angle penalty" 360
-"dmg taken from self reduced" 0.1
-}
-itemAttributes
-{    
-itemname "The Righteous Bison"
-"is_passive_weapon" 1
-"fire rate bonus" 0.1
-"faster reload rate" 0.05
-"set item tint rgb" 16738740
-"projectile spread angle penalty" 5
-"mult projectile count" 2
-"damage bonus" 1.15
-"projectile speed decreased" 0.9
-}
-CustomWeaponModel   //Sets custom weapon model
-			{
-					Slot 2 
-					Model "models/weapons/c_models/c_claymore/c_claymore.mdl"
-			}
-			CharacterAttributes
-			{
-			    "move speed penalty" 0.1
-				"dmg bonus vs buildings" 5
-				"increased jump height" 0.00001
-				"damage bonus" 0.8
-			}
-				}
-GOCRAZY
-{
-FireWeapon    //Periodically fires weapon
-                {
-                    Cooldown 15
-					IfSeeTarget 1 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
-                    Duration 0.5 //How long should the button be pressed (Default: 0.1)
-					Type "Jump" // Type of fire input, Possible values:
-				}
-FireWeapon  
-                {
-                    Delay 0
-                    Cooldown 0.2
-					IfSeeTarget 1
-					Type "Secondary"
-				}
-WeaponRestrictions PrimaryOnly
-Attributes AlwaysFireWeapon
-UseMeleeThreatPrioritization 1
-ItemAttributes
-{
-itemname "warbird_grenadelauncher_butcherbird"
-"override projectile type extra" "cleaver"
-"mult projectile count" 3
-"projectile spread angle penalty" 5
-"dmg penalty vs players" 0.25
-"faster reload rate" 0.1
-"Fire rate bonus" 1.25
-}
-ItemAttributes
-{
-itemname "the eyelander"
-"is_passive_weapon" 1
-"dmg bonus vs buildings" 10
-}
-			CharacterAttributes
-			{
-			"move speed penalty" 0.5
-			"stomp player force" 500
-            "stomp player damage" 130
-			"stomp player time" 0.25
-			    "kb fall min velocity" 400
-                "kb fall radius" 200
-				"fire rate bonus" 1
-                "kb fall stun time" 0.33
-				"kb fall force" 500
-				"kb fall damage" 65
-				"damage penalty" 0.7
-				"charge recharge rate increased" 30
-			}
-			item "The Tide Turner"
-			}
-			}
-			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
-			{
-				Delay 0 //Time before the first bot attribute change (Default: 10)
-				Repeats 1
-				IfHealthBelow 36001 //When set, the task activates only when the bot health is below specified value
-				Name "SAMURAI" // Name of the bot attributes listed in EventChangeAttributes
-			}
-			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
-			{
-				Delay 30 //Time before the first bot attribute change (Default: 10)
-				Cooldown 60 //Time between each bot attribute change (Default: 10)
-				Repeats 0 //How many times should bot change attributes in total (Default: 0 - Infinite)
-				IfSeeTarget 0
-				IfHealthAbove 5000 //When set, the task activates only when the bot health is below specified value
-				Name "SUICIDECHARGER" // Name of the bot attributes listed in EventChangeAttributes
-			}
-			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
-			{
-			    Delay 1
-				Repeats 1 //How many times should bot change attributes in total (Default: 0 - Infinite)
-				IfSeeTarget 0
-				IfHealthBelow 5000 //When set, the task activates only when the bot health is below specified value
-				Name "GOCRAZY" // Name of the bot attributes listed in EventChangeAttributes
-			}
-		}
 	}
 	
 	SpawnTemplate "the_part_where"
@@ -1692,7 +1451,7 @@ itemname "the eyelander"
 			WaitBetweenSpawns	3
 			    TFBot
 				{
-					Name	"Ã¥Ë†ÂÃ¨Â¦â€¹Ã¦Â®Âº"
+					Name	"初見殺"
 					Skill	Expert
 					Template	T_TFBot_Giant_Scout_Bonk
 					Attributes	"DisableDodge"
@@ -1711,7 +1470,7 @@ itemname "the eyelander"
 			WaitBetweenSpawns	3
 			    TFBot
 				{
-					Name	"Ã¥Ë†ÂÃ¨Â¦â€¹Ã¦Â®Âº"
+					Name	"初見殺"
 					Skill	Expert
 					Template	T_TFBot_Giant_Scout_Bonk
 					Attributes	"DisableDodge"
@@ -2850,7 +2609,7 @@ itemname "the eyelander"
 			TFBot
 			{
 			Template T_TFBot_Giant_Scout
-			skill hard
+			//skill hard
 			}
 		}
 		WaveSpawn
@@ -2866,7 +2625,7 @@ itemname "the eyelander"
 			TFBot
 			{
 			Template T_TFBot_Giant_Scout
-			skill hard
+			//skill hard
 			}
 		}
 		WaveSpawn
@@ -2984,13 +2743,18 @@ itemname "the eyelander"
 			{
 			TFBot
 				{
-					Template	T_TFBot_Pyro_Flaregun
+					Class Demoman
+					skill expert
+				}
+				TFBot
+				{
+					Class Demoman
 					skill expert
 				}
 				TFBot
 				{
 					Template	T_TFBot_Pyro_Flaregun
-					skill hard
+					skill expert
 				}
 				
 			}
@@ -3010,13 +2774,18 @@ itemname "the eyelander"
 			{
 			TFBot
 				{
-					Template	T_TFBot_Pyro_Flaregun
+					Class Demoman
+					skill expert
+				}
+				TFBot
+				{
+					Class Demoman
 					skill expert
 				}
 			TFBot
 				{
 					Template	T_TFBot_Pyro_Flaregun
-					skill hard
+					skill expert
 				}
 			}
 		}
@@ -3184,7 +2953,7 @@ itemname "the eyelander"
 			SpawnCount	4
 			where spawnbot_g2s1_alt
 			WaitBeforeStarting	4
-			Support Limited
+			Support 1
 			TFBot
 			{
 			    Class Soldier
@@ -3201,7 +2970,7 @@ itemname "the eyelander"
 			SpawnCount	4
 			Where spawnbot_g2s0_alt
 			WaitBeforeStarting	4
-			Support Limited
+			Support 1
 			TFBot
 			{
 			    Class Soldier
@@ -3211,11 +2980,11 @@ itemname "the eyelander"
 		}
 		WaveSpawn
 		{ 
-		WaitForAllDead support1a
+		WaitForAllSpawned 43
 			TotalCurrency 25
 			TotalCount 5
-			MaxActive	3
-			SpawnCount	3
+			MaxActive	2
+			SpawnCount	2
 			where spawnbot_g2s1_alt
 			WaitBetweenSpawnsAfterDeath 1
 			Support 1
@@ -3231,11 +3000,11 @@ itemname "the eyelander"
 		}
 		WaveSpawn
 		{
-		WaitForAllDead support1b
+		WaitForAllSpawned 43
 		TotalCurrency 25
 			TotalCount	5
-			MaxActive	3
-			SpawnCount	3
+			MaxActive	2
+			SpawnCount	2
 			Where spawnbot_g2s0_alt
 			WaitBetweenSpawnsAfterDeath 1
 			Support 1
@@ -3397,9 +3166,9 @@ itemname "the eyelander"
 		{ 
 		TotalCurrency 200
 		    name 44
-			TotalCount	8
-			MaxActive	8
-			SpawnCount	4
+			TotalCount	6
+			MaxActive	6
+			SpawnCount	3
 			where spawnbot_g2s1_alt
 			WaitForAllDead 43
 			WaitBetweenSpawns 20
@@ -3425,11 +3194,6 @@ itemname "the eyelander"
 			}
 			TFbot
 			{
-			template T_TFBot_Soldier_Extended_Battalion
-			MaxVisionRange 600
-			}
-			TFbot
-			{
 			Class Pyro
 			Skill Expert
 			Attributes Alwaysfireweapon
@@ -3441,9 +3205,9 @@ itemname "the eyelander"
 		{ 
 		TotalCurrency 200
 		    name 44
-			TotalCount	8
-			MaxActive	8
-			SpawnCount	4
+			TotalCount	6
+			MaxActive	6
+			SpawnCount	3
 			Where spawnbot_g2s0_alt
 			WaitForAllDead 43
 			WaitBetweenSpawns 20
@@ -3461,11 +3225,6 @@ itemname "the eyelander"
 					{
 						"damage bonus" 1.5
 					}
-			}
-			TFbot
-			{
-			template T_TFBot_Soldier_Extended_Battalion
-			MaxVisionRange 600
 			}
 			TFbot
 			{
@@ -3637,7 +3396,7 @@ itemname "the eyelander"
 			SpawnCount	2
 			where spawnbot_g2s1_alt
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	6
+			WaitBetweenSpawns	3
 			Squad
 			{
 			TFBot
@@ -3676,7 +3435,7 @@ itemname "the eyelander"
 			SpawnCount	2
 			Where spawnbot_g2s0_alt
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	6
+			WaitBetweenSpawns	3
 			Squad
 			{
 			TFBot
@@ -3709,10 +3468,10 @@ itemname "the eyelander"
 		{
 		    name 54c
 			waitforallspawned 53
-			TotalCurrency	25
-			TotalCount	1
-			MaxActive	1
-			SpawnCount	1
+			TotalCurrency	50
+			TotalCount	2
+			MaxActive	2
+			SpawnCount	2
 			where spawnbot_g2s1_alt
 			WaitBetweenSpawns	3
 			Squad
@@ -3721,16 +3480,20 @@ itemname "the eyelander"
 			{
 			 template T_TFBot_Giant_Heavyweapons
 			}
+			TFBot
+				{
+					Template	T_TFBot_Medic_QuickUber
+				}
 			}
 		}
 		WaveSpawn
 		{
 		     name 54c
 			waitforallspawned 53
-			TotalCurrency	25
-			TotalCount	1
-			MaxActive	1
-			SpawnCount	1
+			TotalCurrency	50
+			TotalCount	2
+			MaxActive	2
+			SpawnCount	2
 			Where spawnbot_g2s0_alt
 			WaitBetweenSpawns	3
 			Squad
@@ -3739,6 +3502,10 @@ itemname "the eyelander"
 			{
 			 template T_TFBot_Giant_Heavyweapons
 			}
+			TFBot
+				{
+					Template	T_TFBot_Medic_QuickUber
+				}
 			}
 		}
 		WaveSpawn
@@ -3811,7 +3578,7 @@ itemname "the eyelander"
 			MaxActive	2
 			SpawnCount	2
 			Where spawnbot_g2s0_alt
-			WaitBeforeStarting	13
+			WaitBeforeStarting	0
 			Squad
 			{
 			    TFBot
@@ -3834,7 +3601,7 @@ itemname "the eyelander"
 			MaxActive	2
 			SpawnCount	2
 			where spawnbot_g2s1_alt
-			WaitBeforeStarting	3
+			WaitBeforeStarting	0
 			Squad
 			{
 			    TFBot
@@ -4492,7 +4259,7 @@ itemname "the eyelander"
 		    Where spawnbot_g1s1a
 		    Where spawnbot_g2s0a
 		    Where spawnbot_g2s1a
-			WaitBetweenSpawns 28
+			WaitBetweenSpawns 26
 			Squad
 			{
 			TFBot
@@ -4511,17 +4278,18 @@ itemname "the eyelander"
 		WaveSpawn
 		{
 		    Name amongus
-			WaitForAllDead 71
+			//WaitForAllDead 71
 			TotalCurrency	50
-			TotalCount	2
+			TotalCount	4
 			MaxActive	1
 			SpawnCount	1
 			
-			Where spawnbot_g0s2b
-		    Where spawnbot_g1s0b
-		    Where spawnbot_g1s1b
-		    Where spawnbot_g2s0b
-		    Where spawnbot_g2s1b
+			Where spawnbot_g0s0a
+		    Where spawnbot_g1s0a
+		    Where spawnbot_g1s1a
+		    Where spawnbot_g2s0a
+		    Where spawnbot_g2s1a
+			waitbeforestarting 5
 			WaitBetweenSpawnsAfterDeath 10
 			TFBot
 			{
@@ -4865,21 +4633,7 @@ itemname "the eyelander"
 
 			}
 			}
-			TFBot
-			{
-			Class Pyro
-			name "Phlog Pyro"
-			Classicon pyro_phlog
-			Item "THe Phlogistinator"
-			Attributes SpawnWithFullCharge
-			Skill Expert
-			ItemAttributes
-			{
-				ItemName "The Phlogistinator"
-				"airblast disabled" 0
 
-			}
-			}
 			TFBot
 		{
 			Class Demoman

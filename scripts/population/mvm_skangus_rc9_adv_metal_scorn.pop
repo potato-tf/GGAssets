@@ -13,7 +13,7 @@
 // #base overclock_cactus_sniperspy.pop
 #base overclock_cactus_general.pop
 
-//// #base judge_restricts.pop
+//#base judge_restricts.pop
 //TODO
 
 WaveSchedule
@@ -31,13 +31,13 @@ WaveSchedule
     FixHuntsmanDamageBonus 1
     SendBotsToSpectatorImmediately 1
     AllowMultipleSappers 1 // might aswell have it 
-    HealOnKillOverhealMelee 0
     FastWholeMapTriggers 1
     ForceHoliday 2
     NoThrillerTaunt 1
 
     AddSentryBusterWhenDamageDealtExceeds 2000
     AddSentryBusterWhenKillCountExceeds 12
+    SentryHintMinDistanceFromBomb 650 
 
     PrecacheModel "models\workshop\weapons\c_models\c_essendon_eliminator\c_essendon_eliminator.mdl"
 
@@ -860,6 +860,7 @@ WaveSchedule
 
                 "OnPickup1" "filter_redteam_bomb_pickup,TestActivator,!activator,0,-1"
                 "OnDrop1" "filter_redteam_bomb_drop,TestActivator,!activator,0,-1"
+                "OnDrop1" "player,$DisplayTextChat,Robots will carry in addtional bombs that you can pick up, which can be used against the boss!,0,1"
                 "OnReturn" "!self,SetTeam,3,0,-1"
             }
             logic_relay
@@ -1062,6 +1063,7 @@ WaveSchedule
 
                 "OnPickup1" "filter_redteam_bomb_pickup_2,TestActivator,!activator,0,-1"
                 "OnDrop1" "filter_redteam_bomb_drop_2,TestActivator,!activator,0,-1"
+                "OnDrop1" "player,$DisplayTextChat,Robots will carry in addtional bombs that you can pick up, which can be used against the boss!,0,1"
                 "OnReturn" "!self,SetTeam,3,0,-1"
             }
             logic_relay
@@ -1535,18 +1537,18 @@ WaveSchedule
                 "OnPass" "yell,Disable,,0.1,-1"
                 "OnPass" "yell,Stop,,0.5,-1"
                 "OnPass" "heal_count,Subtract,105,0,-1"
-                "OnPass" "!activator,$removeitemattribute,fire input on hit|0,0,-1"
+                "OnPass" "!activator,$removeitemattribute,fire input on kill|0,0,-1"
                 "OnPass" "crit_enable,Trigger,,0.05,-1"
                 "OnPass" "crit_enable,Disable,,0.2,-1"
                 // "OnPass" "!activator,$RemovePlayerAttribute,generate rage on damage,0.1,-1" 
                 // "OnPass" "!activator,$RemovePlayerAttribute,hidden maxhealth non buffed,10,-1"
                 // "OnPass" "!activator,$RemovePlayerAttribute,CARD: move speed bonus,10,-1"
-                "OnPass" "heal_count,Subtract,2000,10,-1"
+                "OnPass" "heal_count,Subtract,2500,10,-1"
                 //"OnFail" "!activator,$RemovePlayerAttribute,damage bonus hidden,0,-1" // causes crashing??
                 "OnFail" "!activator,$RemoveCond,32,0,-1"
                 "OnFail" "yell,Enable,,0.1,-1"
                 "OnFail" "crit_enable,Enable,,0,-1"
-                "OnFail" "!activator,$additemattribute,fire input on hit|heal_count^Add^1|0,0,-1"
+                "OnFail" "!activator,$additemattribute,fire input on kill|heal_count^add^250|0,0,-1"
                 "OnFail" "!activator,$RemovePlayerAttribute,SET BONUS: max health additive bonus,0,-1"
                 "OnFail" "!activator,$RemovePlayerAttribute,CARD: move speed bonus,0,-1"
                 "OnFail" "!activator,$RemovePlayerAttribute,hidden maxhealth non buffed,0,-1"
@@ -1664,7 +1666,7 @@ WaveSchedule
             logic_compare
             {
                 "targetname" "ChargeMinigun"
-                "comparevalue" "0"
+                "comparevalue" "1"
                 "OnGreaterThan" "heal_count,add,1,0,-1"
                 //"OnGreaterThan" "player,$displaytextchat,added,0,-1"
             }
@@ -1672,13 +1674,13 @@ WaveSchedule
 			{
 				"targetname" "heal_count"
                 "min" "0"
-                "max" "2000"
+                "max" "2500"
 
                 "OnGetValue" "heal_count,$SetVar$CurrentValue,,0,-1" 
 
                 "onhitmax" "!activator,$AddPlayerAttribute,generate rage on damage|3,0,-1" 
                 "onhitmax" "!activator,$SetProp$m_flRageMeter,100,0.2,-1" 
-                "onhitmax" "Heal_Format,$setkey$case16,Rage: %/2000,2,-1" 
+                "onhitmax" "Heal_Format,$setkey$case16,Rage: %/2500,2,-1" 
 
                 "onhitmin" "!self,GetValue,,0,-1" 
 
@@ -1686,18 +1688,121 @@ WaveSchedule
                 "outvalue" "Heal_Format,$setkey$case01,,0,-1"
 
 			}
+            //filters
+
+            filter_tf_class
+            {
+                "Negated" "0"
+                "targetname" "is_scout"
+                "tfclass" "1"
+            }
+            filter_tf_class
+            {
+                "Negated" "0"
+                "targetname" "is_soldier"
+                "tfclass" "3"
+            }
+            filter_tf_class
+            {
+                "Negated" "0"
+                "targetname" "is_pyro"
+                "tfclass" "7"
+            }
+            filter_tf_class
+            {
+                "Negated" "0"
+                "targetname" "is_demo"
+                "tfclass" "4"
+
+            }
+            filter_tf_class
+            {
+                "Negated" "0"
+                "targetname" "is_heavy"
+                "tfclass" "6"
+
+            }
+            filter_tf_class
+            {
+                "Negated" "0"
+                "targetname" "is_engineer"
+                "tfclass" "9"
+
+            }
+            filter_tf_class
+            {
+                "Negated" "0"
+                "targetname" "is_medic"
+                "tfclass" "5"
+            }
+            filter_tf_class
+            {
+                "Negated" "0"
+                "targetname" "is_sniper"
+                "tfclass" "2"
+            }
+            filter_tf_class
+            {
+                "Negated" "0"
+                "targetname" "is_spy"
+                "tfclass" "8"
+            }
+            filter_multi
+            {
+                "Filter01" "is_soldier"
+                "Filter02" "is_scout"
+                "Filter03" "is_pyro"
+                "Filter04" "is_demo"
+                "Filter05" "is_heavy"
+                "filtertype" "1"
+                "Negated" "0"
+                "targetname" "filter_firstclasses"
+                "origin" "288 0 72"
+            }
+            filter_multi
+            {
+                "Filter01" "is_engineer"
+                "Filter02" "is_medic"
+                "Filter03" "is_sniper"
+                "Filter04" "is_spy"
+                "filtertype" "1"
+                "Negated" "0"
+                "targetname" "filter_secondclasses"
+                "origin" "288 0 72"
+            }
+            filter_multi
+            {
+                "Filter01" "filter_firstclasses"
+                "Filter02" "filter_secondclasses"
+                "filtertype" "1"
+                "Negated" "0"
+                "targetname" "filter_allclasses"
+                "origin" "288 0 72"
+                "OnPass" "filter_blu_hit,TestActivator,!activator,0,-1"
+                "OnPass" "player,$displaytextchat,passed class,0,-1"
+            }
+            filter_activator_tfteam
+            {
+                "Negated" "0"
+                "targetname" "filter_blu_hit"
+                "TeamNum" "3"
+                "origin" "0 0 0"
+
+                "OnPass" "ChargeMinigun,SetValueCompare,,0,-1"
+                "OnPass" "player,$displaytextchat,passed hit,0,-1"
+            }
             //displaying stuff
 			logic_compare
 			{
 				"targetname" "Compare_Heal"
 				"comparevalue" "0"
-				"onequalto" "Heat_Formal,$setkey$case16,Rage: %/2000,0,-1"  
-				"ongreaterthan" "Heal_Format,$setkey$case16,Rage: %/2000,-1"
+				"onequalto" "Heat_Formal,$setkey$case16,Rage: %/2500,0,-1"  
+				"ongreaterthan" "Heal_Format,$setkey$case16,Rage: %/2500,-1"
 			}
 			logic_case
 			{
 				"targetname" "Heal_Format" 
-				"case16" "Rage: %/2000"
+				"case16" "Rage: %/2500"
 				"ondefault" "Heal_Text,$setkey$message,,0,-1"
 				"ondefault" "Heal_Text,display,0,0,-1"
 			}
@@ -1904,10 +2009,11 @@ WaveSchedule
         {
             OriginalItemName "Iron Curtain"
             "special item description" "Rage meter grants increased health, speed and brief Minicrits to user and teammates."
-            "special item description 2" "Charge by hitting enemies. Requires 2000 points to charge."
+            "special item description 2" "Charge by killing enemies. Requires 2500 points to charge."
             "damage penalty" 0.8
             //"fire input on kill" "heal_count^Add^400"
-            "fire input on hit" "ChargeMinigun^SetValueCompare^"
+            "fire input on kill" "heal_count^add^250"
+            //"fire input on hit name restrict" "player"
         }
         //sniper
         "RailgunRifle"
@@ -2021,28 +2127,28 @@ WaveSchedule
         }
     }
 
-    DisallowUpgrade	 
+    DisallowUpgrade	[$SIGSEGV]
 	{
 		Upgrade	"generate rage on damage"
 		ItemName "Bolshiviek's Commanding Shout" 
 	}
-    DisallowUpgrade	 
+    DisallowUpgrade	[$SIGSEGV]
 	{
 		Upgrade	"mod minigun can holster while spinning"
 		ItemName "Bolshiviek's Commanding Shout" 
 	}
 
-    DisallowUpgrade	 
+    DisallowUpgrade	[$SIGSEGV]
 	{
 		Upgrade	"maxammo primary increased"
 		ItemName "RailgunRifle" 
 	}
-    DisallowUpgrade	 
+    DisallowUpgrade	[$SIGSEGV]
 	{
 		Upgrade	"faster reload rate"
 		ItemName "RailgunRifle" 
 	}
-    DisallowUpgrade	 
+    DisallowUpgrade	[$SIGSEGV]
 	{
 		Upgrade	"projectile penetration"
 		ItemName "RailgunRifle" 
@@ -3157,6 +3263,7 @@ WaveSchedule
                 TFBot
                 {
                     Template T_TFBot_Sniper_Bow_Burst
+                    Classicon sniper_bow_burst2
                 }
 
                 TFBot
@@ -3823,7 +3930,7 @@ WaveSchedule
                         "building instant upgrade" 1
                         "powerup charges" 1
                     }
-                    FireWeapon    //Periodically fires weapon
+                    FireWeapon [$SIGSEGV]  //Periodically fires weapon
                     {
                         Delay 5
                         Cooldown 8
@@ -4216,7 +4323,7 @@ WaveSchedule
 				// 	IfHealthBelow 80001
 				// }
                 //phase2
-                // FireInput   
+                // FireInput [$SIGSEGV] 
 				// {
 				// 	Target activate_phase2
 				//     Action Trigger
@@ -4225,14 +4332,14 @@ WaveSchedule
 				// 	Repeats 1
 				// 	IfHealthBelow 50000
 				// }
-                // AddCond   //Adds conditions to bots
+                // AddCond [$SIGSEGV] //Adds conditions to bots
 				// {
 				// 	Index 57
 				// 	Delay 0.05
 				// 	Duration 10
 				// 	IfHealthBelow 50000
 				// }
-                // AddCond   //Adds conditions to bots
+                // AddCond [$SIGSEGV] //Adds conditions to bots
 				// {
 				// 	Index 71
 				// 	Delay 0.05
@@ -4247,7 +4354,7 @@ WaveSchedule
                 //     Name "Taunt: The Proletariat Showoff" 
                 // }
                 //phase3
-                // FireInput   
+                // FireInput [$SIGSEGV] 
 				// {
 				// 	Target activate_phase3
 				//     Action Trigger
@@ -4256,14 +4363,14 @@ WaveSchedule
 				// 	Repeats 1
 				// 	IfHealthBelow 25000
 				// }
-                // AddCond   //Adds conditions to bots
+                // AddCond [$SIGSEGV] //Adds conditions to bots
 				// {
 				// 	Index 57
 				// 	Delay 0.05
 				// 	Duration 10
 				// 	IfHealthBelow 25000
 				// }
-                // AddCond   //Adds conditions to bots
+                // AddCond [$SIGSEGV] //Adds conditions to bots
 				// {
 				// 	Index 71
 				// 	Delay 0.05
@@ -4277,7 +4384,7 @@ WaveSchedule
                 //     IfHealthBelow 25000
                 //     Name "Taunt: The Proletariat Showoff" 
                 // }
-                FireWeapon    
+                FireWeapon [$SIGSEGV]  
                 {
                     Delay 0.1
                     Cooldown 0.1
@@ -4286,7 +4393,7 @@ WaveSchedule
                     Duration 999
 					Type "Secondary" 
 				}
-                FireWeapon    
+                FireWeapon [$SIGSEGV]  
                 {
                     Delay 1
                     Cooldown 5
