@@ -176,7 +176,7 @@ function SpawnBlackjackBot()
 end
 
 function OnWaveReset(wave)
-
+	print(wave)
 	if wave == 1 then
 		for i = 1, ents.FindByClass('tf_objective_resource').m_nMannVsMachineMaxWaveCount do
 			WaveState[i] = {
@@ -205,6 +205,7 @@ function OnWaveReset(wave)
 					SpentChips = 0}
 			end
 	end
+
 	RouletteWinnings = WaveState[wave].RouletteWinnings
 	RouletteWinningsTotal = WaveState[wave].RouletteWinningsTotal
 	PachinkoWinnings = WaveState[wave].PachinkoWinnings
@@ -389,7 +390,7 @@ function OnWaveInit(wave)
 					SpentChips = 0}
 			end
 	end
-	
+
 	WaveSetup = true
 	RouletteWait = RouletteUpgrade[0]
 	PachinkoWait = PachinkoUpgrade[0]
