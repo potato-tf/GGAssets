@@ -311,6 +311,9 @@ function OnWaveReset(wave)
 	end
 
 	timer.Simple(0.1, function()
+		ents.FindByName('temp_prize_3_store'):AcceptInput('AddOutput', 'OnEntitySpawned Prize3ButtonFix:ForceSpawn:0:0:-1')
+		ents.FindByName('temp_prize_2_store'):AcceptInput('AddOutput', 'OnEntitySpawned Prize2ButtonFix:ForceSpawn:0:0:-1')
+
 		ents.FindByName('prize_bought_relay_1'):AcceptInput('AddOutput', 'OnTrigger popscript:$Spend:50:0:-1')
 		ents.FindByName('prize_bought_relay_2'):AcceptInput('AddOutput', 'OnTrigger popscript:$Spend:15:0:-1')
 		ents.FindByName('prize_bought_relay_3'):AcceptInput('AddOutput', 'OnTrigger popscript:$Spend:15:0:-1')
@@ -325,9 +328,6 @@ function OnWaveReset(wave)
 		ents.FindByName('prize_bought_relay_5'):AcceptInput('AddOutput', 'OnTrigger popscript:$SpendText:Nuke!:0:-1')
 		ents.FindByName('prize_bought_relay_7'):AcceptInput('AddOutput', 'OnTrigger popscript:$SpendText:EMP!:0:-1')
 		ents.FindByName('prize_bought_relay_8'):AcceptInput('AddOutput', 'OnTrigger popscript:$SpendText:Special Prize!:0:-1')
-
-		ents.FindByName('temp_prize_3_store'):AcceptInput('AddOutput', 'OnEntitySpawned Prize3ButtonFix:ForceSpawn:0:0:-1')
-		ents.FindByName('temp_prize_2_store'):AcceptInput('AddOutput', 'OnEntitySpawned Prize2ButtonFix:ForceSpawn:0:0:-1')
 	end)
 end
 
@@ -411,8 +411,10 @@ function OnWaveInit(wave)
 	end)
 
 	timer.Simple(0.1, function()
-		ents.FindByName('tickets_text_counter_buffer'):AcceptInput('SetValue', TicketsOwned)
-
+		ents.FindByName('text_tickets_label'):AcceptInput('AddOutput', 'holdtime 0')
+		ents.FindByName('text_tickets_value_3'):AcceptInput('AddOutput', 'holdtime 0')
+		ents.FindByName('text_tickets_value_2'):AcceptInput('AddOutput', 'holdtime 0')
+		ents.FindByName('text_tickets_value_1'):AcceptInput('AddOutput', 'holdtime 0')
 		ents.FindByName('snd_tickets_lose'):AcceptInput('AddOutput', 'message null')
 		ents.FindByName('snd_tickets_earn'):AcceptInput('AddOutput', 'message null')
 
@@ -1631,3 +1633,29 @@ function OnWaveSuccess(wave)
 		end
 	end
 end
+
+function OnGameTick()
+	for _, player in pairs(ents.GetAllPlayers()) do
+		if player:IsRealPlayer() == true then
+			player:ShowHudText({
+				channel = 1,
+				x = 0.889,
+				y = 0.35,
+				r1 = 230,
+				g1 = 194,
+				b1 = 89,
+				r2 = 203,
+				g2 = 179,
+				b2 = 37,
+				fadeinTime = 0,
+				fadeoutTime = 0,
+				holdTime = 1},
+				'Chips: ' .. TicketsOwned
+			)
+		end
+	end
+end
+
+--[[ function ShowChips(chips)
+	util.PrintToChatAll(chips)
+end ]]
