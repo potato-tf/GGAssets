@@ -361,6 +361,35 @@ function OnWaveReset(wave)
 end
 
 function OnWaveInit(wave)
+	if wave == 1 then
+		for i = 1, ents.FindByClass('tf_objective_resource').m_nMannVsMachineMaxWaveCount do
+			WaveState[i] = {
+					RouletteWinnings = 0,
+					RouletteWinningsTotal = 0,
+					PachinkoWinnings = 0,
+					PachinkoWinningsTotal = 0,
+					SlotsWinnings = 0,
+					SlotsWinningsTotal = 0,
+					BlackjackWinnings = 0,
+					BlackjackWinningsTotal = 0,
+					RouletteLevel = 0,
+					PachinkoLevel = 0,
+					SlotsLevel = 0,
+					BlackjackLevel = 0,
+					TicketsOwned = 0,
+					CashedOut = 0,
+					EMPBought = false,
+					NukeBought = false,
+					EMPUsed = false,
+					NukeUsed = false,
+					HeliBought = false,
+					ShieldBought = false,
+					ShieldCounter = 0,
+					SpecialPrize = false,
+					SpentChips = 0}
+			end
+	end
+	
 	WaveSetup = true
 	RouletteWait = RouletteUpgrade[0]
 	PachinkoWait = PachinkoUpgrade[0]
