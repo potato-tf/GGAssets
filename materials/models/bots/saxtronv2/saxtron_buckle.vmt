@@ -23,8 +23,8 @@
 	"$basephongboost" "5"
 
 	"$commadd_phongexponent" "40"
-	"$commadd_phongboost" "22.5"
-	"$commweapon" "0"
+	"$commadd_phongboost" 	"22.5"
+	"$commweapon"		"0"
 
 	"$glowcolor" "1"
 	
@@ -62,6 +62,5 @@
 			"srcVar1"  "$yellow"
 			"resultVar" "$color2"
 		}
-
 	}
 }
