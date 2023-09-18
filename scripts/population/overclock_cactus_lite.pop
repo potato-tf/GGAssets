@@ -1621,7 +1621,7 @@ WaveSchedule
 				"provide on active" 1
 				"engy sentry damage bonus" 0.2
 				"mult bleeding dmg" 2
-				"Repair rate decreased" 0.5
+				"Repair rate decreased" -0.5
 				"dmg taken from fire increased" -0.2
 				"mult_dmgtaken_active" 0.2
 			}
