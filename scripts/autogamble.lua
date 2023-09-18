@@ -200,8 +200,6 @@ function OnWaveReset(wave)
 			ShieldCounter = 0,
 			SpecialPrize = false,
 			SpentChips = 0}
-
-	PrintTable(WaveState)
 	RouletteWinnings = WaveState[wave].RouletteWinnings
 	RouletteWinningsTotal = WaveState[wave].RouletteWinningsTotal
 	PachinkoWinnings = WaveState[wave].PachinkoWinnings
