@@ -663,7 +663,7 @@ WaveSchedule
 			{
 				Health 10000
 				Name "tankboss"
-				Speed 120
+				Speed 100
 				Scale 0.7
 				DisableSmokestack 1
 				IsMiniBoss 0
@@ -700,7 +700,7 @@ WaveSchedule
 			{
 				Health 10000
 				Name "tankboss"
-				Speed 120
+				Speed 100
 				Scale 0.7
 				DisableSmokestack 1
 				IsMiniBoss 0
@@ -770,16 +770,6 @@ WaveSchedule
 			WaitBeforeStarting 8
 			RandomChoice
 			{
-				TFBot
-				{
-					Template T_TFBot_Pyro_DF
-					Tag default
-				}
-				TFBot
-				{
-					Template T_TFBot_Pyro_DF
-					Tag default
-				}
 				TFBot
 				{
 					Template T_TFBot_Pyro_DF
@@ -1067,9 +1057,9 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 12000
+				Health 11500
 				Name "tankboss"
-				Speed 120
+				Speed 100
 				Scale 0.7
 				DisableSmokestack 1
 				IsMiniBoss 0
@@ -1104,9 +1094,9 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 12000
+				Health 11500
 				Name "tankboss"
-				Speed 120
+				Speed 100
 				Scale 0.7
 				DisableSmokestack 1
 				IsMiniBoss 0
