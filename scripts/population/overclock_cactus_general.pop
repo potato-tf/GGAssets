@@ -414,12 +414,12 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"CARD: damage bonus" 0.2
+				"CARD: damage bonus" 0.25
 				"Blast radius decreased" -0.2
 				"dmg pierces resists absorbs" 1
 				"clip size penalty HIDDEN" -0.25
 			}
-			Description "+20% damage +Attacks pierce damage resistances -20% smaller blast radius -25% clip size" 
+			Description "+25% damage +Attacks pierce damage resistances -20% smaller blast radius -25% clip size" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2221,10 +2221,10 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"add cond on hit duration" 4.0
-				"reload time increased hidden" 0.35
+				"reload time increased hidden" 0.2
 				"damage penalty" -0.20
 			}
-			Description "+Reload entire clip at once -35% slower reload speed -20% damage penalty" 
+			Description "+Reload entire clip at once -20% slower reload speed -20% damage penalty" 
 			Tier 1
 			AllowedWeapons
 			{

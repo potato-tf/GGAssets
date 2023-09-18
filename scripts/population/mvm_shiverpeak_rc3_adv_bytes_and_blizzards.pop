@@ -3084,6 +3084,7 @@ Embrace_Eachother_For_It_Is_Winter
 		{
 			WaitForAllSpawned "wave1e1"
 			WaitBeforeStarting 40
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -3093,6 +3094,7 @@ Embrace_Eachother_For_It_Is_Winter
 		WaveSpawn
 		{
 			WaitForAllDead "wave1e1"
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -3513,6 +3515,7 @@ Embrace_Eachother_For_It_Is_Winter
 		{
 			WaitForAllSpawned "wave2c1"
 			WaitBeforeStarting 40
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -3522,6 +3525,7 @@ Embrace_Eachother_For_It_Is_Winter
 		WaveSpawn
 		{
 			WaitForAllDead "wave2c1"
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -3610,6 +3614,7 @@ Embrace_Eachother_For_It_Is_Winter
 		{
 			WaitForAllSpawned "wave2c"
 			WaitBeforeStarting 45
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -3619,6 +3624,7 @@ Embrace_Eachother_For_It_Is_Winter
 		WaveSpawn
 		{
 			WaitForAllDead "wave2c"
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -3696,6 +3702,7 @@ Embrace_Eachother_For_It_Is_Winter
 		{
 			WaitForAllSpawned "wave2d"
 			WaitBeforeStarting 50
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -3705,6 +3712,7 @@ Embrace_Eachother_For_It_Is_Winter
 		WaveSpawn
 		{
 			WaitForAllDead "wave2d"
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -3959,6 +3967,7 @@ Embrace_Eachother_For_It_Is_Winter
 		{
 			WaitForAllSpawned "wave3a"
 			WaitBeforeStarting 35
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -4204,6 +4213,7 @@ Embrace_Eachother_For_It_Is_Winter
 		WaveSpawn
 		{
 			WaitForAllDead "wave3c"
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -4214,6 +4224,7 @@ Embrace_Eachother_For_It_Is_Winter
 		{
 			WaitForAllSpawned "wave3c"
 			WaitBeforeStarting 35
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -4326,6 +4337,7 @@ Embrace_Eachother_For_It_Is_Winter
 		WaveSpawn
 		{
 			WaitForAllDead "wave3d_2"
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay
@@ -4336,6 +4348,7 @@ Embrace_Eachother_For_It_Is_Winter
 		{
 			WaitForAllSpawned "wave3d_2"
 			WaitBeforeStarting 65
+			Support Limited
 			FirstSpawnOutput
 			{
 				Target spawn_control_relay

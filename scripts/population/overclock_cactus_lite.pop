@@ -1763,10 +1763,10 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"add cond on hit duration" 4.0
-				"reload time increased hidden" 0.75
+				"reload time increased hidden" 0.25
 				"damage penalty" -0.20
 			}
-			Description "+Reload entire clip at once -75% slower reload speed -20% damage penalty" 
+			Description "+Reload entire clip at once -25% slower reload speed -20% damage penalty" 
 			Tier 1
 			AllowedWeapons
 			{
