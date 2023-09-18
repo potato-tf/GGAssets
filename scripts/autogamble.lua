@@ -55,7 +55,7 @@ BossActive = false
 SummonHP = 0
 SummonCount = 0
 
-for i = 0, ents.FindByClass('tf_objective_resource').m_nMannVsMachineMaxWaveCount do
+for i = 0, 7 do
 WaveState[i] = {
 		RouletteWinnings = 0,
 		RouletteWinningsTotal = 0,
