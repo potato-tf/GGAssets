@@ -821,7 +821,7 @@ if (NetProps.GetPropInt(objective_resource_entity, "m_nMannVsMachineWaveCount") 
 			if (player_to_alert == null) continue
 			if (IsPlayerABot(player_to_alert)) continue
 			
-			EmitSoundEx({sound_name = "mvm/mvm_tele_deliver.wav", channel = 6, entity = player_to_alert, pitch = 100, filter_type = 4})
+			EmitSoundEx({sound_name = "mvm/mvm_tele_deliver.wav", channel = 6, entity = player_to_alert, pitch = 100, filter_type = 4, volume = 0.2})
 		}
 	}
 	

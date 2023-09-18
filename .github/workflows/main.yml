@@ -81,7 +81,7 @@ jobs:
           wait
 
           cd tf/download
-          for i in "22 pterodactyl@us.potato.tf" "27040 pterodactyl@us.potato.tf" "3438 pterodactyl@us.potato.tf" "8246 pterodactyl@us.potato.tf" "22 pterodactyl@sgp.potato.tf" "22 pterodactyl@sgp2.potato.tf" "27035 pterodactyl@eu.potato.tf" "22 pterodactyl@eu9.potato.tf" "2244 pterodactyl@eu9.potato.tf" "22 pterodactyl@tx.pnpl.tf" "22 pterodactyl@br.potato.tf" "22 pterodactyl@aus.potato.tf" "2245 pterodactyl@eu9.potato.tf" "22 pterodactyl@sgp3.potato.tf"  "22 pterodactyl@eu3.potato.tf"; do a=( $i );
+          for i in "22 pterodactyl@us.potato.tf" "27040 pterodactyl@us.potato.tf" "3438 pterodactyl@us.potato.tf" "8246 pterodactyl@us.potato.tf" "22 pterodactyl@sgp.potato.tf" "22 pterodactyl@sgp2.potato.tf" "27035 pterodactyl@eu.potato.tf" "22 pterodactyl@eu9.potato.tf" "2244 pterodactyl@eu9.potato.tf" "22 pterodactyl@tx.pnpl.tf" "22 pterodactyl@br.potato.tf" "22 pterodactyl@aus.potato.tf" "2245 pterodactyl@eu9.potato.tf" "22 pterodactyl@eu3.potato.tf"; do a=( $i );
           {
             ssh -o StrictHostKeyChecking=no -p ${a[0]} ${a[1]} "touch /var/tf2server/tf/occupiedservers/wake; exit 0"
 
