@@ -2261,10 +2261,11 @@ WaveSchedule
 			Cap 1.20
 			Increment 0.20
 			Cost 0
-			Description "+20% faster heal rate +5% faster uber build on overhealed patients -65% shield duration -100% shield damage" 
+			Description "+25 max hp +20% faster heal rate +5% faster uber build on overhealed patients -65% shield duration -100% shield damage" 
 			Tier 1
 			SecondaryAttributes 
 			{
+				"max health additive bonus" 25
 				"ubercharge overheal rate penalty" 0.05
 				"increase buff duration" -0.65
 				"dmg penalty vs players" -1.0
