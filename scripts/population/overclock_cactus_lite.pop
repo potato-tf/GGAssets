@@ -684,8 +684,8 @@ WaveSchedule
 		{
 			Name "Unstable Mod: Gas Jockey"
 			Attribute "move speed bonus"
-			Cap 1.1
-			Increment 0.1
+			Cap 1.15
+			Increment 0.15
 			Cost 0
 			SecondaryAttributes
 			{
@@ -694,7 +694,7 @@ WaveSchedule
 				"airblast_pushback_disabled" 1
 				"mult airblast refire time" -0.5
 			}
-			Description "10% move-speed +50% faster airblast +Attacks pierce damage resistances -15% less damage -airblast no longer pushes back robots" 
+			Description "15% move-speed +50% faster airblast +Attacks pierce damage resistances -15% less damage -airblast no longer pushes back robots" 
 			Tier 1
             AllowedWeapons
 			{
