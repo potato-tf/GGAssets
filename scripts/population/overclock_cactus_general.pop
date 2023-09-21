@@ -141,11 +141,11 @@ WaveSchedule
 			SecondaryAttributes
 			{
 				"reload time increased hidden" -0.46
-				"fire rate penalty HIDDEN" 0.3
+//				"fire rate penalty HIDDEN" 0.3
 				"provide on active" -1
 				"no double jump" 1
 			}
-			Description "+25 max hp +50% faster reload -No double jump -30% slower firing speed" 
+			Description "+25 max hp +50% faster reload -No double jump" 
 			Tier 1
 			AllowPlayerClass Scout
             AllowedWeapons
@@ -269,14 +269,14 @@ WaveSchedule
 			Cap 1
 			Increment 1
 			Cost 0
-			Description "+On Hit: apply mark for death and milk -25 max hp -50% damage penalty" 
+			Description "+On Hit: apply mark for death and milk -25 max hp -25% damage penalty" 
 			Tier 1
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"max health additive penalty" -25
 				"add cond on hit" 27
 				"add cond on hit duration" 6
-				"damage penalty" -0.5
+				"damage penalty" -0.25
 			}
 			AllowedWeapons
 			{
