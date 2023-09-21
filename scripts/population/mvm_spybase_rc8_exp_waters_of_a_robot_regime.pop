@@ -4387,7 +4387,7 @@ TremendoPinoHePlantado
 				Tank
 				{
 					StartingPathTrackNode boss_path_1
-					Health	20000
+					Health	16000
 					Name	Tank
 					
 					Template "SmallTankTurret"

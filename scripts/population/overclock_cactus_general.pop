@@ -466,16 +466,16 @@ WaveSchedule
 		{
 			Name "Unstable Mod: Tank Buster"
 			Attribute "mult dmg vs tanks" 
-			Cap 1.2
-			Increment 0.2
+			Cap 1.25
+			Increment 0.25
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"Projectile speed decreased" -0.25
+				"Projectile speed decreased" -0.2
 				"heal on hit for rapidfire" 15
 				"health on radius damage" -20
 			}
-			Description "+Heal on hit stacks with multiple enemies +20% damage Vs. Tanks -25% slower projectile speed" 
+			Description "+Heal on hit stacks with multiple enemies +25% damage Vs. Tanks -20% slower projectile speed" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -517,10 +517,10 @@ WaveSchedule
 				"mod projectile heat seek power" 360
 				"clip size penalty" -0.5
 				"damage penalty" -0.15
-				"Projectile speed decreased" -0.35
+				"Projectile speed decreased" -0.20
 				"projectile detonate time" 2.5
 			}
-			Description "+15% increase to rocket jump bonuses +Rockets follow cross-hair -50% clip size -35% slower projectile speed -no reduced self blast damage" 
+			Description "+15% increase to rocket jump bonuses +Rockets follow cross-hair -50% clip size -20% slower projectile speed -no reduced self blast damage" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -531,11 +531,11 @@ WaveSchedule
 		ShotgunMark
 		{
 			Name "Stable Mod: Debuff Rounds"
-			Attribute "+Mark for death +15% damage bonus" 
+			Attribute "+Mark for death" 
 			Cap 1
 			Increment 1
 			Cost 0
-			Description "Weapon will now mark 1 target for death" 
+			Description "Weapon will now mark 1 target for death +15% damage bonus" 
 			SecondaryAttributes 
 			{
 				"damage bonus" 0.15
@@ -595,8 +595,8 @@ WaveSchedule
 		{
 			Name "Unstable Mod: Slim Rockets"
 			Attribute "halloween reload time decreased"
-			Cap 0.75
-			Increment -0.25
+			Cap 0.8
+			Increment -0.2
 			Cost 0
 			SecondaryAttributes 
 			{
@@ -605,7 +605,7 @@ WaveSchedule
 				"maxammo primary reduced" -0.5
 				"maxammo secondary reduced" -0.5
 			}
-			Description "+25% faster primary reload -50% max primary/secondary ammo" 
+			Description "+20% faster primary reload -50% max primary/secondary ammo" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -1593,7 +1593,7 @@ WaveSchedule
 		HeavyBalancedBrass
 		{
 			Name "Unstable Mod: Defense Framework"
-			Description "+30% Spinup resistance +spin-up time penalty is removed -movement is disabled while spun-up."
+			Description "+30% Spinup resistance +spin-up time penalty is removed -movement is disabled while spun-up -10% damage -100% overheal"
 			AllowPlayerClass HeavyWeapons
 			AllowedWeapons
 			{
@@ -1610,6 +1610,7 @@ WaveSchedule
 				"aiming movespeed decreased"	-0.395	// 99% total move speed penalty while spun up
 				"dmg taken from crit reduced" -0.5
 				"mult_patient_overheal_penalty_active" -1.0
+				"damage bonus" -0.1
 			}
 		}
 		HeavyNattyB
@@ -2222,10 +2223,10 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"add cond on hit duration" 4.0
-				"reload time increased hidden" 0.2
+//				"reload time increased hidden" 0.2
 				"damage penalty" -0.20
 			}
-			Description "+Reload entire clip at once -20% slower reload speed -20% damage penalty" 
+			Description "+Reload entire clip at once -20% damage penalty" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2267,7 +2268,7 @@ WaveSchedule
 			SecondaryAttributes 
 			{
 				"max health additive bonus" 25
-				"ubercharge overheal rate penalty" 0.05
+				"ubercharge overheal rate penalty" 0.15
 				"increase buff duration" -0.65
 				"dmg penalty vs players" -1.0
 			}
