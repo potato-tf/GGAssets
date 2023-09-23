@@ -595,9 +595,9 @@ WaveSchedule
 			Name "w3b"
 			WaitForAllSpawned "w3a"
 			TotalCurrency 100 // 300
-			TotalCount 9
-			MaxActive 6
-			SpawnCount 3
+			TotalCount 6
+			MaxActive 4
+			SpawnCount 2
 			Where spawnbot
 			WaitBetweenSpawns 18
 			WaitBeforeStarting 15
@@ -636,12 +636,6 @@ WaveSchedule
 					Template T_TFBot_Medic_QuickUber
 					Name "Quick Uber Medic"
 				}
-				
-				TFBot
-				{
-					Template T_TFBot_Medic_QuickUber
-					Name "Quick Uber Medic"
-				}
 			}
 		}
 		
@@ -661,7 +655,7 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 10000
+				Health 9000
 				Name "tankboss"
 				Speed 100
 				Scale 0.7
@@ -698,7 +692,7 @@ WaveSchedule
 			}
 			Tank
 			{
-				Health 10000
+				Health 9000
 				Name "tankboss"
 				Speed 100
 				Scale 0.7
@@ -725,7 +719,7 @@ WaveSchedule
 			WaitForAllSpawned "w3a"
 			TotalCurrency 50 // 400
 			TotalCount 32
-			MaxActive 12
+			MaxActive 14
 			SpawnCount 2
 			Where spawnbot_all
 			WaitBetweenSpawns 2

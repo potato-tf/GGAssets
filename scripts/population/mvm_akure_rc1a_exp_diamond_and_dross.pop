@@ -197,6 +197,7 @@ population
 		"weapon spread bonus"					1
 		"paintkit_proto_def_index"				217	// bomber soul
 		"set_item_texture_wear"					0	// factory new
+		"projectile trail particle"				"~tranq_distortion_trail"
 		"custom kill icon"						"merasmus_zap"
 		"special item description"				"Fires homing rockets in a wide spread that converge on the crosshair."
 		"special item description 2"			"I have one question for you: EXPLOSIONS?!"

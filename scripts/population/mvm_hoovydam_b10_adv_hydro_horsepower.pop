@@ -53,24 +53,24 @@ WaveSchedule
 			}
 		}
 	}
-	//Mission	// Spy wave 2
-	//{
-	//	Objective Spy
+	Mission	// Spy wave 2
+	{
+		Objective Spy
 
-	//	InitialCooldown 90
-	//	Where spawnbot_a
-	//	BeginAtWave 2
-	//	RunForThisManyWaves 1
-	//	CooldownTime 90	//120-->90
-	//	DesiredCount 2
+		InitialCooldown 90
+		Where spawnbot_a
+		BeginAtWave 2
+		RunForThisManyWaves 1
+		CooldownTime 90	//120-->90
+		DesiredCount 2
 
-	//	TFBot
-	//	{
-	//		Class Spy
-	//		Skill Expert
-	//		Name Spy
-	//	}
-	//}
+		TFBot
+		{
+			Class Spy
+			Skill Expert
+			Name Spy
+		}
+	}
 	Mission	// Spy wave 3
 	{
 		Objective Spy
@@ -79,7 +79,7 @@ WaveSchedule
 		Where spawnbot_a
 		BeginAtWave 3
 		RunForThisManyWaves 1
-		CooldownTime 90	//120-->90
+		CooldownTime 60 //120-->90-->60
 		DesiredCount 2
 
 		TFBot
@@ -110,24 +110,24 @@ WaveSchedule
 	//		}
 	//	}
 	//}
-	//Mission // Spy - wave 5
-	//{
-	//	Objective Spy
+	Mission // Spy - wave 5
+	{
+		Objective Spy
 
-	//	InitialCooldown 90
-	//	Where spawnbot_a
-	//	BeginAtWave 5
-	//	RunForThisManyWaves 1
-	//	CooldownTime 90	//60-->120-->90
-	//	DesiredCount 2		//4-->2
+		InitialCooldown 90
+		Where spawnbot_a
+		BeginAtWave 5
+		RunForThisManyWaves 1
+		CooldownTime 90		//60-->120-->90
+		DesiredCount 2		//4-->2
 
-	//	TFBot
-	//	{
-	//		Class Spy
-	//		Skill Expert
-	//		Name Spy
-	//	}
-	//}
+		TFBot
+		{
+			Class Spy
+			Skill Expert
+			Name Spy
+		}
+	}
 
 	//	Wave 1
 	//
@@ -159,7 +159,7 @@ WaveSchedule
 		}
 
 		//	BREAD GAME //
-		
+
 		WaveSpawn
 		{
 			WaitBeforeStarting 	0
@@ -656,32 +656,6 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Sniper_Huntsman
-			}
-		}
-		WaveSpawn // spy support 
-		{
-			Name "W2_2"
-
-			WaitForAllDead "W2_1"
-
-			Where spawnbot_a
-			Where spawnbot_b
-			Where spawnbot_c
-			TotalCount 6
-			MaxActive 2
-			SpawnCount 2
-			WaitBetweenSpawns 90
-			WaitBeforeStarting 60
-			Randomspawn 1
-			TotalCurrency 0
-
-			Support 1
-
-			TFBot
-			{
-				Class Spy
-				Skill Expert
-				Attributes IgnoreFlag
 			}
 		}
 	}
@@ -1487,7 +1461,7 @@ WaveSchedule
 
 			TFBot
 			{
-				Template T_TFBot_Demoman_Knight_Persian
+				Template T_TFBot_Demoman_Knight
 			}
 
 		}
@@ -1499,90 +1473,12 @@ WaveSchedule
 
 			WaitForAllDead "W4_2_B"
 
-			Where spawnbot_b
-			TotalCount 3
-			MaxActive 3
-			SpawnCount 3
-			WaitBetweenSpawns 0
-			WaitBeforeStarting 2
-			TotalCurrency 75
-
-			Squad
-			{
-				TFBot
-				{
-					Template T_TFBot_Giant_Demoman
-					ClassIcon demo_spammer
-					Attributes AlwaysCrit
-					Tag bot_giant
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal_Armor
-					Tag bot_giant
-					Tag bot_squad_member
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal_Armor
-					Tag bot_giant
-					Tag bot_squad_member
-				}
-			}
-		}
-
-		WaveSpawn	//	Giant Demo Escort #2
-					//	A) Bridge / Upper
-		{
-			Name "W4_2_C_2"
-
-			WaitForAllSpawned "W4_2_C_1"
-
 			Where spawnbot_a
-			TotalCount 3
-			MaxActive 3
+			TotalCount 9
+			MaxActive 9
 			SpawnCount 3
-			WaitBetweenSpawns 0
-			WaitBeforeStarting 8	//6 -->7 -->8 -->6 -->8
-			TotalCurrency 75
-
-			Squad
-			{
-				TFBot
-				{
-					Template T_TFBot_Giant_Demoman
-					ClassIcon demo_spammer
-					Attributes AlwaysCrit
-					Tag bot_giant
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal_Armor
-					Tag bot_giant
-					Tag bot_squad_member
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic_BigHeal_Armor
-					Tag bot_giant
-					Tag bot_squad_member
-				}
-			}
-		}
-
-		WaveSpawn	//	Giant Demo Escort #3
-					//	C) Cliff
-		{
-			Name "W4_2_C_3"
-
-			WaitForAllSpawned "W4_2_C_2"
-
-			Where spawnbot_b
-			TotalCount 3
-			MaxActive 3
-			SpawnCount 3
-			WaitBetweenSpawns 0
-			WaitBeforeStarting 16	//6 -->9 -->16-->12-->16
+			WaitBetweenSpawns 9
+			WaitBeforeStarting 2
 			TotalCurrency 75
 
 			Squad
@@ -1661,7 +1557,7 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn	//	Huntsman  bomb carrier
+		WaveSpawn	//	Scout bomb carrier
 					//	A) Bridge	/	Upper
 		{
 			Name "W4_420"
@@ -1678,7 +1574,6 @@ WaveSchedule
 
 			TFBot
 			{
-				//Template T_TFBot_Sniper_Huntsman
 				Template T_TFBot_Scout_Melee
 			}
 		}
@@ -2069,10 +1964,10 @@ WaveSchedule
 		{
 			Where spawnbot_c 		//b -->c
 			Name "W5_0"
-			TotalCount 12 			//16-->14-->16-->14-->12
+			TotalCount 14 			//16-->14-->16-->14-->12-->14
 			MaxActive 4
 			SpawnCount 2
-			WaitBetweenSpawns 28 	//20-->22-->24-->28
+			WaitBetweenSpawns 24 	//20-->22-->24-->28-->24
 			WaitBeforeStarting 12 	//10-->12
 			TotalCurrency 140
 
@@ -2222,10 +2117,10 @@ WaveSchedule
 		{
 			Class Medic
 			Name "Armored Big-Heal Medic"
-			ClassIcon medic_quickfix_armored
+			ClassIcon medic_armored
 			Skill Normal
 			Scale 1.2
-			Health 400							//400-->500-->400
+			Health 500							//400-->500-->400-->500
 			Item "The Quick-Fix"
 			Item "Das Naggenvatcher"
 			Item "Coldfront Carapace"
@@ -3452,3 +3347,4 @@ WaveSchedule
 		}
 	}
 }
+

@@ -1772,7 +1772,7 @@ IShatMyself
 					"origin" "0 0 0"
 					"teamnum" "2"
 					"Crits" "0"
-					"Damage" "200"
+					"Damage" "400"
 					"ModelScale" "1"
 					"SpeedMax" "0"
 					"SpeedMin" "0"
@@ -2880,7 +2880,6 @@ IShatMyself
 					ClassIcon  medic_kritz
 					Skill  Expert
 					Attributes  SpawnWithFullCharge
-					Attributes IgnoreFlag
 					Item  "The Overdose"
 					Item  "The Kritzkrieg"
 					Item  "The Weather Master"
@@ -2903,7 +2902,6 @@ IShatMyself
 					ClassIcon  medic_kritz
 					Skill  Expert
 					Attributes  SpawnWithFullCharge
-					Attributes IgnoreFlag
 					Item  "The Overdose"
 					Item  "The Kritzkrieg"
 					Item  "The Weather Master"
