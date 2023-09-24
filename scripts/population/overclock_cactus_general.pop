@@ -820,7 +820,7 @@ WaveSchedule
 				"provide on active" 1
 				//"hit self on miss" 1
 			}
-			Description "+25% damage +resist all ranged damage by 35% -On Miss: Hit yourself, idiot" 
+			Description "+25% damage +resist all ranged damage by 35%" 
 			Tier 1
 			AllowedWeapons
 			{
