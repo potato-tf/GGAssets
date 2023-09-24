@@ -36,6 +36,11 @@
 // Steam Link: https://steamcommunity.com/id/LittleDumbOni/
 // A real Goal for once: Be a fucking Schizo and Sleep insomnia hits hard
 // Humbridge by Birchly and Eve?
+// Just doing this to make fun of how the mission Dover is fucking absymal is on HH2
+// The pinnacle of mission making is real
+// Soon retiring after the mission is accepted, can't take this shit anymore
+// Welp it's accepted now, Goodbye forever Potato.tf
+// Why are you even reading this popfile?
 
 // Relays because those are important
 // bombpath_a
@@ -44,6 +49,24 @@
 // wave_b_init // lower path, thank god this exists
 // wave_start_ironman_relay // endurance lol
 // the normal stuff as usual
+
+// TO DO:
+// Fix chewchew tank?
+// BUFF BUFF BUFF
+// Wave 2: 
+// idk, literally no idea what to buff
+// Keep it as it is?
+// Wave 4: 
+// Add damage bonus back on the Gscatter demo?
+// Swap the demoman with the knights
+// Replace Demoman into burst and add perhaps buff banners
+// Remove buff banners on persian knights
+// Make Backburner pyro's come out earlier
+// Wave 5:
+// Add uber medics on the GAmplifier Heavy
+// 
+// NERF???
+// NUH UH, because Fuck you.
 
 whatever_this_popfile_is
 {
@@ -62,7 +85,6 @@ whatever_this_popfile_is
     SentryBusterFriendlyFire 0 // No
     TextPrintTime 0
     FlagEscortCountOffset -4
-    UpgradeStationKeepWeapons	1	
 
     CustomNavFile "mvm_humbridge_fixed_nav" // No idea why certain bots are retarded, so this nav should fix it?
 
@@ -95,7 +117,7 @@ whatever_this_popfile_is
     PrecacheGeneric "materials/hud/leaderboard_class_demo_atomic.vtf"
     PrecacheGeneric "materials/hud/leaderboard_class_demo_burst_homing.vtf"
     PrecacheGeneric "materials/hud/leaderboard_class_demo_burst_spammer.vtf"
-    PrecacheGeneric "materials/hud/leaderboard_class_spell_meteor_swordstonehel.vtf"
+    PrecacheGeneric "materials/hud/leaderboard_spell_meteor_swordstonehel.vtf"
     PrecacheGeneric "materials/hud/leaderboard_class_pyro_dragon_fury_swordstone_spammer.vtf"
 	//PrecacheModel "models/bots/boss_bot/boss_blimp.mdl" // I don't think I'll ever use that
 
@@ -335,12 +357,42 @@ whatever_this_popfile_is
                 "maxs" "192 392 346"
                 "spawnflags" "1"
                 "target" "go_outside"
-                "filtername" "filter_helicopter" // This?
+                "filtername" "filter_helicopter"
             }
             info_teleport_destination
             {
                 "TargetName" "go_outside"
                 "origin" "100 1240 600"
+            }
+            trigger_teleport
+            {
+                "TargetName" "unstuck_moment3"
+                "origin" "-94 -602 418"
+                "mins" "-186 -102 -102"
+                "maxs" "186 102 102"
+                "spawnflags" "1"
+                "target" "go_outside2"
+                "filtername" "filter_helicopter"
+            }
+            info_teleport_destination
+            {
+                "TargetName" "go_outside2"
+                "origin" "-264.225 -604 344"
+            }
+            trigger_teleport
+            {
+                "TargetName" "unstuck_moment4"
+                "origin" "-770 1082 384"
+                "mins" "-138 -202 -84"
+                "maxs" "138 202 84"
+                "spawnflags" "1"
+                "target" "go_outside3"
+                "filtername" "filter_helicopter"
+            }
+            info_teleport_destination
+            {
+                "TargetName" "go_outside3"
+                "origin" "-756 1352 300"
             }
             filter_tf_bot_has_tag 
             {
@@ -537,20 +589,20 @@ whatever_this_popfile_is
             {
                 "targetname" "chew_hurt"
                 "damage" "100000"
-                "damagecap" "20"
-                "damagemodel" "0"
+                //"damagecap" "20"
+                //"damagemodel" "0"
                 "damagetype" "16"
                 "filtername" "filter_redteam" // check filter for red
                 "nodmgforce" "0"
                 "origin" "95.5 0 64"
                 "mins" "-64 -64 -64"
                 "maxs" "64 64 64"
-                "parentname" "chewchew"
+                "parentname" "chewchew_tank"
                 "spawnflags" "64"
                 //"StartDisabled" "0"
-                "OnStartTouch" "chewchew,SetAnimation,chomp,0,-1"
-                "OnEndTouchAll" "chewchew,SetAnimation,move,0.66,-1"
-                "$killicon" "train" // test this later
+                "OnStartTouch" "chewchew_tank,SetAnimation,chomp,0,-1"
+                "OnEndTouchAll" "chewchew_tank,SetAnimation,move,0.66,-1"
+                "$killicon" "train"
             }
             logic_relay
             {
@@ -2370,7 +2422,7 @@ whatever_this_popfile_is
             SpawnTemplate boss_thingy_idk
             //SpawnTemplate MeleePullout // this template hurts the boss more than being helpful
             Class Demoman
-			ClassIcon demo_burst_giant // whatever icon, but cannot use the same icon again
+			ClassIcon demo_giant // whatever icon, but cannot use the same icon again
 			Name "Inferno Lunatic Bomber"
 			Health 60000
 			Scale 1.9
@@ -2872,7 +2924,7 @@ whatever_this_popfile_is
             CharacterAttributes
             {
                 "move speed bonus" 0.45 // because Fuck you Colonel
-                //"move speed bonus"	0.32
+                //"move speed bonus" 0.32
                 "damage force reduction" 0.3
                 "airblast vulnerability multiplier" 0.3
 				"override footstep sound set" 7
@@ -2912,17 +2964,24 @@ whatever_this_popfile_is
                 Param "regular"
 				Delay 0
 				Repeats 1
-				IfHealthBelow 17000
+				IfHealthBelow 15000
 			}
-			FireInput
+			FireInput // Thanks Royal, Very Cool
 			{
 				Target "popscript"
 				Action "$ColDronemanEngaged"
                 Param "regular"
-				Delay 0
+				Delay 0.1
 				Repeats 1
-				IfHealthBelow 12000
+				IfHealthBelow 10000
 			}
+            ChangeAttributes // Brute force this
+            {
+                Delay 0
+                Repeats 1
+                IfHealthBelow 10000
+                Name "Engaged"
+            }
 			EventChangeAttributes
 			{
 				Default
@@ -2935,7 +2994,7 @@ whatever_this_popfile_is
 					WeaponRestrictions PrimaryOnly
                     WeaponSwitch
                     {
-                        Delay 0
+                        Delay 0.1
                         Cooldown 0
                         Repeats 1
                         Type "Primary"
@@ -3429,7 +3488,7 @@ whatever_this_popfile_is
 					Default "models/empty.mdl"
 					Destruction "models/empty.mdl"
 				}
-				//Model "models/bots/boss_bot/boss_tankred.mdl" 
+				//Model "models/bots/boss_bot/boss_tankred.mdl" // what
 				StartingPathTrackNode "tank_path_a_1"
 
                 OnBombDroppedOutput // Failsafe
@@ -3467,9 +3526,9 @@ whatever_this_popfile_is
 				    ItemName "The Mair Mask"
 				    "set item tint rgb" 5801378
 			    }
-                CharacterAttributes
+                CharacterAttributes // too stronk trololololo
                 {
-                    "dmg penalty vs players" 1.5 // Don't tell anyone about this
+                    "dmg penalty vs players" 1.25 // Don't tell anyone about this
                 }
             }
         }
@@ -3631,7 +3690,7 @@ whatever_this_popfile_is
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-        WaveSpawn // GBurst Demo with GRegen Med
+        WaveSpawn // GScatter Demo with GShield Medic
         {
             Name d1_1
             TotalCurrency 150
@@ -3654,7 +3713,7 @@ whatever_this_popfile_is
                     ItemAttributes // just a tiny nerf
                     {
                         ItemName "TF_WEAPON_GRENADELAUNCHER"
-                        "damage bonus" 1
+                        //"damage bonus" 1
                         "fire rate bonus" 0.2
                     }
                     //Item "The Tide Turner" // Had to remove it :table:
@@ -3671,7 +3730,6 @@ whatever_this_popfile_is
                     //Template T_TFBot_Giant_Medic // A spy ruins this, are you kidding me. Now this is too difficult???
                     Template Yuugibot_Giant_Quickfix_Shield_Medic
                     //ExtAttr MedicLookAtThreats // Suggestion by Hell-met, But Braindawg says No ._.
-                    // GOOD, because Hell-met is retarded
                     Item "The Team Captain"
                     Item "The Quadwrangler"
                 }
@@ -3756,7 +3814,7 @@ whatever_this_popfile_is
                 }
             }
         }
-        WaveSpawn // Persian knights
+        WaveSpawn // Persian Knights
         {
             Name d2_2
             WaitForAllSpawned d1_2
@@ -3769,15 +3827,16 @@ whatever_this_popfile_is
             Where spawnbot
             TFBot
             {
+
                 Template No_Way_Mudun_Reference_Real // If you do not understand this joke, Please play Streetway Section
-                ClassIcon demoknight_buff_lite // Valve Icon but persians on botbash for some reason, Seelpit when persian with buff icon???
+                ClassIcon demoknight_buff_lite
                 Name "Boosted Persian Knight"
-                AddTemplate Add_Buff_Banner
                 Item "Aladdin's Private Reserve"
                 Item "The King of Scotland Cape"
+                AddTemplate Add_Buff_Banner
             }
         }
-        Wavespawn // GBooster Heavy + Gmed
+        Wavespawn // GBooster Heavy with GShield Medic
         {
             Name d3_1
             WaitForAllSpawned d2_1
@@ -3813,22 +3872,21 @@ whatever_this_popfile_is
                 }
             }
         }
-        WaveSpawn // Demoman
+        WaveSpawn // Burst Fire Demo
         {
             WaitForAllSpawned d1_3
             TotalCurrency 250
             TotalCount 90
-            MaxActive 8
+            MaxActive 5
             SpawnCount 2
             Support Limited
             WaitBeforeStarting 14
-            WaitBetweenSpawns 7
+            WaitBetweenSpawns 4
             Where spawnbot
             Where flankers
             TFBot
             {
-                Template T_TFBot_Fixed_Demoman
-                Skill Hard
+                Template T_TFBot_Demo_Burst
                 Item "Sophisticated Smoker"
 				Item "EOTL_demopants"
 				Item "EOTL_hiphunter_jacket"
@@ -3836,16 +3894,16 @@ whatever_this_popfile_is
         }
         WaveSpawn // Backburner Pyro
         {
-            WaitForAllDead d2_1
+            WaitForAllSpawned d2_1
             TotalCurrency 150
             TotalCount 48
-            MaxActive 8
-            SpawnCount 3
+            MaxActive 5
+            SpawnCount 2
             Support Limited
             Where spawnbot
             Where flankers
-            WaitBeforeStarting 4
-            WaitBetweenSpawns 6
+            WaitBeforeStarting 7
+            WaitBetweenSpawns 4
             TFBot
             {
                 Template Yuugibot_Backburner_Pyro // forgot they can airblast on my template
@@ -3875,7 +3933,7 @@ whatever_this_popfile_is
         //    }
         //}
     }
-    Wave // Wave 5: Things are getting out of hand, for real. Payout: $1350 or $1475 because fucking the base__boss drops 125 credits?
+    Wave // Wave 5: Things are getting out of hand, for real. Payout: $1350 or $1475 because fucking the base_boss drops 125 credits?
     {
         StartWaveOutput
 		{
@@ -3965,6 +4023,7 @@ whatever_this_popfile_is
                         IfSeeTarget 1
                         Type "Primary"
                     }
+                    Tag bot_helicopter
                 }
             }
 		}
@@ -4013,10 +4072,11 @@ whatever_this_popfile_is
                         IfSeeTarget 1
                         Type "Primary"
                     }
+                    Tag bot_helicopter
                 }
             }
 		}
-        WaveSpawn // Bowman
+        WaveSpawn // Penetrator Bowman
         {
             Name e1_2
             TotalCurrency 75
@@ -4029,7 +4089,15 @@ whatever_this_popfile_is
             TFBot
             {
                 Template T_TFBot_Fixed_Huntsman_Sniper
+                ClassIcon sniper_bow_penetrator
+                Name "Penetrator Bowman"
                 AimLeadProjectileSpeed 1
+                ItemAttributes
+                {
+                    ItemName "The Huntsman"
+                    "projectile penetration" 1
+                    "mod weapon blocks healing" 1 // prevents arrows breaking when getting uber
+                }
                 Item "The Scoped Spartan"
                 Item "The Archers Groundings"
                 Item "The Dark Falkirk Helm"
@@ -4153,6 +4221,7 @@ whatever_this_popfile_is
                     ItemAttributes
 			        {
 				        ItemName "tf_weapon_rocketlauncher"
+                        "faster reload rate" 0.2
 				        "projectile speed increased" 0.45
                         "penetrate teammates" 1 // funny rockets won't be blocked by his teammates
 			        }
@@ -4200,11 +4269,11 @@ whatever_this_popfile_is
             Name e2_3
             WaitForAllDead e1_4
             TotalCurrency 60
-            TotalCount 3
+            TotalCount 4
             MaxActive 2
             SpawnCount 1
             WaitBeforeStarting 5
-            WaitBetweenSpawns 15
+            WaitBetweenSpawns 12
             Where spawnbot
             TFBot
             {
@@ -4245,31 +4314,120 @@ whatever_this_popfile_is
 			    }
             }
         }
-        WaveSpawn // GAmplifier Heavy
+        WaveSpawn // GAmplifier Heavy + meds
         {
             Name e3_1
             WaitForAllDead e2_3
             TotalCurrency 50
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
-            WaitBeforeStarting 10
+            TotalCount 3
+            MaxActive 3
+            SpawnCount 3
+            WaitBeforeStarting 5
             Where spawnbot
-            TFBot
+            Squad
             {
-                Template T_TFBot_Giant_Heavyweapons
-                ClassIcon heavy_dispenser
-                Name "Giant Amplifier Heavy"
-                Attributes AlwaysCrit
-                Item "Provisions Cap"
-                Item "The Warmth Preserver"
-                Item "The Mann of the House"
-                SpawnTemplate "radius_thingy"
-				SpawnTemplate // this fucking dispenser causes the GSoldier to remove ALL of his weapons when he spawns inside the squad!
-				{
-					Name "AmplifierPocket"
-					Bone bip_spine_2
-				}
+                TFBot
+                {
+                    Template T_TFBot_Giant_Heavyweapons
+                    ClassIcon heavy_dispenser
+                    Name "Giant Amplifier Heavy"
+                    Attributes AlwaysCrit
+                    Item "Provisions Cap"
+                    Item "The Warmth Preserver"
+                    Item "The Mann of the House"
+                    SpawnTemplate "radius_thingy"
+				    SpawnTemplate // this fucking dispenser causes the GSoldier to remove ALL of his weapons when he spawns inside the squad!
+				    {
+					    Name "AmplifierPocket"
+					    Bone bip_spine_2
+				    }
+                }
+                TFBot
+                {
+                    Template T_TFBot_Fixed_Medic_QuickUber
+                    Item "The Virus Doctor"
+                    Item "The Quadwrangler"
+                    AddAttribute 
+                    {
+                        Item "Upgradeable tf_weapon_medigun"
+                        Name "ubercharge rate penalty" 
+                        Value 999
+                        Repeats 1
+                        Delay 0.55
+                    }
+                    RemoveAttribute
+                    {
+                        Item "Upgradeable tf_weapon_medigun"
+                        Name "ubercharge rate penalty" 
+                        Repeats 1
+                        Delay 1.55
+                    }
+                    ChangeAttributes
+                    {
+                        Delay 0.5
+                        Repeats 1
+                        Name "fix_ur_weapon"
+                    }
+                    EventChangeAttributes
+                    {
+                        "fix_ur_weapon"
+                        {
+                            Item "Upgradeable tf_weapon_medigun"
+                            ItemAttributes
+                            {
+                                ItemName "Upgradeable tf_weapon_medigun"
+                                "paintkit_proto_def_index" 257
+				    	        "set_item_texture_wear" 0
+                                "ubercharge rate bonus" 5
+				                "uber duration bonus" -3
+                                "heal rate bonus" 0.1
+                            }
+                        }
+                    }
+                }
+                TFBot
+                {
+                    Template T_TFBot_Fixed_Medic_QuickUber
+                    Item "The Virus Doctor"
+                    Item "The Quadwrangler"
+                    AddAttribute 
+                    {
+                        Item "Upgradeable tf_weapon_medigun"
+                        Name "ubercharge rate penalty" 
+                        Value 999
+                        Repeats 1
+                        Delay 0.55
+                    }
+                    RemoveAttribute
+                    {
+                        Item "Upgradeable tf_weapon_medigun"
+                        Name "ubercharge rate penalty" 
+                        Repeats 1
+                        Delay 1.55
+                    }
+                    ChangeAttributes
+                    {
+                        Delay 0.5
+                        Repeats 1
+                        Name "fix_ur_weapon"
+                    }
+                    EventChangeAttributes
+                    {
+                        "fix_ur_weapon"
+                        {
+                            Item "Upgradeable tf_weapon_medigun"
+                            ItemAttributes
+                            {
+                                ItemName "Upgradeable tf_weapon_medigun"
+                                "paintkit_proto_def_index" 257
+				    	        "set_item_texture_wear" 0
+                                "ubercharge rate bonus" 5
+				                "uber duration bonus" -3
+                                "heal rate bonus" 0.1
+                            }
+                        }
+                    }
+                }
             }
         }
         WaveSpawn // GRapid Soldier
@@ -4299,31 +4457,120 @@ whatever_this_popfile_is
                 }
             }
         }
-        WaveSpawn // GAmplifier Heavy
+        WaveSpawn // GAmplifier Heavy + meds
         {
             Name e3_3
             WaitForAllDead e3_1
             TotalCurrency 50
-            TotalCount 1
-            MaxActive 1
-            SpawnCount 1
+            TotalCount 3
+            MaxActive 3
+            SpawnCount 3
             WaitBeforeStarting 2
             Where spawnbot
-            TFBot
+            Squad
             {
-                Template T_TFBot_Giant_Heavyweapons
-                ClassIcon heavy_dispenser
-                Name "Giant Amplifier Heavy"
-                Attributes AlwaysCrit
-                Item "Provisions Cap"
-                Item "The Warmth Preserver"
-                Item "The Mann of the House"
-                SpawnTemplate "radius_thingy"
-				SpawnTemplate // this fucking dispenser causes the GSoldier to remove ALL of his weapons when he spawns inside the squad!
-				{
-					Name "AmplifierPocket"
-					Bone bip_spine_2
-				}
+                TFBot
+                {
+                    Template T_TFBot_Giant_Heavyweapons
+                    ClassIcon heavy_dispenser
+                    Name "Giant Amplifier Heavy"
+                    Attributes AlwaysCrit
+                    Item "Provisions Cap"
+                    Item "The Warmth Preserver"
+                    Item "The Mann of the House"
+                    SpawnTemplate "radius_thingy"
+				    SpawnTemplate // this fucking dispenser causes the GSoldier to remove ALL of his weapons when he spawns inside the squad!
+				    {
+					    Name "AmplifierPocket"
+					    Bone bip_spine_2
+				    }
+                }
+                TFBot
+                {
+                    Template T_TFBot_Fixed_Medic_QuickUber
+                    Item "The Virus Doctor"
+                    Item "The Quadwrangler"
+                    AddAttribute 
+                    {
+                        Item "Upgradeable tf_weapon_medigun"
+                        Name "ubercharge rate penalty" 
+                        Value 999
+                        Repeats 1
+                        Delay 0.55
+                    }
+                    RemoveAttribute
+                    {
+                        Item "Upgradeable tf_weapon_medigun"
+                        Name "ubercharge rate penalty" 
+                        Repeats 1
+                        Delay 1.55
+                    }
+                    ChangeAttributes
+                    {
+                        Delay 0.5
+                        Repeats 1
+                        Name "fix_ur_weapon"
+                    }
+                    EventChangeAttributes
+                    {
+                        "fix_ur_weapon"
+                        {
+                            Item "Upgradeable tf_weapon_medigun"
+                            ItemAttributes
+                            {
+                                ItemName "Upgradeable tf_weapon_medigun"
+                                "paintkit_proto_def_index" 257
+				    	        "set_item_texture_wear" 0
+                                "ubercharge rate bonus" 5
+				                "uber duration bonus" -3
+                                "heal rate bonus" 0.1
+                            }
+                        }
+                    }
+                }
+                TFBot
+                {
+                    Template T_TFBot_Fixed_Medic_QuickUber
+                    Item "The Virus Doctor"
+                    Item "The Quadwrangler"
+                    AddAttribute 
+                    {
+                        Item "Upgradeable tf_weapon_medigun"
+                        Name "ubercharge rate penalty" 
+                        Value 999
+                        Repeats 1
+                        Delay 0.55
+                    }
+                    RemoveAttribute
+                    {
+                        Item "Upgradeable tf_weapon_medigun"
+                        Name "ubercharge rate penalty" 
+                        Repeats 1
+                        Delay 1.55
+                    }
+                    ChangeAttributes
+                    {
+                        Delay 0.5
+                        Repeats 1
+                        Name "fix_ur_weapon"
+                    }
+                    EventChangeAttributes
+                    {
+                        "fix_ur_weapon"
+                        {
+                            Item "Upgradeable tf_weapon_medigun"
+                            ItemAttributes
+                            {
+                                ItemName "Upgradeable tf_weapon_medigun"
+                                "paintkit_proto_def_index" 257
+				    	        "set_item_texture_wear" 0
+                                "ubercharge rate bonus" 5
+				                "uber duration bonus" -3
+                                "heal rate bonus" 0.1
+                            }
+                        }
+                    }
+                }
             }
         }
         WaveSpawn // GRapid Soldier
@@ -4659,7 +4906,7 @@ whatever_this_popfile_is
         {
             WaitForAllSpawned f1_2
             TotalCurrency 50
-            TotalCount 16
+            TotalCount 25
             MaxActive 3
             SpawnCount 1
             Support limited
@@ -4744,7 +4991,7 @@ whatever_this_popfile_is
         {
             WaitForAllSpawned f1_2
             TotalCurrency 50
-            TotalCount 12
+            TotalCount 25
             MaxActive 1
             SpawnCount 1
             Support Limited
