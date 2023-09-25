@@ -531,7 +531,7 @@ WaveSchedule
 		ShotgunMark
 		{
 			Name "Stable Mod: Debuff Rounds"
-			Attribute "+Mark for death" 
+			Attribute "Mark for death" 
 			Cap 1
 			Increment 1
 			Cost 0
