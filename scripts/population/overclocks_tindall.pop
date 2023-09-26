@@ -111,7 +111,7 @@ WaveSchedule
 	{
 		ModScattergun	// scattergun mod - +healing received
 		{
-			Name "Bronze Mod: Rejuvination"
+			Name "Bronze Mod: Rejuvenation"
 			//Description "Scattergun increases healing from all sources, including money piles, by 25%."
 			Description "+25% healing from all sources"
 			AllowPlayerClass Scout
@@ -588,7 +588,7 @@ WaveSchedule
 		}
 		ModDirectHit	// direct hit mod - +pierce resistances, +damage, +damage vs tanks, -blast radius, -clip size
 		{
-			Name "Silver Mod: Fulmination"
+			Name "Gold Mod: Fulmination"
 			//Description "Direct Hit pierces resistances and damage is increased by 20%, but blast radius is reduced by an additional 20% and clip size is reduced by 25%."
 			Description "+Pierces resistances; +15% damage; +50% damage vs Tanks; -Additional 20% blast radius penalty; -25% clip size"
 			AllowPlayerClass Soldier
@@ -634,7 +634,7 @@ WaveSchedule
 		{
 			Name "Bronze Mod: Crash Course"
 			//Description "Rocket Jumper fires directly from reserve ammo."
-			Description "+Bottomless clip"
+			Description "+Ammo draws directly from reserve"
 			AllowPlayerClass Soldier
 			AllowedWeapons
 			{
@@ -1016,7 +1016,7 @@ WaveSchedule
 		}
 		ModFlameThrower	// flame thrower mod - +pierce resistances, +damage, +bleed, -airblast push
 		{
-			Name "Gold Mod: Blaze"
+			Name "Silver Mod: Blaze"
 			//Description "Flame Thrower and Backburner pierce resistances and damage is increased by 10%."
 			Description "+Pierces resistances; +15% damage; -Airblast doesn't push enemies"
 			AllowPlayerClass Pyro
@@ -1069,7 +1069,7 @@ WaveSchedule
 		{
 			Name "Platinum Mod: Regen"
 			//Description "Phlogistinator now grants the Concheror's effect instead of crits."
-			Description "*MMMPH effect replaced with mini-crits and Concheror effect"
+			Description "*MMMPH effect is replaced with mini-crits and Concheror effect"
 			AllowPlayerClass Pyro
 			AllowedWeapons
 			{
@@ -1246,7 +1246,7 @@ WaveSchedule
 		{
 			Name "Platinum Mod: Toxic Blight"
 			//Description "Gas Passer now coats enemies in jarate instead of gas."
-			Description "*Gas effect replaced with Jarate"
+			Description "*Gas effect is replaced with Jarate; -75% effect duration"
 			AllowPlayerClass Pyro
 			AllowedWeapons
 			{
@@ -1339,7 +1339,7 @@ WaveSchedule
 		{
 			Name "Silver Mod: Jolt"
 			//Description "Powerjack grants 5 seconds of crits on kill, but attack speed is reduced by 20% and draw speed is reduced by 50%."
-			Description "+Crits on kill for 5 seconds; -20% attack speed; -50% draw speed"
+			Description "+Crits on kill for 5 seconds; -20% attack speed; -50% deploy speed"
 			AllowPlayerClass Pyro
 			AllowedWeapons
 			{
@@ -1400,7 +1400,7 @@ WaveSchedule
 		{
 			Name "Silver Mod: Shocking Touch"
 			//Description "Third Degree drains enemy Ubercharge by 10% on hit, but draw speed is reduced by 100%."
-			Description "+Drain 10% Ubercharge on hit; -100% draw speed"
+			Description "+Drain 10% Ubercharge on hit; -100% deploy speed"
 			AllowPlayerClass Pyro
 			AllowedWeapons
 			{
@@ -1671,7 +1671,7 @@ WaveSchedule
 		{
 			Name "Bronze Mod: Crash Course"
 			//Description "Sticky Jumper fires directly from reserve ammo."
-			Description "+Bottomless clip; +95% charge rate"
+			Description "+Ammo draws directly from reserve; +95% charge rate"
 			AllowPlayerClass Demoman
 			AllowedWeapons
 			{
@@ -1750,7 +1750,7 @@ WaveSchedule
 		{
 			Name "Silver Mod: Safeguard"
 			//Description "Bottle grants 35% damage resistance on kill for 4 seconds."
-			Description "+35% damage resistance on kill for 4 seconds; -50% draw speed"
+			Description "+35% damage resistance on kill for 4 seconds; -50% deploy speed"
 			AllowPlayerClass Demoman
 			AllowedWeapons
 			{
@@ -2102,7 +2102,7 @@ WaveSchedule
 		{
 			Name "Platinum Mod: Adaptation"
 			//Description "Buffalo Steak Sandvich now grants the Battalion's Backup's effect instead of mini-crits, damage vulnerability is removed, and allows primary weapons to be used."
-			Description "*Lunchbox effect replaced with Battalion's Backup effect; Miniguns can be used while the effect is active"
+			Description "*Lunchbox effect is replaced with Battalion's Backup effect; Miniguns can be used while the effect is active"
 			AllowPlayerClass HeavyWeapons
 			AllowedWeapons
 			{
@@ -2302,7 +2302,7 @@ WaveSchedule
 		{
 			Name "Silver Mod: Noble Cadence"
 			//Description "Holiday Punch's attacks will always be crit-boosted, but draw speed is reduced by 75% and attack speed is reduced by 30%."
-			Description "+Attacks always crit; -75% draw speed; -30% attack speed"
+			Description "+Attacks always crit; -75% deploy speed; -30% attack speed"
 			AllowPlayerClass HeavyWeapons
 			AllowedWeapons
 			{
@@ -2465,7 +2465,7 @@ WaveSchedule
 		}
 		ModWrangler	// wrangler mod - +self blast damage, +no falling damage, -metal max
 		{
-			Name "Bronze Mod: Cautious Shot"
+			Name "Silver Mod: Cautious Shot"
 			//Description "Wrangler grants 80% resistance to your Sentry Gun's rockets while active."
 			Description "+90% self blast damage resistance while active; +Fall damage immunity while active; -15% reserve metal"
 			AllowPlayerClass Engineer
@@ -2533,7 +2533,7 @@ WaveSchedule
 		{
 			Name "Gold Mod: Sanctuary"
 			//Description "Gunslinger's buildings construct 100% faster, grants 1 disposable Mini-Sentry, Dispenser range increased by 50%, and canteens are $10 cheaper."
-			Description "+100% faster Building construction rate; +1 Disposable Sentry Gun; +50% Dispenser range; +$20 cheaper Canteens"
+			Description "+100% faster Building construction rate; +1 Disposable Sentry Gun; +50% Dispenser range; +Canteens cost $20 less"
 			AllowPlayerClass Engineer
 			AllowedWeapons
 			{
@@ -2658,7 +2658,7 @@ WaveSchedule
 		}
 		ModCrusadersCrossbow	// crusader's crossbow mod - +mad milk on hit, -damage, -reload speed
 		{
-			Name "Platinum Mod: Insatiable"
+			Name "Silver Mod: Insatiable"
 			//Description "Crusader's Crossbow applies Mad Milk on hit for 5 seconds, but reloads 35% slower."
 			Description "+Mad Milk on hit for 5 seconds; -50% damage; -50% reload speed"
 			AllowPlayerClass Medic
@@ -2729,7 +2729,7 @@ WaveSchedule
 		}
 		ModKritzkrieg	// kritzkrieg mod - +overheal cap, -maximum health
 		{
-			Name "Gold Mod: Vigour"
+			Name "Silver Mod: Vigour"
 			//Description "Kritzkrieg's overheal cap is increased by 25%."
 			Description "+25% max overheal; -25 max health"
 			AllowPlayerClass Medic
@@ -3214,7 +3214,7 @@ WaveSchedule
 		}
 		ModBushwacka	// bushwacka mod - +damage, -maximum health
 		{
-			Name "Gold Mod: Tempered Blade"
+			Name "Silver Mod: Tempered Blade"
 			//Description "Bushwacka's damage is increased by 20% but reduces maximum health by 25."
 			Description "+20% damage; -25 max health"
 			AllowPlayerClass Sniper
@@ -3341,7 +3341,7 @@ WaveSchedule
 		{
 			Name "Silver Mod: Quickdraw"
 			//Description "Diamondback draws 50% faster and damage penalty is removed, but clip size is reduced by 67%."
-			Description "+50% draw speed; +No damage penalty; -67% clip size"
+			Description "+50% deploy speed; +No damage penalty; -67% clip size"
 			AllowPlayerClass Spy
 			AllowedWeapons
 			{

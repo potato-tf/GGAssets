@@ -120,6 +120,11 @@ ItemName "The Force-a-Nature"
 ItemName "Festive Force-a-Nature"
 }
 
+DisallowedWeapons // Disallow those weapons
+{
+ItemName "Super Shotgun"
+}
+
 }
 
 SodaPopA
@@ -144,30 +149,6 @@ AllowedWeapons
 ItemName "The Soda Popper"
 }
 }
-
-// SodaB
-// {
-// Name "Unstable Overclock: Bread Launcher"
-// Attribute "Projectile speed increased"
-// Cap 3
-// Increment 2
-// Cost 0
-// SecondaryAttributes
-// {
-// "override projectile type extra" "brick"
-// "special item description" "Fires bread"
-// "custom projectile size" 2
-// "mult projectile scale" 1.25
-// "projectile gravity native" 0
-// }
-// Description "Fires bread"
-// Tier 1
-// AllowPlayerClass Scout
-// AllowedWeapons
-// {
-// ItemName "The Soda Popper"
-// }
-// }
 
 Backscatter
 {
@@ -437,7 +418,8 @@ SecondaryAttributes //Secondary attributes applied when upgrade is applied, for 
 "Blast radius increased" 0.3
 "fire rate penalty" 0.6
 "special item description" "+Blast vulnerability is activated while active +30% blast radius -60% swing speed"
-// "dmg taken from blast increased" 0.2
+"add attributes when active" "dmg taken from blast increased|1.25"
+"dmg taken from blast increased" -0.25
 }
 
 AllowedWeapons

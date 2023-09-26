@@ -462,7 +462,7 @@ population
 		RunForThisManyWaves	1
 		TFBot
 		{
-			Template	T_liquidation
+			Template	T_TFBot_Spy
 		}
 	}
 	Mission

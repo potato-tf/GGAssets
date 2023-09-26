@@ -1280,20 +1280,25 @@ IShatMyself
 			}
 			No_pyro_stuck
 			{
+				filter_activator_tfteam
+				{
+					"targetname" "blueteam"
+					"teamnum" "3"
+				}
 				trigger_teleport
 				{
 					"targetname" "filter_teleport"
-					"origin" "-196.208984 -1539.151855 1086.874146"
-					"mins" "-300 -300 -150"
-					"maxs" "300 300 9900"
+					"origin" "-196.208984 -1539.151855 926.874146"
+					"mins" "-400 -400 -215"
+					"maxs" "400 400 9900"
 					"spawnflags" "1" 
-					"filtername" "filter_blueteam"
+					"filtername" "blueteam"
 					"target" "out_position"
 				}
 				info_target 
 				{
 					"targetname" "out_position"
-					"origin" "-689.625244 -1540.906616 754.235901" 
+					"origin" "-689.625244 -1540.906616 654.235901" 
 				}
 			}
 			CarrierLaunchBoss
