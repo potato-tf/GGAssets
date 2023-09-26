@@ -2945,7 +2945,7 @@ WaveSchedule
 		WaveSpawn
 		{
 			Name rw1s3c
-			TotalCurrency 200
+			TotalCurrency 100
 			MaxActive 8
 			SpawnCount 2
 			WaitForAllSpawned rw1s1c
@@ -3086,7 +3086,7 @@ WaveSchedule
 		WaveSpawn
 		{
 			Name bw1s3b
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 12
 			MaxActive 6
 			SpawnCount 2
@@ -3124,7 +3124,7 @@ WaveSchedule
 		WaveSpawn
 		{
 			Name bw1s4a
-			TotalCurrency 100
+			TotalCurrency 50
 			MaxActive 8
 			SpawnCount 2
 			WaitForAllSpawned bw1s3b
@@ -3323,7 +3323,7 @@ WaveSchedule
 		{
 			Name rw2s2b
 			WaitForAllSpawned rw2s1c
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 16
 			MaxActive 4
 			SpawnCount 1
@@ -3363,7 +3363,7 @@ WaveSchedule
 		{
 			Name rw2s2d
 			WaitForAllSpawned rw2s1c
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 6
 			MaxActive 2
 			SpawnCount 1
@@ -3587,7 +3587,7 @@ WaveSchedule
 		{
 			Name bw2s3c
 			WaitForAllSpawned bw2s2b
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 40
 			MaxActive 12
 			SpawnCount 8
@@ -3628,7 +3628,7 @@ WaveSchedule
 		{
 			Name bw2s4b
 			WaitForAllSpawned bw2s3c
-			TotalCurrency 100
+			TotalCurrency 50
 			MaxActive 6
 			SpawnCount 3
 			WaitBeforeStarting 2
@@ -3867,7 +3867,7 @@ WaveSchedule
 		{
 			Name rw3s4b
 			WaitForAllSpawned rw3s3b
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 12
 			MaxActive 6
 			SpawnCount 2
@@ -3905,7 +3905,7 @@ WaveSchedule
 		{
 			Name rw3s4b
 			WaitForAllSpawned rw3s4b
-			TotalCurrency 100
+			TotalCurrency 50
 			MaxActive 6
 			SpawnCount 2
 			WaitBeforeStarting 3
@@ -4075,7 +4075,7 @@ WaveSchedule
 		{
 			Name bw3s4b
 			WaitForAllSpawned bw3s3b
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 12
 			MaxActive 6
 			SpawnCount 3
@@ -4095,7 +4095,7 @@ WaveSchedule
 		{
 			Name bw3s4c
 			WaitForAllSpawned bw3s3b
-			TotalCurrency 100	
+			TotalCurrency 50	
 			TotalCount 12
 			MaxActive 6
 			SpawnCount 3
@@ -4361,7 +4361,7 @@ WaveSchedule
 		{
 			Name rw4s3b
 			WaitForAllSpawned rw4s2b
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 15
 			MaxActive 6
 			SpawnCount 3
@@ -4380,7 +4380,7 @@ WaveSchedule
 		{
 			Name rw4s4a
 			WaitForAllSpawned rw4s3b
-			TotalCurrency 100
+			TotalCurrency 50
 			MaxActive 6
 			SpawnCount 2
 			WaitBeforeStarting 2
@@ -4571,7 +4571,7 @@ WaveSchedule
 		{
 			Name bw4s3b
 			WaitForAllSpawned bw4s2b
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 8
 			MaxActive 4
 			SpawnCount 2
@@ -4590,7 +4590,7 @@ WaveSchedule
 		{
 			Name bw4s4a
 			WaitForAllSpawned bw4s3b
-			TotalCurrency 100
+			TotalCurrency 50
 			MaxActive 10
 			SpawnCount 5
 			WaitBeforeStarting 2
@@ -4900,7 +4900,7 @@ WaveSchedule
 		{
 			Name rw5s4b
 			WaitForAllSpawned rw5s3a
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 24
 			MaxActive 7
 			SpawnCount 1
@@ -4919,7 +4919,7 @@ WaveSchedule
 		{
 			Name rw5s5b
 			WaitForAllSpawned rw5s4b
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 28
 			MaxActive 4
 			SpawnCount 1
@@ -5172,7 +5172,7 @@ WaveSchedule
 		{
 			Name bw5s4b
 			WaitForAllSpawned bw5s3b
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 30
 			MaxActive 10
 			SpawnCount 2
@@ -5191,7 +5191,7 @@ WaveSchedule
 		{
 			Name bw5s5b
 			WaitForAllSpawned bw5s4b
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 28
 			MaxActive 4
 			SpawnCount 1
