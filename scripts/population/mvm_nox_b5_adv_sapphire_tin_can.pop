@@ -1003,7 +1003,7 @@ WaveSchedule
 			MaxActive 4
 			SpawnCount 2
 			Where spawnbot_mission_sniper
-			WaitBetweenSpawns 10
+			WaitBetweenSpawns 12
 			WaitBeforeStarting 5
 			TFBot
 			{
@@ -1136,7 +1136,7 @@ WaveSchedule
 			{
 				Template T_TFBot_Giant_Demoman
 				ClassIcon demo_spammer
-				Attributes AlwaysCrit
+				//Attributes AlwaysCrit
 				Tag default
 			}
 		}
@@ -1453,7 +1453,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Pyro_Fury
-				Skill Hard
+				Skill Normal
 				Tag default
 			}
 		}
@@ -1748,7 +1748,7 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Heavyweapons_Heater_Common
-					Skill Expert
+					Skill Hard
 					Name "Heater Heavy"
 					Tag default
 				}
@@ -1898,7 +1898,7 @@ WaveSchedule
 				Tag default
 				CharacterAttributes
 				{
-					"increase buff duration" 1.4 // due to nox being a small map
+					"increase buff duration" 1.6 // due to nox being a small map
 				}
 			}
 		}
