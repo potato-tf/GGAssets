@@ -2500,6 +2500,7 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes  
 			{
+				"provide on active" 1
 				"mult bleeding dmg" -0.9
 				"explosive sniper shot" 1
 				"fire rate penalty HIDDEN" 0.5

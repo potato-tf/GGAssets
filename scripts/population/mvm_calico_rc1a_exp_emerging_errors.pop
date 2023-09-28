@@ -1239,6 +1239,17 @@
 						"angles" "0 180 0"
 						"skin" 2
 						"targetname" spawner_sniper
+						"origin" "1118.26 -2735 146.88"   
+					}
+								prop_dynamic
+					{
+						"model" "models/props_mvm/robot_spawnpoint.mdl"
+						"disableshadows" 1
+						"startdisabled" 1
+						"defaultanim" "idle"
+						"angles" "0 180 0"
+						"skin" 2
+						"targetname" spawner_sniper
 						"origin" "945.89 -1729.20 157.81"
 					}
 								prop_dynamic
