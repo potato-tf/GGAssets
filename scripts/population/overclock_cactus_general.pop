@@ -411,7 +411,7 @@ WaveSchedule
 		{
 			Name "Unstable Mod: Cash Vacuum"
 			Attribute "mult credit collect range" 
-			Cap 2
+			Cap 3
 			Increment 2
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
