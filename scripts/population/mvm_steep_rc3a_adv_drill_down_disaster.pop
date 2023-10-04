@@ -3204,7 +3204,7 @@ IShatMyself
 							"Projectile speed increased"	0.9
 							"rage giving scale" 0.1
 							"deploy time decreased" 0.01
-							"healing received bonus" 0
+							"healing received bonus" 320
 						}
 						ItemAttributes
 						{
@@ -3263,7 +3263,7 @@ IShatMyself
 							"Projectile speed increased"	0.9
 							"rage giving scale" 0.1
 							"deploy time decreased" 0.01
-							"healing received bonus" 0
+							"healing received bonus" 320
 						}
 						ItemAttributes
 						{
@@ -3323,7 +3323,7 @@ IShatMyself
 							"Projectile speed increased"	0.65
 							"rage giving scale" 0.1
 							"deploy time decreased" 0.01
-							"healing received bonus" 0
+							"healing received bonus" 320
 						}
 						FireInput
 						{
