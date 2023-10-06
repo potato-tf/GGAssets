@@ -50,24 +50,6 @@
 // wave_start_ironman_relay // endurance lol
 // the normal stuff as usual
 
-// TO DO:
-// Fix chewchew tank?
-// BUFF BUFF BUFF
-// Wave 2: 
-// idk, literally no idea what to buff
-// Keep it as it is?
-// Wave 4: 
-// Add damage bonus back on the Gscatter demo?
-// Swap the demoman with the knights
-// Replace Demoman into burst and add perhaps buff banners
-// Remove buff banners on persian knights
-// Make Backburner pyro's come out earlier
-// Wave 5:
-// Add uber medics on the GAmplifier Heavy
-// 
-// NERF???
-// NUH UH, because Fuck you.
-
 whatever_this_popfile_is
 {
     StartingCurrency 800
@@ -364,12 +346,12 @@ whatever_this_popfile_is
                 "TargetName" "go_outside"
                 "origin" "100 1240 600"
             }
-            trigger_teleport
+            trigger_teleport // castle area near front upgrade station
             {
                 "TargetName" "unstuck_moment3"
-                "origin" "-94 -602 418"
-                "mins" "-186 -102 -102"
-                "maxs" "186 102 102"
+                "origin" "-774 1078 434"
+                "mins" "-242 -154 -82"
+                "maxs" "242 154 82"
                 "spawnflags" "1"
                 "target" "go_outside2"
                 "filtername" "filter_helicopter"
@@ -377,14 +359,14 @@ whatever_this_popfile_is
             info_teleport_destination
             {
                 "TargetName" "go_outside2"
-                "origin" "-264.225 -604 344"
+                "origin" "-756 1352 300"
             }
-            trigger_teleport
+            trigger_teleport // the other castle area
             {
                 "TargetName" "unstuck_moment4"
-                "origin" "-770 1082 384"
-                "mins" "-138 -202 -84"
-                "maxs" "138 202 84"
+                "origin" "-98 -604 518"
+                "mins" "-224 -146 -122"
+                "maxs" "224 146 122"
                 "spawnflags" "1"
                 "target" "go_outside3"
                 "filtername" "filter_helicopter"
@@ -392,7 +374,7 @@ whatever_this_popfile_is
             info_teleport_destination
             {
                 "TargetName" "go_outside3"
-                "origin" "-756 1352 300"
+                "origin" "-380 -600 488"
             }
             filter_tf_bot_has_tag 
             {
@@ -3829,7 +3811,7 @@ whatever_this_popfile_is
             {
 
                 Template No_Way_Mudun_Reference_Real // If you do not understand this joke, Please play Streetway Section
-                ClassIcon demoknight_buff_lite
+                ClassIcon demoknight_buff_lite // Valve Icon but persians on botbash for some reason, Seelpit when persian with buff icon???
                 Name "Boosted Persian Knight"
                 Item "Aladdin's Private Reserve"
                 Item "The King of Scotland Cape"

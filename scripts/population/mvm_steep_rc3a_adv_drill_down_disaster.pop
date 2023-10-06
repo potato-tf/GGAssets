@@ -305,6 +305,14 @@ IShatMyself
 					"pitch" "100"
 					"spawnflags" "17"
 				}
+				ambient_generic
+				{
+					"targetname" "branescan"
+					"message" "#music/hl2_song31.mp3"
+					"health" "10"
+					"pitch" "100"
+					"spawnflags" "17"
+				}
 				OnParentKilledOutput
 				{
 					Target "branescan"
@@ -1459,7 +1467,7 @@ IShatMyself
 			{
 				ambient_generic
 				{
-					"targetname" "bosstransition"
+					"targetname" "bosstransition_healthbar"
 					"message" "bossbar1.wav"
 					"health" "10"
 					"pitch" "100"
@@ -1566,6 +1574,8 @@ IShatMyself
 					"OnTrigger"	"bosstransition7,PlaySound,,3.75,-1"
 					"OnTrigger"	"iwantyoudead,Enable,,4.5,-1"
 					"OnTrigger"	"iwantyoudead,Disable,,4.6,-1"
+					"OnTrigger" "!activator,$RemovePlayerAttribute,healing received bonus,5,-1"
+					"OnTrigger" "!activator,$RemoveCond,73,5,-1"
 				}
 			}
 			FinalBossTransitionPhase2
@@ -3194,6 +3204,7 @@ IShatMyself
 							"Projectile speed increased"	0.9
 							"rage giving scale" 0.1
 							"deploy time decreased" 0.01
+							"healing received bonus" 320
 						}
 						ItemAttributes
 						{
@@ -3252,6 +3263,7 @@ IShatMyself
 							"Projectile speed increased"	0.9
 							"rage giving scale" 0.1
 							"deploy time decreased" 0.01
+							"healing received bonus" 320
 						}
 						ItemAttributes
 						{
@@ -3311,6 +3323,7 @@ IShatMyself
 							"Projectile speed increased"	0.65
 							"rage giving scale" 0.1
 							"deploy time decreased" 0.01
+							"healing received bonus" 320
 						}
 						FireInput
 						{
