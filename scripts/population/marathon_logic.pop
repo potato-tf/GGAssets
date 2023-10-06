@@ -17,6 +17,7 @@ BonusRatioFull 0.1   //The ratio of collected cash required to be awarded 100 bo
 FixedBuybacks 1	
 BuybacksPerWave 0
 EngineerPushRange -1
+NoThrillerTaunt 1
 
 NoReanimators 1	
 NoRomevisionCosmetics 1
@@ -70,6 +71,15 @@ ItemName "Baby Face's Blaster"
 "lose hype on take damage" 0
 "hype resets on jump" 0
 "special item description" "No boost lost ever"
+}
+
+ItemAttributes //funny
+{
+ItemName "Ye Olde Baker Boy"
+"special item description" "Becomes true self"
+"voice pitch scale" 0.3
+"hand scale" 1.4
+"head scale" -2
 }
 
 ItemAttributes //makes melee more forgiving 
@@ -1665,6 +1675,87 @@ Scout
 {
 "health from credits" 75
 }
+
+soldier
+{
+"torso scale" 4
+"health regen" -300
+"voice pitch scale" 0.3
+"hand scale" 1.25
+"maxammo primary reduced" -2
+"maxammo secondary reduced" -2
+"head scale" 0.2
+}
+
+pyro
+{
+"torso scale" 4
+"voice pitch scale" 0.3
+"hand scale" 1.25
+"maxammo primary reduced" -2
+"health regen" -300
+"maxammo secondary reduced" -2
+"head scale" 0.2
+}
+
+demoman
+{
+"torso scale" 4
+"voice pitch scale" 0.3
+"hand scale" 1.25
+"maxammo primary reduced" -2
+"maxammo secondary reduced" -2
+"health regen" -300
+"head scale" 0.2
+}
+
+heavyweapons
+{
+"torso scale" 4
+"voice pitch scale" 0.3
+"health regen" -300
+"hand scale" 1.25
+"maxammo primary reduced" -2
+"maxammo secondary reduced" -2
+"head scale" 0.2
+}
+
+engineer
+{
+"torso scale" 4
+"health regen" -300
+"voice pitch scale" 0.3
+"hand scale" 1.25
+"head scale" 0.2
+}
+
+sniper
+{
+"torso scale" 4
+"voice pitch scale" 0.3
+"hand scale" 1.25
+"health regen" -300
+"maxammo primary reduced" -2
+"maxammo secondary reduced" -2
+"head scale" 0.2
+}
+
+medic
+{
+"voice pitch scale" 0.3
+"torso scale" 5
+"health regen" -300
+"head scale" 0.2
+}
+
+spy
+{
+"voice pitch scale" 0.3
+"torso scale" 5
+"health regen" -300
+"head scale" 0.2
+}
+
 }
 
 CustomWeapon  
@@ -1683,25 +1774,6 @@ OriginalItemName "The Force-a-Nature"
 "crit mod disabled" 0
 "weapon always gib" 1
 "special item description" "Starts out with +30% damage"
-"special item description 2" "Rip and Tear!"
-"custom item model" "models/weapons/c_models/c_funny_doom_db.mdl"
-"custom weapon fire sound" "=80|trespasser/sg-1.wav"
-"clip size penalty" "0.15"
-}
-
-"Super Shotgun V1"
-{
-OriginalItemName "The Force-a-Nature"
-"bullets per shot bonus" 1.4
-"damage bonus HIDDEN" 1.5
-"scattergun has knockback" -1
-// "weapon spread bonus" 0.8
-"maxammo primary reduced" 0.6
-"damage penalty" 1
-"crit mod disabled" 0
-"reload time increased" 1.2
-"weapon always gib" 1
-"special item description" "Starts out with +50% damage"
 "special item description 2" "Rip and Tear!"
 "custom item model" "models/weapons/c_models/c_funny_doom_db.mdl"
 "custom weapon fire sound" "=80|trespasser/sg-1.wav"
@@ -1775,7 +1847,6 @@ Spy 0
 Civilian 0
 }
 
-
 Templates
 {
 
@@ -1805,8 +1876,9 @@ ItemName "TF_WEAPON_ROCKETLAUNCHER"
 "custom impact sound" "Weapon_BoxingGloves.HitWorld"
 "explosion particle" mvm_soldier_shockwave
 "custom kill icon" steel_fists
-"mod projectile heat seek power" 120
-"mod projectile heat aim error" 120
+"mod projectile heat seek power" 360
+"mod projectile heat aim error" 360
+"mod projectile heat follow crosshair" 1
 "mod projectile heat aim time" 2.5
 "mult projectile scale" 1.25
 "custom projectile size" 1.25

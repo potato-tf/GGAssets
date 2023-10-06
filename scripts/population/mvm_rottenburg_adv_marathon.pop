@@ -31,6 +31,7 @@ WaveSchedule
 StartingCurrency 1200
 CanBotsAttackWhileInSpawnRoom No
 RespawnWaveTime 20
+UpgradeStationKeepWeapons	1	
 
 SpawnTemplate "MissionName"
 SpawnTemplate "Moosic"
@@ -1070,7 +1071,7 @@ WaitBetweenSpawns	10
 
 TFBot
 {
-Health	15000
+Health	20000
 MaxVisionRange	1200
 Name	"Heavy Colonel"
 SpawnTemplate Yakuza_Title_Card_2
@@ -1240,7 +1241,7 @@ IgnoreStealthedSpies 1
 RocketSpeed 0.1
 TurnPower 360
 MaxAimError 360
-AimTime 2.2
+AimTime 2
 Acceleration 9999
 AccelerationTime 9999
 AccelerationStartTime 2
