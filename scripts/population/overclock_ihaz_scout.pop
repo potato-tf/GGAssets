@@ -77,7 +77,7 @@ Increment 0.75
 Cap 1.4
 SecondaryAttributes
 {
-"damage bonus HIDDEN" 1.1
+"damage bonus HIDDEN" 1.15
 "crit mod disabled" -1
 "hidden primary max ammo bonus" 0.75
 "override projectile type"  2
@@ -127,29 +127,30 @@ ItemName "Super Shotgun"
 
 }
 
-// SodaPopA
-// {
-// Name "Unstable Overclock: Quadnades" 
-// Attribute "effect cond override"
-// Cap 65
-// Increment 65
-// Cost 0
-// SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
-// {
-// "Reload time decreased" 0.25
-// "effect add attributes" "override projectile type|2|no damage falloff|1|mult projectile count|3|projectile spread angle penalty|4|damage bonus HIDDEN|6.3|projectile gravity|600|projectile detonate time|0.4|custom kill icon|iron_bomber|Blast radius decreased|0.5"
-// "custom projectile model" "models/workshop/weapons/c_models/c_quadball/w_quadball_grenade.mdl"
-// "projectile trail particle" "peejar_trail_red"
-// "special item description" "Hype is replaced with close-range grenades -25% reload speed"
-// }
-// Description "Hype is replaced with close-range grenades -25% reload speed"
-// Tier 1
-// AllowPlayerClass Scout
-// AllowedWeapons
-// {
-// ItemName "The Soda Popper"
-// }
-// }
+SodaPopA
+{
+Name "Unstable Overclock: Quadnades" 
+Attribute "effect cond override"
+Cap 65
+Increment 65
+Cost 0
+SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+{
+"Reload time decreased" 0.25
+"effect add attributes" "override projectile type|2|no damage falloff|1|mult projectile count|3|projectile spread angle penalty|4|damage bonus HIDDEN|6.3|projectile gravity|600|projectile detonate time|0.4|custom kill icon|iron_bomber|Blast radius decreased|0.5|disable weapon switch|1"
+"custom projectile model" "models/workshop/weapons/c_models/c_quadball/w_quadball_grenade.mdl"
+"projectile trail particle" "peejar_trail_red"
+"ignores other projectiles" 1
+"special item description" "Hype is replaced with close-range grenades -25% reload speed -Cannot switch weapons during hype"
+}
+Description "Hype is replaced with close-range grenades -25% reload speed -Cannot switch weapons during hype"
+Tier 1
+AllowPlayerClass Scout
+AllowedWeapons
+{
+ItemName "The Soda Popper"
+}
+}
 
 Backscatter
 {
